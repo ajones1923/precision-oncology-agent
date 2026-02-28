@@ -1,0 +1,212 @@
+[
+  {
+    "id": "bio-tmb-high-001",
+    "text_summary": "Tumor Mutational Burden High (TMB-H) is defined as 10 or more somatic mutations per megabase of DNA sequenced. TMB-H is a pan-cancer predictive biomarker for response to immune checkpoint inhibitors, with pembrolizumab receiving tissue-agnostic FDA approval for TMB-H solid tumors based on the KEYNOTE-158 trial. TMB is measured by comprehensive genomic profiling (CGP) using validated NGS panels such as FoundationOne CDx. TMB varies by cancer type, with melanoma, NSCLC, and bladder cancer having among the highest median values. High TMB correlates with neoantigen generation and enhanced anti-tumor immune recognition. TMB should be interpreted alongside PD-L1 expression and MSI status for optimal immunotherapy patient selection.",
+    "biomarker_name": "TMB-High",
+    "biomarker_type": "predictive",
+    "cancer_types": "pan-cancer, NSCLC, melanoma, bladder, colorectal",
+    "predictive_value": "Response to immune checkpoint inhibitors (pembrolizumab)",
+    "testing_method": "Comprehensive genomic profiling (NGS)",
+    "clinical_cutoff": ">=10 mutations/Mb"
+  },
+  {
+    "id": "bio-msi-h-002",
+    "text_summary": "Microsatellite Instability-High (MSI-H) and deficient mismatch repair (dMMR) status are interchangeable biomarkers indicating loss of DNA mismatch repair function. MSI-H/dMMR is caused by germline mutations in MLH1, MSH2, MSH6, or PMS2 (Lynch syndrome) or by somatic MLH1 promoter hypermethylation. Approximately 15% of colorectal and 20-30% of endometrial cancers are MSI-H. Pembrolizumab was the first drug to receive tissue-agnostic FDA approval for MSI-H/dMMR solid tumors. MSI-H tumors have high neoantigen burden, dense lymphocytic infiltration, and respond well to anti-PD-1 therapy. Testing is performed by PCR (Bethesda panel), NGS, or IHC for MMR protein expression. Universal MSI/MMR testing is recommended for all colorectal cancers per NCCN guidelines.",
+    "biomarker_name": "MSI-H/dMMR",
+    "biomarker_type": "predictive",
+    "cancer_types": "pan-cancer, colorectal, endometrial, gastric, ovarian",
+    "predictive_value": "Response to immune checkpoint inhibitors (pembrolizumab, nivolumab, dostarlimab)",
+    "testing_method": "PCR (Bethesda markers), NGS, IHC (MLH1/MSH2/MSH6/PMS2)",
+    "clinical_cutoff": ">=2/5 Bethesda markers unstable or loss of MMR protein expression by IHC"
+  },
+  {
+    "id": "bio-pdl1-tps-003",
+    "text_summary": "PD-L1 Tumor Proportion Score (TPS) measures the percentage of viable tumor cells showing partial or complete membrane staining for PD-L1 at any intensity. PD-L1 TPS is a critical predictive biomarker for pembrolizumab monotherapy in NSCLC, with TPS >=50% qualifying for first-line single-agent pembrolizumab (KEYNOTE-024 trial: PFS 10.3 months vs 6.0 months for chemotherapy). TPS >=1% supports pembrolizumab use in combination with chemotherapy or as second-line monotherapy. PD-L1 is assessed by IHC using FDA-approved companion diagnostics (22C3 pharmDx for pembrolizumab, 28-8 for nivolumab, SP142 for atezolizumab, SP263 for durvalumab). PD-L1 expression is dynamic and can change with treatment. PD-L1 TPS has limitations as approximately 10-20% of PD-L1-negative NSCLC patients still respond to immunotherapy.",
+    "biomarker_name": "PD-L1 TPS",
+    "biomarker_type": "predictive",
+    "cancer_types": "NSCLC, head and neck, gastric, cervical, urothelial",
+    "predictive_value": "Response to anti-PD-1/PD-L1 immunotherapy",
+    "testing_method": "IHC (22C3, 28-8, SP142, SP263 antibody clones)",
+    "clinical_cutoff": ">=50% for pembrolizumab monotherapy; >=1% for combination"
+  },
+  {
+    "id": "bio-hrd-score-004",
+    "text_summary": "Homologous Recombination Deficiency (HRD) score is a composite biomarker measuring three independent markers of genomic scarring: loss of heterozygosity (LOH), telomeric allelic imbalance (TAI), and large-scale state transitions (LST). A high HRD score indicates impaired homologous recombination DNA repair, regardless of BRCA mutation status. The Myriad myChoice CDx HRD assay (cutoff >=42) is an FDA-approved companion diagnostic for identifying ovarian cancer patients eligible for PARP inhibitor therapy (olaparib, niraparib). HRD-positive tumors without BRCA mutations (approximately 20-30% of ovarian cancers) still benefit from PARP inhibitors, though the magnitude of benefit is generally less than in BRCA-mutant tumors. HRD testing is also being investigated in breast, prostate, and pancreatic cancers.",
+    "biomarker_name": "HRD Score",
+    "biomarker_type": "predictive",
+    "cancer_types": "ovarian, breast, prostate, pancreatic",
+    "predictive_value": "Response to PARP inhibitors (olaparib, niraparib)",
+    "testing_method": "Myriad myChoice CDx (LOH + TAI + LST composite)",
+    "clinical_cutoff": ">=42 (myChoice CDx scale)"
+  },
+  {
+    "id": "bio-brca-status-005",
+    "text_summary": "BRCA1/2 mutation status identifies germline or somatic pathogenic variants in the BRCA1 and BRCA2 homologous recombination repair genes. BRCA-positive status is the strongest single predictive biomarker for PARP inhibitor efficacy across multiple tumor types. FDA-approved PARP inhibitor indications linked to BRCA status include ovarian cancer (olaparib, rucaparib, niraparib), breast cancer (olaparib, talazoparib), prostate cancer (olaparib, rucaparib), and pancreatic cancer (olaparib maintenance). Both germline and somatic BRCA testing are recommended, as approximately 30-50% of BRCA mutations in ovarian cancer are somatic. BRCA mutations also predict sensitivity to platinum-based chemotherapy. NCCN guidelines recommend BRCA testing for all ovarian, high-risk breast, metastatic prostate, and pancreatic cancer patients.",
+    "biomarker_name": "BRCA1/2 Mutation Status",
+    "biomarker_type": "predictive",
+    "cancer_types": "ovarian, breast, prostate, pancreatic",
+    "predictive_value": "Response to PARP inhibitors and platinum-based chemotherapy",
+    "testing_method": "NGS (germline and somatic), large rearrangement analysis",
+    "clinical_cutoff": "Pathogenic or likely pathogenic variants"
+  },
+  {
+    "id": "bio-alk-fish-006",
+    "text_summary": "ALK rearrangement testing by FISH (fluorescence in situ hybridization) or NGS identifies ALK gene fusions that drive approximately 3-5% of NSCLCs. The ALK FISH break-apart probe detects rearrangements when the 3' and 5' signals are separated in >=15% of scored tumor cells. While FISH was the original FDA-approved companion diagnostic for crizotinib, NGS has become the preferred testing method as it identifies both the ALK fusion and the specific fusion partner (EML4 being most common). IHC with the Ventana ALK D5F3 antibody is an acceptable screening method with high sensitivity and specificity. Positive ALK status qualifies patients for ALK TKIs (alectinib, lorlatinib, crizotinib, ceritinib, brigatinib). ALK fusions are typically mutually exclusive with other driver mutations (EGFR, ROS1, KRAS).",
+    "biomarker_name": "ALK Rearrangement",
+    "biomarker_type": "predictive",
+    "cancer_types": "NSCLC, anaplastic large cell lymphoma",
+    "predictive_value": "Response to ALK tyrosine kinase inhibitors",
+    "testing_method": "FISH (break-apart probe), NGS (DNA/RNA), IHC (D5F3 clone)",
+    "clinical_cutoff": ">=15% cells with rearrangement by FISH; positive by validated IHC"
+  },
+  {
+    "id": "bio-ros1-fish-007",
+    "text_summary": "ROS1 rearrangement testing identifies ROS1 gene fusions present in approximately 1-2% of NSCLC. FISH using the ROS1 break-apart probe is one of the gold-standard detection methods, with positivity defined as separation of signals in >=15% of scored cells. NGS (particularly RNA-based sequencing) provides the advantage of identifying the specific fusion partner. RT-PCR-based assays can detect known fusion variants but may miss novel partners. Positive ROS1 status qualifies patients for ROS1 inhibitors including crizotinib, entrectinib, and repotrectinib. ROS1-positive NSCLC tends to occur in younger, never-smoking patients and is mutually exclusive with EGFR, ALK, and KRAS mutations. NCCN guidelines mandate ROS1 testing as part of comprehensive biomarker profiling for all advanced non-squamous NSCLC patients.",
+    "biomarker_name": "ROS1 Rearrangement",
+    "biomarker_type": "predictive",
+    "cancer_types": "NSCLC, cholangiocarcinoma",
+    "predictive_value": "Response to ROS1 tyrosine kinase inhibitors",
+    "testing_method": "FISH (break-apart probe), NGS (RNA-based preferred), IHC (D4D6 clone for screening)",
+    "clinical_cutoff": ">=15% cells with rearrangement by FISH"
+  },
+  {
+    "id": "bio-egfr-mut-008",
+    "text_summary": "EGFR mutation testing detects activating mutations in the EGFR tyrosine kinase domain that predict sensitivity to EGFR TKIs in NSCLC. Common sensitizing mutations include exon 19 deletions (~45% of EGFR mutations) and L858R (~40%). Uncommon mutations include G719X, S768I, L861Q, and exon 20 insertions. Testing is performed by NGS (comprehensive), real-time PCR (cobas EGFR Mutation Test v2 is FDA-approved companion diagnostic), or allele-specific assays. Liquid biopsy (ctDNA) can detect EGFR mutations including the T790M resistance mutation with sensitivity of ~70-80%. EGFR mutation testing is mandatory for all advanced non-squamous NSCLC patients before initiating first-line therapy per NCCN guidelines. Positive EGFR mutation status qualifies patients for first-line osimertinib (preferred), erlotinib, gefitinib, afatinib, or dacomitinib.",
+    "biomarker_name": "EGFR Mutation",
+    "biomarker_type": "predictive",
+    "cancer_types": "NSCLC",
+    "predictive_value": "Response to EGFR tyrosine kinase inhibitors",
+    "testing_method": "NGS, real-time PCR (cobas v2), ctDNA (liquid biopsy)",
+    "clinical_cutoff": "Presence of sensitizing mutation (L858R, exon 19 del, others)"
+  },
+  {
+    "id": "bio-kras-status-009",
+    "text_summary": "KRAS mutation status is both a predictive biomarker (negative predictor for anti-EGFR antibodies in CRC, positive predictor for KRAS G12C inhibitors in NSCLC) and a prognostic biomarker. In colorectal cancer, extended RAS (KRAS/NRAS exons 2-4) wild-type status is required for anti-EGFR therapy (cetuximab, panitumumab). In NSCLC, KRAS G12C is specifically targetable by sotorasib and adagrasib. KRAS mutations occur in approximately 25-30% of NSCLC, 40-50% of CRC, and 90% of pancreatic cancers. Testing is performed by NGS or allele-specific PCR assays. The therascreen KRAS RGQ PCR kit is the companion diagnostic for sotorasib. KRAS mutations are mutually exclusive with other RAS/RAF mutations and with EGFR mutations in NSCLC. KRAS G12D and G12V are the next most common alleles under investigation for targeted therapy.",
+    "biomarker_name": "KRAS Mutation Status",
+    "biomarker_type": "predictive",
+    "cancer_types": "NSCLC, colorectal, pancreatic",
+    "predictive_value": "KRAS G12C: response to sotorasib/adagrasib; KRAS-mutant: resistance to anti-EGFR in CRC",
+    "testing_method": "NGS, allele-specific PCR (therascreen KRAS RGQ PCR Kit)",
+    "clinical_cutoff": "Presence of pathogenic KRAS mutation"
+  },
+  {
+    "id": "bio-her2-ihc-010",
+    "text_summary": "HER2 IHC and FISH testing is the standard algorithm for assessing HER2 status in breast and gastric cancers. HER2 IHC scoring follows a semi-quantitative scale: 0 (negative), 1+ (negative), 2+ (equivocal, requires reflex FISH), and 3+ (positive). HER2 FISH positivity is defined as HER2/CEP17 ratio >=2.0 with average HER2 copy number >=4.0, or ratio <2.0 with average HER2 copy number >=6.0 per cell. HER2 3+ by IHC or FISH-amplified status qualifies patients for HER2-directed therapy (trastuzumab, pertuzumab, T-DM1, T-DXd). Notably, trastuzumab deruxtecan has demonstrated efficacy in HER2-low breast cancer (IHC 1+ or IHC 2+/FISH-negative) in the DESTINY-Breast04 trial, expanding the actionable definition of HER2. NCCN guidelines require HER2 testing on all newly diagnosed invasive breast cancers.",
+    "biomarker_name": "HER2 IHC/FISH",
+    "biomarker_type": "predictive",
+    "cancer_types": "breast, gastric, esophageal, colorectal, NSCLC",
+    "predictive_value": "Response to HER2-directed therapy (trastuzumab, pertuzumab, T-DXd, T-DM1)",
+    "testing_method": "IHC (HercepTest, 4B5 clone), FISH (PathVysion HER2 DNA Probe Kit)",
+    "clinical_cutoff": "IHC 3+ or FISH-amplified (ratio >=2.0); HER2-low: IHC 1+ or IHC 2+/FISH-negative"
+  },
+  {
+    "id": "bio-er-pr-011",
+    "text_summary": "Estrogen receptor (ER) and progesterone receptor (PR) status assessed by immunohistochemistry is a fundamental prognostic and predictive biomarker in breast cancer. ER-positive breast cancer (approximately 70-80% of breast cancers) is defined by >=1% tumor cell nuclear staining and is eligible for endocrine therapy (tamoxifen, aromatase inhibitors, CDK4/6 inhibitors in combination). ER/PR testing is mandatory on all newly diagnosed invasive breast cancers and recurrences per ASCO/CAP guidelines. PR expression is prognostic within HR-positive disease and may also predict endocrine therapy benefit. Loss of ER/PR expression at recurrence suggests clonal evolution or treatment-related changes and warrants retesting. ER/PR-negative, HER2-negative breast cancer (triple-negative) has the most limited targeted therapy options and worst prognosis among breast cancer subtypes.",
+    "biomarker_name": "ER/PR Status",
+    "biomarker_type": "predictive",
+    "cancer_types": "breast",
+    "predictive_value": "Response to endocrine therapy (tamoxifen, aromatase inhibitors, fulvestrant, CDK4/6 inhibitors)",
+    "testing_method": "IHC (SP1, 1D5, 6F11 clones for ER; 1A6, 1E2 clones for PR)",
+    "clinical_cutoff": ">=1% tumor cells with nuclear staining (ASCO/CAP guideline)"
+  },
+  {
+    "id": "bio-ki67-012",
+    "text_summary": "Ki-67 is a nuclear protein expressed in proliferating cells and measured by IHC as the percentage of positively staining tumor cells (Ki-67 labeling index). In breast cancer, Ki-67 is used to distinguish luminal A (low Ki-67, <20%) from luminal B (high Ki-67, >=20%) molecular subtypes, influencing adjuvant treatment decisions. Higher Ki-67 is associated with worse prognosis but may predict greater benefit from chemotherapy. The monarchE trial validated Ki-67 >=20% as an eligibility criterion for adjuvant abemaciclib in HR-positive/HER2-negative early breast cancer. Ki-67 scoring reproducibility remains challenging, and standardization efforts (International Ki-67 in Breast Cancer Working Group) are ongoing. Ki-67 is also used in neuroendocrine tumors for grading (G1 <3%, G2 3-20%, G3 >20%). Pre-analytical and analytical variables can significantly affect Ki-67 results.",
+    "biomarker_name": "Ki-67",
+    "biomarker_type": "prognostic",
+    "cancer_types": "breast, neuroendocrine tumors",
+    "predictive_value": "Prognosis in breast cancer; grading in neuroendocrine tumors; adjuvant abemaciclib eligibility",
+    "testing_method": "IHC (MIB-1 antibody clone)",
+    "clinical_cutoff": ">=20% for luminal B classification in breast cancer; >=20% for abemaciclib eligibility"
+  },
+  {
+    "id": "bio-cea-013",
+    "text_summary": "Carcinoembryonic antigen (CEA) is a glycoprotein tumor marker measured in serum by immunoassay. CEA is the most widely used serum biomarker in colorectal cancer for post-surgical surveillance, monitoring treatment response, and detecting recurrence. Normal CEA levels are less than 5 ng/mL in non-smokers and less than 10 ng/mL in smokers. Elevated CEA at diagnosis correlates with tumor burden and is an independent prognostic factor in colorectal cancer. ASCO and NCCN guidelines recommend serial CEA monitoring every 3-6 months for 5 years after curative resection of stage II-III CRC. Rising CEA levels may indicate recurrence 3-6 months before radiographic detection. CEA has limited diagnostic sensitivity and specificity and should not be used for cancer screening. CEA is also elevated in pancreatic, gastric, breast, and lung cancers but is less validated in these settings.",
+    "biomarker_name": "CEA",
+    "biomarker_type": "prognostic",
+    "cancer_types": "colorectal, pancreatic, gastric, breast, lung",
+    "predictive_value": "Surveillance marker for colorectal cancer recurrence; treatment response monitoring",
+    "testing_method": "Serum immunoassay (ECLIA, CLIA)",
+    "clinical_cutoff": "<5 ng/mL (normal); rising trend indicates recurrence"
+  },
+  {
+    "id": "bio-ca125-014",
+    "text_summary": "CA-125 (Cancer Antigen 125, MUC16) is a serum glycoprotein biomarker primarily used in ovarian cancer for diagnosis, monitoring treatment response, and surveillance. Elevated CA-125 (>35 U/mL) is found in approximately 80% of advanced epithelial ovarian cancers and 50% of early-stage disease. Serial CA-125 measurements during chemotherapy assess treatment response, with a greater than 50% decline predicting favorable outcomes. The GCIG criteria define CA-125 response as >=50% decrease from pre-treatment level maintained for >=28 days. CA-125 is also used for recurrence surveillance, where rising levels often precede clinical or radiographic evidence of progression by 3-6 months. Limitations include false elevations in endometriosis, pelvic inflammatory disease, liver disease, and other benign conditions. NCCN guidelines recommend CA-125 monitoring before each cycle of chemotherapy and during surveillance.",
+    "biomarker_name": "CA-125",
+    "biomarker_type": "diagnostic",
+    "cancer_types": "ovarian, endometrial, fallopian tube, peritoneal",
+    "predictive_value": "Diagnosis, treatment response, and recurrence monitoring in ovarian cancer",
+    "testing_method": "Serum immunoassay (ECLIA, CLIA)",
+    "clinical_cutoff": ">35 U/mL (upper limit of normal)"
+  },
+  {
+    "id": "bio-psa-015",
+    "text_summary": "Prostate-specific antigen (PSA) is a serine protease produced by prostatic epithelial cells and measured in serum as the primary biomarker for prostate cancer screening, diagnosis, staging, and treatment monitoring. PSA levels above 4.0 ng/mL traditionally trigger further evaluation, though age-adjusted and risk-stratified cutoffs are increasingly used. PSA kinetics (PSA velocity, PSA doubling time) provide additional prognostic information in post-treatment surveillance. PSA nadir after radiation therapy predicts recurrence risk (Phoenix criteria: nadir + 2 ng/mL defines biochemical failure). After radical prostatectomy, any detectable PSA (>0.1 ng/mL) suggests residual or recurrent disease. PSA screening remains controversial due to overdiagnosis concerns, with USPSTF recommending shared decision-making for men aged 55-69. PSA also has utility in monitoring castration-resistant prostate cancer response to novel hormonal agents and chemotherapy.",
+    "biomarker_name": "PSA",
+    "biomarker_type": "diagnostic",
+    "cancer_types": "prostate",
+    "predictive_value": "Screening, diagnosis, staging, and treatment response monitoring in prostate cancer",
+    "testing_method": "Serum immunoassay (ECLIA, CLIA)",
+    "clinical_cutoff": ">4.0 ng/mL (traditional); age-adjusted thresholds vary"
+  },
+  {
+    "id": "bio-afp-016",
+    "text_summary": "Alpha-fetoprotein (AFP) is a serum glycoprotein biomarker used in hepatocellular carcinoma (HCC) and germ cell tumors. In HCC, AFP >400 ng/mL in the setting of a liver mass is highly suggestive of HCC and may obviate the need for biopsy per AASLD guidelines. AFP is used for HCC surveillance in high-risk populations (cirrhosis, chronic hepatitis B) every 6 months in combination with ultrasound. AFP levels correlate with tumor size, vascular invasion, and prognosis in HCC. In germ cell tumors, AFP is produced by yolk sac tumor elements and is used in combination with beta-hCG and LDH for diagnosis, staging (IGCCC classification), treatment monitoring, and recurrence surveillance. AFP half-life is approximately 5-7 days, and persistent elevation after chemotherapy suggests residual viable tumor. AFP-L3 fraction is a more specific HCC biomarker under investigation.",
+    "biomarker_name": "AFP",
+    "biomarker_type": "diagnostic",
+    "cancer_types": "hepatocellular carcinoma, germ cell tumors",
+    "predictive_value": "Diagnosis, staging, and surveillance in HCC and germ cell tumors",
+    "testing_method": "Serum immunoassay (ECLIA, CLIA)",
+    "clinical_cutoff": ">400 ng/mL (HCC diagnosis); normal <10 ng/mL"
+  },
+  {
+    "id": "bio-ctdna-017",
+    "text_summary": "Circulating tumor DNA (ctDNA) is cell-free DNA shed by tumors into the bloodstream, enabling non-invasive liquid biopsy for genotyping, treatment monitoring, and minimal residual disease (MRD) detection. ctDNA-based assays (Guardant360, FoundationOne Liquid CDx) are FDA-approved companion diagnostics for identifying actionable mutations when tissue biopsy is unavailable or insufficient. Serial ctDNA monitoring can detect resistance mutations (e.g., EGFR T790M, ESR1 mutations) months before clinical progression. Post-surgical ctDNA detection (MRD-positive) is a powerful prognostic biomarker predicting recurrence across multiple cancer types (CRC, NSCLC, breast). The CIRCULATE and DYNAMIC trials are evaluating ctDNA-guided adjuvant therapy decisions in CRC. ctDNA clearance during treatment correlates with favorable outcomes. Technical approaches include PCR-based (ddPCR), targeted NGS, and whole-genome sequencing of cell-free DNA.",
+    "biomarker_name": "ctDNA / Liquid Biopsy",
+    "biomarker_type": "predictive",
+    "cancer_types": "pan-cancer, NSCLC, colorectal, breast",
+    "predictive_value": "Genotyping, resistance monitoring, MRD detection, treatment response assessment",
+    "testing_method": "Targeted NGS (Guardant360, FoundationOne Liquid CDx), ddPCR, WGS",
+    "clinical_cutoff": "Variant allele frequency (VAF) detection limit ~0.1-0.5% for targeted panels"
+  },
+  {
+    "id": "bio-oncotype-018",
+    "text_summary": "Oncotype DX is a 21-gene RT-qPCR-based prognostic assay that generates a Recurrence Score (RS) ranging from 0 to 100 for HR-positive/HER2-negative early-stage breast cancer. The TAILORx trial validated RS thresholds: RS 0-10 (low risk, endocrine therapy alone), RS 11-25 (intermediate risk, endocrine therapy alone for most patients aged >50), RS 26-100 (high risk, chemotherapy + endocrine therapy). The RxPONDER trial demonstrated that postmenopausal women with 1-3 positive nodes and RS <=25 do not benefit from chemotherapy. Oncotype DX is recommended by NCCN and ASCO guidelines for treatment planning in node-negative and limited node-positive (1-3 nodes), HR-positive/HER2-negative, early breast cancer. The assay is performed on FFPE tumor tissue and helps avoid unnecessary chemotherapy in approximately 50% of eligible patients.",
+    "biomarker_name": "Oncotype DX Recurrence Score",
+    "biomarker_type": "prognostic",
+    "cancer_types": "breast (HR-positive, HER2-negative, early-stage)",
+    "predictive_value": "Predicts chemotherapy benefit in early-stage HR+/HER2- breast cancer",
+    "testing_method": "21-gene RT-qPCR assay on FFPE tissue",
+    "clinical_cutoff": "RS 0-25: endocrine only (most patients); RS 26-100: chemo + endocrine"
+  },
+  {
+    "id": "bio-mammaprint-019",
+    "text_summary": "MammaPrint is a 70-gene microarray-based prognostic assay that classifies early-stage breast cancer as genomic low-risk or high-risk, guiding the decision to add chemotherapy to endocrine therapy. The landmark MINDACT trial (6,693 patients) demonstrated that clinical high-risk / genomic low-risk patients had excellent 5-year distant metastasis-free survival of 94.7% without chemotherapy, establishing that approximately 46% of clinical high-risk patients can safely avoid chemotherapy. MammaPrint is applicable to patients with stage I-II, ER-positive or ER-negative, HER2-negative breast cancer, 1-3 positive nodes, and tumor size <=5cm. Unlike Oncotype DX, MammaPrint uses fresh or FFPE tissue and provides a binary (low/high risk) rather than continuous score. MammaPrint is endorsed by ASCO and St. Gallen guidelines for adjuvant treatment decision-making.",
+    "biomarker_name": "MammaPrint",
+    "biomarker_type": "prognostic",
+    "cancer_types": "breast (early-stage, node-negative or limited node-positive)",
+    "predictive_value": "Identifies patients who can safely omit adjuvant chemotherapy",
+    "testing_method": "70-gene microarray (Agendia)",
+    "clinical_cutoff": "Binary: genomic low-risk vs high-risk"
+  },
+  {
+    "id": "bio-ctc-020",
+    "text_summary": "Circulating tumor cells (CTCs) are intact tumor cells shed from primary or metastatic tumors into the bloodstream. The CellSearch system is the only FDA-cleared CTC enumeration platform and is validated in metastatic breast, prostate, and colorectal cancers. In metastatic breast cancer, >=5 CTCs per 7.5 mL blood is associated with significantly worse progression-free and overall survival. CTC count at baseline and changes during treatment provide real-time prognostic information. CTC enumeration can guide treatment intensity decisions in metastatic settings. Beyond enumeration, molecular characterization of CTCs (gene expression, protein markers, mutation profiling) can provide insights into tumor heterogeneity and drug resistance mechanisms. Emerging CTC technologies include microfluidic devices, size-based filtration, and single-cell sequencing. CTCs are being investigated as MRD biomarkers in early-stage cancers.",
+    "biomarker_name": "Circulating Tumor Cells (CTCs)",
+    "biomarker_type": "prognostic",
+    "cancer_types": "breast, prostate, colorectal",
+    "predictive_value": "Prognosis and treatment response monitoring in metastatic cancers",
+    "testing_method": "CellSearch system (EpCAM-based immunomagnetic capture)",
+    "clinical_cutoff": ">=5 CTCs per 7.5 mL blood (unfavorable prognosis in breast); >=5 in prostate"
+  },
+  {
+    "id": "bio-tils-021",
+    "text_summary": "Tumor-infiltrating lymphocytes (TILs) are immune cells present within the tumor microenvironment, assessed by standard H&E histology as the percentage of stromal area occupied by lymphocytic infiltrate. High stromal TILs (>=50-60%) in triple-negative breast cancer (TNBC) are a strong favorable prognostic biomarker, associated with improved disease-free and overall survival. Each 10% increase in TILs is associated with a 15-17% reduction in recurrence risk in TNBC. TILs also predict response to neoadjuvant chemotherapy and immunotherapy in breast cancer. The International TILs Working Group has published standardized scoring guidelines. TIL assessment is being incorporated into clinical trials as a stratification factor and potential predictive biomarker for immunotherapy in breast and other cancers. TILs complement PD-L1 and TMB as immune biomarkers for checkpoint inhibitor therapy selection.",
+    "biomarker_name": "Tumor-Infiltrating Lymphocytes (TILs)",
+    "biomarker_type": "prognostic",
+    "cancer_types": "breast (TNBC), melanoma, NSCLC, colorectal",
+    "predictive_value": "Favorable prognosis in TNBC; potential predictor of immunotherapy response",
+    "testing_method": "H&E histology (stromal TIL scoring per International TILs WG guidelines)",
+    "clinical_cutoff": ">=50-60% stromal TILs (strong favorable prognosis in TNBC)"
+  }
+]

@@ -1,0 +1,529 @@
+"""
+Precision Oncology Agent - Case Manager
+VCF parsing, case lifecycle, and Molecular Tumor Board (MTB) packet generation.
+
+This module is the core oncology-specific logic for managing patient cases,
+parsing genomic variants from VCF files, and generating structured MTB packets
+for clinical decision support.
+
+Author: Adam Jones
+Date: February 2026
+License: Apache 2.0
+"""
+
+import re
+import uuid
+import logging
+from datetime import datetime, timezone
+from typing import Any, Dict, List, Optional
+
+from src.models import AgentQuery, CaseSnapshot, MTBPacket
+from src.knowledge import ACTIONABLE_TARGETS, get_target_context
+
+logger = logging.getLogger(__name__)
+
+
+class OncologyCaseManager:
+    """Manages oncology case lifecycle: creation, retrieval, and MTB packet generation.
+
+    Responsibilities:
+      - Parse VCF text or accept pre-parsed variant lists
+      - Create and persist CaseSnapshot documents in the onco_cases collection
+      - Generate structured MTB packets with actionable variants, evidence,
+        therapy rankings, trial matches, and open questions
+    """
+
+    COLLECTION_NAME = "onco_cases"
+
+    def __init__(self, collection_manager, embedder, knowledge, rag_engine):
+        """Initialize the case manager.
+
+        Args:
+            collection_manager: Milvus collection manager for vector storage.
+            embedder: Embedding model wrapper (e.g., BGE-small-en-v1.5).
+            knowledge: Knowledge module providing ACTIONABLE_TARGETS and helpers.
+            rag_engine: RAG engine for evidence retrieval and citation generation.
+        """
+        self.collection_manager = collection_manager
+        self.embedder = embedder
+        self.knowledge = knowledge
+        self.rag_engine = rag_engine
+
+    # ------------------------------------------------------------------
+    # Case creation
+    # ------------------------------------------------------------------
+
+    def create_case(
+        self,
+        patient_id: str,
+        cancer_type: str,
+        stage: str,
+        vcf_content_or_variants: Any,
+        biomarkers: Optional[Dict[str, Any]] = None,
+        prior_therapies: Optional[List[str]] = None,
+    ) -> CaseSnapshot:
+        """Create a new oncology case from patient data and genomic variants.
+
+        Args:
+            patient_id: Unique patient identifier.
+            cancer_type: Cancer type string (e.g. "NSCLC", "CRC", "Melanoma").
+            stage: Clinical stage (e.g. "IIIB", "IV").
+            vcf_content_or_variants: Either raw VCF text (str) or a pre-parsed
+                list of variant dicts with keys: gene, variant, chrom, pos, ref, alt.
+            biomarkers: Optional dict of biomarker results, e.g.
+                {"MSI": "MSI-H", "TMB": 14.2, "PD-L1_TPS": 80}.
+            prior_therapies: Optional list of previously administered drug names.
+
+        Returns:
+            A fully populated CaseSnapshot.
+        """
+        biomarkers = biomarkers or {}
+        prior_therapies = prior_therapies or []
+
+        # Parse variants from VCF text or accept pre-parsed list
+        if isinstance(vcf_content_or_variants, str):
+            variants = self._parse_vcf_text(vcf_content_or_variants)
+            logger.info("Parsed %d PASS variants from VCF text", len(variants))
+        elif isinstance(vcf_content_or_variants, list):
+            variants = vcf_content_or_variants
+        else:
+            raise ValueError(
+                "vcf_content_or_variants must be a VCF string or list of variant dicts"
+            )
+
+        # Classify actionability for each variant
+        for v in variants:
+            gene = v.get("gene", "")
+            variant_str = v.get("variant", v.get("hgvs", ""))
+            v["actionability"] = self._classify_variant_actionability(gene, variant_str)
+
+        case_id = str(uuid.uuid4())
+        now = datetime.now(timezone.utc).isoformat()
+
+        # Build a text summary for the case
+        variant_genes = [v.get("gene", "unknown") for v in variants[:20]] if variants else []
+        text_summary = (
+            f"Patient {patient_id} with {cancer_type} stage {stage}. "
+            f"Variants: {', '.join(variant_genes) if variant_genes else 'none'}. "
+            f"Biomarkers: {biomarkers}. "
+            f"Prior therapies: {', '.join(prior_therapies) if prior_therapies else 'none'}."
+        )
+
+        snapshot = CaseSnapshot(
+            case_id=case_id,
+            patient_id=patient_id,
+            cancer_type=cancer_type,
+            stage=stage,
+            variants=variants,
+            biomarkers=biomarkers,
+            prior_therapies=prior_therapies,
+            text_summary=text_summary,
+            created_at=now,
+            updated_at=now,
+        )
+
+        # Embed and store in onco_cases collection
+        self._store_case(snapshot)
+        logger.info("Created case %s for patient %s (%s %s)", case_id, patient_id, cancer_type, stage)
+        return snapshot
+
+    # ------------------------------------------------------------------
+    # Case retrieval
+    # ------------------------------------------------------------------
+
+    def get_case(self, case_id: str) -> Optional[CaseSnapshot]:
+        """Retrieve a case from the onco_cases collection by case_id.
+
+        Args:
+            case_id: The UUID of the case to retrieve.
+
+        Returns:
+            CaseSnapshot if found, otherwise None.
+        """
+        try:
+            results = self.collection_manager.query(
+                collection_name=self.COLLECTION_NAME,
+                filter_expr=f'case_id == "{case_id}"',
+                output_fields=["case_id", "patient_id", "cancer_type", "stage",
+                               "variants", "biomarkers", "prior_therapies",
+                               "created_at", "updated_at"],
+                limit=1,
+            )
+            if not results:
+                logger.warning("Case %s not found", case_id)
+                return None
+
+            rec = results[0]
+            return CaseSnapshot(
+                case_id=rec["case_id"],
+                patient_id=rec["patient_id"],
+                cancer_type=rec["cancer_type"],
+                stage=rec["stage"],
+                variants=rec.get("variants", []),
+                biomarkers=rec.get("biomarkers", {}),
+                prior_therapies=rec.get("prior_therapies", []),
+                text_summary=rec.get("text_summary", ""),
+                created_at=rec.get("created_at", ""),
+                updated_at=rec.get("updated_at", ""),
+            )
+        except Exception as exc:
+            logger.error("Failed to retrieve case %s: %s", case_id, exc)
+            return None
+
+    # ------------------------------------------------------------------
+    # MTB packet generation
+    # ------------------------------------------------------------------
+
+    def generate_mtb_packet(self, case_id_or_snapshot) -> MTBPacket:
+        """Generate a Molecular Tumor Board packet for clinical review.
+
+        The MTB packet contains:
+          - variant_table: all variants with actionability classification
+          - evidence_table: RAG-retrieved evidence and citations per actionable variant
+          - therapy_ranking: therapies ranked by evidence level with resistance flags
+          - trial_matches: matching clinical trials from onco_trials
+          - open_questions: VUS, missing biomarkers, uncertain evidence items
+
+        Args:
+            case_id_or_snapshot: Either a case_id string or a CaseSnapshot object.
+
+        Returns:
+            A fully populated MTBPacket.
+        """
+        if isinstance(case_id_or_snapshot, str):
+            snapshot = self.get_case(case_id_or_snapshot)
+            if snapshot is None:
+                raise ValueError(f"Case {case_id_or_snapshot} not found")
+        else:
+            snapshot = case_id_or_snapshot
+
+        # 1. Extract actionable variants
+        actionable_variants = [
+            v for v in snapshot.variants
+            if v.get("actionability", "VUS") != "VUS"
+        ]
+        logger.info(
+            "Case %s: %d total variants, %d actionable",
+            snapshot.case_id, len(snapshot.variants), len(actionable_variants),
+        )
+
+        # 2. Build variant table
+        variant_table = self._build_variant_table(snapshot.variants, snapshot.cancer_type)
+
+        # 3. Build evidence table via RAG retrieval
+        evidence_table = self._build_evidence_table(actionable_variants, snapshot.cancer_type)
+
+        # 4. Build therapy ranking
+        therapy_ranking = self._build_therapy_ranking(
+            actionable_variants, snapshot.biomarkers,
+            snapshot.cancer_type, snapshot.prior_therapies,
+        )
+
+        # 5. Build trial matches
+        trial_matches = self._build_trial_matches(snapshot)
+
+        # 6. Identify open questions
+        open_questions = self._build_open_questions(snapshot)
+
+        packet = MTBPacket(
+            case_id=snapshot.case_id,
+            patient_id=snapshot.patient_id,
+            cancer_type=snapshot.cancer_type,
+            stage=snapshot.stage,
+            variant_table=variant_table,
+            evidence_table=evidence_table,
+            therapy_ranking=therapy_ranking,
+            trial_matches=trial_matches,
+            open_questions=open_questions,
+            generated_at=datetime.now(timezone.utc).isoformat(),
+        )
+        logger.info("Generated MTB packet for case %s", snapshot.case_id)
+        return packet
+
+    # ------------------------------------------------------------------
+    # VCF parsing
+    # ------------------------------------------------------------------
+
+    def _parse_vcf_text(self, vcf_text: str) -> List[Dict]:
+        """Parse a VCF text string and extract PASS-only variants.
+
+        Extracts CHROM, POS, REF, ALT from fixed columns and GENE /
+        consequence from the INFO field (ANN or CSQ sub-fields).
+
+        Args:
+            vcf_text: Raw VCF file content as a string.
+
+        Returns:
+            List of variant dicts with keys: chrom, pos, ref, alt, gene,
+            consequence, filter, variant (human-readable summary).
+        """
+        variants = []
+        gene_pattern = re.compile(r"(?:GENE|ANN|CSQ)=[^;]*?\|([A-Z0-9a-z_.-]+)\|")
+        consequence_pattern = re.compile(
+            r"(?:ANN|CSQ)=[^;]*?\|[^|]*\|([^|]+)\|"
+        )
+
+        for line in vcf_text.strip().splitlines():
+            if line.startswith("#"):
+                continue
+
+            fields = line.split("\t")
+            if len(fields) < 8:
+                continue
+
+            chrom, pos, _id, ref, alt, _qual, filt, info = fields[:8]
+
+            # Only keep PASS variants
+            if filt not in ("PASS", ".", "pass"):
+                continue
+
+            # Extract gene from INFO
+            gene_match = gene_pattern.search(info)
+            gene = gene_match.group(1) if gene_match else ""
+
+            # Extract consequence from INFO
+            csq_match = consequence_pattern.search(info)
+            consequence = csq_match.group(1) if csq_match else ""
+
+            # Build a human-readable variant string
+            variant_str = f"{gene} {chrom}:{pos} {ref}>{alt}" if gene else f"{chrom}:{pos} {ref}>{alt}"
+
+            variants.append({
+                "chrom": chrom,
+                "pos": int(pos) if pos.isdigit() else pos,
+                "ref": ref,
+                "alt": alt,
+                "gene": gene,
+                "consequence": consequence,
+                "filter": filt,
+                "variant": variant_str,
+            })
+
+        return variants
+
+    # ------------------------------------------------------------------
+    # Actionability classification
+    # ------------------------------------------------------------------
+
+    def _classify_variant_actionability(self, gene: str, variant: str) -> str:
+        """Classify a variant's actionability against known targets.
+
+        Args:
+            gene: Gene symbol (e.g. "EGFR", "BRAF").
+            variant: Variant description (e.g. "L858R", "V600E").
+
+        Returns:
+            Evidence level string ("A", "B", "C", "D") or "VUS" if not recognized.
+        """
+        gene_upper = gene.upper().strip()
+        if gene_upper not in ACTIONABLE_TARGETS:
+            return "VUS"
+
+        target_info = ACTIONABLE_TARGETS[gene_upper]
+
+        # Check key_variants list for a match
+        key_variants = target_info.get("key_variants", [])
+        variant_upper = variant.upper().strip()
+        for known_var in key_variants:
+            if known_var.upper() in variant_upper or variant_upper in known_var.upper():
+                return target_info.get("evidence_level", "C")
+
+        # Also support legacy "variants" dict format
+        known_variants = target_info.get("variants", {})
+        if isinstance(known_variants, dict):
+            for known_var, details in known_variants.items():
+                if known_var.upper() in variant_upper:
+                    ev = details.get("evidence_level", "C") if isinstance(details, dict) else "C"
+                    return ev
+
+        # Gene-level actionability (some genes are actionable regardless of variant)
+        if target_info.get("gene_level_actionable", False):
+            return target_info.get("default_evidence_level", "C")
+
+        return "VUS"
+
+    # ------------------------------------------------------------------
+    # Internal helpers for MTB packet building
+    # ------------------------------------------------------------------
+
+    def _store_case(self, snapshot: CaseSnapshot) -> None:
+        """Embed and store a case snapshot in the onco_cases collection."""
+        summary_text = (
+            f"Patient {snapshot.patient_id} with {snapshot.cancer_type} stage {snapshot.stage}. "
+            f"Variants: {', '.join(v.get('gene', 'unknown') for v in snapshot.variants[:20])}. "
+            f"Biomarkers: {snapshot.biomarkers}. "
+            f"Prior therapies: {', '.join(snapshot.prior_therapies) if snapshot.prior_therapies else 'none'}."
+        )
+        embedding = self.embedder.embed(summary_text)
+        self.collection_manager.insert(
+            collection_name=self.COLLECTION_NAME,
+            data={
+                "case_id": snapshot.case_id,
+                "patient_id": snapshot.patient_id,
+                "cancer_type": snapshot.cancer_type,
+                "stage": snapshot.stage,
+                "variants": snapshot.variants,
+                "biomarkers": snapshot.biomarkers,
+                "prior_therapies": snapshot.prior_therapies,
+                "created_at": snapshot.created_at,
+                "updated_at": snapshot.updated_at,
+                "embedding": embedding,
+                "text": summary_text,
+            },
+        )
+
+    def _build_variant_table(self, variants: List[Dict], cancer_type: str) -> List[Dict]:
+        """Build the variant table section of the MTB packet."""
+        table = []
+        for v in variants:
+            gene = v.get("gene", "")
+            variant_str = v.get("variant", "")
+            actionability = v.get("actionability", "VUS")
+
+            # Look up drugs if actionable
+            drugs = []
+            if actionability != "VUS" and gene.upper() in ACTIONABLE_TARGETS:
+                target_info = ACTIONABLE_TARGETS[gene.upper()]
+                drugs = target_info.get("drugs", [])
+
+            table.append({
+                "gene": gene,
+                "variant": variant_str,
+                "consequence": v.get("consequence", ""),
+                "type": v.get("consequence", "unknown"),
+                "evidence_level": actionability,
+                "drugs": drugs,
+                "chrom": v.get("chrom", ""),
+                "pos": v.get("pos", ""),
+            })
+        return table
+
+    def _build_evidence_table(self, actionable_variants: List[Dict], cancer_type: str) -> List[Dict]:
+        """RAG-retrieve evidence for each actionable variant and collect citations."""
+        evidence_table = []
+        for v in actionable_variants:
+            gene = v.get("gene", "")
+            variant_str = v.get("variant", "")
+            query_text = f"{gene} {variant_str} {cancer_type} targeted therapy clinical evidence"
+
+            try:
+                rag_results = self.rag_engine.retrieve(
+                    query=query_text,
+                    collection_names=["onco_literature", "onco_therapies"],
+                    top_k=5,
+                )
+                citations = [
+                    {
+                        "source": r.get("source", ""),
+                        "text": r.get("text", ""),
+                        "score": r.get("score", 0.0),
+                    }
+                    for r in rag_results
+                ]
+            except Exception as exc:
+                logger.warning("RAG retrieval failed for %s %s: %s", gene, variant_str, exc)
+                citations = []
+
+            evidence_table.append({
+                "gene": gene,
+                "variant": variant_str,
+                "evidence_level": v.get("actionability", "VUS"),
+                "citations": citations,
+                "target_context": get_target_context(gene),
+            })
+        return evidence_table
+
+    def _build_therapy_ranking(
+        self,
+        actionable_variants: List[Dict],
+        biomarkers: Dict,
+        cancer_type: str,
+        prior_therapies: List[str],
+    ) -> List[Dict]:
+        """Rank therapies by evidence level, check resistance, flag contraindications."""
+        therapies = []
+        seen_drugs = set()
+
+        for v in actionable_variants:
+            gene = v.get("gene", "").upper()
+            if gene in ACTIONABLE_TARGETS:
+                for drug_info in ACTIONABLE_TARGETS[gene].get("drugs", []):
+                    drug_name = drug_info if isinstance(drug_info, str) else drug_info.get("name", "")
+                    if drug_name and drug_name not in seen_drugs:
+                        seen_drugs.add(drug_name)
+                        resistance_flag = drug_name.lower() in [t.lower() for t in prior_therapies]
+                        therapies.append({
+                            "drug_name": drug_name,
+                            "evidence_level": v.get("actionability", "C"),
+                            "target_gene": gene,
+                            "resistance_flag": resistance_flag,
+                            "contraindication_flag": False,
+                        })
+
+        # Sort by evidence level (A > B > C > D)
+        level_order = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4, "VUS": 5}
+        therapies.sort(key=lambda t: level_order.get(t.get("evidence_level", "E"), 4))
+
+        # Assign ranks
+        for i, t in enumerate(therapies):
+            t["rank"] = i + 1
+
+        return therapies
+
+    def _build_trial_matches(self, snapshot: CaseSnapshot) -> List[Dict]:
+        """Search onco_trials for matching cancer_type + biomarkers."""
+        query_text = (
+            f"{snapshot.cancer_type} stage {snapshot.stage} clinical trial "
+            f"biomarkers: {snapshot.biomarkers}"
+        )
+        try:
+            embedding = self.embedder.embed(query_text)
+            results = self.collection_manager.search(
+                collection_name="onco_trials",
+                query_vector=embedding,
+                top_k=10,
+                output_fields=["trial_id", "title", "phase", "status", "criteria", "text"],
+            )
+            return [
+                {
+                    "trial_id": r.get("trial_id", ""),
+                    "title": r.get("title", ""),
+                    "phase": r.get("phase", ""),
+                    "status": r.get("status", ""),
+                    "match_score": r.get("score", 0.0),
+                }
+                for r in results
+            ]
+        except Exception as exc:
+            logger.warning("Trial match search failed: %s", exc)
+            return []
+
+    def _build_open_questions(self, snapshot: CaseSnapshot) -> List[str]:
+        """Identify VUS, missing biomarkers, and uncertain evidence items."""
+        questions = []
+
+        # Flag VUS variants
+        vus_variants = [v for v in snapshot.variants if v.get("actionability") == "VUS"]
+        if vus_variants:
+            vus_genes = list({v.get("gene", "unknown") for v in vus_variants})
+            questions.append(
+                f"Variants of uncertain significance in: {', '.join(vus_genes[:10])}. "
+                "Consider functional assays or updated databases."
+            )
+
+        # Check for missing key biomarkers
+        expected_biomarkers = {"MSI", "TMB", "PD-L1_TPS"}
+        present = set(snapshot.biomarkers.keys())
+        missing = expected_biomarkers - present
+        if missing:
+            questions.append(f"Missing biomarker data: {', '.join(sorted(missing))}. Recommend testing.")
+
+        # Flag if no actionable variants found
+        actionable = [v for v in snapshot.variants if v.get("actionability", "VUS") != "VUS"]
+        if not actionable:
+            questions.append(
+                "No actionable variants identified. Consider expanded panel testing, "
+                "liquid biopsy, or whole-genome sequencing."
+            )
+
+        return questions

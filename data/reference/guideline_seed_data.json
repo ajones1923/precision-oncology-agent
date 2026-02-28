@@ -1,0 +1,152 @@
+[
+  {
+    "id": "guide-nccn-nsclc-001",
+    "text_summary": "The NCCN Clinical Practice Guidelines for Non-Small Cell Lung Cancer (Version 3.2025) provide comprehensive recommendations for molecular testing, systemic therapy, and sequencing in advanced NSCLC. All patients with advanced non-squamous NSCLC and select squamous cell patients should undergo broad molecular profiling including EGFR, ALK, ROS1, BRAF V600E, NTRK, MET exon 14, RET, KRAS G12C, ERBB2, PD-L1, and emerging biomarkers. First-line therapy depends on driver mutation status: osimertinib for EGFR-mutant, alectinib or lorlatinib for ALK-positive, pembrolizumab monotherapy for PD-L1>=50% without drivers, and pembrolizumab plus chemotherapy for PD-L1<50% without drivers. The guidelines emphasize that biomarker results should be available before initiating systemic therapy whenever possible, and that liquid biopsy is acceptable when tissue is insufficient.",
+    "organization": "NCCN",
+    "cancer_type": "NSCLC",
+    "version": "3.2025",
+    "key_recommendations": "Broad molecular profiling mandatory for all advanced non-squamous NSCLC. Osimertinib preferred 1L for EGFR-mutant. Alectinib or lorlatinib for ALK-positive. Pembrolizumab monotherapy for PD-L1>=50% without drivers. Sotorasib or adagrasib for KRAS G12C after prior therapy. Selpercatinib for RET fusion. Capmatinib or tepotinib for MET exon 14 skip.",
+    "molecular_testing": "EGFR, ALK, ROS1, BRAF V600E, NTRK, MET exon 14, RET, KRAS G12C, ERBB2, PD-L1 IHC, consider TMB and HER2 mutations",
+    "last_updated": "2025-01"
+  },
+  {
+    "id": "guide-nccn-breast-002",
+    "text_summary": "The NCCN Guidelines for Breast Cancer (Version 2.2025) mandate ER, PR, and HER2 testing on all invasive breast cancers. For HR-positive/HER2-negative metastatic breast cancer, CDK4/6 inhibitor plus endocrine therapy is the standard first-line treatment. Oncotype DX or MammaPrint should guide adjuvant chemotherapy decisions in node-negative or node-limited HR+/HER2- early-stage disease. For HER2-positive metastatic disease, trastuzumab deruxtecan has become the preferred second-line agent based on DESTINY-Breast03. HER2-low (IHC 1+ or IHC 2+/FISH-negative) is now a distinct actionable category qualifying for trastuzumab deruxtecan. For TNBC, pembrolizumab plus chemotherapy is the standard neoadjuvant regimen (KEYNOTE-522), and sacituzumab govitecan is preferred for pretreated metastatic TNBC. Germline BRCA testing is recommended for all patients meeting NCCN criteria, with PARP inhibitors available for BRCA-mutant disease.",
+    "organization": "NCCN",
+    "cancer_type": "breast",
+    "version": "2.2025",
+    "key_recommendations": "ER/PR/HER2 testing mandatory. CDK4/6i + endocrine therapy for HR+/HER2- metastatic (1L). T-DXd preferred 2L for HER2-positive. T-DXd for HER2-low after one prior chemotherapy. Sacituzumab govitecan for pretreated TNBC. Pembrolizumab + chemo for early TNBC. PARP inhibitors for germline BRCA-mutant. Alpelisib for PIK3CA-mutant HR+ disease.",
+    "molecular_testing": "ER, PR, HER2 IHC/FISH, Oncotype DX or MammaPrint (early-stage HR+), germline BRCA1/2, PIK3CA, ESR1 (ctDNA at progression), PD-L1 (TNBC)",
+    "last_updated": "2025-02"
+  },
+  {
+    "id": "guide-nccn-crc-003",
+    "text_summary": "The NCCN Guidelines for Colon and Rectal Cancer (Version 1.2025) recommend universal molecular testing for all metastatic CRC patients, including RAS (KRAS/NRAS exons 2-4), BRAF V600E, MSI/MMR status, HER2, and NTRK fusions. First-line pembrolizumab is the preferred option for MSI-H/dMMR metastatic CRC (KEYNOTE-177). For RAS/BRAF wild-type, anti-EGFR therapy (cetuximab or panitumumab) combined with chemotherapy is the preferred left-sided approach. BRAF V600E-mutant CRC has poor prognosis and is treated with encorafenib plus cetuximab (BEACON trial) in the second-line setting. Adjuvant therapy decisions for stage II MSI-H CRC favor observation over fluoropyrimidine chemotherapy due to the favorable prognostic impact of MSI-H. ctDNA-guided adjuvant therapy decisions are being investigated in the CIRCULATE and DYNAMIC trials.",
+    "organization": "NCCN",
+    "cancer_type": "colorectal",
+    "version": "1.2025",
+    "key_recommendations": "Universal RAS/BRAF/MSI testing for mCRC. Pembrolizumab first-line for MSI-H mCRC. Anti-EGFR + chemo for RAS/BRAF-WT left-sided. Encorafenib + cetuximab for BRAF V600E (2L). FOLFOXIRI + bevacizumab for aggressive biology. Stage II MSI-H may omit adjuvant chemo. ctDNA for MRD assessment under investigation.",
+    "molecular_testing": "KRAS/NRAS exons 2-4, BRAF V600E, MSI/MMR (universal), HER2 amplification, NTRK fusions, tumor sidedness",
+    "last_updated": "2025-01"
+  },
+  {
+    "id": "guide-nccn-melanoma-004",
+    "text_summary": "The NCCN Guidelines for Melanoma (Version 1.2025) recommend BRAF V600 mutation testing for all patients with unresectable stage III or stage IV melanoma. First-line treatment options include combination immunotherapy (nivolumab plus ipilimumab or nivolumab plus relatlimab) or anti-PD-1 monotherapy (pembrolizumab, nivolumab). For BRAF V600-mutant melanoma, BRAF+MEK inhibitor combinations (dabrafenib+trametinib, encorafenib+binimetinib, vemurafenib+cobimetinib) are alternatives to immunotherapy, though immunotherapy is generally preferred first-line due to durability of response. The adjuvant setting includes pembrolizumab (KEYNOTE-054) and nivolumab (CheckMate-238) for resected stage III/IV. Neoadjuvant pembrolizumab plus ipilimumab is emerging for resectable stage III disease. KIT mutations in mucosal and acral melanomas may be targeted with imatinib. Gene expression profiling (DecisionDx-Melanoma) can aid staging decisions.",
+    "organization": "NCCN",
+    "cancer_type": "melanoma",
+    "version": "1.2025",
+    "key_recommendations": "BRAF V600 testing for all unresectable/metastatic. Nivolumab + ipilimumab or anti-PD-1 preferred 1L. BRAF+MEK combination for BRAF-mutant as alternative. Adjuvant pembrolizumab or nivolumab for resected stage III/IV. KIT testing for mucosal/acral subtypes. Neoadjuvant immunotherapy emerging for resectable stage III.",
+    "molecular_testing": "BRAF V600, KIT (acral/mucosal), NRAS, gene expression profiling (DecisionDx), PD-L1 (less established utility), TMB",
+    "last_updated": "2025-01"
+  },
+  {
+    "id": "guide-nccn-pancreatic-005",
+    "text_summary": "The NCCN Guidelines for Pancreatic Adenocarcinoma (Version 1.2025) recommend molecular profiling for all patients with metastatic disease to identify actionable alterations including BRCA1/2, PALB2, MSI-H/dMMR, NTRK fusions, TMB-H, KRAS (for emerging G12C therapies), and HER2 amplification. Germline testing is recommended for all pancreatic cancer patients regardless of family history. For patients with germline BRCA-mutant metastatic disease responding to platinum-based chemotherapy, olaparib maintenance is recommended based on the POLO trial. First-line chemotherapy options include FOLFIRINOX (for fit patients) and gemcitabine plus nab-paclitaxel. Pembrolizumab is recommended for MSI-H/dMMR tumors. The guidelines acknowledge the aggressive biology and limited targeted therapy options in pancreatic cancer but emphasize the importance of molecular profiling to identify the approximately 5-10% with actionable alterations.",
+    "organization": "NCCN",
+    "cancer_type": "pancreatic",
+    "version": "1.2025",
+    "key_recommendations": "Molecular profiling for all metastatic pancreatic cancer. Germline testing recommended for all patients. Olaparib maintenance for germline BRCA-mutant after platinum response (POLO trial). FOLFIRINOX or gemcitabine + nab-paclitaxel as first-line. Pembrolizumab for MSI-H. Larotrectinib/entrectinib for NTRK fusions.",
+    "molecular_testing": "BRCA1/2 (germline + somatic), PALB2, MSI/MMR, NTRK fusions, TMB, KRAS, HER2, comprehensive genomic profiling recommended",
+    "last_updated": "2025-01"
+  },
+  {
+    "id": "guide-nccn-ovarian-006",
+    "text_summary": "The NCCN Guidelines for Ovarian Cancer (Version 1.2025) strongly recommend BRCA1/2 germline and somatic testing and HRD testing for all patients with epithelial ovarian cancer. PARP inhibitor maintenance therapy is a major component of frontline treatment: olaparib for BRCA-mutant (SOLO-1: PFS 56 months), niraparib for all-comers in first-line maintenance, and olaparib plus bevacizumab for HRD-positive tumors. In the recurrent setting, PARP inhibitor selection depends on prior PARP exposure, platinum sensitivity, and BRCA/HRD status. Pembrolizumab is recommended for MSI-H/dMMR ovarian cancer. The guidelines emphasize that all patients should undergo genetic counseling and germline testing, as Lynch syndrome and BRCA-related hereditary cancer syndromes are identified in approximately 15-20% of ovarian cancer patients. Mirvetuximab soravtansine is approved for FRalpha-positive, platinum-resistant ovarian cancer.",
+    "organization": "NCCN",
+    "cancer_type": "ovarian",
+    "version": "1.2025",
+    "key_recommendations": "BRCA1/2 and HRD testing for all epithelial ovarian cancer. PARP inhibitor maintenance is standard after first-line platinum response. Olaparib for BRCA-mutant. Niraparib for all-comers maintenance. Olaparib + bevacizumab for HRD-positive. Mirvetuximab soravtansine for FRalpha+ platinum-resistant. Germline genetic testing and counseling for all patients.",
+    "molecular_testing": "BRCA1/2 (germline + somatic), HRD score (myChoice CDx), MSI/MMR, NTRK fusions, folate receptor alpha (IHC), comprehensive molecular profiling",
+    "last_updated": "2025-01"
+  },
+  {
+    "id": "guide-nccn-prostate-007",
+    "text_summary": "The NCCN Guidelines for Prostate Cancer (Version 1.2025) recommend germline testing for all patients with metastatic prostate cancer and somatic tumor sequencing for metastatic castration-resistant prostate cancer (mCRPC). BRCA2 mutations are found in approximately 5-7% of mCRPC and confer sensitivity to PARP inhibitors. Olaparib is approved for BRCA1/2-mutant mCRPC (PROfound trial). MSI-H/dMMR status qualifies for pembrolizumab (approximately 3% of mCRPC). The treatment landscape for mCRPC includes androgen receptor pathway inhibitors (enzalutamide, abiraterone, darolutamide, apalutamide), PARP inhibitors for DNA repair-deficient tumors, pembrolizumab for MSI-H, lutetium-177 PSMA for PSMA-positive disease, and novel combinations. The TALAPRO-2 and PROpel trials investigated PARP + novel hormonal agent combinations in broader mCRPC populations.",
+    "organization": "NCCN",
+    "cancer_type": "prostate",
+    "version": "1.2025",
+    "key_recommendations": "Germline testing for all metastatic prostate cancer. Somatic testing for mCRPC. Olaparib for BRCA-mutant mCRPC. Pembrolizumab for MSI-H mCRPC. Lutetium-177 PSMA for PSMA-positive mCRPC after ARPI and taxane. Enzalutamide/abiraterone/darolutamide for mCRPC. Genetic counseling for HRR gene mutation carriers.",
+    "molecular_testing": "BRCA1/2, ATM, PALB2, HRR gene panel (somatic), MSI/MMR, PSMA PET/CT, germline multigene panel",
+    "last_updated": "2025-01"
+  },
+  {
+    "id": "guide-nccn-renal-008",
+    "text_summary": "The NCCN Guidelines for Kidney Cancer (Version 2.2025) recommend immune checkpoint combination regimens as first-line therapy for advanced clear cell RCC. Preferred regimens include pembrolizumab plus lenvatinib (CLEAR trial: PFS 23.9 months), nivolumab plus ipilimumab for intermediate/poor-risk (CheckMate-214), pembrolizumab plus axitinib (KEYNOTE-426), and nivolumab plus cabozantinib (CheckMate-9ER). Cabozantinib monotherapy remains an option for IMDC favorable-risk patients. The HIF-2alpha inhibitor belzutifan is approved for VHL disease-associated RCC and is being studied in sporadic clear cell RCC. Molecular profiling is recommended for non-clear cell histologies to identify potential actionable targets. The guidelines acknowledge that VHL loss drives VEGF and HIF-2alpha signaling in clear cell RCC, providing the biological rationale for anti-VEGF strategies. Biomarkers for immunotherapy selection in RCC remain an unmet need.",
+    "organization": "NCCN",
+    "cancer_type": "renal",
+    "version": "2.2025",
+    "key_recommendations": "IO combination first-line for advanced clear cell RCC. Pembrolizumab + lenvatinib preferred. Nivolumab + ipilimumab for intermediate/poor risk. Belzutifan for VHL disease-associated RCC. Cabozantinib for favorable risk or after IO. Molecular profiling for non-clear cell. Active surveillance for small renal masses.",
+    "molecular_testing": "VHL (germline for VHL disease), molecular profiling for non-clear cell histologies, PD-L1 (not routinely used for treatment decisions)",
+    "last_updated": "2025-01"
+  },
+  {
+    "id": "guide-nccn-bladder-009",
+    "text_summary": "The NCCN Guidelines for Bladder Cancer (Version 2.2025) recommend molecular profiling for advanced urothelial carcinoma, including FGFR alterations, HER2 status, NTRK fusions, and MSI/TMB. Erdafitinib is approved for FGFR2/3-altered metastatic urothelial carcinoma. Enfortumab vedotin plus pembrolizumab has become the preferred first-line regimen for advanced urothelial carcinoma based on the EV-302/KEYNOTE-A39 trial (PFS 12.5 months, OS not reached). Avelumab maintenance after platinum-based chemotherapy (JAVELIN Bladder 100) is recommended for patients not eligible for first-line EV+pembrolizumab. Sacituzumab govitecan is an option for pretreated urothelial carcinoma. PD-L1 testing guides atezolizumab and pembrolizumab eligibility in cisplatin-ineligible patients. The guidelines emphasize the rapidly evolving treatment landscape in urothelial carcinoma with antibody-drug conjugates and biomarker-directed therapies.",
+    "organization": "NCCN",
+    "cancer_type": "bladder",
+    "version": "2.2025",
+    "key_recommendations": "Enfortumab vedotin + pembrolizumab preferred 1L for advanced urothelial. Erdafitinib for FGFR2/3-altered. Avelumab maintenance after platinum. Sacituzumab govitecan for pretreated disease. PD-L1 testing for cisplatin-ineligible patients. FGFR testing recommended for all advanced urothelial.",
+    "molecular_testing": "FGFR2/3 alterations, PD-L1 (CPS), HER2 (Nectin-4 for EV eligibility), NTRK fusions, MSI/MMR, TMB, comprehensive genomic profiling",
+    "last_updated": "2025-01"
+  },
+  {
+    "id": "guide-nccn-hn-010",
+    "text_summary": "The NCCN Guidelines for Head and Neck Cancers (Version 1.2025) recommend PD-L1 testing (CPS score) for recurrent or metastatic head and neck squamous cell carcinoma (R/M HNSCC) to guide first-line immunotherapy decisions. Pembrolizumab plus chemotherapy is the preferred first-line regimen for CPS>=1 (KEYNOTE-048: OS 13.0 months). For CPS>=20, pembrolizumab monotherapy is an alternative first-line option. HPV/p16 status is essential for oropharyngeal cancer staging and prognosis but does not currently change systemic therapy selection in the R/M setting. The NCCN emphasizes the importance of multidisciplinary tumor board review, particularly for treatment selection in locally advanced disease. Cetuximab remains an option in combination with platinum/5-FU for PD-L1-negative R/M HNSCC. Comprehensive genomic profiling may identify NTRK fusions, HRAS mutations, and other actionable alterations in a minority of patients.",
+    "organization": "NCCN",
+    "cancer_type": "head_neck",
+    "version": "1.2025",
+    "key_recommendations": "PD-L1 CPS testing for all R/M HNSCC. Pembrolizumab + chemo for CPS>=1 (1L). Pembrolizumab monotherapy for CPS>=20. HPV/p16 testing for oropharyngeal cancer staging. Cetuximab + chemo alternative for PD-L1-negative. Comprehensive profiling may identify actionable targets. Multidisciplinary tumor board review.",
+    "molecular_testing": "PD-L1 (CPS with 22C3), HPV/p16 (oropharyngeal), comprehensive genomic profiling (consider NTRK, HRAS, PIK3CA)",
+    "last_updated": "2025-01"
+  },
+  {
+    "id": "guide-nccn-aml-011",
+    "text_summary": "The NCCN Guidelines for Acute Myeloid Leukemia (Version 1.2025) recommend rapid comprehensive molecular profiling at diagnosis, including FLT3-ITD, FLT3-TKD, NPM1, IDH1, IDH2, TP53, CEBPA, RUNX1, ASXL1, KIT, and cytogenetics. FLT3-ITD mutant AML receives midostaurin added to 7+3 induction (RATIFY trial) and gilteritinib for relapsed/refractory disease. IDH1-mutant AML is treated with ivosidenib (with or without azacitidine). IDH2-mutant AML with enasidenib. For patients unfit for intensive chemotherapy, venetoclax plus azacitidine has become the standard of care with significantly improved OS. The 2022 ELN risk classification integrates molecular markers into favorable/intermediate/adverse risk groups. TP53-mutant AML has the worst prognosis and limited effective therapies. Measurable residual disease (MRD) monitoring by multiparameter flow cytometry or molecular methods is recommended for treatment response assessment.",
+    "organization": "NCCN",
+    "cancer_type": "AML",
+    "version": "1.2025",
+    "key_recommendations": "Rapid molecular profiling at diagnosis mandatory. FLT3-ITD: midostaurin + 7+3, gilteritinib for R/R. IDH1-mutant: ivosidenib. IDH2-mutant: enasidenib. Venetoclax + azacitidine for unfit patients. ELN 2022 risk classification. MRD monitoring recommended. TP53-mutant: clinical trial preferred.",
+    "molecular_testing": "FLT3-ITD/TKD, NPM1, IDH1, IDH2, TP53, CEBPA, RUNX1, ASXL1, KIT, cytogenetics/FISH, MRD by flow or molecular",
+    "last_updated": "2025-01"
+  },
+  {
+    "id": "guide-nccn-cml-012",
+    "text_summary": "The NCCN Guidelines for Chronic Myeloid Leukemia (Version 1.2025) recommend BCR-ABL1 quantitative PCR monitoring as the cornerstone of CML management. First-line therapy with imatinib, dasatinib, nilotinib, or bosutinib is selected based on CML risk score (Sokal, EUTOS), comorbidities, and adverse-event profile. Deep molecular response (MR4, BCR-ABL1 <=0.01% IS) after sustained TKI therapy may allow treatment-free remission (TFR) attempts. ABL1 kinase domain mutation analysis is recommended at treatment failure or suboptimal response to guide second-line TKI selection. The T315I gatekeeper mutation is resistant to all first/second-generation TKIs but sensitive to ponatinib and asciminib. Asciminib, a STAMP (Specifically Targeting the ABL Myristoyl Pocket) inhibitor, represents a novel mechanism for CML treatment. The guidelines emphasize milestone-based response assessment at 3, 6, 12, and 18 months using BCR-ABL1 IS quantification.",
+    "organization": "NCCN",
+    "cancer_type": "CML",
+    "version": "1.2025",
+    "key_recommendations": "TKI therapy for all CML-CP patients. BCR-ABL1 monitoring every 3 months. Milestone responses at 3/6/12/18 months. ABL1 mutation analysis at failure. Ponatinib or asciminib for T315I. Treatment-free remission possible after sustained MR4. Second-line based on mutation profile and comorbidities.",
+    "molecular_testing": "BCR-ABL1 quantitative RT-PCR (IS scale), ABL1 kinase domain mutation analysis, cytogenetics at diagnosis",
+    "last_updated": "2025-01"
+  },
+  {
+    "id": "guide-asco-immuno-biomarkers-013",
+    "text_summary": "ASCO Provisional Clinical Opinion on Immunotherapy Biomarkers (2025 update) recommends PD-L1 IHC testing for NSCLC, urothelial carcinoma, HNSCC, gastric/GEJ, cervical, and TNBC to guide anti-PD-1/PD-L1 therapy. MSI/MMR testing is recommended in colorectal, endometrial, gastric, and other GI cancers, with tissue-agnostic applicability for MSI-H/dMMR. TMB assessment by validated CGP panels is recommended for tumors without other biomarker-directed options. The opinion acknowledges that PD-L1 has significant limitations (dynamic expression, assay discordance, imperfect predictive value) and that combination biomarker strategies may improve patient selection. Emerging biomarkers under evaluation include tumor-infiltrating lymphocytes, interferon-gamma gene signatures, ctDNA dynamics, and gut microbiome composition. ASCO emphasizes that absence of PD-L1 expression does not preclude immunotherapy benefit in many contexts, particularly with combination regimens.",
+    "organization": "ASCO",
+    "cancer_type": "pan-cancer",
+    "version": "2025",
+    "key_recommendations": "PD-L1 testing recommended for NSCLC, urothelial, HNSCC, gastric, cervical, TNBC. MSI/MMR universal in CRC and endometrial. TMB by validated CGP for biomarker-unselected tumors. Combination biomarkers may improve selection. PD-L1 absence does not preclude IO benefit with combinations. ctDNA dynamics as emerging response biomarker.",
+    "molecular_testing": "PD-L1 IHC (assay-specific: 22C3, 28-8, SP142, SP263), MSI by PCR/NGS or MMR by IHC, TMB by CGP, ctDNA (emerging)",
+    "last_updated": "2025-01"
+  },
+  {
+    "id": "guide-asco-precision-medicine-014",
+    "text_summary": "The ASCO Precision Medicine Position Statement (2024 update) endorses routine somatic tumor profiling for all patients with advanced/metastatic cancer to identify actionable genomic alterations. ASCO recommends NGS-based comprehensive genomic profiling over single-gene testing due to the expanding landscape of targetable alterations and tissue-agnostic approvals. Key principles include: germline incidental findings require genetic counseling, molecular tumor boards should review complex cases, clinical trial matching should be integrated into profiling workflows, and evidence-based resources (OncoKB, CIViC, ESCAT) should guide variant interpretation. ASCO acknowledges challenges including turnaround time, cost-effectiveness, and the gap between variant identification and available targeted therapies. The statement emphasizes equitable access to molecular profiling across healthcare settings and supports development of pan-cancer molecular databases for outcomes tracking.",
+    "organization": "ASCO",
+    "cancer_type": "pan-cancer",
+    "version": "2024",
+    "key_recommendations": "NGS-based CGP recommended over single-gene testing for advanced cancers. Germline findings require genetic counseling. Molecular tumor boards for complex cases. Clinical trial matching integrated with profiling. OncoKB/CIViC for variant interpretation. Equitable access to profiling. Pan-cancer outcomes databases needed.",
+    "molecular_testing": "Comprehensive genomic profiling (NGS), liquid biopsy when tissue unavailable, germline testing when indicated, RNA-based sequencing for fusions",
+    "last_updated": "2024-06"
+  },
+  {
+    "id": "guide-esmo-molecular-015",
+    "text_summary": "The ESMO Scale for Clinical Actionability of Molecular Targets (ESCAT, 2024 update) provides a tiered framework for classifying the clinical utility of genomic alterations in oncology. Tier I: alteration-drug match validated in clinical trials (EGFR mutations in NSCLC, HER2 amplification in breast). Tier II: investigational biomarker in clinical trials. Tier III: clinical benefit in another tumor type (off-label). Tier IV: preclinical evidence only. ESMO Precision Medicine Working Group recommends next-generation sequencing for all patients with advanced cancer, with specific recommendations by tumor type. The ESMO guidelines emphasize the distinction between molecular targets with demonstrated clinical utility (ESCAT I) versus those with only biological rationale (ESCAT IV). ESMO recommends molecular tumor boards for interpretation of complex molecular profiles and alignment of treatment recommendations with ESCAT levels. The framework enables cross-country harmonization of precision medicine access.",
+    "organization": "ESMO",
+    "cancer_type": "pan-cancer",
+    "version": "2024",
+    "key_recommendations": "ESCAT tier system: I (validated), II (investigational), III (off-label evidence), IV (preclinical). NGS recommended for all advanced cancers. Molecular tumor boards for complex profiles. Tier I alterations warrant standard treatment. Tier II-III warrant clinical trial consideration. Cross-tumor-type evidence considered for tissue-agnostic targets. ESCAT levels guide reimbursement decisions in EU.",
+    "molecular_testing": "Comprehensive NGS (DNA + RNA), tumor type-specific panels minimum, whole-exome/genome sequencing for research settings",
+    "last_updated": "2024-09"
+  }
+]

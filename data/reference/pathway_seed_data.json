@@ -1,0 +1,110 @@
+[
+  {
+    "id": "path-mapk-erk-001",
+    "text_summary": "The MAPK/ERK (RAS-RAF-MEK-ERK) pathway is one of the most frequently dysregulated signaling cascades in human cancers, with activating mutations found in approximately 40% of all solid tumors. Canonical signaling proceeds through receptor tyrosine kinase (RTK) activation of RAS GTPases (KRAS, NRAS, HRAS), which activate RAF kinases (BRAF, CRAF), leading to MEK1/2 phosphorylation and subsequent ERK1/2 activation. ERK1/2 phosphorylates transcription factors driving proliferation, survival, and differentiation. Key therapeutic nodes include BRAF (vemurafenib, dabrafenib, encorafenib), MEK (trametinib, cobimetinib, binimetinib, selumetinib), KRAS G12C (sotorasib, adagrasib), and upstream RTKs (EGFR, HER2). Feedback reactivation through RTK upregulation and RAF dimerization are major resistance mechanisms requiring combination vertical pathway blockade.",
+    "pathway_name": "MAPK/ERK",
+    "key_genes": "KRAS, NRAS, HRAS, BRAF, CRAF, MAP2K1, MAP2K2, MAPK1, MAPK3, NF1",
+    "therapeutic_targets": "BRAF (vemurafenib, dabrafenib), MEK (trametinib, binimetinib), KRAS G12C (sotorasib, adagrasib)",
+    "cross_talk": "PI3K/AKT/mTOR, EGFR signaling, cell cycle (CDK4/6)",
+    "clinical_relevance": "Mutated in ~40% of cancers. BRAF V600E in melanoma/NSCLC/CRC, KRAS in NSCLC/CRC/pancreatic, NF1 loss. Vertical BRAF+MEK combination is standard of care."
+  },
+  {
+    "id": "path-pi3k-akt-mtor-002",
+    "text_summary": "The PI3K/AKT/mTOR pathway is a critical cell survival and metabolic signaling cascade frequently activated in cancer through PIK3CA activating mutations, PTEN loss, AKT amplification, or upstream RTK signaling. PI3K generates PIP3 from PIP2, recruiting AKT to the membrane for activation. Activated AKT promotes cell survival (inhibiting BAD, FOXO), growth (activating mTORC1), and metabolic reprogramming. PTEN is the primary negative regulator, dephosphorylating PIP3. mTOR exists in two complexes: mTORC1 (rapamycin-sensitive, regulates translation via S6K and 4EBP1) and mTORC2 (directly activates AKT). Therapeutic targets include PI3K-alpha (alpelisib), AKT (capivasertib), and mTOR (everolimus, temsirolimus). The pathway exhibits extensive cross-talk with MAPK through RAS and feedback loops, necessitating combination strategies in many contexts.",
+    "pathway_name": "PI3K/AKT/mTOR",
+    "key_genes": "PIK3CA, PIK3R1, PTEN, AKT1, AKT2, AKT3, MTOR, TSC1, TSC2, RICTOR, RPTOR, STK11",
+    "therapeutic_targets": "PIK3CA (alpelisib), AKT (capivasertib), mTOR (everolimus, temsirolimus)",
+    "cross_talk": "MAPK/ERK, EGFR signaling, cell cycle (CDK4/6), apoptosis (BCL-2)",
+    "clinical_relevance": "PIK3CA mutations in ~40% HR+ breast cancer (alpelisib approved). PTEN loss pan-cancer. mTOR inhibitors in renal cell and neuroendocrine tumors. Capivasertib + fulvestrant in AKT-pathway-altered breast cancer."
+  },
+  {
+    "id": "path-egfr-signaling-003",
+    "text_summary": "EGFR (ErbB1/HER1) signaling is a receptor tyrosine kinase pathway that activates MAPK, PI3K/AKT, JAK/STAT, and PLCgamma cascades upon ligand binding (EGF, TGF-alpha) and receptor dimerization. EGFR is a key oncogenic driver in NSCLC (activating mutations in 15-20%), head and neck cancer (overexpression), colorectal cancer (wild-type is required for anti-EGFR antibody efficacy), and glioblastoma (amplification and EGFRvIII). The ErbB family includes four members: EGFR, HER2, HER3, and HER4, which form homo- and heterodimers with distinct signaling outputs. Therapeutic strategies span small-molecule TKIs (osimertinib, erlotinib, gefitinib for mutant EGFR), monoclonal antibodies (cetuximab, panitumumab for wild-type EGFR/RAS in CRC), bispecific antibodies (amivantamab targeting EGFR+MET), and third-generation agents for resistance mutations.",
+    "pathway_name": "EGFR Signaling",
+    "key_genes": "EGFR, ERBB2, ERBB3, ERBB4, GRB2, SOS1, SHC1, GAB1, PTPN11",
+    "therapeutic_targets": "EGFR (osimertinib, cetuximab, amivantamab), HER2 (trastuzumab), pan-ErbB (afatinib)",
+    "cross_talk": "MAPK/ERK, PI3K/AKT/mTOR, JAK/STAT, MET signaling",
+    "clinical_relevance": "EGFR mutations in 15-20% NSCLC (osimertinib standard 1L). Wild-type EGFR/RAS required for cetuximab in CRC. HER2 amplification in breast/gastric. EGFRvIII in glioblastoma."
+  },
+  {
+    "id": "path-wnt-betacatenin-004",
+    "text_summary": "The WNT/beta-catenin pathway is a fundamental developmental signaling cascade that is constitutively activated in the majority of colorectal cancers through APC truncating mutations (~80%) or CTNNB1 (beta-catenin) activating mutations. In the absence of WNT ligand, beta-catenin is phosphorylated by the APC/Axin/GSK3-beta/CK1 destruction complex and targeted for proteasomal degradation. APC loss prevents beta-catenin degradation, leading to its nuclear accumulation and transcriptional activation of TCF/LEF target genes (MYC, CCND1, AXIN2) driving proliferation and stem cell self-renewal. Therapeutic targeting of WNT signaling has been challenging due to the pathway's essential role in normal tissue homeostasis. Emerging approaches include tankyrase inhibitors (stabilizing the destruction complex), porcupine inhibitors (blocking WNT ligand secretion), and beta-catenin/TCF interaction disruptors.",
+    "pathway_name": "WNT/Beta-Catenin",
+    "key_genes": "APC, CTNNB1, AXIN1, AXIN2, GSK3B, TCF7L2, RNF43, ZNRF3, RSPO2, RSPO3",
+    "therapeutic_targets": "Tankyrase (tankyrase inhibitors), porcupine (WNT974), beta-catenin/TCF (investigational)",
+    "cross_talk": "Hippo/YAP, Notch, Hedgehog, PI3K/AKT/mTOR",
+    "clinical_relevance": "APC mutations in ~80% CRC, driving the adenoma-carcinoma sequence. CTNNB1 mutations in hepatocellular carcinoma, desmoid tumors. RNF43/RSPO fusions in CRC subset. No approved WNT-targeting drugs yet."
+  },
+  {
+    "id": "path-ddr-brca-005",
+    "text_summary": "The DNA Damage Response (DDR) and BRCA-mediated homologous recombination (HR) pathway is a critical genome maintenance system that repairs DNA double-strand breaks with high fidelity. Key components include damage sensors (ATM, ATR), signal transducers (CHK1, CHK2), and effectors (BRCA1, BRCA2, PALB2, RAD51). BRCA1 and BRCA2 are essential for RAD51-mediated strand invasion during homologous recombination. Loss of HR function (through BRCA1/2 mutations, PALB2 mutations, or other HRD mechanisms) forces reliance on error-prone repair pathways (NHEJ, MMEJ), creating synthetic lethality with PARP inhibition. PARP inhibitors (olaparib, rucaparib, niraparib, talazoparib) trap PARP1 on DNA, generating replication-associated double-strand breaks that are lethal in HRD-deficient cells. DDR pathway alterations are found across multiple cancer types and define a pan-cancer population eligible for PARP-based therapies.",
+    "pathway_name": "DDR/BRCA (DNA Damage Response)",
+    "key_genes": "BRCA1, BRCA2, PALB2, ATM, ATR, CHEK1, CHEK2, RAD51, RAD51C, RAD51D, BARD1, BRIP1, NBN, MRE11",
+    "therapeutic_targets": "PARP (olaparib, rucaparib, niraparib, talazoparib), ATR (ceralasertib), WEE1 (adavosertib), CHK1",
+    "cross_talk": "Cell cycle (CDK4/6), apoptosis (BCL-2, p53), PI3K/AKT",
+    "clinical_relevance": "BRCA1/2 mutations in ovarian, breast, prostate, pancreatic cancers. HRD score (myChoice CDx) identifies non-BRCA HRD tumors. PARP inhibitors are standard of care in BRCA/HRD-positive cancers."
+  },
+  {
+    "id": "path-cell-cycle-cdk-006",
+    "text_summary": "The cell cycle pathway regulated by cyclin-dependent kinases (CDK4/6) controls the G1-to-S phase transition through phosphorylation of the retinoblastoma protein (RB1). Cyclin D1 (CCND1) complexes with CDK4/6 to initiate RB1 hyperphosphorylation, releasing E2F transcription factors that drive S-phase entry. CDK4/6 inhibitors (palbociclib, ribociclib, abemaciclib) have transformed HR-positive/HER2-negative breast cancer treatment, with PFS improvements in combination with endocrine therapy. The PALOMA-2 trial (palbociclib + letrozole: PFS 24.8 months), MONALEESA-2/3/7 (ribociclib: OS benefit in multiple settings), and monarchE (abemaciclib: adjuvant DFS benefit) established CDK4/6 inhibitors as standard of care. Loss of RB1, CDKN2A deletion, and cyclin E1 amplification are resistance mechanisms. CDK4/6 inhibition also promotes anti-tumor immunity through type III interferon signaling.",
+    "pathway_name": "Cell Cycle (CDK4/6-RB)",
+    "key_genes": "CDK4, CDK6, CCND1, CCND2, CCND3, CDKN2A, CDKN2B, RB1, CCNE1, CDK2, E2F1",
+    "therapeutic_targets": "CDK4/6 (palbociclib, ribociclib, abemaciclib), CDK2 (investigational), CDK7 (investigational)",
+    "cross_talk": "MAPK/ERK (CCND1 induction), PI3K/AKT/mTOR, DDR/BRCA, estrogen receptor signaling",
+    "clinical_relevance": "CDK4/6 inhibitors are standard 1L for HR+/HER2- metastatic breast cancer. CDKN2A deletion in mesothelioma, glioblastoma. RB1 loss predicts resistance. Cyclin E amplification defines CDK4/6i-resistant population."
+  },
+  {
+    "id": "path-jak-stat-007",
+    "text_summary": "The JAK/STAT (Janus Kinase/Signal Transducer and Activator of Transcription) pathway mediates cytokine receptor signaling and is central to hematopoiesis, immune regulation, and inflammation. JAK family kinases (JAK1, JAK2, JAK3, TYK2) are activated by cytokine receptor engagement and phosphorylate STAT proteins (STAT1-6), which dimerize, translocate to the nucleus, and activate transcription. Constitutive JAK/STAT activation is a hallmark of myeloproliferative neoplasms (JAK2 V617F mutation in ~95% polycythemia vera, ~55% essential thrombocythemia and myelofibrosis). JAK inhibitors (ruxolitinib, fedratinib, pacritinib) are approved for myelofibrosis. JAK/STAT signaling also plays roles in lymphoma, leukemia, and solid tumors. The pathway intersects with interferon signaling and can modulate tumor immune evasion. STAT3 is being investigated as a direct therapeutic target in solid tumors.",
+    "pathway_name": "JAK/STAT",
+    "key_genes": "JAK1, JAK2, JAK3, TYK2, STAT1, STAT3, STAT5A, STAT5B, SOCS1, SOCS3",
+    "therapeutic_targets": "JAK1/2 (ruxolitinib), JAK2 (fedratinib, pacritinib), STAT3 (investigational)",
+    "cross_talk": "MAPK/ERK, PI3K/AKT/mTOR, interferon signaling, NF-kB",
+    "clinical_relevance": "JAK2 V617F in myeloproliferative neoplasms. JAK inhibitors approved for myelofibrosis and polycythemia vera. JAK/STAT dysregulation in lymphoma, T-ALL, and solid tumor immune evasion."
+  },
+  {
+    "id": "path-hedgehog-008",
+    "text_summary": "The Hedgehog (Hh) signaling pathway is a developmental morphogen pathway that, when aberrantly activated, drives tumorigenesis in basal cell carcinoma (BCC), medulloblastoma, and rhabdomyosarcoma. Canonical Hh signaling involves the ligands Sonic Hedgehog (SHH), Indian Hedgehog, and Desert Hedgehog binding to the receptor Patched (PTCH1), which relieves PTCH1-mediated inhibition of Smoothened (SMO). Activated SMO promotes GLI transcription factor (GLI1, GLI2, GLI3) nuclear translocation and target gene expression. In BCC, PTCH1 loss-of-function mutations (~90%) or SMO gain-of-function mutations (~10%) constitutively activate the pathway. Vismodegib and sonidegib are FDA-approved SMO inhibitors for advanced BCC. Gorlin syndrome (nevoid BCC syndrome) results from germline PTCH1 mutations. Resistance to SMO inhibitors occurs through SMO D473H/Y mutations and GLI amplification.",
+    "pathway_name": "Hedgehog",
+    "key_genes": "SHH, PTCH1, PTCH2, SMO, GLI1, GLI2, GLI3, SUFU",
+    "therapeutic_targets": "SMO (vismodegib, sonidegib), GLI (investigational)",
+    "cross_talk": "WNT/beta-catenin, Notch, PI3K/AKT/mTOR",
+    "clinical_relevance": "PTCH1 mutations in ~90% BCC, SMO mutations in ~10%. Vismodegib/sonidegib approved for advanced BCC. Gorlin syndrome (germline PTCH1). Hh signaling in medulloblastoma SHH subtype."
+  },
+  {
+    "id": "path-notch-009",
+    "text_summary": "The Notch signaling pathway is a juxtacrine signaling system where Notch receptors (NOTCH1-4) on one cell interact with ligands (DLL1, DLL3, DLL4, JAG1, JAG2) on adjacent cells, triggering proteolytic cleavage by gamma-secretase and release of the Notch intracellular domain (NICD), which translocates to the nucleus and activates transcription of HES and HEY family genes. NOTCH1 activating mutations are the hallmark of T-cell acute lymphoblastic leukemia (T-ALL, >50%). In solid tumors, Notch can function as either an oncogene or tumor suppressor depending on context. NOTCH1/2 loss-of-function mutations occur in ~15% of squamous cell cancers. DLL3 is a tumor-associated antigen in small cell lung cancer (SCLC) and neuroendocrine tumors, targeted by the bispecific T-cell engager tarlatamab. Gamma-secretase inhibitors (nirogacestat for desmoid tumors) represent a therapeutic approach for Notch-dependent tumors.",
+    "pathway_name": "Notch",
+    "key_genes": "NOTCH1, NOTCH2, NOTCH3, NOTCH4, DLL1, DLL3, DLL4, JAG1, JAG2, FBXW7, HES1",
+    "therapeutic_targets": "Gamma-secretase (nirogacestat), DLL3 (tarlatamab, rovalpituzumab), NOTCH (brontictuzumab)",
+    "cross_talk": "WNT/beta-catenin, Hedgehog, Hippo/YAP, NF-kB",
+    "clinical_relevance": "NOTCH1 activating mutations in T-ALL. DLL3-targeting in SCLC. Gamma-secretase inhibitor approved for desmoid tumors. Context-dependent oncogene vs tumor suppressor in solid tumors."
+  },
+  {
+    "id": "path-hippo-yap-010",
+    "text_summary": "The Hippo/YAP pathway is a growth-suppressive signaling cascade that controls organ size, tissue homeostasis, and stem cell biology. The core kinase cascade involves MST1/2 (STK3/4) phosphorylating LATS1/2, which phosphorylates the transcriptional co-activators YAP (YAP1) and TAZ (WWTR1), leading to their cytoplasmic sequestration and degradation. When Hippo signaling is inactivated, unphosphorylated YAP/TAZ enter the nucleus and interact with TEAD transcription factors to drive proliferation, survival, and epithelial-mesenchymal transition. NF2 (Merlin) loss is a key activator of YAP/TAZ in mesothelioma and schwannoma. Hippo pathway dysregulation is implicated in liver, stomach, colorectal, and lung cancers. TEAD inhibitors and YAP-TEAD interaction disruptors are in early clinical development. Cross-talk with WNT and Notch pathways amplifies oncogenic signaling in multiple contexts.",
+    "pathway_name": "Hippo/YAP",
+    "key_genes": "NF2, LATS1, LATS2, STK3, STK4, YAP1, WWTR1, TEAD1, TEAD2, TEAD3, TEAD4, MOB1A, SAV1",
+    "therapeutic_targets": "TEAD (TEAD inhibitors, investigational), YAP/TAZ (investigational)",
+    "cross_talk": "WNT/beta-catenin, Notch, EGFR signaling, cell cycle",
+    "clinical_relevance": "NF2 loss in mesothelioma, schwannoma, meningioma. YAP/TAZ activation pan-cancer. TEAD inhibitors in early clinical trials. YAP amplification in NSCLC and liver cancer."
+  },
+  {
+    "id": "path-apoptosis-bcl2-011",
+    "text_summary": "The apoptosis pathway regulated by the BCL-2 protein family controls the intrinsic (mitochondrial) cell death program. Pro-survival BCL-2 family members (BCL-2, BCL-XL, MCL-1) sequester pro-apoptotic BH3-only proteins (BIM, BAD, BID, NOXA, PUMA) and effectors (BAX, BAK), preventing mitochondrial outer membrane permeabilization (MOMP) and cytochrome c release. Venetoclax is a selective BCL-2 inhibitor approved for CLL and AML that mimics BH3-only proteins to displace BAX/BAK. In CLL, venetoclax plus obinutuzumab achieved deep remissions with undetectable minimal residual disease. In AML, venetoclax plus azacitidine improved survival in elderly patients. MCL-1 and BCL-XL inhibitors are in development but face toxicity challenges. BCL-2 overexpression in follicular lymphoma (t(14;18)) and CLL drives resistance to apoptosis. p53 pathway defects and anti-apoptotic protein upregulation are major resistance mechanisms.",
+    "pathway_name": "Apoptosis/BCL-2",
+    "key_genes": "BCL2, BCL2L1, MCL1, BAX, BAK1, BIM, BAD, BID, NOXA, PUMA, APAF1, CASP9, CASP3",
+    "therapeutic_targets": "BCL-2 (venetoclax), MCL-1 (investigational), BCL-XL (investigational), IAP (investigational)",
+    "cross_talk": "p53/MDM2, PI3K/AKT, DDR/BRCA, NF-kB",
+    "clinical_relevance": "Venetoclax approved for CLL (frontline and R/R) and AML (with azacitidine). BCL-2 overexpression from t(14;18) in follicular lymphoma. MCL-1 dependence in multiple myeloma."
+  },
+  {
+    "id": "path-angiogenesis-vegf-012",
+    "text_summary": "The angiogenesis pathway driven by VEGF (Vascular Endothelial Growth Factor) signaling is essential for tumor neovascularization, providing oxygen and nutrients for tumor growth beyond 1-2mm. VEGF-A binds VEGFR2 (KDR) on endothelial cells, activating PI3K, MAPK, and PLCgamma cascades that promote endothelial proliferation, migration, and survival. Hypoxia-inducible factor (HIF) transcriptionally upregulates VEGF under low-oxygen conditions, creating a positive feedback loop in tumors. Anti-angiogenic therapies include the anti-VEGF antibody bevacizumab (approved in CRC, NSCLC, ovarian, cervical, HCC, renal), multi-kinase VEGFR inhibitors (sunitinib, sorafenib, pazopanib, cabozantinib, lenvatinib), and the VEGF trap aflibercept. In renal cell carcinoma, VHL loss leads to constitutive HIF activation and VEGF overexpression, making anti-VEGF therapy particularly effective. Combination of anti-VEGF with immunotherapy (pembrolizumab+lenvatinib, atezolizumab+bevacizumab) is a standard approach.",
+    "pathway_name": "Angiogenesis/VEGF",
+    "key_genes": "VEGFA, VEGFB, VEGFC, KDR, FLT1, FLT4, HIF1A, EPAS1, VHL, ANGPT1, ANGPT2, TIE2",
+    "therapeutic_targets": "VEGF (bevacizumab), VEGFR (sunitinib, pazopanib, cabozantinib, lenvatinib), HIF-2alpha (belzutifan)",
+    "cross_talk": "MAPK/ERK, PI3K/AKT/mTOR, Hippo/YAP, Notch (tip/stalk cell specification)",
+    "clinical_relevance": "Bevacizumab approved in CRC, NSCLC, ovarian, renal, HCC. VHL loss in clear cell RCC drives VEGF. HIF-2alpha inhibitor belzutifan approved for VHL disease. Anti-VEGF + immunotherapy combinations are standard in renal and HCC."
+  }
+]

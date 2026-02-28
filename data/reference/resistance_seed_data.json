@@ -1,0 +1,152 @@
+[
+  {
+    "id": "res-egfr-t790m-001",
+    "text_summary": "EGFR T790M is the most common acquired resistance mechanism to first- and second-generation EGFR TKIs (erlotinib, gefitinib, afatinib), occurring in approximately 50-60% of patients who progress on these agents. The T790M gatekeeper mutation in the EGFR kinase domain increases ATP affinity and reduces TKI binding. Osimertinib, a third-generation EGFR TKI, was specifically designed to target T790M and received FDA approval for T790M-positive NSCLC after progression on first-line EGFR TKI therapy. Osimertinib demonstrates ORR of 71% against T790M-positive tumors. Liquid biopsy (ctDNA) for T790M detection is FDA-approved and recommended before tissue rebiopsy due to its non-invasive nature and rapid turnaround. The adoption of osimertinib as first-line therapy (FLAURA trial) bypasses T790M resistance but introduces different resistance mechanisms including C797S and MET amplification.",
+    "primary_therapy": "erlotinib, gefitinib, afatinib",
+    "mechanism": "EGFR T790M gatekeeper mutation (increased ATP affinity, steric hindrance to TKI binding)",
+    "bypass_pathway": "",
+    "alternative_therapies": "osimertinib (third-generation EGFR TKI targeting T790M)",
+    "frequency": "50-60% of patients progressing on first/second-gen EGFR TKIs",
+    "detection_method": "ctDNA liquid biopsy (cobas EGFR Mutation Test v2), tissue NGS"
+  },
+  {
+    "id": "res-egfr-c797s-002",
+    "text_summary": "EGFR C797S is an acquired resistance mutation to osimertinib, occurring in approximately 10-25% of patients who progress on third-generation EGFR TKI therapy. C797S occurs at the cysteine residue that forms the covalent bond with osimertinib's acrylamide warhead, eliminating the irreversible binding mechanism. The clinical impact depends on whether C797S occurs in cis (same allele) or trans (different allele) with T790M. When C797S is in trans with T790M, a combination of first-gen TKI plus third-gen TKI may overcome resistance. When in cis, no single-agent TKI is effective. When C797S occurs without T790M (in the setting of first-line osimertinib), first-generation EGFR TKIs may be effective. Emerging strategies include fourth-generation EGFR TKIs (BLU-945), bispecific antibodies (amivantamab), and EGFR-MET bispecific approaches. C797S detection requires tissue or ctDNA NGS with allele-level resolution.",
+    "primary_therapy": "osimertinib",
+    "mechanism": "EGFR C797S mutation at covalent binding site (eliminates irreversible TKI interaction)",
+    "bypass_pathway": "",
+    "alternative_therapies": "first-gen EGFR TKI (if no T790M), BLU-945 (fourth-gen, investigational), amivantamab, combination strategies",
+    "frequency": "10-25% of patients progressing on osimertinib",
+    "detection_method": "ctDNA NGS with cis/trans resolution, tissue NGS"
+  },
+  {
+    "id": "res-braf-amp-003",
+    "text_summary": "BRAF amplification is a resistance mechanism to single-agent BRAF inhibitors (vemurafenib, dabrafenib), occurring in approximately 10-20% of BRAF V600E-mutant melanomas that progress on BRAF monotherapy. Increased BRAF copy number results in reactivation of the MAPK pathway despite the presence of the BRAF inhibitor, as the elevated BRAF protein levels overwhelm the inhibitor stoichiometry. The addition of MEK inhibitors (trametinib, cobimetinib, binimetinib) to BRAF inhibitors blocks downstream MAPK signaling even in the setting of BRAF amplification, providing the rationale for combination BRAF+MEK therapy as the standard of care. BRAF amplification can co-occur with other resistance mechanisms including NRAS mutations and MEK mutations. Detection requires copy number analysis by NGS or FISH. The superiority of BRAF+MEK combinations over BRAF monotherapy in clinical trials (COMBI-d, coBRIM) is partly attributable to prevention of this resistance mechanism.",
+    "primary_therapy": "vemurafenib, dabrafenib (monotherapy)",
+    "mechanism": "BRAF gene amplification (overwhelms inhibitor stoichiometry, reactivates MAPK)",
+    "bypass_pathway": "MAPK pathway reactivation",
+    "alternative_therapies": "dabrafenib + trametinib, encorafenib + binimetinib (combination BRAF+MEK)",
+    "frequency": "10-20% of patients progressing on BRAF monotherapy",
+    "detection_method": "NGS (copy number analysis), FISH"
+  },
+  {
+    "id": "res-alk-g1202r-004",
+    "text_summary": "ALK G1202R is a solvent-front resistance mutation that emerges in approximately 20-30% of ALK-positive NSCLC patients who progress on second-generation ALK inhibitors (alectinib, ceritinib, brigatinib). G1202R confers resistance to all ALK TKIs except lorlatinib, making it the most clinically significant ALK resistance mutation. The mutation alters the solvent-exposed region of the ALK kinase domain, reducing drug binding affinity through steric hindrance. Lorlatinib, a third-generation macrocyclic ALK inhibitor, was specifically designed to overcome G1202R and achieves ORR of approximately 70% in patients with this resistance mutation. Sequential ALK TKI therapy (first-gen to second-gen to lorlatinib) can provide prolonged disease control. However, compound ALK mutations (e.g., G1202R + L1196M) that arise under lorlatinib pressure can confer pan-ALK TKI resistance. Detection requires tissue rebiopsy with NGS or ctDNA analysis.",
+    "primary_therapy": "alectinib, ceritinib, brigatinib",
+    "mechanism": "ALK G1202R solvent-front mutation (steric hindrance reducing TKI binding)",
+    "bypass_pathway": "",
+    "alternative_therapies": "lorlatinib (third-generation ALK TKI with G1202R activity)",
+    "frequency": "20-30% of patients progressing on second-generation ALK TKIs",
+    "detection_method": "tissue NGS, ctDNA NGS"
+  },
+  {
+    "id": "res-met-amplification-005",
+    "text_summary": "MET amplification is a major bypass resistance mechanism to EGFR TKIs, occurring in approximately 5-15% of EGFR-mutant NSCLC patients who progress on osimertinib and 5-10% progressing on first-generation EGFR TKIs. MET amplification activates PI3K/AKT and MAPK signaling independently of EGFR, rendering EGFR inhibition insufficient to control downstream proliferative signaling. The addition of MET inhibitors (capmatinib, tepotinib, savolitinib) or the EGFR-MET bispecific antibody amivantamab to EGFR TKIs is being investigated to overcome MET-driven resistance. The TATTON and SAVANNAH trials have shown promising activity of osimertinib plus savolitinib in MET-amplified, EGFR-mutant NSCLC. MET amplification is detected by NGS (gene copy number), FISH (MET/CEP7 ratio >=2.0), or IHC (MET overexpression). The threshold for clinically significant MET amplification (GCN >=5 vs >=10) continues to be refined across clinical trials.",
+    "primary_therapy": "osimertinib, erlotinib, gefitinib",
+    "mechanism": "MET gene amplification (bypass activation of PI3K/AKT and MAPK signaling)",
+    "bypass_pathway": "PI3K/AKT, MAPK (EGFR-independent)",
+    "alternative_therapies": "osimertinib + savolitinib, osimertinib + capmatinib, amivantamab + lazertinib",
+    "frequency": "5-15% of patients progressing on EGFR TKIs (higher with osimertinib 1L)",
+    "detection_method": "NGS (copy number), FISH (MET/CEP7 ratio), IHC (MET overexpression)"
+  },
+  {
+    "id": "res-pik3ca-bypass-006",
+    "text_summary": "PIK3CA activating mutations can emerge as a bypass resistance mechanism to MAPK pathway inhibitors (BRAF inhibitors, MEK inhibitors, EGFR TKIs) in approximately 5-10% of resistant tumors. PIK3CA mutations (most commonly E545K, H1047R) activate the PI3K/AKT/mTOR pathway independently of the MAPK cascade, providing an alternative survival signal that sustains tumor growth despite effective MAPK blockade. This cross-talk between MAPK and PI3K pathways highlights the interconnected nature of oncogenic signaling networks. Combination strategies targeting both MAPK and PI3K pathways have been investigated but often limited by overlapping toxicity. In EGFR-mutant NSCLC, acquired PIK3CA mutations may arise during osimertinib therapy. In BRAF-mutant melanoma, PIK3CA mutations can co-occur with other resistance mechanisms. Detection requires comprehensive genomic profiling of the progressing tumor by tissue or ctDNA NGS.",
+    "primary_therapy": "BRAF inhibitors, MEK inhibitors, EGFR TKIs",
+    "mechanism": "PIK3CA activating mutation (PI3K/AKT pathway activation independent of MAPK)",
+    "bypass_pathway": "PI3K/AKT/mTOR",
+    "alternative_therapies": "PI3K inhibitors (alpelisib), AKT inhibitors (capivasertib), mTOR inhibitors (everolimus), combination MAPK + PI3K",
+    "frequency": "5-10% of patients progressing on MAPK pathway inhibitors",
+    "detection_method": "tissue NGS, ctDNA NGS"
+  },
+  {
+    "id": "res-ras-reactivation-crc-007",
+    "text_summary": "RAS pathway reactivation is the dominant resistance mechanism to anti-EGFR antibodies (cetuximab, panitumumab) in colorectal cancer, occurring in approximately 30-50% of patients who develop acquired resistance. Mechanisms include emergence of KRAS mutations (G12D, G12V, G13D, Q61H), NRAS mutations, BRAF V600E mutations, EGFR ectodomain mutations (S492R), MET amplification, and HER2 amplification. These alterations reactivate MAPK signaling downstream of or parallel to EGFR. Serial ctDNA monitoring can detect emerging RAS mutations months before clinical progression, and RAS mutant clones may decline after cessation of anti-EGFR therapy, creating a potential window for anti-EGFR rechallenge. The CHRONOS trial demonstrated that ctDNA-guided rechallenge with anti-EGFR therapy after clonal deselection can restore sensitivity. HER2 amplification as a resistance mechanism is targetable with trastuzumab-based combinations.",
+    "primary_therapy": "cetuximab, panitumumab",
+    "mechanism": "RAS pathway reactivation (KRAS/NRAS/BRAF mutations, EGFR ectodomain mutations, RTK amplification)",
+    "bypass_pathway": "MAPK pathway reactivation, HER2/MET bypass",
+    "alternative_therapies": "ctDNA-guided anti-EGFR rechallenge, encorafenib + cetuximab (if BRAF V600E), trastuzumab-based (if HER2-amplified)",
+    "frequency": "30-50% of patients progressing on anti-EGFR therapy in CRC",
+    "detection_method": "ctDNA serial monitoring, tissue NGS"
+  },
+  {
+    "id": "res-brca-reversion-008",
+    "text_summary": "BRCA reversion mutations are the most common mechanism of acquired resistance to PARP inhibitors (olaparib, rucaparib, niraparib) in BRCA-mutant ovarian, breast, and prostate cancers, occurring in approximately 20-40% of PARP inhibitor-resistant cases. These secondary mutations restore the BRCA1 or BRCA2 open reading frame, reestablishing functional homologous recombination repair and eliminating the synthetic lethality exploited by PARP inhibitors. Multiple independent reversion events (polyclonal) can occur simultaneously, reflecting the strong selective pressure of PARP inhibition. Reversion mutations also confer cross-resistance to platinum-based chemotherapy. Detection by ctDNA is preferred due to the polyclonal nature. Strategies to overcome BRCA reversion mutations include immunotherapy (reversion-positive tumors may still have high TMB), ATR inhibitors, WEE1 inhibitors, and novel agents targeting alternative DNA repair vulnerabilities.",
+    "primary_therapy": "olaparib, rucaparib, niraparib, talazoparib",
+    "mechanism": "BRCA1/2 reversion mutations (restore open reading frame, reestablish HR repair)",
+    "bypass_pathway": "Restored homologous recombination repair",
+    "alternative_therapies": "immunotherapy, ATR inhibitors (ceralasertib), WEE1 inhibitors (adavosertib), non-cross-resistant chemotherapy",
+    "frequency": "20-40% of patients progressing on PARP inhibitors",
+    "detection_method": "ctDNA NGS (preferred due to polyclonal nature), tissue NGS"
+  },
+  {
+    "id": "res-esr1-mut-endocrine-009",
+    "text_summary": "ESR1 ligand-binding domain mutations are the primary mechanism of acquired resistance to aromatase inhibitors (letrozole, anastrozole, exemestane) in HR-positive metastatic breast cancer, detected in approximately 20-40% of patients who progress on aromatase inhibitor therapy. Hotspot mutations (D538G, Y537S, Y537N, L536R) result in constitutive estrogen receptor activation independent of estrogen, rendering aromatase inhibitors ineffective. ESR1 mutations retain partial sensitivity to selective estrogen receptor degraders (SERDs) including fulvestrant and elacestrant. Elacestrant received FDA approval for ESR1-mutant, ER-positive/HER2-negative advanced breast cancer based on the EMERALD trial. ESR1 mutations are detectable by ctDNA liquid biopsy, enabling non-invasive serial monitoring. ESR1 mutation emergence can be tracked in real-time during aromatase inhibitor therapy to guide timely treatment changes.",
+    "primary_therapy": "letrozole, anastrozole, exemestane (aromatase inhibitors)",
+    "mechanism": "ESR1 ligand-binding domain mutations (constitutive ER activation independent of estrogen)",
+    "bypass_pathway": "",
+    "alternative_therapies": "fulvestrant, elacestrant, novel oral SERDs (camizestrant, giredestrant)",
+    "frequency": "20-40% of patients progressing on aromatase inhibitors",
+    "detection_method": "ctDNA liquid biopsy, tissue NGS"
+  },
+  {
+    "id": "res-bcl2-upregulation-010",
+    "text_summary": "BCL-2 family protein upregulation is a resistance mechanism to multiple cancer therapies including chemotherapy, targeted therapy, and immunotherapy across various tumor types. In CLL, MCL-1 upregulation is a key resistance mechanism to venetoclax (BCL-2 inhibitor), as MCL-1 can substitute for BCL-2 in sequestering pro-apoptotic BH3-only proteins. In AML, BCL-XL and MCL-1 upregulation compensate for BCL-2 inhibition by venetoclax. In solid tumors, anti-apoptotic BCL-2 family protein upregulation confers resistance to chemotherapy-induced apoptosis. MCL-1 inhibitors are in clinical development but face challenges with cardiac toxicity. Combination strategies pairing venetoclax with agents that downregulate MCL-1 (CDK9 inhibitors) or BCL-XL (navitoclax) are under investigation. Understanding the relative dependencies on different BCL-2 family members (BH3 profiling) can predict sensitivity and guide therapeutic combinations.",
+    "primary_therapy": "venetoclax, chemotherapy",
+    "mechanism": "Upregulation of anti-apoptotic BCL-2 family proteins (MCL-1, BCL-XL) compensating for BCL-2 inhibition",
+    "bypass_pathway": "Alternative anti-apoptotic signaling (MCL-1, BCL-XL)",
+    "alternative_therapies": "MCL-1 inhibitors (investigational), navitoclax (BCL-2/BCL-XL), venetoclax + CDK9 inhibitor, BH3 profiling-guided therapy",
+    "frequency": "Common in venetoclax-resistant CLL and AML",
+    "detection_method": "BH3 profiling, IHC for BCL-2 family proteins, RNA expression analysis"
+  },
+  {
+    "id": "res-tdm1-resistance-011",
+    "text_summary": "Resistance to trastuzumab emtansine (T-DM1) in HER2-positive breast cancer occurs through multiple mechanisms including reduced HER2 expression (downregulation), impaired internalization of the antibody-drug conjugate, increased drug efflux (MDR1/ABCB1 upregulation), defective lysosomal processing, and intracellular drug trafficking alterations. Approximately 50-70% of patients initially responding to T-DM1 eventually develop acquired resistance. Trastuzumab deruxtecan (T-DXd) has shown remarkable activity in T-DM1-resistant patients (DESTINY-Breast03: PFS 25.1 months for T-DXd vs 7.2 months for T-DM1 in second-line), suggesting that the different linker-payload technology, higher drug-to-antibody ratio, and bystander killing effect can overcome many T-DM1 resistance mechanisms. The shift to T-DXd as preferred second-line therapy has redefined the HER2-positive treatment paradigm. Tucatinib-based combinations provide another option after ADC failure.",
+    "primary_therapy": "trastuzumab emtansine (T-DM1)",
+    "mechanism": "HER2 downregulation, impaired ADC internalization, MDR1 efflux, defective lysosomal processing",
+    "bypass_pathway": "",
+    "alternative_therapies": "trastuzumab deruxtecan (T-DXd), tucatinib + trastuzumab + capecitabine",
+    "frequency": "50-70% of patients eventually progress on T-DM1",
+    "detection_method": "Tissue biopsy (HER2 IHC/FISH retesting), MDR1 expression"
+  },
+  {
+    "id": "res-pdl1-loss-io-012",
+    "text_summary": "PD-L1 loss and immune evasion mechanisms represent acquired resistance to immune checkpoint inhibitors (pembrolizumab, nivolumab, atezolizumab), occurring in approximately 25-40% of patients who initially respond and then progress on anti-PD-1/PD-L1 therapy. Mechanisms include downregulation of PD-L1 expression, loss of beta-2-microglobulin (B2M) abolishing MHC class I antigen presentation, JAK1/JAK2 loss-of-function mutations disrupting interferon-gamma signaling, WNT/beta-catenin pathway activation (creating an immunologically cold microenvironment), and transformation to a resistant histology (e.g., small cell transformation in NSCLC). These mechanisms can occur alone or in combination. Rechallenge with ipilimumab (anti-CTLA-4) may overcome some PD-1 resistance. Novel approaches include bispecific T-cell engagers, adoptive cell therapy, intratumoral oncolytic viruses, and STING agonists to reinflame the tumor microenvironment.",
+    "primary_therapy": "pembrolizumab, nivolumab, atezolizumab",
+    "mechanism": "PD-L1 downregulation, B2M loss (MHC I loss), JAK1/2 mutations, WNT activation, histologic transformation",
+    "bypass_pathway": "Immune evasion (loss of antigen presentation, cold tumor microenvironment)",
+    "alternative_therapies": "ipilimumab (anti-CTLA-4), bispecific T-cell engagers, adoptive cell therapy, intratumoral agents, STING agonists",
+    "frequency": "25-40% of patients with acquired resistance to anti-PD-1/PD-L1",
+    "detection_method": "tissue biopsy (B2M IHC, JAK1/2 sequencing, PD-L1 IHC), WES for neoantigen loss"
+  },
+  {
+    "id": "res-idh-isoform-switch-013",
+    "text_summary": "IDH isoform switching is a rare but clinically relevant resistance mechanism to IDH-targeted therapy, where tumors treated with an IDH1 inhibitor (ivosidenib) develop a secondary IDH2 mutation, or vice versa. Both IDH1 R132H and IDH2 R140Q mutations produce the oncometabolite D-2-hydroxyglutarate (2-HG), and the tumor maintains 2-HG production by switching to the uninhibited isoform. This has been documented in AML patients treated with ivosidenib who develop IDH2 mutations at relapse, maintaining the hypermethylation phenotype. The clinical implication is that combined IDH1/IDH2 inhibition or dual-isoform inhibitors may be needed to prevent this escape mechanism. Vorasidenib (a dual IDH1/IDH2 inhibitor approved for IDH-mutant glioma) may circumvent isoform switching. Serial monitoring of IDH1 and IDH2 mutation status by NGS or ctDNA is recommended during IDH-targeted therapy.",
+    "primary_therapy": "ivosidenib (IDH1 inhibitor), enasidenib (IDH2 inhibitor)",
+    "mechanism": "IDH isoform switching (acquisition of IDH2 mutation during IDH1 inhibition, or vice versa)",
+    "bypass_pathway": "Maintained 2-HG oncometabolite production through alternative IDH isoform",
+    "alternative_therapies": "vorasidenib (dual IDH1/IDH2 inhibitor), azacitidine combinations",
+    "frequency": "Rare (<5% of IDH-inhibitor-treated patients)",
+    "detection_method": "NGS (IDH1 and IDH2 concurrent testing), ctDNA monitoring"
+  },
+  {
+    "id": "res-kit-secondary-gist-014",
+    "text_summary": "KIT secondary mutations are the dominant resistance mechanism to imatinib in gastrointestinal stromal tumors (GIST), developing in approximately 40-60% of patients who progress on imatinib. These secondary mutations cluster in the ATP-binding pocket (exon 13: V654A; exon 14: T670I gatekeeper) or the activation loop (exon 17: D816V, N822K, Y823D; exon 18: A829P). Different metastatic lesions can harbor different secondary mutations (interlesional heterogeneity), creating a therapeutic challenge. Sunitinib shows activity against exon 13/14 mutations, while regorafenib has activity against exon 17 mutations. Ripretinib, a switch-control kinase inhibitor, was designed to broadly inhibit multiple KIT resistance mutations and is approved for fourth-line GIST (INVICTUS trial). The heterogeneous nature of KIT resistance mutations argues for broad-spectrum KIT inhibitors or combination approaches. ctDNA can detect multiple KIT resistance mutations simultaneously.",
+    "primary_therapy": "imatinib",
+    "mechanism": "KIT secondary mutations in ATP-binding pocket (V654A, T670I) or activation loop (D816V, N822K)",
+    "bypass_pathway": "",
+    "alternative_therapies": "sunitinib (2L, exon 13/14), regorafenib (3L, exon 17), ripretinib (4L, broad-spectrum), avapritinib (D816V)",
+    "frequency": "40-60% of patients progressing on imatinib in GIST",
+    "detection_method": "tissue NGS, ctDNA (detecting multiple resistance mutations simultaneously)"
+  },
+  {
+    "id": "res-fgfr-gatekeeper-015",
+    "text_summary": "FGFR gatekeeper mutations represent acquired resistance to FGFR inhibitors (pemigatinib, futibatinib, infigratinib) in FGFR2 fusion-positive cholangiocarcinoma and other FGFR-altered cancers. The most common gatekeeper mutation is V564F in FGFR2, which sterically hinders drug binding in the ATP-binding pocket. Additional resistance mutations include molecular brake mutations (N549H/K) and other kinase domain mutations (E565A, K659M, L617V). Different FGFR inhibitors have distinct resistance mutation profiles. Futibatinib, a covalent (irreversible) FGFR inhibitor, may retain activity against some resistance mutations that affect reversible inhibitor binding. Polyclonal resistance (multiple FGFR mutations in different metastatic sites) is common and can be detected by ctDNA. Next-generation FGFR inhibitors and combination strategies are in development to overcome these resistance mechanisms. Molecular monitoring during FGFR inhibitor therapy can guide timely treatment changes.",
+    "primary_therapy": "pemigatinib, infigratinib, futibatinib",
+    "mechanism": "FGFR2 gatekeeper mutations (V564F, steric hindrance) and molecular brake mutations (N549H/K)",
+    "bypass_pathway": "PI3K/AKT bypass signaling (in some cases)",
+    "alternative_therapies": "futibatinib (covalent, may overcome some resistance), next-gen FGFR inhibitors (investigational), combination strategies",
+    "frequency": "20-40% of patients progressing on FGFR inhibitors",
+    "detection_method": "ctDNA NGS (preferred for polyclonal detection), tissue NGS"
+  }
+]

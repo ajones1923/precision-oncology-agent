@@ -1,0 +1,347 @@
+"""
+Precision Oncology Agent - FastAPI Application
+===============================================
+Phase 4: API + UI layer for the Precision Oncology Intelligence Agent.
+Provides RAG-powered clinical decision support for molecular tumor boards.
+
+Author: Adam Jones
+Date: February 2026
+"""
+
+import time
+import logging
+from contextlib import asynccontextmanager
+from typing import Any, Dict, List, Optional
+
+from fastapi import FastAPI, HTTPException
+from fastapi.middleware.cors import CORSMiddleware
+from pydantic import BaseModel, Field
+from sentence_transformers import SentenceTransformer
+
+from agent.src.config import Settings
+from agent.src.collections import OncoCollectionManager
+from agent.src.rag_engine import OncoRAGEngine
+from agent.src.intelligence import OncoIntelligenceAgent
+from agent.src.case_manager import OncologyCaseManager
+from agent.src.trial_matcher import TrialMatcher
+from agent.src.therapy_ranker import TherapyRanker
+from agent.src.cross_modal import OncoCrossModalTrigger
+
+from agent.api.routes import meta_agent, cases, trials, reports, events
+
+logger = logging.getLogger(__name__)
+
+# ---------------------------------------------------------------------------
+# Global application state
+# ---------------------------------------------------------------------------
+_state: Dict[str, Any] = {}
+
+VERSION = "0.1.0"
+
+
+def get_state() -> Dict[str, Any]:
+    """Return the shared application state dict."""
+    return _state
+
+
+# ---------------------------------------------------------------------------
+# Lifespan
+# ---------------------------------------------------------------------------
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Startup / shutdown lifecycle for the Precision Oncology Agent."""
+    logger.info("Precision Oncology Agent starting up ...")
+
+    # -- Settings ----------------------------------------------------------
+    settings = Settings()
+    _state["settings"] = settings
+
+    # -- Milvus ------------------------------------------------------------
+    collection_manager = OncoCollectionManager(
+        host=settings.milvus_host,
+        port=settings.milvus_port,
+    )
+    collection_manager.connect()
+    _state["collection_manager"] = collection_manager
+
+    # -- Embedder ----------------------------------------------------------
+    embedder = SentenceTransformer(settings.embedding_model)
+    _state["embedder"] = embedder
+
+    # -- RAG Engine --------------------------------------------------------
+    rag_engine = OncoRAGEngine(
+        collection_manager=collection_manager,
+        embedder=embedder,
+        settings=settings,
+    )
+    _state["rag_engine"] = rag_engine
+
+    # -- Intelligence Agent ------------------------------------------------
+    intelligence_agent = OncoIntelligenceAgent(
+        rag_engine=rag_engine,
+        settings=settings,
+    )
+    _state["intelligence_agent"] = intelligence_agent
+
+    # -- Case Manager ------------------------------------------------------
+    case_manager = OncologyCaseManager(
+        rag_engine=rag_engine,
+        intelligence_agent=intelligence_agent,
+        settings=settings,
+    )
+    _state["case_manager"] = case_manager
+
+    # -- Trial Matcher -----------------------------------------------------
+    trial_matcher = TrialMatcher(
+        collection_manager=collection_manager,
+        embedder=embedder,
+        settings=settings,
+    )
+    _state["trial_matcher"] = trial_matcher
+
+    # -- Therapy Ranker ----------------------------------------------------
+    therapy_ranker = TherapyRanker(
+        rag_engine=rag_engine,
+        settings=settings,
+    )
+    _state["therapy_ranker"] = therapy_ranker
+
+    # -- Cross-Modal Trigger -----------------------------------------------
+    cross_modal = OncoCrossModalTrigger(
+        collection_manager=collection_manager,
+        embedder=embedder,
+        settings=settings,
+    )
+    _state["cross_modal"] = cross_modal
+
+    logger.info("All services initialised successfully.")
+
+    yield  # --- application runs here ---
+
+    # -- Shutdown ----------------------------------------------------------
+    logger.info("Precision Oncology Agent shutting down ...")
+    try:
+        collection_manager.disconnect()
+    except Exception as exc:
+        logger.warning("Error disconnecting from Milvus: %s", exc)
+    _state.clear()
+    logger.info("Shutdown complete.")
+
+
+# ---------------------------------------------------------------------------
+# FastAPI app
+# ---------------------------------------------------------------------------
+app = FastAPI(
+    title="Precision Oncology Intelligence Agent",
+    description=(
+        "RAG-powered clinical decision support for molecular tumor boards. "
+        "Part of the HCLS AI Factory pipeline."
+    ),
+    version=VERSION,
+    lifespan=lifespan,
+)
+
+# -- CORS (dev - allow all) ------------------------------------------------
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# -- Include routers -------------------------------------------------------
+app.include_router(meta_agent.router)
+app.include_router(cases.router)
+app.include_router(trials.router)
+app.include_router(reports.router)
+app.include_router(events.router)
+
+
+# ---------------------------------------------------------------------------
+# Request / Response schemas
+# ---------------------------------------------------------------------------
+class QueryRequest(BaseModel):
+    question: str
+    cancer_type: Optional[str] = None
+    gene: Optional[str] = None
+    top_k: int = Field(default=10, ge=1, le=100)
+
+
+class SearchRequest(BaseModel):
+    question: str
+    cancer_type: Optional[str] = None
+    gene: Optional[str] = None
+    top_k: int = Field(default=10, ge=1, le=100)
+
+
+class FindRelatedRequest(BaseModel):
+    entity: str
+    entity_type: str = "gene"
+    top_k: int = Field(default=10, ge=1, le=50)
+
+
+# ---------------------------------------------------------------------------
+# Core endpoints
+# ---------------------------------------------------------------------------
+@app.get("/health")
+async def health():
+    """Service health check with collection statistics."""
+    cm: OncoCollectionManager = _state.get("collection_manager")
+    if cm is None:
+        raise HTTPException(status_code=503, detail="Service not initialised")
+
+    collection_info = {}
+    total_vectors = 0
+    try:
+        for name in cm.list_collections():
+            count = cm.get_collection_count(name)
+            collection_info[name] = count
+            total_vectors += count
+    except Exception as exc:
+        logger.warning("Failed to gather collection stats: %s", exc)
+
+    services = {
+        "milvus": cm.is_connected(),
+        "embedder": _state.get("embedder") is not None,
+        "rag_engine": _state.get("rag_engine") is not None,
+        "intelligence_agent": _state.get("intelligence_agent") is not None,
+        "case_manager": _state.get("case_manager") is not None,
+        "trial_matcher": _state.get("trial_matcher") is not None,
+        "therapy_ranker": _state.get("therapy_ranker") is not None,
+    }
+
+    return {
+        "status": "healthy" if all(services.values()) else "degraded",
+        "collections": collection_info,
+        "total_vectors": total_vectors,
+        "version": VERSION,
+        "services": services,
+    }
+
+
+@app.get("/collections")
+async def list_collections():
+    """List all oncology knowledge collections with entity counts."""
+    cm: OncoCollectionManager = _state.get("collection_manager")
+    if cm is None:
+        raise HTTPException(status_code=503, detail="Service not initialised")
+
+    result = []
+    for name in cm.list_collections():
+        result.append({"name": name, "count": cm.get_collection_count(name)})
+    return {"collections": result}
+
+
+@app.post("/query")
+async def query(req: QueryRequest):
+    """Full RAG query — retrieves evidence and generates an LLM answer."""
+    rag: OncoRAGEngine = _state.get("rag_engine")
+    if rag is None:
+        raise HTTPException(status_code=503, detail="RAG engine not initialised")
+
+    t0 = time.time()
+    result = await rag.query(
+        question=req.question,
+        cancer_type=req.cancer_type,
+        gene=req.gene,
+        top_k=req.top_k,
+    )
+    elapsed_ms = round((time.time() - t0) * 1000, 1)
+    result["processing_time_ms"] = elapsed_ms
+    return result
+
+
+@app.post("/search")
+async def search(req: SearchRequest):
+    """Evidence-only vector search (no LLM generation)."""
+    rag: OncoRAGEngine = _state.get("rag_engine")
+    if rag is None:
+        raise HTTPException(status_code=503, detail="RAG engine not initialised")
+
+    t0 = time.time()
+    hits = await rag.search(
+        question=req.question,
+        cancer_type=req.cancer_type,
+        gene=req.gene,
+        top_k=req.top_k,
+    )
+    elapsed_ms = round((time.time() - t0) * 1000, 1)
+    return {"results": hits, "count": len(hits), "processing_time_ms": elapsed_ms}
+
+
+@app.post("/find-related")
+async def find_related(req: FindRelatedRequest):
+    """Cross-collection entity linking — find related knowledge across domains."""
+    cross: OncoCrossModalTrigger = _state.get("cross_modal")
+    if cross is None:
+        raise HTTPException(status_code=503, detail="Cross-modal service not ready")
+
+    t0 = time.time()
+    related = await cross.find_related(
+        entity=req.entity,
+        entity_type=req.entity_type,
+        top_k=req.top_k,
+    )
+    elapsed_ms = round((time.time() - t0) * 1000, 1)
+    return {"entity": req.entity, "related": related, "processing_time_ms": elapsed_ms}
+
+
+@app.get("/knowledge/stats")
+async def knowledge_stats():
+    """Aggregate knowledge-base statistics."""
+    cm: OncoCollectionManager = _state.get("collection_manager")
+    if cm is None:
+        raise HTTPException(status_code=503, detail="Service not initialised")
+
+    counts = {}
+    for name in cm.list_collections():
+        counts[name] = cm.get_collection_count(name)
+
+    return {
+        "target_count": counts.get("onco_targets", 0),
+        "therapy_count": counts.get("onco_therapies", 0),
+        "resistance_count": counts.get("onco_resistance", 0),
+        "pathway_count": counts.get("onco_pathways", 0),
+        "biomarker_count": counts.get("onco_biomarkers", 0),
+        "collection_counts": counts,
+    }
+
+
+@app.get("/metrics")
+async def metrics():
+    """Prometheus-compatible metrics endpoint."""
+    cm: OncoCollectionManager = _state.get("collection_manager")
+    lines: List[str] = []
+
+    lines.append("# HELP onco_agent_up Service availability.")
+    lines.append("# TYPE onco_agent_up gauge")
+    lines.append(f"onco_agent_up {1 if cm and cm.is_connected() else 0}")
+
+    if cm:
+        lines.append("# HELP onco_collection_vectors Vector count per collection.")
+        lines.append("# TYPE onco_collection_vectors gauge")
+        for name in cm.list_collections():
+            count = cm.get_collection_count(name)
+            lines.append(f'onco_collection_vectors{{collection="{name}"}} {count}')
+
+    lines.append("")
+    from fastapi.responses import PlainTextResponse
+
+    return PlainTextResponse("\n".join(lines), media_type="text/plain; charset=utf-8")
+
+
+# ---------------------------------------------------------------------------
+# Entrypoint
+# ---------------------------------------------------------------------------
+if __name__ == "__main__":
+    import uvicorn
+
+    logging.basicConfig(level=logging.INFO)
+    uvicorn.run(
+        "agent.api.main:app",
+        host="0.0.0.0",
+        port=8527,
+        reload=False,
+        log_level="info",
+    )
