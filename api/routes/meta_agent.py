@@ -89,7 +89,7 @@ async def ask(req: AskRequest):
     for multi-step reasoning; simpler evidence queries go directly through
     the OncoRAGEngine.
     """
-    from agent.api.main import get_state
+    from api.main import get_state
 
     state = get_state()
     agent = state.get("intelligence_agent")

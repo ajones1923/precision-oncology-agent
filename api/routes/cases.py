@@ -69,7 +69,7 @@ class MTBRequest(BaseModel):
 def _record_event(event_type: str, details: Dict[str, Any]):
     """Append an event to the in-memory event log (from events router)."""
     try:
-        from agent.api.routes.events import record_event
+        from api.routes.events import record_event
 
         record_event(event_type, details)
     except Exception:
@@ -82,7 +82,7 @@ def _record_event(event_type: str, details: Dict[str, Any]):
 @router.post("/api/cases", response_model=CreateCaseResponse)
 async def create_case(req: CreateCaseRequest):
     """Create a new oncology case for MTB analysis."""
-    from agent.api.main import get_state
+    from api.main import get_state
 
     state = get_state()
     case_manager = state.get("case_manager")
@@ -143,7 +143,7 @@ async def create_case(req: CreateCaseRequest):
 @router.get("/api/cases/{case_id}")
 async def get_case(case_id: str):
     """Retrieve an existing oncology case."""
-    from agent.api.main import get_state
+    from api.main import get_state
 
     state = get_state()
     case_manager = state.get("case_manager")
@@ -164,7 +164,7 @@ async def get_case(case_id: str):
 @router.post("/api/cases/{case_id}/mtb")
 async def generate_mtb_packet(case_id: str, req: Optional[MTBRequest] = None):
     """Generate a Molecular Tumor Board packet for a case."""
-    from agent.api.main import get_state
+    from api.main import get_state
 
     state = get_state()
     case_manager = state.get("case_manager")
@@ -212,7 +212,7 @@ async def generate_mtb_packet(case_id: str, req: Optional[MTBRequest] = None):
 @router.get("/api/cases/{case_id}/variants")
 async def list_variants(case_id: str):
     """List all variants associated with a case."""
-    from agent.api.main import get_state
+    from api.main import get_state
 
     state = get_state()
     case_manager = state.get("case_manager")

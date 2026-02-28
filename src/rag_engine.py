@@ -19,7 +19,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Any, Dict, Generator, List, Optional, Set, Tuple
 
 from config.settings import settings
-from agent.src.models import AgentQuery, CrossCollectionResult, SearchHit
+from src.models import AgentQuery, CrossCollectionResult, SearchHit
 
 logger = logging.getLogger(__name__)
 

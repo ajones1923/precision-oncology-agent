@@ -874,3 +874,52 @@ def export_fhir_r4(
         len(entries), patient_id,
     )
     return bundle
+
+
+# ═══════════════════════════════════════════════════════════════════════════
+#  Convenience wrappers for reports router
+# ═══════════════════════════════════════════════════════════════════════════
+
+
+def case_to_markdown(case_data: Any) -> str:
+    """Convert a case dict/snapshot to Markdown report."""
+    return export_markdown(case_data)
+
+
+def markdown_to_pdf(markdown_text: str) -> bytes:
+    """Convert a Markdown string to PDF bytes via ReportLab."""
+    from reportlab.lib.pagesizes import letter
+    from reportlab.lib.units import inch
+    from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+    from reportlab.lib.styles import getSampleStyleSheet
+    import io as _io
+
+    buf = _io.BytesIO()
+    doc = SimpleDocTemplate(buf, pagesize=letter,
+                            leftMargin=0.75 * inch, rightMargin=0.75 * inch,
+                            topMargin=0.75 * inch, bottomMargin=0.75 * inch)
+    styles = getSampleStyleSheet()
+    story = []
+    for line in markdown_text.split("\n"):
+        stripped = line.strip()
+        if stripped.startswith("# "):
+            story.append(Paragraph(stripped[2:], styles["Heading1"]))
+        elif stripped.startswith("## "):
+            story.append(Paragraph(stripped[3:], styles["Heading2"]))
+        elif stripped.startswith("### "):
+            story.append(Paragraph(stripped[4:], styles["Heading3"]))
+        elif stripped.startswith("**") and stripped.endswith("**"):
+            story.append(Paragraph(f"<b>{stripped[2:-2]}</b>", styles["Normal"]))
+        elif stripped == "---":
+            story.append(Spacer(1, 12))
+        elif stripped:
+            story.append(Paragraph(stripped, styles["Normal"]))
+        else:
+            story.append(Spacer(1, 6))
+    doc.build(story)
+    return buf.getvalue()
+
+
+def case_to_fhir_bundle(case_data: Any) -> dict:
+    """Convert a case dict/snapshot to a FHIR R4 Bundle."""
+    return export_fhir_r4(case_data)

@@ -18,16 +18,16 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from sentence_transformers import SentenceTransformer
 
-from agent.src.config import Settings
-from agent.src.collections import OncoCollectionManager
-from agent.src.rag_engine import OncoRAGEngine
-from agent.src.intelligence import OncoIntelligenceAgent
-from agent.src.case_manager import OncologyCaseManager
-from agent.src.trial_matcher import TrialMatcher
-from agent.src.therapy_ranker import TherapyRanker
-from agent.src.cross_modal import OncoCrossModalTrigger
+from config.settings import settings as _settings_instance, OncoSettings
+from src.collections import OncoCollectionManager
+from src.rag_engine import OncoRAGEngine
+from src.agent import OncoIntelligenceAgent
+from src.case_manager import OncologyCaseManager
+from src.trial_matcher import TrialMatcher
+from src.therapy_ranker import TherapyRanker
+from src.cross_modal import OncoCrossModalTrigger
 
-from agent.api.routes import meta_agent, cases, trials, reports, events
+from api.routes import meta_agent, cases, trials, reports, events
 
 logger = logging.getLogger(__name__)
 
@@ -53,19 +53,19 @@ async def lifespan(app: FastAPI):
     logger.info("Precision Oncology Agent starting up ...")
 
     # -- Settings ----------------------------------------------------------
-    settings = Settings()
+    settings = _settings_instance
     _state["settings"] = settings
 
     # -- Milvus ------------------------------------------------------------
     collection_manager = OncoCollectionManager(
-        host=settings.milvus_host,
-        port=settings.milvus_port,
+        host=settings.MILVUS_HOST,
+        port=settings.MILVUS_PORT,
     )
     collection_manager.connect()
     _state["collection_manager"] = collection_manager
 
     # -- Embedder ----------------------------------------------------------
-    embedder = SentenceTransformer(settings.embedding_model)
+    embedder = SentenceTransformer(settings.EMBEDDING_MODEL)
     _state["embedder"] = embedder
 
     # -- RAG Engine --------------------------------------------------------
@@ -299,7 +299,7 @@ async def knowledge_stats():
         counts[name] = cm.get_collection_count(name)
 
     return {
-        "target_count": counts.get("onco_targets", 0),
+        "target_count": counts.get("onco_variants", 0),
         "therapy_count": counts.get("onco_therapies", 0),
         "resistance_count": counts.get("onco_resistance", 0),
         "pathway_count": counts.get("onco_pathways", 0),
@@ -339,7 +339,7 @@ if __name__ == "__main__":
 
     logging.basicConfig(level=logging.INFO)
     uvicorn.run(
-        "agent.api.main:app",
+        "api.main:app",
         host="0.0.0.0",
         port=8527,
         reload=False,

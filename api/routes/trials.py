@@ -44,7 +44,7 @@ class TherapyRankRequest(BaseModel):
 @router.post("/api/trials/match")
 async def match_trials(req: TrialMatchRequest):
     """Match clinical trials to a patient profile based on biomarkers and stage."""
-    from agent.api.main import get_state
+    from api.main import get_state
 
     state = get_state()
     trial_matcher = state.get("trial_matcher")
@@ -78,7 +78,7 @@ async def match_trials(req: TrialMatchRequest):
 @router.post("/api/trials/match-case/{case_id}")
 async def match_trials_for_case(case_id: str, top_k: int = 10):
     """Match clinical trials for an existing case by extracting its profile."""
-    from agent.api.main import get_state
+    from api.main import get_state
 
     state = get_state()
     case_manager = state.get("case_manager")
@@ -123,7 +123,7 @@ async def match_trials_for_case(case_id: str, top_k: int = 10):
 @router.post("/api/therapies/rank")
 async def rank_therapies(req: TherapyRankRequest):
     """Rank therapy options based on molecular profile and prior treatment."""
-    from agent.api.main import get_state
+    from api.main import get_state
 
     state = get_state()
     therapy_ranker = state.get("therapy_ranker")

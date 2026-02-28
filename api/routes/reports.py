@@ -41,7 +41,7 @@ class GenerateReportRequest(BaseModel):
 def _record_event(event_type: str, details: dict):
     """Append an event to the in-memory event log."""
     try:
-        from agent.api.routes.events import record_event
+        from api.routes.events import record_event
 
         record_event(event_type, details)
     except Exception:
@@ -96,7 +96,7 @@ async def _generate_markdown_report(state: dict, question: str,
 @router.post("/api/reports/generate")
 async def generate_report(req: GenerateReportRequest):
     """Generate a report from a clinical question in the requested format."""
-    from agent.api.main import get_state
+    from api.main import get_state
 
     state = get_state()
     t0 = time.time()
@@ -123,7 +123,7 @@ async def generate_report(req: GenerateReportRequest):
     elif req.format == "pdf":
         # Attempt PDF generation via reportlab; fall back to markdown
         try:
-            from agent.src.export import markdown_to_pdf
+            from src.export import markdown_to_pdf
 
             pdf_bytes = markdown_to_pdf(md_content)
             tmp_path = "/tmp/onco_report.pdf"
@@ -144,7 +144,7 @@ async def generate_report(req: GenerateReportRequest):
 @router.get("/api/reports/{case_id}/{fmt}")
 async def export_case_report(case_id: str, fmt: str):
     """Export a case report in the specified format (markdown, json, pdf, fhir)."""
-    from agent.api.main import get_state
+    from api.main import get_state
 
     state = get_state()
     case_manager = state.get("case_manager")
@@ -169,7 +169,7 @@ async def export_case_report(case_id: str, fmt: str):
     # --- Markdown ---
     if fmt == "markdown" or fmt == "md":
         try:
-            from agent.src.export import case_to_markdown
+            from src.export import case_to_markdown
 
             md = case_to_markdown(case)
         except ImportError:
@@ -186,7 +186,7 @@ async def export_case_report(case_id: str, fmt: str):
     # --- PDF ---
     if fmt == "pdf":
         try:
-            from agent.src.export import case_to_markdown, markdown_to_pdf
+            from src.export import case_to_markdown, markdown_to_pdf
 
             md = case_to_markdown(case)
             pdf_bytes = markdown_to_pdf(md)
@@ -207,7 +207,7 @@ async def export_case_report(case_id: str, fmt: str):
     # --- FHIR R4 ---
     if fmt == "fhir":
         try:
-            from agent.src.export import case_to_fhir_bundle
+            from src.export import case_to_fhir_bundle
 
             bundle = case_to_fhir_bundle(case)
         except ImportError:
