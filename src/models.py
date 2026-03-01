@@ -5,7 +5,7 @@ Domain models, search containers, and agent I/O types
 for the Precision Oncology RAG agent.
 """
 
-from datetime import datetime
+from datetime import datetime, timezone
 from enum import Enum
 from typing import Any, Dict, List, Optional
 
@@ -487,7 +487,7 @@ class MTBPacket(BaseModel):
     therapy_ranking: List[Dict] = Field(default_factory=list)
     trial_matches: List[Dict] = Field(default_factory=list)
     open_questions: List[str] = Field(default_factory=list)
-    generated_at: Any = Field(default_factory=datetime.utcnow)
+    generated_at: Any = Field(default_factory=lambda: datetime.now(timezone.utc))
     citations: List[str] = Field(default_factory=list)
 
 
@@ -498,6 +498,11 @@ class AgentQuery(BaseModel):
     gene: Optional[str] = None
     include_genomic: bool = True
 
+    @property
+    def text(self) -> str:
+        """Alias for question, used by the RAG engine."""
+        return self.question
+
 
 class AgentResponse(BaseModel):
     """Structured response from the Precision Oncology Agent."""
@@ -505,4 +510,6 @@ class AgentResponse(BaseModel):
     answer: str
     evidence: CrossCollectionResult
     knowledge_used: List[str] = Field(default_factory=list)
-    timestamp: datetime = Field(default_factory=datetime.utcnow)
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    plan: Any = None
+    report: Optional[str] = None

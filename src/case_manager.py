@@ -22,6 +22,9 @@ from src.knowledge import ACTIONABLE_TARGETS, get_target_context, classify_varia
 
 logger = logging.getLogger(__name__)
 
+# Regex for validating filter values (prevents Milvus injection)
+_SAFE_FILTER_RE = re.compile(r"^[A-Za-z0-9 _.\-/]+$")
+
 
 class OncologyCaseManager:
     """Manages oncology case lifecycle: creation, retrieval, and MTB packet generation.
@@ -141,9 +144,13 @@ class OncologyCaseManager:
             CaseSnapshot if found, otherwise None.
         """
         try:
+            safe_case_id = case_id.strip()
+            if not _SAFE_FILTER_RE.match(safe_case_id):
+                logger.warning("Rejected unsafe case_id filter value: %r", case_id)
+                return None
             results = self.collection_manager.query(
                 collection_name=self.COLLECTION_NAME,
-                filter_expr=f'case_id == "{case_id}"',
+                filter_expr=f'case_id == "{safe_case_id}"',
                 output_fields=["case_id", "patient_id", "cancer_type", "stage",
                                "variants", "biomarkers", "prior_therapies",
                                "created_at", "updated_at"],

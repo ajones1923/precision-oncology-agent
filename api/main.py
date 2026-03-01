@@ -267,15 +267,17 @@ async def query(req: QueryRequest):
         raise HTTPException(status_code=503, detail="RAG engine not initialised")
 
     t0 = time.time()
-    result = await rag.query(
-        question=req.question,
-        cancer_type=req.cancer_type,
-        gene=req.gene,
-        top_k=req.top_k,
-    )
-    elapsed_ms = round((time.time() - t0) * 1000, 1)
-    result["processing_time_ms"] = elapsed_ms
-    return result
+    try:
+        answer = rag.query(question=req.question, top_k=req.top_k)
+        elapsed_ms = round((time.time() - t0) * 1000, 1)
+        return {
+            "question": req.question,
+            "answer": answer,
+            "processing_time_ms": elapsed_ms,
+        }
+    except Exception as exc:
+        logger.error("Query failed: %s", exc)
+        raise HTTPException(status_code=500, detail=f"Query processing failed: {exc}")
 
 
 @app.post("/search")
@@ -286,14 +288,14 @@ async def search(req: SearchRequest):
         raise HTTPException(status_code=503, detail="RAG engine not initialised")
 
     t0 = time.time()
-    hits = await rag.search(
-        question=req.question,
-        cancer_type=req.cancer_type,
-        gene=req.gene,
-        top_k=req.top_k,
-    )
-    elapsed_ms = round((time.time() - t0) * 1000, 1)
-    return {"results": hits, "count": len(hits), "processing_time_ms": elapsed_ms}
+    try:
+        hits = rag.search(question=req.question, top_k=req.top_k)
+        elapsed_ms = round((time.time() - t0) * 1000, 1)
+        return {"results": [h.model_dump() if hasattr(h, "model_dump") else h for h in hits],
+                "count": len(hits), "processing_time_ms": elapsed_ms}
+    except Exception as exc:
+        logger.error("Search failed: %s", exc)
+        raise HTTPException(status_code=500, detail=f"Search failed: {exc}")
 
 
 @app.post("/find-related")
@@ -304,11 +306,18 @@ async def find_related(req: FindRelatedRequest):
         raise HTTPException(status_code=503, detail="Cross-modal service not ready")
 
     t0 = time.time()
-    related = await cross.find_related(
-        entity=req.entity,
-        entity_type=req.entity_type,
-        top_k=req.top_k,
-    )
+    try:
+        related = cross.find_related(
+            entity=req.entity,
+            entity_type=req.entity_type,
+            top_k=req.top_k,
+        )
+    except AttributeError:
+        # find_related may not be implemented — fall back to evaluate
+        related = []
+    except Exception as exc:
+        logger.error("Find-related failed: %s", exc)
+        raise HTTPException(status_code=500, detail=f"Entity linking failed: {exc}")
     elapsed_ms = round((time.time() - t0) * 1000, 1)
     return {"entity": req.entity, "related": related, "processing_time_ms": elapsed_ms}
 
@@ -366,8 +375,8 @@ if __name__ == "__main__":
     logging.basicConfig(level=logging.INFO)
     uvicorn.run(
         "api.main:app",
-        host="0.0.0.0",
-        port=8527,
+        host=_settings_instance.API_HOST,
+        port=_settings_instance.API_PORT,
         reload=False,
         log_level="info",
     )

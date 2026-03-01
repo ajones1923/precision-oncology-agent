@@ -1050,4 +1050,6 @@ def markdown_to_pdf(markdown_text: str) -> bytes:
 
 def case_to_fhir_bundle(case_data: Any) -> dict:
     """Convert a case dict/snapshot to a FHIR R4 Bundle."""
-    return export_fhir_r4(case_data)
+    data = _normalise_input(case_data)
+    patient_id = data.get("patient_id", "unknown")
+    return export_fhir_r4(case_data, patient_id=patient_id)

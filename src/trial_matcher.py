@@ -12,11 +12,15 @@ License: Apache 2.0
 """
 
 import logging
+import re
 from typing import Any, Dict, List, Optional
 
 from src.models import CaseSnapshot
 
 logger = logging.getLogger(__name__)
+
+# Regex for validating filter values (prevents Milvus injection)
+_SAFE_FILTER_RE = re.compile(r"^[A-Za-z0-9 _.\-/,]+$")
 
 
 class TrialMatcher:
@@ -245,6 +249,12 @@ class TrialMatcher:
         for alias in cancer_aliases:
             for status in status_list:
                 try:
+                    if not _SAFE_FILTER_RE.match(alias):
+                        logger.warning("Rejected unsafe cancer alias: %r", alias)
+                        continue
+                    if not _SAFE_FILTER_RE.match(status):
+                        logger.warning("Rejected unsafe status filter: %r", status)
+                        continue
                     filter_expr = (
                         f'cancer_type == "{alias}" and status == "{status}"'
                     )
@@ -368,7 +378,6 @@ class TrialMatcher:
         if age is None or not criteria_text:
             return 1.0
 
-        import re
         criteria_lower = criteria_text.lower()
 
         # Pattern: "age >= 18", "age ≥ 18", "minimum age: 18"

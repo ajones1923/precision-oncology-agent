@@ -170,15 +170,17 @@ class OncoRAGEngine:
         self,
         collection_manager,
         embedder,
-        llm_client,
+        llm_client=None,
         knowledge=None,
         query_expander=None,
+        settings=None,
     ):
         self.collection_manager = collection_manager
         self.embedder = embedder
         self.llm_client = llm_client
         self.knowledge = knowledge
         self.query_expander = query_expander
+        self.settings = settings
 
     # ------------------------------------------------------------------
     # Public API
@@ -245,8 +247,107 @@ class OncoRAGEngine:
         return CrossCollectionResult(
             query=query.text,
             hits=ranked,
-            total=len(ranked),
+            total_collections_searched=len(target_collections),
         )
+
+    def cross_collection_search(self, query: AgentQuery) -> List[SearchHit]:
+        """Search all collections and return ranked hits.
+
+        This is the entry point used by the OncoIntelligenceAgent.
+
+        Parameters
+        ----------
+        query : AgentQuery
+            Structured query object.
+
+        Returns
+        -------
+        list[SearchHit]
+            Merged, ranked evidence hits.
+        """
+        result = self.retrieve(query)
+        return result.hits
+
+    def search(self, question: str, **kwargs) -> List[SearchHit]:
+        """Evidence-only search (no LLM generation).
+
+        Parameters
+        ----------
+        question : str
+            Natural-language oncology question.
+        **kwargs
+            Forwarded to :meth:`retrieve`.
+
+        Returns
+        -------
+        list[SearchHit]
+            Ranked evidence hits.
+        """
+        agent_query = AgentQuery(question=question)
+        result = self.retrieve(agent_query, **kwargs)
+        return result.hits
+
+    def synthesize(self, question: str, evidence: list, plan=None) -> "AgentResponse":
+        """Synthesize an answer from pre-retrieved evidence.
+
+        Used by the OncoIntelligenceAgent after gathering evidence.
+
+        Parameters
+        ----------
+        question : str
+            The original question.
+        evidence : list
+            Pre-retrieved evidence items (SearchHit or CrossCollectionResult).
+        plan : SearchPlan, optional
+            The search plan used.
+
+        Returns
+        -------
+        AgentResponse
+        """
+        from src.models import AgentResponse, CrossCollectionResult
+
+        # Flatten evidence if it's a list of CrossCollectionResult
+        flat_hits = []
+        for item in evidence:
+            if hasattr(item, "hits"):
+                flat_hits.extend(item.hits)
+            elif hasattr(item, "score"):
+                flat_hits.append(item)
+
+        # Build prompt and get LLM answer
+        prompt = self._build_prompt(question, flat_hits[:_MAX_EVIDENCE])
+        messages = [
+            {"role": "system", "content": ONCO_SYSTEM_PROMPT},
+            {"role": "user", "content": prompt},
+        ]
+
+        answer = ""
+        if self.llm_client is not None:
+            try:
+                answer = self.llm_client.chat(messages)
+            except Exception as exc:
+                logger.warning("LLM synthesis failed: %s", exc)
+                answer = "Unable to synthesize answer — LLM unavailable."
+        else:
+            answer = "LLM client not configured. Evidence retrieved but synthesis unavailable."
+
+        cross_result = CrossCollectionResult(
+            query=question,
+            hits=flat_hits,
+            total_collections_searched=len(COLLECTION_CONFIG),
+        )
+
+        response = AgentResponse(
+            question=question,
+            answer=answer,
+            evidence=cross_result,
+        )
+        # Attach plan if provided
+        if plan is not None:
+            response.plan = plan
+
+        return response
 
     def query(self, question: str, **kwargs) -> str:
         """Full RAG pipeline: retrieve evidence then generate an answer.
@@ -486,40 +587,50 @@ class OncoRAGEngine:
             gene_context = self.knowledge.lookup_gene(query_lower)
             if gene_context:
                 sections.append(f"[Gene Knowledge]\n{gene_context}")
-        except (AttributeError, Exception):
-            pass
+        except AttributeError:
+            pass  # Knowledge module doesn't implement this method
+        except Exception as exc:
+            logger.debug("Gene knowledge lookup failed: %s", exc)
 
         # Therapy mentions
         try:
             therapy_context = self.knowledge.lookup_therapy(query_lower)
             if therapy_context:
                 sections.append(f"[Therapy Knowledge]\n{therapy_context}")
-        except (AttributeError, Exception):
+        except AttributeError:
             pass
+        except Exception as exc:
+            logger.debug("Therapy knowledge lookup failed: %s", exc)
 
         # Resistance mentions
         try:
             resistance_context = self.knowledge.lookup_resistance(query_lower)
             if resistance_context:
                 sections.append(f"[Resistance Knowledge]\n{resistance_context}")
-        except (AttributeError, Exception):
+        except AttributeError:
             pass
+        except Exception as exc:
+            logger.debug("Resistance knowledge lookup failed: %s", exc)
 
         # Pathway mentions
         try:
             pathway_context = self.knowledge.lookup_pathway(query_lower)
             if pathway_context:
                 sections.append(f"[Pathway Knowledge]\n{pathway_context}")
-        except (AttributeError, Exception):
+        except AttributeError:
             pass
+        except Exception as exc:
+            logger.debug("Pathway knowledge lookup failed: %s", exc)
 
         # Biomarker mentions
         try:
             biomarker_context = self.knowledge.lookup_biomarker(query_lower)
             if biomarker_context:
                 sections.append(f"[Biomarker Knowledge]\n{biomarker_context}")
-        except (AttributeError, Exception):
+        except AttributeError:
             pass
+        except Exception as exc:
+            logger.debug("Biomarker knowledge lookup failed: %s", exc)
 
         return "\n\n".join(sections)
 

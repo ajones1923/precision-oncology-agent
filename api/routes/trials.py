@@ -54,7 +54,7 @@ async def match_trials(req: TrialMatchRequest):
     t0 = time.time()
 
     try:
-        matches = await trial_matcher.match_trials(
+        matches = trial_matcher.match_trials(
             cancer_type=req.cancer_type,
             biomarkers=req.biomarkers,
             stage=req.stage,
@@ -89,19 +89,22 @@ async def match_trials_for_case(case_id: str, top_k: int = 10):
 
     # Retrieve case
     try:
-        case = await case_manager.get_case(case_id)
+        case = case_manager.get_case(case_id)
     except KeyError:
         raise HTTPException(status_code=404, detail=f"Case {case_id} not found")
     except Exception as exc:
         raise HTTPException(status_code=500, detail=str(exc))
 
+    if case is None:
+        raise HTTPException(status_code=404, detail=f"Case {case_id} not found")
+
     t0 = time.time()
 
     try:
-        matches = await trial_matcher.match_trials(
-            cancer_type=case.get("cancer_type", ""),
-            biomarkers=case.get("biomarkers", {}),
-            stage=case.get("stage"),
+        matches = trial_matcher.match_trials(
+            cancer_type=case.cancer_type,
+            biomarkers=case.biomarkers or {},
+            stage=case.stage,
             top_k=top_k,
         )
     except Exception as exc:
@@ -133,7 +136,7 @@ async def rank_therapies(req: TherapyRankRequest):
     t0 = time.time()
 
     try:
-        ranked = await therapy_ranker.rank_therapies(
+        ranked = therapy_ranker.rank_therapies(
             cancer_type=req.cancer_type,
             variants=req.variants,
             biomarkers=req.biomarkers,

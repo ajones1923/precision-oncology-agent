@@ -199,13 +199,7 @@ class OncoIntelligenceAgent:
 
         for attempt in range(1, self.MAX_RETRIES + 2):  # 1-based
             for q in queries_to_run:
-                query = AgentQuery(
-                    question=q,
-                    target_genes=plan.target_genes,
-                    cancer_types=plan.relevant_cancer_types,
-                    strategy=plan.search_strategy,
-                    **kwargs,
-                )
+                query = AgentQuery(question=q)
                 results = self.rag_engine.cross_collection_search(query)
                 if results:
                     all_evidence.extend(results)
