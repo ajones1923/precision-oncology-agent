@@ -121,7 +121,7 @@ class OncoSettings(BaseSettings):
 
     # ── API ───────────────────────────────────────────────────────────────
     API_BASE_URL: str = "http://localhost:8527"
-    CORS_ORIGINS: str = "*"
+    CORS_ORIGINS: str = "http://localhost:8080,http://localhost:8526,http://localhost:8527"
     MAX_REQUEST_SIZE_MB: int = 10
 
     # ── PDF Branding ──────────────────────────────────────────────────────
