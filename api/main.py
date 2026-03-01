@@ -13,13 +13,15 @@ import logging
 from contextlib import asynccontextmanager
 from typing import Any, Dict, List, Optional
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 from sentence_transformers import SentenceTransformer
 
 from config.settings import settings as _settings_instance, OncoSettings
 from src.collections import OncoCollectionManager
+from src.knowledge import ACTIONABLE_TARGETS, THERAPY_MAP, RESISTANCE_MAP, BIOMARKER_PANELS
 from src.rag_engine import OncoRAGEngine
 from src.agent import OncoIntelligenceAgent
 from src.case_manager import OncologyCaseManager
@@ -28,6 +30,8 @@ from src.therapy_ranker import TherapyRanker
 from src.cross_modal import OncoCrossModalTrigger
 
 from api.routes import meta_agent, cases, trials, reports, events
+
+import src.knowledge as knowledge_module
 
 logger = logging.getLogger(__name__)
 
@@ -79,15 +83,15 @@ async def lifespan(app: FastAPI):
     # -- Intelligence Agent ------------------------------------------------
     intelligence_agent = OncoIntelligenceAgent(
         rag_engine=rag_engine,
-        settings=settings,
     )
     _state["intelligence_agent"] = intelligence_agent
 
     # -- Case Manager ------------------------------------------------------
     case_manager = OncologyCaseManager(
+        collection_manager=collection_manager,
+        embedder=embedder,
+        knowledge=knowledge_module,
         rag_engine=rag_engine,
-        intelligence_agent=intelligence_agent,
-        settings=settings,
     )
     _state["case_manager"] = case_manager
 
@@ -95,14 +99,14 @@ async def lifespan(app: FastAPI):
     trial_matcher = TrialMatcher(
         collection_manager=collection_manager,
         embedder=embedder,
-        settings=settings,
     )
     _state["trial_matcher"] = trial_matcher
 
     # -- Therapy Ranker ----------------------------------------------------
     therapy_ranker = TherapyRanker(
-        rag_engine=rag_engine,
-        settings=settings,
+        collection_manager=collection_manager,
+        embedder=embedder,
+        knowledge=knowledge_module,
     )
     _state["therapy_ranker"] = therapy_ranker
 
@@ -110,7 +114,11 @@ async def lifespan(app: FastAPI):
     cross_modal = OncoCrossModalTrigger(
         collection_manager=collection_manager,
         embedder=embedder,
-        settings=settings,
+        settings={
+            "cross_modal_threshold": settings.CROSS_MODAL_THRESHOLD,
+            "genomic_top_k": settings.GENOMIC_TOP_K,
+            "imaging_top_k": settings.IMAGING_TOP_K,
+        },
     )
     _state["cross_modal"] = cross_modal
 
@@ -141,14 +149,32 @@ app = FastAPI(
     lifespan=lifespan,
 )
 
-# -- CORS (dev - allow all) ------------------------------------------------
+# -- CORS ------------------------------------------------------------------
+_cors_origins = [
+    o.strip() for o in _settings_instance.CORS_ORIGINS.split(",") if o.strip()
+]
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=_cors_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# -- Request size limit ----------------------------------------------------
+_MAX_BODY = _settings_instance.MAX_REQUEST_SIZE_MB * 1024 * 1024
+
+
+@app.middleware("http")
+async def limit_request_size(request: Request, call_next):
+    """Reject requests exceeding the configured body size limit."""
+    content_length = request.headers.get("content-length")
+    if content_length and int(content_length) > _MAX_BODY:
+        return JSONResponse(
+            status_code=413,
+            content={"detail": f"Request body exceeds {_settings_instance.MAX_REQUEST_SIZE_MB} MB limit"},
+        )
+    return await call_next(request)
 
 # -- Include routers -------------------------------------------------------
 app.include_router(meta_agent.router)

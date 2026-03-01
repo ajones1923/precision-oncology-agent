@@ -23,10 +23,11 @@ class TrialMatcher:
     """Matches oncology patients to clinical trials using a hybrid approach.
 
     Strategy:
-      1. Deterministic filter on cancer_type and status="Recruiting"
+      1. Deterministic filter on cancer_type (fuzzy) and open statuses
       2. Semantic search using embedded query of cancer_type + biomarkers + stage
       3. Composite scoring: biomarker match + phase weight + status weight
-      4. Structured explanation for each match
+      4. Age-based eligibility filtering
+      5. Structured explanation for each match
     """
 
     COLLECTION_NAME = "onco_trials"
@@ -47,6 +48,35 @@ class TrialMatcher:
         "Active, not recruiting": 0.6,
         "Enrolling by invitation": 0.8,
         "Not yet recruiting": 0.4,
+    }
+
+    # Open statuses considered for deterministic search
+    OPEN_STATUSES = {
+        "Recruiting", "Active, not recruiting",
+        "Enrolling by invitation", "Not yet recruiting",
+    }
+
+    # Cancer type aliases for fuzzy matching
+    _CANCER_ALIASES = {
+        "nsclc": ["non-small cell lung cancer", "nsclc", "non small cell lung", "lung adenocarcinoma", "lung squamous"],
+        "breast": ["breast cancer", "breast", "triple negative breast", "tnbc", "her2+ breast"],
+        "colorectal": ["colorectal cancer", "colorectal", "colon cancer", "colon", "crc", "rectal cancer"],
+        "melanoma": ["melanoma", "cutaneous melanoma", "skin cancer"],
+        "pancreatic": ["pancreatic cancer", "pancreatic", "pancreatic adenocarcinoma", "pdac"],
+        "ovarian": ["ovarian cancer", "ovarian", "epithelial ovarian"],
+        "prostate": ["prostate cancer", "prostate", "castration-resistant prostate", "crpc"],
+        "glioblastoma": ["glioblastoma", "gbm", "glioblastoma multiforme", "glioma"],
+        "aml": ["acute myeloid leukemia", "aml"],
+        "cml": ["chronic myeloid leukemia", "cml"],
+        "bladder": ["bladder cancer", "bladder", "urothelial carcinoma", "urothelial"],
+        "renal": ["renal cell carcinoma", "renal", "kidney cancer", "rcc"],
+        "gastric": ["gastric cancer", "gastric", "stomach cancer"],
+        "hepatocellular": ["hepatocellular carcinoma", "hcc", "liver cancer"],
+        "head_and_neck": ["head and neck", "hnscc", "head and neck squamous cell carcinoma"],
+        "thyroid": ["thyroid cancer", "thyroid"],
+        "esophageal": ["esophageal cancer", "esophageal"],
+        "cholangiocarcinoma": ["cholangiocarcinoma", "bile duct cancer"],
+        "sclc": ["small cell lung cancer", "sclc"],
     }
 
     def __init__(self, collection_manager, embedder):
@@ -191,30 +221,53 @@ class TrialMatcher:
     # Search methods
     # ------------------------------------------------------------------
 
+    def _resolve_cancer_aliases(self, cancer_type: str) -> List[str]:
+        """Resolve a cancer type input to a list of known aliases for fuzzy matching."""
+        ct_lower = cancer_type.strip().lower()
+        # Check if input matches any alias group
+        for _canonical, aliases in self._CANCER_ALIASES.items():
+            if ct_lower in aliases or ct_lower == _canonical:
+                return aliases
+        # Fall back to the input itself
+        return [ct_lower]
+
     def _deterministic_search(self, cancer_type: str, top_k: int = 30) -> List[Dict]:
         """Search onco_trials with deterministic filters.
 
-        Filters on cancer_type match and status = 'Recruiting'.
+        Uses fuzzy cancer type matching via aliases and searches across
+        all open trial statuses (Recruiting, Active, Enrolling by invitation,
+        Not yet recruiting).
         """
-        try:
-            # Normalize cancer type for filter matching
-            cancer_type_lower = cancer_type.strip().lower()
-            filter_expr = (
-                f'cancer_type == "{cancer_type_lower}" and status == "Recruiting"'
-            )
-            results = self.collection_manager.query(
-                collection_name=self.COLLECTION_NAME,
-                filter_expr=filter_expr,
-                output_fields=[
-                    "trial_id", "title", "phase", "status", "cancer_type",
-                    "criteria", "text", "biomarker_criteria", "sponsor",
-                ],
-                limit=top_k,
-            )
-            return [dict(r) for r in results]
-        except Exception as exc:
-            logger.warning("Deterministic trial search failed: %s", exc)
-            return []
+        all_results = []
+        cancer_aliases = self._resolve_cancer_aliases(cancer_type)
+        status_list = list(self.OPEN_STATUSES)
+
+        for alias in cancer_aliases:
+            for status in status_list:
+                try:
+                    filter_expr = (
+                        f'cancer_type == "{alias}" and status == "{status}"'
+                    )
+                    results = self.collection_manager.query(
+                        collection_name=self.COLLECTION_NAME,
+                        filter_expr=filter_expr,
+                        output_fields=[
+                            "trial_id", "title", "phase", "status", "cancer_type",
+                            "criteria", "text", "biomarker_criteria", "sponsor",
+                        ],
+                        limit=top_k,
+                    )
+                    all_results.extend([dict(r) for r in results])
+                except Exception as exc:
+                    logger.debug("Deterministic search for '%s'/'%s' failed: %s", alias, status, exc)
+
+        # Deduplicate by trial_id
+        seen = {}
+        for r in all_results:
+            tid = r.get("trial_id", "")
+            if tid and tid not in seen:
+                seen[tid] = r
+        return list(seen.values())[:top_k]
 
     def _semantic_search(self, query_text: str, top_k: int = 30) -> List[Dict]:
         """Search onco_trials using semantic embedding similarity."""
@@ -285,6 +338,11 @@ class TrialMatcher:
 
         semantic_score = trial.get("_semantic_score", trial.get("score", 0.5))
 
+        # Age penalty: reduce score if patient age is outside trial criteria
+        age_penalty = self._compute_age_penalty(
+            criteria_text, patient_data.get("age")
+        )
+
         # Weighted combination
         composite = (
             0.40 * biomarker_score
@@ -292,7 +350,51 @@ class TrialMatcher:
             + 0.20 * phase_weight
             + 0.15 * status_weight
         )
+        composite *= age_penalty
         return composite
+
+    def _compute_age_penalty(
+        self, criteria_text: str, age: Optional[int]
+    ) -> float:
+        """Apply a scoring penalty if patient age falls outside trial criteria.
+
+        Looks for patterns like "Age >= 18" or "Age <= 75" or "18-75 years"
+        in the criteria text.
+
+        Returns:
+            1.0 (no penalty) if age is within range or not specified,
+            0.5 if age is out of range.
+        """
+        if age is None or not criteria_text:
+            return 1.0
+
+        import re
+        criteria_lower = criteria_text.lower()
+
+        # Pattern: "age >= 18", "age ≥ 18", "minimum age: 18"
+        min_age_match = re.search(r"(?:age\s*(?:>=|≥|>)\s*(\d+))|(?:minimum\s*age[:\s]*(\d+))", criteria_lower)
+        max_age_match = re.search(r"(?:age\s*(?:<=|≤|<)\s*(\d+))|(?:maximum\s*age[:\s]*(\d+))", criteria_lower)
+
+        # Pattern: "18-75 years" or "18 to 75 years"
+        range_match = re.search(r"(\d+)\s*(?:-|to)\s*(\d+)\s*years", criteria_lower)
+
+        min_age = None
+        max_age = None
+
+        if min_age_match:
+            min_age = int(min_age_match.group(1) or min_age_match.group(2))
+        if max_age_match:
+            max_age = int(max_age_match.group(1) or max_age_match.group(2))
+        if range_match:
+            min_age = min_age or int(range_match.group(1))
+            max_age = max_age or int(range_match.group(2))
+
+        if min_age is not None and age < min_age:
+            return 0.5
+        if max_age is not None and age > max_age:
+            return 0.5
+
+        return 1.0
 
     def _score_biomarker_match(
         self, trial_biomarker_criteria: str, patient_biomarkers: Dict[str, Any]
@@ -369,6 +471,15 @@ class TrialMatcher:
         stage = patient_data.get("stage", "")
         if stage and stage.lower() in criteria_lower:
             matched_criteria.append(f"Stage {stage}")
+
+        # Check age eligibility
+        age = patient_data.get("age")
+        if age is not None:
+            age_penalty = self._compute_age_penalty(criteria_text, age)
+            if age_penalty < 1.0:
+                unmatched_criteria.append(f"Age {age} (may be outside eligibility range)")
+            else:
+                matched_criteria.append(f"Age {age}")
 
         # Build explanation text
         explanation_parts = []

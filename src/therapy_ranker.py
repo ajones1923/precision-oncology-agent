@@ -143,6 +143,14 @@ class TherapyRanker:
             evidence = self._fetch_supporting_evidence(drug_name, cancer_type)
             t["supporting_evidence"] = evidence
 
+        # Step 6.5: Identify combination therapies
+        combo_therapies = self._identify_combo_therapies(therapies, cancer_type)
+        if combo_therapies:
+            for combo in combo_therapies:
+                drug_key = combo["drug_name"].lower()
+                if drug_key not in {t["drug_name"].lower() for t in therapies}:
+                    therapies.append(combo)
+
         # Assign final ranks (resistance/contraindicated therapies demoted)
         therapies = self._assign_final_ranks(therapies)
 
@@ -259,41 +267,51 @@ class TherapyRanker:
         """
         therapies = []
 
-        # MSI-H -> pembrolizumab
+        # MSI-H -> pembrolizumab, nivolumab, dostarlimab
         msi = biomarkers.get("MSI", "").upper()
         if msi in ("MSI-H", "MSI-HIGH", "DMMR"):
-            therapies.append({
-                "drug_name": "pembrolizumab",
-                "brand_name": "Keytruda",
-                "category": "immunotherapy",
-                "targets": ["MSI-H"],
-                "evidence_level": "A",
-                "guideline_recommendation": (
-                    "FDA-approved for MSI-H/dMMR solid tumors regardless of tumor type "
-                    "(KEYNOTE-158, KEYNOTE-177)."
-                ),
-                "source": "biomarker",
-                "source_biomarker": "MSI-H",
-            })
+            msi_drugs = [
+                ("pembrolizumab", "Keytruda", "A",
+                 "FDA-approved for MSI-H/dMMR solid tumors regardless of tumor type (KEYNOTE-158, KEYNOTE-177)."),
+                ("nivolumab", "Opdivo", "A",
+                 "FDA-approved for MSI-H/dMMR metastatic colorectal cancer (CheckMate-142)."),
+                ("dostarlimab", "Jemperli", "A",
+                 "FDA-approved for dMMR solid tumors (GARNET trial)."),
+            ]
+            for drug_name, brand, level, guideline in msi_drugs:
+                therapies.append({
+                    "drug_name": drug_name,
+                    "brand_name": brand,
+                    "category": "immunotherapy",
+                    "targets": ["MSI-H"],
+                    "evidence_level": level,
+                    "guideline_recommendation": guideline,
+                    "source": "biomarker",
+                    "source_biomarker": "MSI-H",
+                })
 
-        # TMB-H -> pembrolizumab
+        # TMB-H -> pembrolizumab, atezolizumab
         tmb = biomarkers.get("TMB")
         if tmb is not None and isinstance(tmb, (int, float)) and tmb >= 10:
-            therapies.append({
-                "drug_name": "pembrolizumab",
-                "brand_name": "Keytruda",
-                "category": "immunotherapy",
-                "targets": ["TMB-H"],
-                "evidence_level": "A",
-                "guideline_recommendation": (
-                    f"FDA-approved for TMB-H (>=10 mut/Mb) solid tumors. "
-                    f"Patient TMB: {tmb} mut/Mb (KEYNOTE-158)."
-                ),
-                "source": "biomarker",
-                "source_biomarker": "TMB-H",
-            })
+            tmb_drugs = [
+                ("pembrolizumab", "Keytruda", "A",
+                 f"FDA-approved for TMB-H (>=10 mut/Mb) solid tumors. Patient TMB: {tmb} mut/Mb (KEYNOTE-158)."),
+                ("atezolizumab", "Tecentriq", "B",
+                 f"Evidence supports activity in TMB-H tumors. Patient TMB: {tmb} mut/Mb (IMvigor211, POPLAR)."),
+            ]
+            for drug_name, brand, level, guideline in tmb_drugs:
+                therapies.append({
+                    "drug_name": drug_name,
+                    "brand_name": brand,
+                    "category": "immunotherapy",
+                    "targets": ["TMB-H"],
+                    "evidence_level": level,
+                    "guideline_recommendation": guideline,
+                    "source": "biomarker",
+                    "source_biomarker": "TMB-H",
+                })
 
-        # HRD / BRCA -> PARP inhibitors
+        # HRD / BRCA -> PARP inhibitors + platinum-based chemotherapy
         hrd = biomarkers.get("HRD")
         brca = biomarkers.get("BRCA", "").upper()
         if hrd in (True, "positive", "Positive") or brca in ("BRCA1", "BRCA2", "POSITIVE"):
@@ -301,6 +319,7 @@ class TherapyRanker:
                 ("olaparib", "Lynparza"),
                 ("rucaparib", "Rubraca"),
                 ("niraparib", "Zejula"),
+                ("talazoparib", "Talzenna"),
             ]
             for drug_name, brand in parp_drugs:
                 therapies.append({
@@ -315,6 +334,37 @@ class TherapyRanker:
                     "source": "biomarker",
                     "source_biomarker": "HRD/BRCA",
                 })
+            # Platinum compounds are also effective in HRD/BRCA
+            for plat_name in ("carboplatin", "cisplatin"):
+                therapies.append({
+                    "drug_name": plat_name,
+                    "brand_name": "",
+                    "category": "platinum chemotherapy",
+                    "targets": ["HRD", "BRCA"],
+                    "evidence_level": "B",
+                    "guideline_recommendation": (
+                        f"BRCA/HRD-positive tumors show enhanced platinum sensitivity."
+                    ),
+                    "source": "biomarker",
+                    "source_biomarker": "HRD/BRCA",
+                })
+
+        # PTEN loss -> consider mTOR/PI3K inhibitors
+        pten = biomarkers.get("PTEN", "").upper()
+        if pten in ("LOSS", "DELETED", "MUTATION", "LOST"):
+            therapies.append({
+                "drug_name": "alpelisib",
+                "brand_name": "Piqray",
+                "category": "PI3K inhibitor",
+                "targets": ["PTEN", "PI3K"],
+                "evidence_level": "C",
+                "guideline_recommendation": (
+                    "Consider PI3K pathway inhibition for PTEN-loss tumors. "
+                    "PI3K/AKT/mTOR pathway activation may predict response."
+                ),
+                "source": "biomarker",
+                "source_biomarker": "PTEN_loss",
+            })
 
         # PD-L1 TPS >= 50% -> pembrolizumab first-line
         pdl1 = biomarkers.get("PD-L1_TPS")
@@ -402,13 +452,28 @@ class TherapyRanker:
     # Resistance and contraindication checks
     # ------------------------------------------------------------------
 
+    # Drug class groupings for same-mechanism resistance detection
+    _DRUG_CLASS_GROUPS = {
+        "egfr_tki_1g": ["erlotinib", "gefitinib"],
+        "egfr_tki_2g": ["afatinib", "dacomitinib"],
+        "egfr_tki_3g": ["osimertinib"],
+        "alk_tki": ["crizotinib", "ceritinib", "alectinib", "brigatinib", "lorlatinib"],
+        "braf_inhibitor": ["vemurafenib", "dabrafenib", "encorafenib"],
+        "mek_inhibitor": ["trametinib", "cobimetinib", "binimetinib"],
+        "anti_pd1": ["pembrolizumab", "nivolumab", "dostarlimab", "cemiplimab"],
+        "anti_pdl1": ["atezolizumab", "durvalumab", "avelumab"],
+        "parp_inhibitor": ["olaparib", "rucaparib", "niraparib", "talazoparib"],
+        "kras_g12c": ["sotorasib", "adagrasib"],
+    }
+
     def _check_resistance(
         self, drug: str, prior_therapies: List[str]
     ) -> Optional[Dict]:
         """Check if a candidate drug has known resistance from prior therapy.
 
-        Uses RESISTANCE_MAP to identify drugs whose prior use may confer
-        resistance to the candidate.
+        Uses RESISTANCE_MAP for mutation-level resistance, and _DRUG_CLASS_GROUPS
+        for same-mechanism class-level resistance (e.g., prior erlotinib confers
+        likely resistance to gefitinib since both are 1st-gen EGFR TKIs).
 
         Args:
             drug: Candidate drug name.
@@ -418,59 +483,68 @@ class TherapyRanker:
             Dict with resistance details if found, otherwise None.
         """
         drug_lower = drug.lower().strip()
-        resistance_entry = RESISTANCE_MAP.get(drug_lower)
-
-        if not resistance_entry:
-            return None
-
-        # RESISTANCE_MAP values are List[Dict], each dict has 'mutation', 'gene', etc.
-        if isinstance(resistance_entry, list):
-            # Extract mutation names as resistance triggers
-            trigger_mutations = [
-                m.get("mutation", "").lower()
-                for m in resistance_entry
-                if isinstance(m, dict) and m.get("mutation")
-            ]
-            prior_lower = [p.lower().strip() for p in prior_therapies]
-
-            overlapping = [
-                p for p in prior_lower
-                if any(trig in p or p in trig for trig in trigger_mutations)
-            ]
-
-            if overlapping:
-                return {
-                    "drug": drug,
-                    "prior_triggers": overlapping,
-                    "mechanism": "; ".join(
-                        m.get("mutation", "") for m in resistance_entry
-                        if isinstance(m, dict)
-                    ),
-                    "alternatives": [
-                        alt for m in resistance_entry
-                        if isinstance(m, dict)
-                        for alt in m.get("next_line", [])
-                    ],
-                }
-            return None
-
-        # Legacy dict format support
-        triggers = resistance_entry.get("resistance_triggers", [])
-        trigger_lower = [t.lower() for t in triggers]
         prior_lower = [p.lower().strip() for p in prior_therapies]
 
-        overlapping = [
-            p for p in prior_lower
-            if any(trig in p or p in trig for trig in trigger_lower)
-        ]
+        # 1. Check RESISTANCE_MAP for mutation-level resistance
+        resistance_entry = RESISTANCE_MAP.get(drug_lower)
+        if resistance_entry:
+            if isinstance(resistance_entry, list):
+                trigger_mutations = [
+                    m.get("mutation", "").lower()
+                    for m in resistance_entry
+                    if isinstance(m, dict) and m.get("mutation")
+                ]
+                overlapping = [
+                    p for p in prior_lower
+                    if any(trig in p or p in trig for trig in trigger_mutations)
+                ]
+                if overlapping:
+                    return {
+                        "drug": drug,
+                        "prior_triggers": overlapping,
+                        "mechanism": "; ".join(
+                            m.get("mutation", "") for m in resistance_entry
+                            if isinstance(m, dict)
+                        ),
+                        "alternatives": [
+                            alt for m in resistance_entry
+                            if isinstance(m, dict)
+                            for alt in m.get("next_line", [])
+                        ],
+                    }
+            elif isinstance(resistance_entry, dict):
+                triggers = resistance_entry.get("resistance_triggers", [])
+                trigger_lower = [t.lower() for t in triggers]
+                overlapping = [
+                    p for p in prior_lower
+                    if any(trig in p or p in trig for trig in trigger_lower)
+                ]
+                if overlapping:
+                    return {
+                        "drug": drug,
+                        "prior_triggers": overlapping,
+                        "mechanism": resistance_entry.get("mechanism", "Unknown resistance mechanism"),
+                        "alternatives": resistance_entry.get("alternatives", []),
+                    }
 
-        if overlapping:
-            return {
-                "drug": drug,
-                "prior_triggers": overlapping,
-                "mechanism": resistance_entry.get("mechanism", "Unknown resistance mechanism"),
-                "alternatives": resistance_entry.get("alternatives", []),
-            }
+        # 2. Check same-mechanism class-level resistance
+        for class_name, class_drugs in self._DRUG_CLASS_GROUPS.items():
+            if drug_lower in class_drugs:
+                prior_same_class = [
+                    p for p in prior_lower
+                    if p in class_drugs and p != drug_lower
+                ]
+                if prior_same_class:
+                    return {
+                        "drug": drug,
+                        "prior_triggers": prior_same_class,
+                        "mechanism": (
+                            f"Same drug class ({class_name.replace('_', ' ')}): "
+                            f"prior {', '.join(prior_same_class)} suggests likely "
+                            f"cross-resistance to {drug}"
+                        ),
+                        "alternatives": [],
+                    }
 
         return None
 
@@ -550,6 +624,95 @@ class TherapyRanker:
                 )
 
         return evidence
+
+    # ------------------------------------------------------------------
+    # Combination therapy identification
+    # ------------------------------------------------------------------
+
+    # Known FDA-approved combination regimens
+    _COMBO_REGIMENS = [
+        {
+            "combo_name": "dabrafenib + trametinib",
+            "components": ["dabrafenib", "trametinib"],
+            "target": "BRAF",
+            "evidence_level": "A",
+            "guideline": "FDA-approved BRAF+MEK combination for BRAF V600E/K melanoma, NSCLC, thyroid (COMBI-d, COMBI-v).",
+        },
+        {
+            "combo_name": "encorafenib + binimetinib",
+            "components": ["encorafenib", "binimetinib"],
+            "target": "BRAF",
+            "evidence_level": "A",
+            "guideline": "FDA-approved BRAF+MEK combination for BRAF V600E melanoma (COLUMBUS).",
+        },
+        {
+            "combo_name": "encorafenib + cetuximab",
+            "components": ["encorafenib", "cetuximab"],
+            "target": "BRAF",
+            "evidence_level": "A",
+            "guideline": "FDA-approved for BRAF V600E metastatic CRC (BEACON).",
+        },
+        {
+            "combo_name": "ipilimumab + nivolumab",
+            "components": ["ipilimumab", "nivolumab"],
+            "target": "PD-1/CTLA-4",
+            "evidence_level": "A",
+            "guideline": "FDA-approved dual checkpoint for melanoma, RCC, MSI-H CRC, HCC, NSCLC (CheckMate-067, -214, -142).",
+        },
+        {
+            "combo_name": "lenvatinib + pembrolizumab",
+            "components": ["lenvatinib", "pembrolizumab"],
+            "target": "VEGFR/PD-1",
+            "evidence_level": "A",
+            "guideline": "FDA-approved for endometrial carcinoma and RCC (KEYNOTE-775, CLEAR).",
+        },
+        {
+            "combo_name": "trastuzumab + pertuzumab",
+            "components": ["trastuzumab", "pertuzumab"],
+            "target": "HER2",
+            "evidence_level": "A",
+            "guideline": "FDA-approved dual HER2 blockade for HER2+ breast cancer (CLEOPATRA).",
+        },
+    ]
+
+    def _identify_combo_therapies(
+        self, existing_therapies: List[Dict], cancer_type: str
+    ) -> List[Dict]:
+        """Identify known combination regimens when component drugs are present.
+
+        If a single-agent therapy is identified, check if it belongs to an
+        FDA-approved combination regimen and suggest the combo.
+
+        Args:
+            existing_therapies: Already-identified single-agent therapies.
+            cancer_type: Cancer type for context.
+
+        Returns:
+            List of combo therapy dicts to add.
+        """
+        existing_drugs = {t["drug_name"].lower() for t in existing_therapies}
+        combos = []
+
+        for regimen in self._COMBO_REGIMENS:
+            components = regimen["components"]
+            # If at least one component is already in the therapy list
+            overlap = [c for c in components if c.lower() in existing_drugs]
+            if overlap:
+                combos.append({
+                    "drug_name": regimen["combo_name"],
+                    "brand_name": "",
+                    "category": "combination regimen",
+                    "targets": [regimen["target"]],
+                    "evidence_level": regimen["evidence_level"],
+                    "guideline_recommendation": regimen["guideline"],
+                    "source": "combination",
+                    "resistance_flag": False,
+                    "resistance_detail": None,
+                    "contraindication_flag": False,
+                    "supporting_evidence": [],
+                })
+
+        return combos
 
     # ------------------------------------------------------------------
     # Final ranking

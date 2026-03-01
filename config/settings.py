@@ -103,6 +103,30 @@ class OncoSettings(BaseSettings):
 
     # ── Cross-Modal ──────────────────────────────────────────────────────
     CROSS_MODAL_ENABLED: bool = True
+    CROSS_MODAL_THRESHOLD: float = 0.40
+    GENOMIC_TOP_K: int = 5
+    IMAGING_TOP_K: int = 5
+
+    # ── Trial Matching ────────────────────────────────────────────────────
+    TRIAL_WEIGHT_BIOMARKER: float = 0.40
+    TRIAL_WEIGHT_SEMANTIC: float = 0.25
+    TRIAL_WEIGHT_PHASE: float = 0.20
+    TRIAL_WEIGHT_STATUS: float = 0.15
+
+    # ── Agent ─────────────────────────────────────────────────────────────
+    MIN_SUFFICIENT_HITS: int = 3
+    MIN_COLLECTIONS_FOR_SUFFICIENT: int = 2
+    MIN_SIMILARITY_SCORE: float = 0.30
+
+    # ── API ───────────────────────────────────────────────────────────────
+    API_BASE_URL: str = "http://localhost:8527"
+    CORS_ORIGINS: str = "*"
+    MAX_REQUEST_SIZE_MB: int = 10
+
+    # ── PDF Branding ──────────────────────────────────────────────────────
+    PDF_BRAND_COLOR_R: int = 118
+    PDF_BRAND_COLOR_G: int = 185
+    PDF_BRAND_COLOR_B: int = 0
 
 
 # ── Singleton ────────────────────────────────────────────────────────────

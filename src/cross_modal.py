@@ -11,11 +11,12 @@ Date: February 2026
 License: Apache 2.0
 """
 
+import hashlib
 import logging
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional
 
-from src.knowledge import ACTIONABLE_TARGETS
+from src.knowledge import ACTIONABLE_TARGETS, classify_variant_actionability
 
 logger = logging.getLogger(__name__)
 
@@ -200,8 +201,8 @@ class OncoCrossModalTrigger:
                     if score < self.threshold:
                         continue
                     text = r.get("text", "")
-                    # Deduplicate by text content (first 100 chars)
-                    text_key = text[:100].strip().lower()
+                    # Deduplicate by text content hash
+                    text_key = hashlib.md5(text.strip().lower().encode()).hexdigest()
                     if text_key in seen_texts:
                         continue
                     seen_texts.add(text_key)
@@ -370,7 +371,7 @@ class OncoCrossModalTrigger:
     # ------------------------------------------------------------------
 
     def _classify_actionability(self, gene: str, variant: str) -> str:
-        """Classify variant actionability from ACTIONABLE_TARGETS.
+        """Classify variant actionability using shared knowledge function.
 
         Args:
             gene: Gene symbol (uppercase).
@@ -379,17 +380,4 @@ class OncoCrossModalTrigger:
         Returns:
             Evidence level ("A", "B", "C", "D") or "VUS".
         """
-        if gene not in ACTIONABLE_TARGETS:
-            return "VUS"
-
-        target_info = ACTIONABLE_TARGETS[gene]
-        known_variants = target_info.get("variants", {})
-
-        for known_var, details in known_variants.items():
-            if known_var.upper() in variant.upper():
-                return details.get("evidence_level", "C")
-
-        if target_info.get("gene_level_actionable", False):
-            return target_info.get("default_evidence_level", "C")
-
-        return "VUS"
+        return classify_variant_actionability(gene, variant)

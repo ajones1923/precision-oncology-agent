@@ -28,8 +28,9 @@ logger = logging.getLogger(__name__)
 KNOWN_GENES: Set[str] = {
     "BRAF", "EGFR", "ALK", "ROS1", "KRAS", "HER2",
     "NTRK", "RET", "MET", "FGFR", "PIK3CA", "IDH1",
-    "IDH2", "BRCA1", "BRCA2", "TP53", "PTEN", "CDKN2A",
-    "STK11", "ESR1",
+    "IDH2", "BRCA", "BRCA1", "BRCA2", "TP53", "PTEN", "CDKN2A",
+    "STK11", "ESR1", "ERBB2", "NRAS", "APC", "VHL",
+    "KIT", "PDGFRA", "FLT3", "NPM1", "DNMT3A",
 }
 
 KNOWN_CANCER_TYPES: Set[str] = {
@@ -43,36 +44,74 @@ KNOWN_CANCER_TYPES: Set[str] = {
 # Aliases so natural-language mentions resolve to canonical names
 _CANCER_ALIASES: Dict[str, str] = {
     "lung": "NSCLC",
+    "lung cancer": "NSCLC",
     "non-small cell lung": "NSCLC",
     "non small cell lung": "NSCLC",
+    "nsclc": "NSCLC",
+    "lung adenocarcinoma": "NSCLC",
+    "small cell lung": "SCLC",
+    "sclc": "SCLC",
     "breast cancer": "BREAST",
+    "breast": "BREAST",
+    "triple negative breast": "BREAST",
+    "tnbc": "BREAST",
     "colon": "COLORECTAL",
     "colon cancer": "COLORECTAL",
     "colorectal cancer": "COLORECTAL",
     "crc": "COLORECTAL",
+    "rectal cancer": "COLORECTAL",
     "melanoma": "MELANOMA",
     "skin cancer": "MELANOMA",
+    "cutaneous melanoma": "MELANOMA",
     "pancreatic": "PANCREATIC",
+    "pancreatic cancer": "PANCREATIC",
+    "pdac": "PANCREATIC",
     "ovarian": "OVARIAN",
+    "ovarian cancer": "OVARIAN",
     "prostate": "PROSTATE",
+    "prostate cancer": "PROSTATE",
+    "crpc": "PROSTATE",
     "glioma": "GLIOMA",
     "gbm": "GLIOBLASTOMA",
     "glioblastoma": "GLIOBLASTOMA",
     "aml": "AML",
     "acute myeloid": "AML",
+    "acute myeloid leukemia": "AML",
     "cml": "CML",
     "chronic myeloid": "CML",
+    "chronic myeloid leukemia": "CML",
+    "cll": "CLL",
+    "chronic lymphocytic leukemia": "CLL",
     "bladder": "BLADDER",
+    "bladder cancer": "BLADDER",
+    "urothelial": "BLADDER",
     "renal": "RENAL",
     "kidney": "RENAL",
+    "kidney cancer": "RENAL",
+    "rcc": "RENAL",
     "liver": "HEPATOCELLULAR",
     "hcc": "HEPATOCELLULAR",
+    "liver cancer": "HEPATOCELLULAR",
+    "hepatocellular carcinoma": "HEPATOCELLULAR",
     "gastric": "GASTRIC",
     "stomach": "GASTRIC",
+    "stomach cancer": "GASTRIC",
+    "gastric cancer": "GASTRIC",
     "thyroid": "THYROID",
+    "thyroid cancer": "THYROID",
     "endometrial": "ENDOMETRIAL",
     "uterine": "ENDOMETRIAL",
+    "endometrial cancer": "ENDOMETRIAL",
     "sarcoma": "SARCOMA",
+    "esophageal": "ESOPHAGEAL",
+    "esophageal cancer": "ESOPHAGEAL",
+    "cholangiocarcinoma": "CHOLANGIOCARCINOMA",
+    "bile duct cancer": "CHOLANGIOCARCINOMA",
+    "head and neck": "HEAD_AND_NECK",
+    "hnscc": "HEAD_AND_NECK",
+    "cervical": "CERVICAL",
+    "cervical cancer": "CERVICAL",
+    "mesothelioma": "MESOTHELIOMA",
 }
 
 
@@ -292,8 +331,15 @@ class OncoIntelligenceAgent:
     # Evidence evaluation
     # ------------------------------------------------------------------
 
+    # Minimum similarity score for evidence to count as relevant
+    MIN_SIMILARITY_SCORE: float = 0.30
+
     def evaluate_evidence(self, evidence: List[CrossCollectionResult]) -> str:
         """Rate the adequacy of retrieved evidence.
+
+        Considers hit count, collection diversity, and similarity scores.
+        Evidence items with scores below MIN_SIMILARITY_SCORE are treated
+        as low-quality and discounted.
 
         Returns
         -------
@@ -306,15 +352,35 @@ class OncoIntelligenceAgent:
         if not evidence:
             return "insufficient"
 
-        hit_count = len(evidence)
+        # Filter to items with meaningful similarity scores
+        scored_evidence = []
+        for e in evidence:
+            score = getattr(e, "score", None)
+            if score is not None and score < self.MIN_SIMILARITY_SCORE:
+                continue
+            scored_evidence.append(e)
+
+        hit_count = len(scored_evidence)
         collections_represented: Set[str] = {
-            e.collection for e in evidence if hasattr(e, "collection")
+            e.collection for e in scored_evidence if hasattr(e, "collection")
         }
+
+        # Calculate average score for quality assessment
+        scores = [getattr(e, "score", 0) for e in scored_evidence if getattr(e, "score", None) is not None]
+        avg_score = sum(scores) / len(scores) if scores else 0.0
+
+        if (
+            hit_count >= self.MIN_SUFFICIENT_HITS
+            and len(collections_represented) >= self.MIN_COLLECTIONS_FOR_SUFFICIENT
+            and avg_score >= 0.50
+        ):
+            return "sufficient"
 
         if (
             hit_count >= self.MIN_SUFFICIENT_HITS
             and len(collections_represented) >= self.MIN_COLLECTIONS_FOR_SUFFICIENT
         ):
+            # Enough hits and diversity but lower scores — still usable
             return "sufficient"
 
         if hit_count > 0:

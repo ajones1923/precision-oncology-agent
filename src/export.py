@@ -20,10 +20,21 @@ logger = logging.getLogger(__name__)
 # Constants
 # ---------------------------------------------------------------------------
 
+# Default brand colors — can be overridden via OncoSettings
+# (PDF_BRAND_COLOR_R/G/B environment variables with ONCO_ prefix)
 NVIDIA_GREEN = (118, 185, 0)  # RGB for NVIDIA brand green
 NVIDIA_DARK = (30, 30, 30)
 HEADER_HEIGHT = 50
 PAGE_MARGIN = 40
+
+
+def _get_brand_color():
+    """Get brand color from settings if available, else use default."""
+    try:
+        from config.settings import settings as _s
+        return (_s.PDF_BRAND_COLOR_R, _s.PDF_BRAND_COLOR_G, _s.PDF_BRAND_COLOR_B)
+    except Exception:
+        return NVIDIA_GREEN
 
 EVIDENCE_LEVEL_LABELS = {
     "level_1": "Level 1 — FDA-approved / Standard of Care",
@@ -53,6 +64,19 @@ FHIR_SNOMED_CANCER_CODES = {
     "glioblastoma": ("393563007", "Glioblastoma multiforme"),
     "aml": ("91861009", "Acute myeloid leukemia"),
     "cml": ("92818009", "Chronic myeloid leukemia"),
+    "bladder": ("399326009", "Malignant neoplasm of urinary bladder"),
+    "renal": ("363518003", "Malignant tumor of kidney"),
+    "gastric": ("363349007", "Malignant tumor of stomach"),
+    "hepatocellular": ("25370001", "Hepatocellular carcinoma"),
+    "esophageal": ("363402007", "Malignant tumor of esophagus"),
+    "thyroid": ("363478007", "Malignant tumor of thyroid gland"),
+    "head_and_neck": ("255055008", "Malignant neoplasm of head and neck"),
+    "sclc": ("254632001", "Small cell carcinoma of lung"),
+    "cholangiocarcinoma": ("312104005", "Cholangiocarcinoma"),
+    "endometrial": ("254878006", "Malignant neoplasm of endometrium"),
+    "cervical": ("363354003", "Malignant tumor of cervix"),
+    "sarcoma": ("424413001", "Sarcoma"),
+    "mesothelioma": ("62061000", "Mesothelioma"),
 }
 
 
@@ -91,7 +115,7 @@ def _safe_get(data: Dict, *keys, default=""):
 
 
 def _timestamp() -> str:
-    return datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M UTC")
+    return datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
 # ===================================================================
@@ -398,8 +422,9 @@ def export_pdf(
 
     data = _normalise_input(mtb_packet_or_response)
 
+    brand_rgb = _get_brand_color()
     nvidia_green = colors.Color(
-        NVIDIA_GREEN[0] / 255, NVIDIA_GREEN[1] / 255, NVIDIA_GREEN[2] / 255
+        brand_rgb[0] / 255, brand_rgb[1] / 255, brand_rgb[2] / 255
     )
     nvidia_dark = colors.Color(
         NVIDIA_DARK[0] / 255, NVIDIA_DARK[1] / 255, NVIDIA_DARK[2] / 255
@@ -808,6 +833,108 @@ def export_fhir_r4(
             "resource": msi_obs,
         })
 
+    # --- Specimen Resource ---
+    specimen_id = str(uuid.uuid4())
+    specimen_resource = {
+        "resourceType": "Specimen",
+        "id": specimen_id,
+        "subject": {"reference": f"urn:uuid:{patient_resource_id}"},
+        "type": {
+            "coding": [{
+                "system": "http://snomed.info/sct",
+                "code": "119376003",
+                "display": "Tissue specimen",
+            }],
+            "text": data.get("sample_type", "Tumor tissue"),
+        },
+        "collection": {
+            "collectedDateTime": timestamp,
+        },
+    }
+    if data.get("sample_id"):
+        specimen_resource["identifier"] = [{
+            "system": "urn:hcls-ai-factory:specimen",
+            "value": data["sample_id"],
+        }]
+    entries.append({
+        "fullUrl": f"urn:uuid:{specimen_id}",
+        "resource": specimen_resource,
+    })
+
+    # --- Condition Resource (cancer diagnosis) ---
+    cancer_type_raw = data.get("cancer_type", "").lower().strip()
+    cancer_coding_cond = FHIR_SNOMED_CANCER_CODES.get(cancer_type_raw)
+    if cancer_coding_cond:
+        condition_id = str(uuid.uuid4())
+        condition_resource = {
+            "resourceType": "Condition",
+            "id": condition_id,
+            "clinicalStatus": {
+                "coding": [{
+                    "system": "http://terminology.hl7.org/CodeSystem/condition-clinical",
+                    "code": "active",
+                    "display": "Active",
+                }],
+            },
+            "verificationStatus": {
+                "coding": [{
+                    "system": "http://terminology.hl7.org/CodeSystem/condition-ver-status",
+                    "code": "confirmed",
+                    "display": "Confirmed",
+                }],
+            },
+            "code": {
+                "coding": [{
+                    "system": "http://snomed.info/sct",
+                    "code": cancer_coding_cond[0],
+                    "display": cancer_coding_cond[1],
+                }],
+                "text": data.get("cancer_type", ""),
+            },
+            "subject": {"reference": f"urn:uuid:{patient_resource_id}"},
+            "recordedDate": timestamp,
+        }
+        stage = data.get("stage")
+        if stage:
+            condition_resource["stage"] = [{
+                "summary": {"text": f"Stage {stage}"},
+            }]
+        entries.append({
+            "fullUrl": f"urn:uuid:{condition_id}",
+            "resource": condition_resource,
+        })
+
+    # --- MedicationRequest Resources (therapy recommendations) ---
+    therapies_data = (data.get("therapies") or data.get("therapy_ranking")
+                      or data.get("recommendations") or [])
+    for tx in therapies_data[:10]:  # cap to top 10 recommendations
+        med_id = str(uuid.uuid4())
+        drug_name = tx.get("name", tx.get("drug_name", tx.get("drug", "")))
+        if not drug_name:
+            continue
+        med_request = {
+            "resourceType": "MedicationRequest",
+            "id": med_id,
+            "status": "draft",
+            "intent": "proposal",
+            "medicationCodeableConcept": {
+                "text": drug_name,
+            },
+            "subject": {"reference": f"urn:uuid:{patient_resource_id}"},
+            "authoredOn": timestamp,
+            "note": [],
+        }
+        ev_level = tx.get("evidence_level", tx.get("level", ""))
+        if ev_level:
+            med_request["note"].append({"text": f"Evidence level: {ev_level}"})
+        guideline = tx.get("guideline_recommendation", tx.get("rationale", ""))
+        if guideline:
+            med_request["note"].append({"text": guideline})
+        entries.append({
+            "fullUrl": f"urn:uuid:{med_id}",
+            "resource": med_request,
+        })
+
     # --- DiagnosticReport Resource ---
     report_id = str(uuid.uuid4())
     cancer_type = data.get("cancer_type", "").lower().strip()
@@ -832,6 +959,7 @@ def export_fhir_r4(
             }],
         },
         "subject": {"reference": f"urn:uuid:{patient_resource_id}"},
+        "specimen": [{"reference": f"urn:uuid:{specimen_id}"}],
         "effectiveDateTime": timestamp,
         "issued": timestamp,
         "result": [

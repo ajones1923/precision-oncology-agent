@@ -997,6 +997,47 @@ ENTITY_ALIASES: Dict[str, str] = {
 # ═══════════════════════════════════════════════════════════════════════
 
 
+def classify_variant_actionability(gene: str, variant: str) -> str:
+    """Classify a variant's actionability against known ACTIONABLE_TARGETS.
+
+    This is the shared implementation used by case_manager and cross_modal
+    to avoid duplicating classification logic.
+
+    Args:
+        gene: Gene symbol (e.g. "EGFR", "BRAF").
+        variant: Variant description (e.g. "L858R", "V600E").
+
+    Returns:
+        Evidence level string ("A", "B", "C", "D") or "VUS" if not recognized.
+    """
+    gene_upper = gene.upper().strip()
+    if gene_upper not in ACTIONABLE_TARGETS:
+        return "VUS"
+
+    target_info = ACTIONABLE_TARGETS[gene_upper]
+
+    # Check key_variants list for a match
+    key_variants = target_info.get("key_variants", [])
+    variant_upper = variant.upper().strip()
+    for known_var in key_variants:
+        if known_var.upper() in variant_upper or variant_upper in known_var.upper():
+            return target_info.get("evidence_level", "C")
+
+    # Also support legacy "variants" dict format
+    known_variants = target_info.get("variants", {})
+    if isinstance(known_variants, dict):
+        for known_var, details in known_variants.items():
+            if known_var.upper() in variant_upper:
+                ev = details.get("evidence_level", "C") if isinstance(details, dict) else "C"
+                return ev
+
+    # Gene-level actionability (some genes are actionable regardless of variant)
+    if target_info.get("gene_level_actionable", False):
+        return target_info.get("default_evidence_level", "C")
+
+    return "VUS"
+
+
 def get_target_context(gene: str) -> str:
     """Return formatted knowledge context for an actionable target gene."""
     target = ACTIONABLE_TARGETS.get(gene.upper()) or ACTIONABLE_TARGETS.get(gene)

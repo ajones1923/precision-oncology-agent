@@ -10,6 +10,7 @@ Date: February 2026
 """
 
 import json
+import os
 import time
 from datetime import datetime
 from typing import Any, Dict, List, Optional
@@ -20,7 +21,7 @@ import streamlit as st
 # ---------------------------------------------------------------------------
 # Configuration
 # ---------------------------------------------------------------------------
-API_BASE = "http://localhost:8527"
+API_BASE = os.environ.get("ONCO_API_BASE_URL", "http://localhost:8527")
 PAGE_TITLE = "Precision Oncology MTB Workbench"
 PAGE_ICON = "🧬"
 
@@ -128,9 +129,11 @@ def api_post(endpoint: str, payload: dict) -> Optional[dict]:
 def render_sidebar():
     """Render sidebar with branding, service status, and navigation."""
     with st.sidebar:
-        st.image(
-            "https://via.placeholder.com/280x60?text=HCLS+AI+Factory",
-            use_container_width=True,
+        st.markdown(
+            '<div style="background:#76b900;color:white;padding:12px 16px;'
+            'border-radius:6px;text-align:center;font-size:18px;font-weight:bold;">'
+            'HCLS AI Factory</div>',
+            unsafe_allow_html=True,
         )
         st.markdown("## Precision Oncology Agent")
         st.markdown("*Molecular Tumor Board Workbench*")

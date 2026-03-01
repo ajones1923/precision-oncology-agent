@@ -18,7 +18,7 @@ from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
 from src.models import AgentQuery, CaseSnapshot, MTBPacket
-from src.knowledge import ACTIONABLE_TARGETS, get_target_context
+from src.knowledge import ACTIONABLE_TARGETS, get_target_context, classify_variant_actionability
 
 logger = logging.getLogger(__name__)
 
@@ -247,8 +247,8 @@ class OncologyCaseManager:
     def _parse_vcf_text(self, vcf_text: str) -> List[Dict]:
         """Parse a VCF text string and extract PASS-only variants.
 
-        Extracts CHROM, POS, REF, ALT from fixed columns and GENE /
-        consequence from the INFO field (ANN or CSQ sub-fields).
+        Delegates to src.utils.vcf_parser for robust VCF parsing that
+        supports SnpEff (ANN=), VEP (CSQ=), and GENE=/GENEINFO= formats.
 
         Args:
             vcf_text: Raw VCF file content as a string.
@@ -257,49 +257,43 @@ class OncologyCaseManager:
             List of variant dicts with keys: chrom, pos, ref, alt, gene,
             consequence, filter, variant (human-readable summary).
         """
-        variants = []
-        gene_pattern = re.compile(r"(?:GENE|ANN|CSQ)=[^;]*?\|([A-Z0-9a-z_.-]+)\|")
-        consequence_pattern = re.compile(
-            r"(?:ANN|CSQ)=[^;]*?\|[^|]*\|([^|]+)\|"
+        from src.utils.vcf_parser import (
+            parse_vcf_text,
+            filter_pass_variants,
+            extract_gene_from_info,
+            extract_consequence_from_info,
         )
 
-        for line in vcf_text.strip().splitlines():
-            if line.startswith("#"):
-                continue
+        raw_variants = parse_vcf_text(vcf_text)
+        pass_variants = filter_pass_variants(raw_variants)
 
-            fields = line.split("\t")
-            if len(fields) < 8:
-                continue
+        results = []
+        for v in pass_variants:
+            info = v.get("info", "")
+            gene = extract_gene_from_info(info) if info else v.get("gene", "")
+            consequence = extract_consequence_from_info(info) if info else v.get("consequence", "")
+            chrom = v.get("chrom", "")
+            pos = v.get("pos", "")
+            ref_allele = v.get("ref", "")
+            alt_allele = v.get("alt", "")
 
-            chrom, pos, _id, ref, alt, _qual, filt, info = fields[:8]
+            variant_str = (
+                f"{gene} {chrom}:{pos} {ref_allele}>{alt_allele}"
+                if gene else f"{chrom}:{pos} {ref_allele}>{alt_allele}"
+            )
 
-            # Only keep PASS variants
-            if filt not in ("PASS", ".", "pass"):
-                continue
-
-            # Extract gene from INFO
-            gene_match = gene_pattern.search(info)
-            gene = gene_match.group(1) if gene_match else ""
-
-            # Extract consequence from INFO
-            csq_match = consequence_pattern.search(info)
-            consequence = csq_match.group(1) if csq_match else ""
-
-            # Build a human-readable variant string
-            variant_str = f"{gene} {chrom}:{pos} {ref}>{alt}" if gene else f"{chrom}:{pos} {ref}>{alt}"
-
-            variants.append({
+            results.append({
                 "chrom": chrom,
-                "pos": int(pos) if pos.isdigit() else pos,
-                "ref": ref,
-                "alt": alt,
+                "pos": int(pos) if isinstance(pos, str) and pos.isdigit() else pos,
+                "ref": ref_allele,
+                "alt": alt_allele,
                 "gene": gene,
                 "consequence": consequence,
-                "filter": filt,
+                "filter": v.get("filter", ""),
                 "variant": variant_str,
             })
 
-        return variants
+        return results
 
     # ------------------------------------------------------------------
     # Actionability classification
@@ -308,6 +302,9 @@ class OncologyCaseManager:
     def _classify_variant_actionability(self, gene: str, variant: str) -> str:
         """Classify a variant's actionability against known targets.
 
+        Delegates to the shared classify_variant_actionability function
+        in src.knowledge to keep classification logic in one place.
+
         Args:
             gene: Gene symbol (e.g. "EGFR", "BRAF").
             variant: Variant description (e.g. "L858R", "V600E").
@@ -315,32 +312,7 @@ class OncologyCaseManager:
         Returns:
             Evidence level string ("A", "B", "C", "D") or "VUS" if not recognized.
         """
-        gene_upper = gene.upper().strip()
-        if gene_upper not in ACTIONABLE_TARGETS:
-            return "VUS"
-
-        target_info = ACTIONABLE_TARGETS[gene_upper]
-
-        # Check key_variants list for a match
-        key_variants = target_info.get("key_variants", [])
-        variant_upper = variant.upper().strip()
-        for known_var in key_variants:
-            if known_var.upper() in variant_upper or variant_upper in known_var.upper():
-                return target_info.get("evidence_level", "C")
-
-        # Also support legacy "variants" dict format
-        known_variants = target_info.get("variants", {})
-        if isinstance(known_variants, dict):
-            for known_var, details in known_variants.items():
-                if known_var.upper() in variant_upper:
-                    ev = details.get("evidence_level", "C") if isinstance(details, dict) else "C"
-                    return ev
-
-        # Gene-level actionability (some genes are actionable regardless of variant)
-        if target_info.get("gene_level_actionable", False):
-            return target_info.get("default_evidence_level", "C")
-
-        return "VUS"
+        return classify_variant_actionability(gene, variant)
 
     # ------------------------------------------------------------------
     # Internal helpers for MTB packet building
