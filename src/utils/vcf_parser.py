@@ -20,9 +20,14 @@ logger = logging.getLogger(__name__)
 # INFO field annotation patterns
 # ---------------------------------------------------------------------------
 
-# SnpEff ANN= format: ANN=Allele|Annotation|...
+# SnpEff ANN= format: ANN=Allele|Annotation|Impact|Gene|...
+# Standard SnpEff has gene at position 4 (0-indexed field 3)
 _ANN_GENE_PATTERN = re.compile(
     r"ANN=[^|]*\|[^|]*\|[^|]*\|([^|]+)\|", re.IGNORECASE
+)
+# Simplified ANN format: ANN=Allele|Gene|Consequence|Impact (gene at position 2)
+_ANN_GENE_SIMPLE_PATTERN = re.compile(
+    r"ANN=[^|]*\|([A-Z][A-Z0-9_.-]*)\|", re.IGNORECASE
 )
 _ANN_CONSEQUENCE_PATTERN = re.compile(
     r"ANN=[^|]*\|([^|]+)\|", re.IGNORECASE
@@ -187,8 +192,13 @@ def extract_gene_from_info(info: str) -> str:
     if not info:
         return ""
 
-    # Try ANN= (SnpEff)
+    # Try ANN= (SnpEff standard format — gene at position 4)
     match = _ANN_GENE_PATTERN.search(info)
+    if match:
+        return match.group(1).strip()
+
+    # Try ANN= (simplified format — gene at position 2)
+    match = _ANN_GENE_SIMPLE_PATTERN.search(info)
     if match:
         return match.group(1).strip()
 

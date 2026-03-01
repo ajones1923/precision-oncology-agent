@@ -356,7 +356,7 @@ class OncoIntelligenceAgent:
         scored_evidence = []
         for e in evidence:
             score = getattr(e, "score", None)
-            if score is not None and score < self.MIN_SIMILARITY_SCORE:
+            if isinstance(score, (int, float)) and score < self.MIN_SIMILARITY_SCORE:
                 continue
             scored_evidence.append(e)
 
@@ -366,7 +366,10 @@ class OncoIntelligenceAgent:
         }
 
         # Calculate average score for quality assessment
-        scores = [getattr(e, "score", 0) for e in scored_evidence if getattr(e, "score", None) is not None]
+        scores = [
+            getattr(e, "score", 0) for e in scored_evidence
+            if isinstance(getattr(e, "score", None), (int, float))
+        ]
         avg_score = sum(scores) / len(scores) if scores else 0.0
 
         if (
