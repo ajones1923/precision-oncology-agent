@@ -439,6 +439,14 @@ class SearchHit(BaseModel):
     score: float
     text: str
     metadata: Dict = Field(default_factory=dict)
+    label: str = ""
+    citation: str = ""
+    relevance: str = ""
+
+    @property
+    def record_id(self) -> str:
+        """Alias for id, used by the RAG engine for deduplication."""
+        return self.id
 
 
 class CrossCollectionResult(BaseModel):

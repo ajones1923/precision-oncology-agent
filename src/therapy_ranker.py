@@ -198,21 +198,22 @@ class TherapyRanker:
         target_info = ACTIONABLE_TARGETS[gene_upper]
         therapies = []
 
-        # Check variant-specific drugs
-        known_variants = target_info.get("variants", {})
-        matched_variant_info = None
-        for known_var, details in known_variants.items():
-            if known_var.upper() in variant.upper():
-                matched_variant_info = details
-                break
+        # Check if variant matches known actionable variants
+        key_variants = target_info.get("key_variants", [])
+        variant_matched = any(
+            kv.upper() in variant.upper()
+            for kv in key_variants
+        ) if key_variants and variant else False
 
-        # Get drug list: variant-specific or gene-level
-        if matched_variant_info:
-            drugs = matched_variant_info.get("drugs", target_info.get("drugs", []))
-            evidence_level = matched_variant_info.get("evidence_level", "C")
+        # Get drug list from targeted_therapies or drugs
+        drugs = target_info.get("targeted_therapies", target_info.get("drugs", []))
+        if variant_matched:
+            evidence_level = target_info.get("evidence_level", "C")
         elif target_info.get("gene_level_actionable", False):
-            drugs = target_info.get("drugs", [])
             evidence_level = target_info.get("default_evidence_level", "C")
+        elif key_variants:
+            # Gene has known variants but this specific variant wasn't matched
+            evidence_level = target_info.get("evidence_level", "C")
         else:
             return []
 

@@ -244,6 +244,12 @@ class OncoRAGEngine:
 
         ranked = self._merge_and_rank(all_hits)
 
+        target_collections = (
+            [c for c in collections_filter if c in COLLECTION_CONFIG]
+            if collections_filter
+            else list(COLLECTION_CONFIG.keys())
+        )
+
         return CrossCollectionResult(
             query=query.text,
             hits=ranked,

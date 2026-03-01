@@ -8,17 +8,18 @@ All values can be overridden via environment variables with the ONCO_ prefix.
 from pathlib import Path
 from typing import Optional
 
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class OncoSettings(BaseSettings):
     """Central configuration for the Precision Oncology Agent."""
 
-    class Config:
-        env_prefix = "ONCO_"
-        case_sensitive = False
-        env_file = ".env"
-        env_file_encoding = "utf-8"
+    model_config = SettingsConfigDict(
+        env_prefix="ONCO_",
+        case_sensitive=False,
+        env_file=".env",
+        env_file_encoding="utf-8",
+    )
 
     # ── Paths ────────────────────────────────────────────────────────────
     PROJECT_ROOT: Path = Path(__file__).resolve().parents[2]
