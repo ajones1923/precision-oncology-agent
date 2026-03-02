@@ -1,4 +1,4 @@
-"""Precision Oncology knowledge graph — targets, therapies, resistance, pathways, biomarkers.
+"""Oncology Intelligence knowledge graph — targets, therapies, resistance, pathways, biomarkers.
 
 Provides structured domain knowledge for augmenting RAG queries with
 curated oncology intelligence. Each helper function returns formatted
@@ -381,6 +381,198 @@ ACTIONABLE_TARGETS: Dict[str, Dict] = {
                        "dostarlimab). KEYNOTE-177 established first-line pembrolizumab for MSI-H CRC. "
                        "CheckMate-8HW showed nivo+ipi superiority.",
     },
+    "NRG1": {
+        "gene": "NRG1",
+        "full_name": "Neuregulin 1 Fusions",
+        "cancer_types": ["NSCLC", "pancreatic", "breast", "cholangiocarcinoma"],
+        "key_variants": ["CD74-NRG1 fusion", "SLC3A2-NRG1 fusion", "ATP1B1-NRG1 fusion"],
+        "targeted_therapies": ["afatinib", "zenocutuzumab"],
+        "combination_therapies": ["afatinib + cetuximab"],
+        "resistance_mutations": ["secondary NRG1 fusions", "HER3 bypass"],
+        "pathway": "HER2/HER3",
+        "evidence_level": "B",
+        "description": "NRG1 fusions drive HER2-HER3 heterodimer signaling. Rare (~0.2% pan-cancer) "
+                       "but highly actionable. Zenocutuzumab (anti-HER2/HER3 bispecific) showed 35% "
+                       "ORR in eNRGy trial.",
+    },
+    "KRASG12D": {
+        "gene": "KRAS G12D",
+        "full_name": "KRAS G12D Allele-Specific",
+        "cancer_types": ["pancreatic", "CRC", "NSCLC"],
+        "key_variants": ["G12D"],
+        "targeted_therapies": ["MRTX1133 (investigational)", "divarasib (cross-allele, investigational)"],
+        "combination_therapies": [],
+        "resistance_mutations": ["adaptive MAPK reactivation", "RTK bypass"],
+        "pathway": "MAPK",
+        "evidence_level": "D",
+        "description": "KRAS G12D is the most common KRAS mutation in pancreatic cancer (~35%). "
+                       "MRTX1133 is a first-in-class selective G12D inhibitor in Phase 1/2.",
+    },
+    "TROP2": {
+        "gene": "TROP2",
+        "full_name": "Trophoblast Cell Surface Antigen 2",
+        "cancer_types": ["TNBC", "urothelial", "NSCLC", "endometrial", "HR+/HER2- breast"],
+        "key_variants": ["TROP2 overexpression"],
+        "targeted_therapies": ["sacituzumab govitecan", "datopotamab deruxtecan"],
+        "combination_therapies": ["sacituzumab + pembrolizumab"],
+        "resistance_mutations": ["TROP2 downregulation", "TOP1 mutations", "drug efflux (ABCG2)"],
+        "pathway": "signaling/ADC target",
+        "evidence_level": "A",
+        "description": "TROP2 is a transmembrane glycoprotein overexpressed in >80% of TNBC. "
+                       "Sacituzumab govitecan FDA-approved for mTNBC, HR+/HER2- breast, and mUC.",
+    },
+    "NECTIN4": {
+        "gene": "NECTIN4",
+        "full_name": "Nectin Cell Adhesion Molecule 4",
+        "cancer_types": ["urothelial", "breast", "NSCLC", "gastric"],
+        "key_variants": ["Nectin-4 overexpression"],
+        "targeted_therapies": ["enfortumab vedotin"],
+        "combination_therapies": ["enfortumab vedotin + pembrolizumab"],
+        "resistance_mutations": ["Nectin-4 downregulation", "drug efflux", "EMT"],
+        "pathway": "cell adhesion/ADC target",
+        "evidence_level": "A",
+        "description": "Nectin-4 is expressed in >97% of urothelial carcinoma. Enfortumab vedotin + "
+                       "pembrolizumab is first-line for cisplatin-ineligible mUC (EV-302/KEYNOTE-A39).",
+    },
+    "FOLR1": {
+        "gene": "FOLR1",
+        "full_name": "Folate Receptor Alpha",
+        "cancer_types": ["ovarian (high-grade serous)", "NSCLC", "endometrial"],
+        "key_variants": ["FRα overexpression (IHC PS2+, ≥75% cells)"],
+        "targeted_therapies": ["mirvetuximab soravtansine"],
+        "combination_therapies": ["mirvetuximab + bevacizumab (investigating)"],
+        "resistance_mutations": ["FRα loss", "tubulin mutations"],
+        "pathway": "folate transport/ADC target",
+        "evidence_level": "A",
+        "description": "FRα is overexpressed in ~40% of platinum-resistant ovarian cancer. Mirvetuximab "
+                       "soravtansine FDA-approved for FRα-high, platinum-resistant ovarian cancer "
+                       "(SORAYA, MIRASOL trials).",
+    },
+    "CLDN18_2": {
+        "gene": "CLDN18.2",
+        "full_name": "Claudin 18.2",
+        "cancer_types": ["gastric", "gastroesophageal junction", "pancreatic"],
+        "key_variants": ["CLDN18.2 expression (IHC ≥2+ in ≥75% cells)"],
+        "targeted_therapies": ["zolbetuximab"],
+        "combination_therapies": ["zolbetuximab + CAPOX", "zolbetuximab + mFOLFOX6"],
+        "resistance_mutations": ["CLDN18.2 downregulation", "isoform switching (CLDN18.1)"],
+        "pathway": "tight junction/targeted",
+        "evidence_level": "A",
+        "description": "CLDN18.2 is a tight junction protein expressed in ~38% of gastric cancers. "
+                       "Zolbetuximab + chemo improved OS in SPOTLIGHT and GLOW trials. First targeted "
+                       "therapy for CLDN18.2+ gastric cancer.",
+    },
+    "DLL3": {
+        "gene": "DLL3",
+        "full_name": "Delta-Like Ligand 3",
+        "cancer_types": ["SCLC", "large cell neuroendocrine", "neuroendocrine tumors"],
+        "key_variants": ["DLL3 surface expression"],
+        "targeted_therapies": ["tarlatamab", "rovalpituzumab tesirine (withdrawn)"],
+        "combination_therapies": ["tarlatamab monotherapy or + chemo"],
+        "resistance_mutations": ["DLL3 loss", "immune evasion", "neuroendocrine-to-non-NE transition"],
+        "pathway": "Notch (inhibitory ligand)",
+        "evidence_level": "B",
+        "description": "DLL3 is expressed on >80% of SCLC tumors but absent from normal tissue. "
+                       "Tarlatamab (DLL3xCD3 BiTE) showed 40% ORR in DeLLphi-301 trial for relapsed "
+                       "SCLC. FDA accelerated approval 2024.",
+    },
+    "BARD1": {
+        "gene": "BARD1",
+        "full_name": "BRCA1-Associated RING Domain 1",
+        "cancer_types": ["ovarian", "breast"],
+        "key_variants": ["truncating mutations", "splice site variants"],
+        "targeted_therapies": ["olaparib (by HRD inference)", "rucaparib"],
+        "combination_therapies": ["PARP + platinum"],
+        "resistance_mutations": ["HR restoration", "reversion mutations"],
+        "pathway": "DDR",
+        "evidence_level": "C",
+        "description": "BARD1 forms obligate heterodimer with BRCA1 for HR repair. BARD1 pathogenic "
+                       "variants confer moderate-to-high cancer risk and potential PARPi sensitivity.",
+    },
+    "RAD51C": {
+        "gene": "RAD51C",
+        "full_name": "RAD51 Paralog C",
+        "cancer_types": ["ovarian", "breast"],
+        "key_variants": ["truncating mutations", "large deletions"],
+        "targeted_therapies": ["olaparib", "rucaparib", "niraparib"],
+        "combination_therapies": ["PARP + platinum"],
+        "resistance_mutations": ["reversion mutations", "RAD51 foci restoration"],
+        "pathway": "DDR",
+        "evidence_level": "B",
+        "description": "RAD51C mutations confer HRD and PARPi sensitivity comparable to BRCA2. "
+                       "Included in most HRD gene panels. ~1% of ovarian cancers.",
+    },
+    "CDH1": {
+        "gene": "CDH1",
+        "full_name": "E-Cadherin",
+        "cancer_types": ["lobular breast", "hereditary diffuse gastric"],
+        "key_variants": ["germline truncating mutations", "splice site", "promoter methylation (somatic)"],
+        "targeted_therapies": ["CDK4/6 inhibitors (lobular breast responds well)"],
+        "combination_therapies": ["CDK4/6i + endocrine therapy"],
+        "resistance_mutations": ["EMT completion", "CDK6 amplification"],
+        "pathway": "cell adhesion/WNT",
+        "evidence_level": "B",
+        "description": "Germline CDH1 mutations cause hereditary diffuse gastric cancer syndrome (HDGC) "
+                       "with >80% lifetime gastric cancer risk. Somatic CDH1 loss defines lobular breast "
+                       "cancer. Prophylactic gastrectomy recommended for carriers.",
+    },
+    "MAP2K1": {
+        "gene": "MAP2K1",
+        "full_name": "MEK1 (Mitogen-Activated Protein Kinase Kinase 1)",
+        "cancer_types": ["melanoma (BRAF-WT)", "NSCLC", "histiocytic neoplasms", "low-grade serous ovarian"],
+        "key_variants": ["K57N", "C121S", "Q56P", "E203K"],
+        "targeted_therapies": ["trametinib", "cobimetinib", "binimetinib", "selumetinib"],
+        "combination_therapies": ["trametinib + dabrafenib (for BRAF-mutant context)",
+                                   "selumetinib monotherapy (NF1 plexiform neurofibromas)"],
+        "resistance_mutations": ["MEK2 mutations", "ERK amplification", "PI3K bypass"],
+        "pathway": "MAPK",
+        "evidence_level": "A",
+        "description": "MAP2K1 (MEK1) mutations activate MAPK signaling. MEK inhibitors are approved in "
+                       "combination with BRAF inhibitors for BRAF-mutant cancers and as monotherapy for "
+                       "NF1 plexiform neurofibromas (selumetinib).",
+    },
+    "SMARCB1": {
+        "gene": "SMARCB1",
+        "full_name": "SMARCB1/INI1 (SWI/SNF Related Matrix Associated Actin Dependent Regulator)",
+        "cancer_types": ["rhabdoid tumor", "epithelioid sarcoma", "meningioma"],
+        "key_variants": ["biallelic inactivation", "homozygous deletion", "truncating mutations"],
+        "targeted_therapies": ["tazemetostat"],
+        "combination_therapies": [],
+        "resistance_mutations": ["SWI/SNF complex rewiring"],
+        "pathway": "chromatin_remodeling",
+        "evidence_level": "A",
+        "description": "SMARCB1 (INI1) loss is pathognomonic for malignant rhabdoid tumors and epithelioid "
+                       "sarcomas. Tazemetostat (EZH2 inhibitor) is FDA-approved for INI1-negative "
+                       "epithelioid sarcoma.",
+    },
+    "EZH2": {
+        "gene": "EZH2",
+        "full_name": "Enhancer of Zeste Homolog 2",
+        "cancer_types": ["follicular lymphoma", "epithelioid sarcoma", "DLBCL"],
+        "key_variants": ["Y646N", "Y646F", "Y646H", "A677G", "A687V (gain-of-function)"],
+        "targeted_therapies": ["tazemetostat"],
+        "combination_therapies": ["tazemetostat + R-CHOP (investigating)"],
+        "resistance_mutations": ["SWI/SNF mutations", "secondary EZH2 mutations"],
+        "pathway": "chromatin_remodeling",
+        "evidence_level": "A",
+        "description": "EZH2 gain-of-function mutations occur in ~20% of follicular lymphoma. "
+                       "Tazemetostat FDA-approved for EZH2-mutant FL and epithelioid sarcoma. EZH2 is "
+                       "the catalytic subunit of PRC2.",
+    },
+    "CTLA4": {
+        "gene": "CTLA-4",
+        "full_name": "Cytotoxic T-Lymphocyte Associated Protein 4",
+        "cancer_types": ["melanoma", "RCC", "MSI-H (tissue-agnostic)", "HCC", "NSCLC"],
+        "key_variants": ["N/A (drug target, not mutated)"],
+        "targeted_therapies": ["ipilimumab", "tremelimumab"],
+        "combination_therapies": ["ipilimumab + nivolumab", "tremelimumab + durvalumab"],
+        "resistance_mutations": ["Treg expansion", "compensatory immune checkpoints (TIGIT, LAG-3)", "cold TME"],
+        "pathway": "immune checkpoint",
+        "evidence_level": "A",
+        "description": "CTLA-4 blockade was the first FDA-approved checkpoint inhibitor (ipilimumab, 2011). "
+                       "Ipilimumab + nivolumab dual checkpoint blockade is standard in melanoma, RCC, "
+                       "and MSI-H CRC.",
+    },
 }
 
 
@@ -623,6 +815,127 @@ THERAPY_MAP: Dict[str, Dict] = {
         "resistance_mechanisms": ["B2M loss", "JAK1/2 mutations"],
         "evidence_level": "A",
     },
+    "sacituzumab_govitecan": {
+        "drug_name": "sacituzumab govitecan",
+        "brand_name": "Trodelvy",
+        "category": "targeted (ADC)",
+        "targets": ["TROP2"],
+        "approved_indications": ["mTNBC (2L+)", "HR+/HER2- mBC (2L+)", "mUC (2L+)"],
+        "mechanism": "TROP2-directed ADC with SN-38 (topoisomerase I inhibitor) payload; "
+                     "moderate DAR of ~7.6",
+        "key_trials": ["ASCENT", "TROPiCS-02", "TROPHY-U-01"],
+        "resistance_mechanisms": ["TROP2 downregulation", "TOP1 mutations", "drug efflux"],
+        "evidence_level": "A",
+    },
+    "enfortumab_vedotin": {
+        "drug_name": "enfortumab vedotin",
+        "brand_name": "Padcev",
+        "category": "targeted (ADC)",
+        "targets": ["Nectin-4"],
+        "approved_indications": ["locally advanced/mUC (1L with pembro, 2L+ mono)"],
+        "mechanism": "Nectin-4-directed ADC with MMAE payload; disrupts microtubule assembly",
+        "key_trials": ["EV-301", "EV-302/KEYNOTE-A39"],
+        "resistance_mechanisms": ["Nectin-4 downregulation", "drug efflux"],
+        "evidence_level": "A",
+    },
+    "mirvetuximab_soravtansine": {
+        "drug_name": "mirvetuximab soravtansine",
+        "brand_name": "Elahere",
+        "category": "targeted (ADC)",
+        "targets": ["FRα"],
+        "approved_indications": ["FRα-high platinum-resistant ovarian cancer"],
+        "mechanism": "FRα-directed ADC with DM4 (maytansinoid) payload",
+        "key_trials": ["SORAYA", "MIRASOL"],
+        "resistance_mechanisms": ["FRα loss", "tubulin mutations"],
+        "evidence_level": "A",
+    },
+    "zolbetuximab": {
+        "drug_name": "zolbetuximab",
+        "brand_name": "Vyloy",
+        "category": "targeted",
+        "targets": ["CLDN18.2"],
+        "approved_indications": ["CLDN18.2+ HER2- gastric/GEJ adenocarcinoma (1L + chemo)"],
+        "mechanism": "Anti-CLDN18.2 chimeric IgG1 mAb, ADCC and CDC",
+        "key_trials": ["SPOTLIGHT", "GLOW"],
+        "resistance_mechanisms": ["CLDN18.2 downregulation", "isoform switching"],
+        "evidence_level": "A",
+    },
+    "tarlatamab": {
+        "drug_name": "tarlatamab",
+        "brand_name": "Imdelltra",
+        "category": "immunotherapy (bispecific)",
+        "targets": ["DLL3", "CD3"],
+        "approved_indications": ["extensive-stage SCLC (2L+)"],
+        "mechanism": "DLL3xCD3 bispecific T-cell engager (BiTE) — redirects T cells to "
+                     "DLL3-expressing tumor cells",
+        "key_trials": ["DeLLphi-301"],
+        "resistance_mechanisms": ["DLL3 loss", "T cell exhaustion"],
+        "evidence_level": "B",
+    },
+    "tazemetostat": {
+        "drug_name": "tazemetostat",
+        "brand_name": "Tazverik",
+        "category": "targeted",
+        "targets": ["EZH2"],
+        "approved_indications": ["EZH2-mutant relapsed/refractory FL",
+                                  "INI1-negative epithelioid sarcoma"],
+        "mechanism": "Selective EZH2 inhibitor — blocks H3K27 trimethylation, derepresses "
+                     "tumor suppressors",
+        "key_trials": ["NCT01897571 (E7438-G000-101)"],
+        "resistance_mechanisms": ["SWI/SNF rewiring", "secondary EZH2 mutations"],
+        "evidence_level": "A",
+    },
+    "ipilimumab": {
+        "drug_name": "ipilimumab",
+        "brand_name": "Yervoy",
+        "category": "immunotherapy",
+        "targets": ["CTLA-4"],
+        "approved_indications": ["melanoma", "RCC (+ nivolumab)", "CRC MSI-H (+ nivolumab)",
+                                  "HCC (+ nivolumab)", "NSCLC (+ nivolumab + chemo)",
+                                  "mesothelioma (+ nivolumab)"],
+        "mechanism": "Anti-CTLA-4 fully human IgG1 mAb, augments T cell activation/proliferation "
+                     "by blocking CTLA-4 inhibitory signaling",
+        "key_trials": ["CheckMate-067", "CheckMate-214", "CheckMate-142",
+                        "CheckMate-8HW", "CheckMate-743"],
+        "resistance_mechanisms": ["Treg rebound", "cold TME", "compensatory checkpoints"],
+        "evidence_level": "A",
+    },
+    "capivasertib": {
+        "drug_name": "capivasertib",
+        "brand_name": "Truqap",
+        "category": "targeted",
+        "targets": ["AKT1/2/3"],
+        "approved_indications": ["PIK3CA/AKT1/PTEN-altered HR+/HER2- advanced breast cancer "
+                                  "(+ fulvestrant)"],
+        "mechanism": "Selective pan-AKT kinase inhibitor",
+        "key_trials": ["CAPItello-291"],
+        "resistance_mechanisms": ["mTOR mutations", "MAPK bypass", "AKT3 upregulation"],
+        "evidence_level": "A",
+    },
+    "elacestrant": {
+        "drug_name": "elacestrant",
+        "brand_name": "Orserdu",
+        "category": "targeted (hormonal)",
+        "targets": ["ESR1"],
+        "approved_indications": ["ESR1-mutant ER+/HER2- advanced breast cancer (2L+)"],
+        "mechanism": "Oral selective estrogen receptor degrader (SERD) — degrades both "
+                     "wild-type and mutant ER",
+        "key_trials": ["EMERALD"],
+        "resistance_mechanisms": ["compound ESR1 mutations", "CDK4/6 pathway bypass"],
+        "evidence_level": "A",
+    },
+    "repotrectinib": {
+        "drug_name": "repotrectinib",
+        "brand_name": "Augtyro",
+        "category": "targeted",
+        "targets": ["ROS1", "NTRK1/2/3", "ALK"],
+        "approved_indications": ["ROS1+ NSCLC (1L and previously treated)"],
+        "mechanism": "Next-gen macrocyclic TKI designed to overcome ROS1 G2032R and NTRK "
+                     "solvent-front resistance mutations",
+        "key_trials": ["TRIDENT-1"],
+        "resistance_mechanisms": ["compound ROS1 mutations", "bypass pathway activation"],
+        "evidence_level": "A",
+    },
 }
 
 
@@ -696,6 +1009,38 @@ RESISTANCE_MAP: Dict[str, List[Dict]] = {
          "bypass": "CDK2-driven G1/S", "next_line": ["chemotherapy"]},
         {"mutation": "CDK6 amplification", "gene": "CDK6", "frequency": "~5%",
          "bypass": "target amplification", "next_line": ["dose escalation"]},
+    ],
+    "HER2 ADC (T-DXd)": [
+        {"mutation": "HER2 downregulation", "gene": "ERBB2", "frequency": "~15-20%",
+         "bypass": "antigen loss", "next_line": ["switch ADC target or chemo"]},
+        {"mutation": "SLX4-dependent DNA repair", "gene": "SLX4", "frequency": "~5-10%",
+         "bypass": "enhanced DNA repair", "next_line": ["PARP combination"]},
+        {"mutation": "Drug efflux (ABCB1)", "gene": "ABCB1", "frequency": "~5%",
+         "bypass": "drug clearance", "next_line": ["alternative ADC or payload"]},
+    ],
+    "anti-CTLA-4": [
+        {"mutation": "Treg rebound expansion", "gene": "FOXP3+ Tregs", "frequency": "~20%",
+         "bypass": "immunosuppressive TME", "next_line": ["anti-PD-1 combination", "Treg depletion"]},
+        {"mutation": "ICOS upregulation", "gene": "ICOS", "frequency": "~10%",
+         "bypass": "alternative co-stimulation", "next_line": ["anti-ICOS agents"]},
+        {"mutation": "Cold tumor microenvironment", "gene": "multiple", "frequency": "~30%",
+         "bypass": "insufficient T cell infiltration", "next_line": ["radiation + IO", "oncolytic virus"]},
+    ],
+    "PI3K inhibitors": [
+        {"mutation": "Insulin-feedback hyperglycemia", "gene": "insulin/IGF1R", "frequency": "~60% (clinical)",
+         "bypass": "insulin receptor activation", "next_line": ["dietary management + metformin"]},
+        {"mutation": "KRAS activation", "gene": "KRAS", "frequency": "~5-10%",
+         "bypass": "MAPK bypass", "next_line": ["PI3Ki + MEK inhibitor"]},
+        {"mutation": "mTOR pathway bypass", "gene": "MTOR", "frequency": "~5%",
+         "bypass": "downstream activation", "next_line": ["PI3Ki + mTOR inhibitor"]},
+    ],
+    "FGFR inhibitors": [
+        {"mutation": "V565I gatekeeper mutation", "gene": "FGFR2", "frequency": "~10-15%",
+         "bypass": "reduced drug binding", "next_line": ["next-gen FGFR inhibitor"]},
+        {"mutation": "Polyclonal FGFR2 secondaries", "gene": "FGFR2", "frequency": "~20%",
+         "bypass": "multiple resistance clones", "next_line": ["combination strategies"]},
+        {"mutation": "MAPK reactivation", "gene": "KRAS/BRAF", "frequency": "~10%",
+         "bypass": "bypass pathway", "next_line": ["FGFRi + MEK inhibitor"]},
     ],
 }
 
@@ -957,6 +1302,75 @@ BIOMARKER_PANELS: Dict[str, Dict] = {
         "description": "HER2 testing defines a major breast cancer subtype (~20%). The HER2-low paradigm "
                        "(IHC 1+/2+, FISH-negative) emerged with T-DXd (DESTINY-Breast04).",
     },
+    "FRalpha": {
+        "name": "Folate Receptor Alpha",
+        "type": "therapeutic_selection",
+        "testing_method": "IHC (LDT, Ventana FOLR1-2.1 antibody)",
+        "clinical_cutoff": "PS2+ (≥75% membrane staining at any intensity)",
+        "predictive_for": ["mirvetuximab soravtansine"],
+        "cancer_types": ["ovarian"],
+        "evidence_level": "A",
+        "description": "FRα expression identifies platinum-resistant ovarian cancer patients likely to "
+                       "benefit from mirvetuximab soravtansine. ~40% of platinum-resistant ovarian is "
+                       "FRα-high.",
+    },
+    "Nectin4": {
+        "name": "Nectin-4 Expression",
+        "type": "therapeutic_selection",
+        "testing_method": "IHC",
+        "clinical_cutoff": "Broadly expressed in urothelial (>97%), no cutoff required for enfortumab vedotin",
+        "predictive_for": ["enfortumab vedotin"],
+        "cancer_types": ["urothelial", "bladder"],
+        "evidence_level": "A",
+        "description": "Nectin-4 is near-universally expressed in urothelial carcinoma, making it an "
+                       "ideal ADC target. No companion diagnostic required for enfortumab vedotin.",
+    },
+    "CLDN18_2": {
+        "name": "Claudin 18.2 Expression",
+        "type": "predictive",
+        "testing_method": "IHC (VENTANA CLDN18 [43-14A] RxDx assay)",
+        "clinical_cutoff": "≥2+ in ≥75% of tumor cells",
+        "predictive_for": ["zolbetuximab"],
+        "cancer_types": ["gastric", "GEJ"],
+        "evidence_level": "A",
+        "description": "CLDN18.2 IHC is the companion diagnostic for zolbetuximab. ~38% of gastric "
+                       "cancers are CLDN18.2-positive at the approved cutoff.",
+    },
+    "MRD_heme": {
+        "name": "Minimal Residual Disease (Hematologic)",
+        "type": "monitoring",
+        "testing_method": "multiparameter flow cytometry (MFC), NGS (ClonoSEQ)",
+        "clinical_cutoff": "MRD-negative (<10⁻⁴ or <10⁻⁵)",
+        "predictive_for": ["treatment de-escalation", "prognosis"],
+        "cancer_types": ["ALL", "multiple_myeloma", "AML", "CLL"],
+        "evidence_level": "B",
+        "description": "MRD negativity in heme malignancies is a strong prognostic marker. ClonoSEQ "
+                       "(NGS-based) is FDA-cleared for ALL, CLL, and myeloma MRD assessment.",
+    },
+    "tTMB": {
+        "name": "Tissue vs Blood TMB",
+        "type": "predictive",
+        "testing_method": "tissue NGS (F1CDx) or blood NGS (F1Liquid CDx, Guardant360)",
+        "clinical_cutoff": "≥10 mut/Mb (tissue); ≥16 mut/Mb (blood, varies by platform)",
+        "predictive_for": ["pembrolizumab (tissue-agnostic)", "immunotherapy broadly"],
+        "cancer_types": ["tissue-agnostic"],
+        "evidence_level": "B",
+        "description": "Blood-based TMB (bTMB) is emerging as a non-invasive alternative to tissue TMB. "
+                       "Concordance with tTMB varies (~65-80%). F1Liquid CDx bTMB≥16 correlates with "
+                       "clinical benefit.",
+    },
+    "GIS": {
+        "name": "Genomic Instability Score",
+        "type": "predictive",
+        "testing_method": "Myriad myChoice CDx (LOH + TAI + LST composite)",
+        "clinical_cutoff": "GIS ≥42",
+        "predictive_for": ["PARP inhibitors (olaparib + bevacizumab in ovarian)"],
+        "cancer_types": ["ovarian", "breast"],
+        "evidence_level": "A",
+        "description": "GIS captures HRD beyond BRCA mutations by measuring genomic scarring. "
+                       "myChoice CDx GIS ≥42 (or BRCA-mutant) identifies ovarian cancer patients "
+                       "benefiting from olaparib maintenance (PAOLA-1, PRIMA trials).",
+    },
 }
 
 
@@ -989,6 +1403,19 @@ ENTITY_ALIASES: Dict[str, str] = {
     "msi high": "MSI-H", "msi-high": "MSI-H", "microsatellite instability": "MSI-H",
     "mmr deficient": "MSI-H", "dmmr": "MSI-H", "tmb high": "TMB-H", "tmb-high": "TMB-H",
     "pd-l1": "PD-L1", "pdl1": "PD-L1", "hrd": "HRD",
+    # New drug brand → generic
+    "trodelvy": "sacituzumab_govitecan", "padcev": "enfortumab_vedotin",
+    "elahere": "mirvetuximab_soravtansine", "vyloy": "zolbetuximab",
+    "imdelltra": "tarlatamab", "tazverik": "tazemetostat",
+    "yervoy": "ipilimumab", "truqap": "capivasertib",
+    "orserdu": "elacestrant", "augtyro": "repotrectinib",
+    # New gene aliases
+    "claudin 18.2": "CLDN18_2", "claudin18.2": "CLDN18_2", "cldn18": "CLDN18_2",
+    "nectin-4": "NECTIN4", "nectin4": "NECTIN4",
+    "folate receptor": "FOLR1", "fra": "FOLR1",
+    "dll3": "DLL3", "trop-2": "TROP2", "trop2": "TROP2",
+    "e-cadherin": "CDH1", "mek1": "MAP2K1",
+    "ini1": "SMARCB1", "snf5": "SMARCB1",
 }
 
 

@@ -1,8 +1,8 @@
 """
-Precision Oncology Agent - Pydantic Models
-============================================
+Oncology Intelligence Agent - Pydantic Models
+================================================
 Domain models, search containers, and agent I/O types
-for the Precision Oncology RAG agent.
+for the Oncology Intelligence RAG agent.
 """
 
 from datetime import datetime, timezone
@@ -40,6 +40,11 @@ class CancerType(str, Enum):
     DLBCL = "dlbcl"
     MULTIPLE_MYELOMA = "multiple_myeloma"
     OTHER = "other"
+    CHOLANGIOCARCINOMA = "cholangiocarcinoma"
+    ENDOMETRIAL = "endometrial"
+    THYROID = "thyroid"
+    MESOTHELIOMA = "mesothelioma"
+    SARCOMA = "sarcoma"
 
 
 class VariantType(str, Enum):
@@ -71,6 +76,8 @@ class TherapyCategory(str, Enum):
     COMBINATION = "combination"
     RADIOTHERAPY = "radiotherapy"
     CELL_THERAPY = "cell_therapy"
+    ADC = "adc"
+    BISPECIFIC = "bispecific"
 
 
 class TrialPhase(str, Enum):
@@ -115,6 +122,8 @@ class BiomarkerType(str, Enum):
     MONITORING = "monitoring"
     RESISTANCE = "resistance"
     PHARMACODYNAMIC = "pharmacodynamic"
+    SCREENING = "screening"
+    THERAPEUTIC_SELECTION = "therapeutic_selection"
 
 
 class PathwayName(str, Enum):
@@ -129,6 +138,9 @@ class PathwayName(str, Enum):
     HEDGEHOG = "hedgehog"
     JAK_STAT = "jak_stat"
     ANGIOGENESIS = "angiogenesis"
+    HIPPO = "hippo"
+    NF_KB = "nf_kb"
+    TGF_BETA = "tgf_beta"
 
 
 class GuidelineOrg(str, Enum):
@@ -138,6 +150,9 @@ class GuidelineOrg(str, Enum):
     ASCO = "ASCO"
     WHO = "WHO"
     CAP_AMP = "CAP/AMP"
+    FDA = "FDA"
+    EMA = "EMA"
+    AACR = "AACR"
 
 
 class SourceType(str, Enum):
@@ -500,7 +515,7 @@ class MTBPacket(BaseModel):
 
 
 class AgentQuery(BaseModel):
-    """Inbound query to the Precision Oncology Agent."""
+    """Inbound query to the Oncology Intelligence Agent."""
     question: str
     cancer_type: Optional[CancerType] = None
     gene: Optional[str] = None
@@ -513,7 +528,7 @@ class AgentQuery(BaseModel):
 
 
 class AgentResponse(BaseModel):
-    """Structured response from the Precision Oncology Agent."""
+    """Structured response from the Oncology Intelligence Agent."""
     question: str
     answer: str
     evidence: CrossCollectionResult

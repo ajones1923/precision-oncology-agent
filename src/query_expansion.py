@@ -60,6 +60,33 @@ CANCER_TYPE_EXPANSIONS = {
         "KRAS-mutant pancreatic", "metastatic pancreatic",
         "borderline resectable pancreatic",
     ],
+    "cholangiocarcinoma": [
+        "bile duct cancer", "intrahepatic cholangiocarcinoma",
+        "extrahepatic cholangiocarcinoma", "biliary tract cancer",
+        "FGFR2-fusion cholangiocarcinoma", "IDH1-mutant bile duct",
+    ],
+    "endometrial": [
+        "endometrial cancer", "uterine cancer", "endometrial carcinoma",
+        "POLE-ultramutated endometrial", "serous endometrial", "MSI-H endometrial",
+    ],
+    "sarcoma": [
+        "soft tissue sarcoma", "bone sarcoma", "leiomyosarcoma",
+        "liposarcoma", "undifferentiated pleomorphic sarcoma", "Ewing sarcoma",
+    ],
+    "thyroid": [
+        "thyroid cancer", "papillary thyroid carcinoma",
+        "medullary thyroid cancer", "anaplastic thyroid", "differentiated thyroid",
+    ],
+    "mesothelioma": [
+        "malignant pleural mesothelioma", "peritoneal mesothelioma",
+        "BAP1-altered mesothelioma", "asbestos-related cancer",
+        "mesothelioma immunotherapy",
+    ],
+    "HNSCC": [
+        "head and neck squamous cell carcinoma", "oropharyngeal cancer",
+        "HPV-positive HNSCC", "HPV-negative HNSCC",
+        "laryngeal cancer", "oral cavity cancer",
+    ],
 }
 
 # ---------------------------------------------------------------------------
@@ -109,6 +136,33 @@ GENE_EXPANSIONS = {
         "rearranged during transfection", "RET fusion",
         "RET M918T", "RET inhibitor", "KIF5B-RET",
     ],
+    "NRG1": [
+        "neuregulin 1", "NRG1 fusion", "CD74-NRG1",
+        "HER2-HER3 signaling", "zenocutuzumab target",
+    ],
+    "TROP2": [
+        "trophoblast cell surface antigen 2", "TACSTD2",
+        "TROP2 overexpression", "sacituzumab govitecan target",
+        "TROP2-directed ADC",
+    ],
+    "DLL3": [
+        "delta-like ligand 3", "DLL3 expression",
+        "Notch inhibitory ligand", "tarlatamab target", "SCLC biomarker",
+    ],
+    "EZH2": [
+        "enhancer of zeste homolog 2", "EZH2 gain-of-function",
+        "PRC2 catalytic subunit", "H3K27 trimethylation",
+        "tazemetostat target",
+    ],
+    "CDH1": [
+        "E-cadherin", "CDH1 germline mutation",
+        "hereditary diffuse gastric cancer", "lobular breast cancer gene",
+        "CDH1 loss",
+    ],
+    "MAP2K1": [
+        "MEK1", "MAP2K1 mutation", "MEK inhibitor target",
+        "MAPK pathway kinase", "selumetinib target",
+    ],
 }
 
 # ---------------------------------------------------------------------------
@@ -154,6 +208,30 @@ THERAPY_EXPANSIONS = {
     "encorafenib": [
         "Braftovi", "BRAF inhibitor", "encorafenib-cetuximab",
         "BEACON CRC", "RAF inhibitor",
+    ],
+    "sacituzumab": [
+        "Trodelvy", "TROP2 ADC", "sacituzumab govitecan",
+        "ASCENT trial", "SN-38 payload",
+    ],
+    "enfortumab": [
+        "Padcev", "enfortumab vedotin", "Nectin-4 ADC",
+        "EV-302", "MMAE payload",
+    ],
+    "tarlatamab": [
+        "Imdelltra", "DLL3 BiTE", "bispecific T-cell engager",
+        "DeLLphi-301", "DLL3-CD3 bispecific",
+    ],
+    "zolbetuximab": [
+        "Vyloy", "anti-CLDN18.2", "Claudin 18.2 antibody",
+        "SPOTLIGHT trial", "GLOW trial",
+    ],
+    "tazemetostat": [
+        "Tazverik", "EZH2 inhibitor", "PRC2 inhibitor",
+        "H3K27me3 inhibitor", "epigenetic therapy",
+    ],
+    "capivasertib": [
+        "Truqap", "AKT inhibitor", "pan-AKT kinase inhibitor",
+        "CAPItello-291", "PI3K pathway inhibitor",
     ],
 }
 
@@ -203,6 +281,25 @@ BIOMARKER_EXPANSIONS = {
     "ROS1": [
         "ROS proto-oncogene 1", "ROS1 fusion",
         "ROS1 rearrangement", "CD74-ROS1", "crizotinib biomarker",
+    ],
+    "FRalpha": [
+        "folate receptor alpha", "FOLR1 expression",
+        "mirvetuximab soravtansine biomarker", "FRα IHC",
+        "platinum-resistant ovarian biomarker",
+    ],
+    "Nectin-4": [
+        "Nectin-4 expression", "PVRL4", "enfortumab vedotin biomarker",
+        "urothelial carcinoma target", "cell adhesion molecule",
+    ],
+    "Claudin 18.2": [
+        "CLDN18.2 expression", "CLDN18.2 IHC",
+        "zolbetuximab companion diagnostic", "gastric cancer biomarker",
+        "tight junction protein",
+    ],
+    "GIS": [
+        "genomic instability score", "Myriad myChoice",
+        "LOH-TAI-LST composite", "HRD score",
+        "PARP inhibitor predictive biomarker",
     ],
 }
 
@@ -304,6 +401,21 @@ RESISTANCE_EXPANSIONS = {
         "on-target resistance", "off-target resistance",
         "lineage plasticity", "phenotypic switching",
         "tumor heterogeneity",
+    ],
+    "ADC resistance": [
+        "antibody-drug conjugate resistance", "antigen downregulation",
+        "payload efflux", "linker cleavage failure",
+        "bystander effect loss",
+    ],
+    "bispecific resistance": [
+        "bispecific antibody resistance", "target antigen loss",
+        "T cell exhaustion", "cytokine release avoidance",
+        "antigen escape",
+    ],
+    "PI3K inhibitor resistance": [
+        "PI3K pathway reactivation", "insulin feedback loop",
+        "PTEN restoration failure", "mTOR bypass activation",
+        "AKT-independent signaling",
     ],
 }
 
@@ -459,6 +571,20 @@ IMMUNOTHERAPY_EXPANSIONS = {
     "oncolytic virus": [
         "oncolytic virotherapy", "T-VEC", "talimogene laherparepvec",
         "viral immunotherapy", "tumor-selective replication",
+    ],
+    "anti-CTLA-4": [
+        "ipilimumab", "tremelimumab", "CTLA-4 blockade",
+        "dual checkpoint blockade", "Treg depletion",
+    ],
+    "TIGIT": [
+        "T cell immunoreceptor with Ig and ITIM domains",
+        "tiragolumab", "anti-TIGIT antibody",
+        "TIGIT checkpoint", "CITYSCAPE trial",
+    ],
+    "LAG-3": [
+        "lymphocyte activation gene 3", "relatlimab",
+        "LAG-3 checkpoint inhibitor", "Opdualag",
+        "relatlimab-nivolumab combination",
     ],
 }
 
@@ -617,6 +743,16 @@ GENOMICS_EXPANSIONS = {
         "multi-omic integration", "genomics-transcriptomics",
         "integrated molecular profiling", "TCGA",
         "pan-cancer atlas",
+    ],
+    "methylation profiling": [
+        "DNA methylation array", "Illumina EPIC array",
+        "tumor classification by methylation", "CpG island methylation",
+        "methylation-based CNS tumor classifier",
+    ],
+    "fragmentomics": [
+        "cfDNA fragment size analysis", "nucleosome positioning",
+        "DELFI fragmentomics", "cell-free DNA fragmentation",
+        "fragment-based cancer detection",
     ],
 }
 

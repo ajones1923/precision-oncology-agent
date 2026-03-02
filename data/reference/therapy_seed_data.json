@@ -273,5 +273,115 @@
     "mechanism_of_action": "Anti-HER2 antibody-drug conjugate with topoisomerase I inhibitor (DXd) payload and bystander effect",
     "evidence_level": "A",
     "fda_approval_year": 2019
+  },
+  {
+    "id": "ther-026",
+    "text_summary": "Sacituzumab govitecan is an antibody-drug conjugate (ADC) targeting TROP2, a cell-surface glycoprotein broadly expressed in epithelial cancers. The ADC consists of an anti-TROP2 humanized antibody conjugated to SN-38 (the active metabolite of irinotecan) via a proprietary hydrolyzable CL2A linker with a high drug-to-antibody ratio of approximately 7.6:1. In the ASCENT trial for metastatic TNBC, sacituzumab govitecan demonstrated PFS of 5.6 vs 1.7 months and OS of 12.1 vs 6.7 months compared to physician's choice chemotherapy. The TROPiCS-02 trial extended approval to HR-positive/HER2-negative metastatic breast cancer. Also approved for previously treated locally advanced or metastatic urothelial carcinoma. The high DAR and cleavable linker enable potent bystander killing in heterogeneous tumors. Key adverse effects include neutropenia (grade 3-4 in ~50%), diarrhea, nausea, and alopecia. UGT1A1*28 homozygosity increases SN-38 exposure and toxicity risk. No companion diagnostic for TROP2 expression is required.",
+    "drug_name": "sacituzumab govitecan",
+    "category": "targeted",
+    "targets": "TROP2",
+    "approved_indications": "metastatic TNBC, HR+/HER2- metastatic breast cancer, locally advanced or metastatic urothelial carcinoma",
+    "mechanism_of_action": "Anti-TROP2 antibody-drug conjugate with SN-38 topoisomerase I inhibitor payload",
+    "evidence_level": "A",
+    "fda_approval_year": 2020
+  },
+  {
+    "id": "ther-027",
+    "text_summary": "Enfortumab vedotin is an antibody-drug conjugate targeting Nectin-4, a cell adhesion molecule expressed in the majority of urothelial carcinomas. The ADC links an anti-Nectin-4 monoclonal antibody to the microtubule-disrupting agent monomethyl auristatin E (MMAE) via a protease-cleavable valine-citrulline linker. The EV-302/KEYNOTE-A39 trial established enfortumab vedotin plus pembrolizumab as the new first-line standard for locally advanced or metastatic urothelial carcinoma, with median PFS of 12.5 months and OS not reached, approximately doubling the PFS of gemcitabine/platinum chemotherapy. Enfortumab vedotin monotherapy was previously approved for previously treated urothelial carcinoma based on EV-301 (OS 12.9 vs 9.0 months). Key adverse effects include skin reactions (maculopapular rash, pruritus), peripheral neuropathy, hyperglycemia, and ocular toxicity. No Nectin-4 expression testing is required as the target is ubiquitously expressed in urothelial carcinoma.",
+    "drug_name": "enfortumab vedotin",
+    "category": "targeted",
+    "targets": "Nectin-4",
+    "approved_indications": "locally advanced or metastatic urothelial carcinoma (first-line with pembrolizumab, and previously treated monotherapy)",
+    "mechanism_of_action": "Anti-Nectin-4 antibody-drug conjugate with MMAE microtubule inhibitor payload",
+    "evidence_level": "A",
+    "fda_approval_year": 2019
+  },
+  {
+    "id": "ther-028",
+    "text_summary": "Mirvetuximab soravtansine is an antibody-drug conjugate targeting folate receptor alpha (FRalpha), a membrane protein highly expressed in ovarian cancer. The ADC consists of an anti-FRalpha antibody conjugated to the maytansinoid DM4 via a cleavable disulfide linker. Mirvetuximab soravtansine received FDA accelerated approval for FRalpha-positive, platinum-resistant epithelial ovarian, fallopian tube, or primary peritoneal cancer based on the SORAYA trial (ORR 32.4%, median DOR 6.9 months). The confirmatory MIRASOL trial demonstrated superiority over investigator's choice chemotherapy in FRalpha-positive, platinum-resistant ovarian cancer (PFS 5.6 vs 4.0 months, OS 16.5 vs 12.8 months, HR 0.67). The VENTANA FOLR1 (26B3) RxDx assay is the companion diagnostic, requiring PS2+ score (moderate-to-strong staining in >=75% of cells). Key adverse effects include blurred vision, keratopathy, nausea, fatigue, and peripheral neuropathy. Ocular monitoring with regular eye exams is required.",
+    "drug_name": "mirvetuximab soravtansine",
+    "category": "targeted",
+    "targets": "FOLR1 (FRalpha)",
+    "approved_indications": "FRalpha-positive, platinum-resistant epithelial ovarian cancer",
+    "mechanism_of_action": "Anti-FRalpha antibody-drug conjugate with DM4 maytansinoid payload",
+    "evidence_level": "A",
+    "fda_approval_year": 2022
+  },
+  {
+    "id": "ther-029",
+    "text_summary": "Zolbetuximab is a chimeric IgG1 monoclonal antibody targeting claudin 18.2 (CLDN18.2), a tight junction protein aberrantly exposed on the surface of gastric and gastroesophageal junction (GEJ) cancer cells. Zolbetuximab induces tumor cell killing through antibody-dependent cellular cytotoxicity (ADCC) and complement-dependent cytotoxicity (CDC). The SPOTLIGHT trial (zolbetuximab + mFOLFOX6) and GLOW trial (zolbetuximab + CAPOX) both demonstrated significant improvement in PFS and OS in CLDN18.2-positive, HER2-negative gastric/GEJ adenocarcinoma. SPOTLIGHT showed median PFS of 10.6 vs 8.7 months (HR 0.75) and OS of 18.2 vs 15.5 months (HR 0.75). CLDN18.2 positivity is assessed by the VENTANA CLDN18 (43-14A) RxDx companion diagnostic, requiring moderate-to-strong membrane staining in >=75% of tumor cells. Key adverse effects include nausea, vomiting, and decreased appetite, primarily infusion-related. Zolbetuximab represents the first CLDN18.2-targeted therapy to reach approval.",
+    "drug_name": "zolbetuximab",
+    "category": "targeted",
+    "targets": "CLDN18.2",
+    "approved_indications": "CLDN18.2-positive, HER2-negative locally advanced unresectable or metastatic gastric/GEJ adenocarcinoma (with chemotherapy)",
+    "mechanism_of_action": "Anti-CLDN18.2 monoclonal antibody inducing ADCC and CDC",
+    "evidence_level": "A",
+    "fda_approval_year": 2024
+  },
+  {
+    "id": "ther-030",
+    "text_summary": "Tarlatamab is a bispecific T-cell engager (BiTE) antibody construct that simultaneously binds DLL3 on tumor cells and CD3 on T cells, redirecting cytotoxic T lymphocytes to kill DLL3-expressing tumor cells. Tarlatamab received FDA accelerated approval for previously treated extensive-stage small cell lung cancer (ES-SCLC) based on the DeLLphi-301 trial, which demonstrated ORR of 40% and median DOR of 9.7 months at the recommended 10mg dose. Given the historically poor prognosis of relapsed SCLC (median OS of approximately 5-7 months with topotecan), tarlatamab represents a meaningful advance. DLL3 is expressed in approximately 80-85% of SCLC tumors but is largely absent from normal tissues. Key adverse effects include cytokine release syndrome (CRS, 53%), immune effector cell-associated neurotoxicity syndrome (ICANS), decreased appetite, and fatigue. Step-up dosing and hospitalization for initial doses mitigate CRS risk.",
+    "drug_name": "tarlatamab",
+    "category": "immunotherapy",
+    "targets": "DLL3, CD3",
+    "approved_indications": "previously treated extensive-stage small cell lung cancer",
+    "mechanism_of_action": "DLL3xCD3 bispecific T-cell engager (BiTE) redirecting T cells to DLL3-positive tumor cells",
+    "evidence_level": "A",
+    "fda_approval_year": 2024
+  },
+  {
+    "id": "ther-031",
+    "text_summary": "Tazemetostat is a selective, oral EZH2 (Enhancer of Zeste Homolog 2) inhibitor that blocks trimethylation of histone H3 at lysine 27 (H3K27me3), reversing epigenetic silencing of tumor suppressor genes. FDA-approved indications include relapsed/refractory follicular lymphoma (FL) with EZH2 mutation (ORR 69%, CR 12%) or for patients without satisfactory alternative treatment options (ORR 34%), and metastatic or locally advanced epithelioid sarcoma not eligible for curative surgery (ORR 15%, with durable responses). In EZH2-mutant FL, the drug targets the neomorphic gain-of-function mutations (Y646N/F/H, A687V, A692V) that increase H3K27me3. In epithelioid sarcoma, SMARCB1 (INI1) loss creates a synthetic lethal dependency on EZH2. Tazemetostat is generally well tolerated with adverse effects including fatigue, nausea, upper respiratory tract infection, and musculoskeletal pain. Secondary malignancies (T-cell lymphoma, MDS/AML) have been reported rarely.",
+    "drug_name": "tazemetostat",
+    "category": "targeted",
+    "targets": "EZH2",
+    "approved_indications": "relapsed/refractory follicular lymphoma (EZH2-mutant and wild-type), metastatic or locally advanced epithelioid sarcoma",
+    "mechanism_of_action": "Selective EZH2 histone methyltransferase inhibitor (blocks H3K27 trimethylation)",
+    "evidence_level": "A",
+    "fda_approval_year": 2020
+  },
+  {
+    "id": "ther-032",
+    "text_summary": "Ipilimumab is a fully human IgG1 monoclonal antibody targeting CTLA-4 (cytotoxic T-lymphocyte-associated protein 4), the first immune checkpoint inhibitor to demonstrate overall survival benefit in metastatic melanoma. Ipilimumab enhances T-cell priming and activation by blocking the CTLA-4 co-inhibitory receptor, which normally competes with CD28 for B7 ligand binding on antigen-presenting cells. The MDX010-20 trial demonstrated OS benefit in metastatic melanoma (10.1 vs 6.4 months). Ipilimumab's greatest clinical impact is in combination with nivolumab (anti-PD-1), with the CheckMate-067 trial showing 5-year OS of 52% in advanced melanoma. This combination is also FDA-approved in renal cell carcinoma (CheckMate-214), NSCLC (CheckMate-227/9LA), hepatocellular carcinoma, and mesothelioma. Key adverse effects are immune-related and include colitis (most common grade 3-4 toxicity), hepatitis, dermatitis, and endocrinopathies. The combination with nivolumab has higher toxicity rates (~60% grade 3-4) but achieves durable responses.",
+    "drug_name": "ipilimumab",
+    "category": "immunotherapy",
+    "targets": "CTLA-4",
+    "approved_indications": "melanoma (adjuvant and metastatic), renal cell carcinoma (with nivolumab), NSCLC (with nivolumab), hepatocellular carcinoma (with nivolumab), mesothelioma (with nivolumab), MSI-H/dMMR CRC (with nivolumab)",
+    "mechanism_of_action": "Anti-CTLA-4 monoclonal antibody (enhances T-cell priming by blocking co-inhibitory checkpoint)",
+    "evidence_level": "A",
+    "fda_approval_year": 2011
+  },
+  {
+    "id": "ther-033",
+    "text_summary": "Capivasertib is a selective, oral inhibitor of all three AKT isoforms (AKT1, AKT2, AKT3) approved in combination with fulvestrant for HR-positive/HER2-negative locally advanced or metastatic breast cancer with one or more PIK3CA/AKT1/PTEN alterations after progression on at least one endocrine-based regimen. The CAPItello-291 trial demonstrated PFS of 7.2 vs 3.6 months (HR 0.60) in the altered-pathway population and 5.5 vs 3.6 months in the overall population. Capivasertib directly inhibits AKT kinase activity, blocking downstream signaling through mTOR, FOXO, and GSK3-beta regardless of the specific upstream alteration (PIK3CA mutation, AKT1 E17K, or PTEN loss). Key adverse effects include diarrhea, rash (maculopapular), hyperglycemia, and infection. Capivasertib uses an intermittent dosing schedule (4 days on / 3 days off) to manage toxicity. The FoundationOne CDx is the companion diagnostic for identifying eligible patients.",
+    "drug_name": "capivasertib",
+    "category": "targeted",
+    "targets": "AKT1, AKT2, AKT3",
+    "approved_indications": "HR+/HER2- advanced breast cancer with PIK3CA/AKT1/PTEN alterations (with fulvestrant)",
+    "mechanism_of_action": "Selective pan-AKT kinase inhibitor (blocks AKT1/2/3 catalytic activity)",
+    "evidence_level": "A",
+    "fda_approval_year": 2023
+  },
+  {
+    "id": "ther-034",
+    "text_summary": "Elacestrant is an oral selective estrogen receptor degrader (SERD) approved for ER-positive/HER2-negative advanced or metastatic breast cancer with ESR1 mutations after at least one line of endocrine therapy. The EMERALD trial demonstrated PFS of 3.8 vs 1.9 months (HR 0.55) in the ESR1-mutant population compared to standard-of-care endocrine monotherapy. Elacestrant binds the estrogen receptor, induces conformational changes that promote receptor degradation via the proteasome, and blocks estrogen-dependent transcription. Unlike fulvestrant (intramuscular injection), elacestrant is orally bioavailable with once-daily dosing. Elacestrant was specifically designed to retain activity against ESR1 ligand-binding domain mutations (D538G, Y537S) that confer resistance to aromatase inhibitors. Key adverse effects include nausea, fatigue, vomiting, decreased appetite, arthralgia, and hot flashes. ESR1 mutation testing by ctDNA liquid biopsy is recommended to identify eligible patients. Elacestrant is the first oral SERD to receive FDA approval.",
+    "drug_name": "elacestrant",
+    "category": "targeted",
+    "targets": "ESR1 (estrogen receptor)",
+    "approved_indications": "ESR1-mutant, ER+/HER2- advanced breast cancer (after prior endocrine therapy)",
+    "mechanism_of_action": "Oral selective estrogen receptor degrader (SERD) with activity against ESR1 mutations",
+    "evidence_level": "A",
+    "fda_approval_year": 2023
+  },
+  {
+    "id": "ther-035",
+    "text_summary": "Repotrectinib is a next-generation, macrocyclic tyrosine kinase inhibitor targeting ROS1 and NTRK with potent activity against solvent-front resistance mutations that confer resistance to first-generation ROS1 inhibitors. FDA approval for ROS1-positive NSCLC was based on the TRIDENT-1 trial, which demonstrated ORR of 79% in TKI-naive patients and 38% in patients previously treated with one prior ROS1 TKI. Notably, repotrectinib showed an ORR of 59% against the ROS1 G2032R solvent-front mutation, the most common mechanism of acquired resistance to crizotinib and entrectinib. The compact macrocyclic structure of repotrectinib enables binding in the constrained ATP pocket created by solvent-front mutations. Repotrectinib also has activity against NTRK fusions including those with solvent-front resistance mutations. Key adverse effects include dizziness, dysgeusia, peripheral neuropathy, constipation, and ataxia. CNS adverse effects are generally mild and transient.",
+    "drug_name": "repotrectinib",
+    "category": "targeted",
+    "targets": "ROS1, NTRK1, NTRK2, NTRK3",
+    "approved_indications": "ROS1-positive NSCLC (TKI-naive and previously treated)",
+    "mechanism_of_action": "Next-generation macrocyclic ROS1/TRK inhibitor with activity against solvent-front resistance mutations",
+    "evidence_level": "A",
+    "fda_approval_year": 2023
   }
 ]

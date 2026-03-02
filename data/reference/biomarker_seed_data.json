@@ -208,5 +208,95 @@
     "predictive_value": "Favorable prognosis in TNBC; potential predictor of immunotherapy response",
     "testing_method": "H&E histology (stromal TIL scoring per International TILs WG guidelines)",
     "clinical_cutoff": ">=50-60% stromal TILs (strong favorable prognosis in TNBC)"
+  },
+  {
+    "id": "bio-022",
+    "text_summary": "Folate receptor alpha (FRalpha) is a glycosylphosphatidylinositol-anchored membrane protein that mediates cellular folate uptake and is overexpressed in approximately 80% of high-grade serous ovarian cancers and at lower frequencies in endometrial, TNBC, and NSCLC. FRalpha expression is a predictive biomarker for mirvetuximab soravtansine, an anti-FRalpha ADC approved for platinum-resistant ovarian cancer. The VENTANA FOLR1 (26B3) RxDx assay is the FDA-approved companion diagnostic, using a Proportion Score (PS) system where PS2+ (moderate-to-strong membrane staining in >=75% of tumor cells) defines eligibility. The MIRASOL trial demonstrated that FRalpha-high patients derive the greatest benefit from mirvetuximab soravtansine (PFS 5.6 vs 4.0 months, OS 16.5 vs 12.8 months). FRalpha expression correlates with serous histology and high-grade disease. Normal tissue expression is restricted to the apical surface of polarized epithelial cells, limiting off-target toxicity.",
+    "biomarker_name": "FRalpha (Folate Receptor Alpha)",
+    "biomarker_type": "predictive",
+    "cancer_types": "ovarian, endometrial, TNBC, NSCLC",
+    "predictive_value": "Response to mirvetuximab soravtansine in FRalpha-positive platinum-resistant ovarian cancer",
+    "testing_method": "IHC (VENTANA FOLR1 26B3 RxDx assay)",
+    "clinical_cutoff": "PS2+: moderate-to-strong staining in >=75% of viable tumor cells"
+  },
+  {
+    "id": "bio-023",
+    "text_summary": "Nectin-4 is a type I transmembrane protein of the immunoglobulin superfamily that mediates cell adhesion and is broadly expressed in approximately 60-70% of urothelial carcinomas at high levels, with additional expression in breast, lung, pancreatic, and gastric cancers. Nectin-4 serves as the therapeutic target for enfortumab vedotin, an anti-Nectin-4 ADC with MMAE payload. Unlike many ADC biomarkers, Nectin-4 expression testing by IHC is not required for enfortumab vedotin eligibility because of the near-universal expression in urothelial carcinoma. The EV-302/KEYNOTE-A39 trial established enfortumab vedotin plus pembrolizumab as first-line therapy in urothelial carcinoma regardless of Nectin-4 expression level. Nectin-4 loss through downregulation is an emerging resistance mechanism to enfortumab vedotin. H-score IHC assessment can quantify expression, with most urothelial carcinomas showing H-scores greater than 150. Research is ongoing to evaluate Nectin-4 as a patient selection biomarker in non-urothelial cancers.",
+    "biomarker_name": "Nectin-4",
+    "biomarker_type": "predictive",
+    "cancer_types": "urothelial, breast, lung, pancreatic",
+    "predictive_value": "Therapeutic target for enfortumab vedotin (no companion diagnostic required in urothelial carcinoma)",
+    "testing_method": "IHC (research setting; not required for clinical use in urothelial carcinoma)",
+    "clinical_cutoff": "No established clinical cutoff for urothelial carcinoma (near-universal expression)"
+  },
+  {
+    "id": "bio-024",
+    "text_summary": "Claudin 18.2 (CLDN18.2) is a tight junction protein normally expressed in differentiated gastric mucosal cells that becomes aberrantly accessible on the tumor cell surface in approximately 38-40% of gastric/GEJ adenocarcinomas and 50-60% of pancreatic cancers. Loss of cell polarity during malignant transformation exposes CLDN18.2 epitopes, making it targetable by zolbetuximab. The VENTANA CLDN18 (43-14A) RxDx assay is the FDA-approved companion diagnostic. Positivity is defined as moderate-to-strong membranous staining in >=75% of tumor cells. The SPOTLIGHT and GLOW trials demonstrated that CLDN18.2-positive patients benefit from adding zolbetuximab to first-line chemotherapy in gastric/GEJ cancer. CLDN18.2 testing should be performed alongside HER2 testing, as zolbetuximab is indicated only for HER2-negative disease. CLDN18.2 expression is mutually informative with but independent of MSI, PD-L1, and HER2 status. Testing on biopsy specimens is adequate, though intratumoral heterogeneity may affect results.",
+    "biomarker_name": "CLDN18.2",
+    "biomarker_type": "predictive",
+    "cancer_types": "gastric, GEJ adenocarcinoma, pancreatic",
+    "predictive_value": "Response to zolbetuximab in CLDN18.2-positive gastric/GEJ adenocarcinoma",
+    "testing_method": "IHC (VENTANA CLDN18 43-14A RxDx assay)",
+    "clinical_cutoff": "Moderate-to-strong membranous staining in >=75% of tumor cells"
+  },
+  {
+    "id": "bio-025",
+    "text_summary": "Measurable residual disease (MRD) in hematologic malignancies refers to the detection of residual cancer cells below the threshold of conventional morphologic assessment (typically <5% blasts). MRD assessment is a powerful prognostic and predictive biomarker in acute lymphoblastic leukemia (ALL), acute myeloid leukemia (AML), chronic lymphocytic leukemia (CLL), and multiple myeloma. In CLL, MRD negativity (undetectable MRD at 10^-4 sensitivity) after venetoclax-based therapy strongly predicts prolonged PFS and is being used as a treatment endpoint in clinical trials. In AML, MRD by multiparameter flow cytometry (MFC) or molecular methods (NPM1 qPCR, NGS) guides post-remission therapy decisions. In ALL, MRD-positive status after induction guides intensification or blinatumomab consolidation. The two primary detection methods are multiparameter flow cytometry (sensitivity 10^-4 to 10^-5) and molecular approaches including NGS-based clonoSEQ (sensitivity 10^-6). NCCN guidelines recommend MRD assessment at key treatment milestones.",
+    "biomarker_name": "MRD (Measurable Residual Disease)",
+    "biomarker_type": "prognostic",
+    "cancer_types": "AML, ALL, CLL, multiple myeloma",
+    "predictive_value": "Predicts relapse risk and guides post-remission therapy; treatment endpoint in CLL trials",
+    "testing_method": "Multiparameter flow cytometry (MFC), NGS (clonoSEQ), qPCR (NPM1, BCR-ABL1)",
+    "clinical_cutoff": "Undetectable MRD at 10^-4 (flow) or 10^-6 (NGS) sensitivity"
+  },
+  {
+    "id": "bio-026",
+    "text_summary": "Tumor mutational burden (TMB) can be assessed from tissue (tTMB) or blood (bTMB) samples, with important concordance considerations. Tissue TMB, measured by comprehensive genomic profiling panels (FoundationOne CDx, MSK-IMPACT), is the FDA-approved approach for pembrolizumab eligibility (>=10 mut/Mb). Blood-based TMB (bTMB) is calculated from ctDNA using panels such as Guardant360 CDx and offers advantages of non-invasive serial monitoring and avoidance of tissue biopsy challenges. However, bTMB and tTMB show moderate correlation (r ~0.6-0.7), and the optimal bTMB threshold for immunotherapy prediction differs from tissue-based cutoffs. The BFAST trial explored bTMB >=16 as a threshold for atezolizumab benefit in NSCLC. Key limitations of bTMB include reduced sensitivity in low tumor shedding contexts and potential confounding by clonal hematopoiesis of indeterminate potential (CHIP). Current NCCN guidelines recommend tissue-based TMB when available, with bTMB as an alternative when tissue is insufficient.",
+    "biomarker_name": "Tissue vs Blood TMB",
+    "biomarker_type": "predictive",
+    "cancer_types": "pan-cancer, NSCLC, melanoma, bladder",
+    "predictive_value": "Response to immune checkpoint inhibitors; tissue TMB FDA-approved, blood TMB under investigation",
+    "testing_method": "Tissue: CGP panels (FoundationOne CDx, MSK-IMPACT); Blood: ctDNA panels (Guardant360 CDx)",
+    "clinical_cutoff": "Tissue: >=10 mut/Mb (FDA-approved); Blood: >=16 mut/Mb (investigational BFAST threshold)"
+  },
+  {
+    "id": "bio-027",
+    "text_summary": "Genomic instability score (GIS) is a composite biomarker that quantifies genomic scarring from homologous recombination deficiency (HRD) by measuring three independent metrics: loss of heterozygosity (LOH), telomeric allelic imbalance (TAI), and large-scale state transitions (LST). The Myriad myChoice CDx HRD assay calculates a GIS combining these three components with a clinical threshold of >=42 to define HRD-positive status. GIS is an FDA-approved companion diagnostic for PARP inhibitor eligibility in ovarian cancer, identifying both BRCA-mutant and BRCA wild-type HRD-positive patients. In the PRIMA/ENGOT-OV26 trial, niraparib maintenance significantly improved PFS in the HRD-positive population (21.9 vs 10.4 months). The GIS captures cumulative genomic damage from HRD regardless of the specific causative gene defect, including cases with BRCA1 promoter methylation, RAD51C loss, or other HRR gene alterations. GIS testing is performed on FFPE tumor tissue and requires adequate tumor cellularity.",
+    "biomarker_name": "GIS (Genomic Instability Score)",
+    "biomarker_type": "predictive",
+    "cancer_types": "ovarian, breast, prostate, pancreatic",
+    "predictive_value": "Response to PARP inhibitors in HRD-positive tumors regardless of BRCA mutation status",
+    "testing_method": "Myriad myChoice CDx (LOH + TAI + LST composite score)",
+    "clinical_cutoff": ">=42 on myChoice CDx scale defines HRD-positive"
+  },
+  {
+    "id": "bio-028",
+    "text_summary": "DLL3 (Delta-like ligand 3) is an atypical inhibitory Notch pathway ligand aberrantly expressed on the cell surface of approximately 80-85% of small cell lung cancers (SCLC), 50-70% of large cell neuroendocrine carcinomas, and other high-grade neuroendocrine tumors, while being virtually absent from normal adult tissues. DLL3 surface expression in SCLC results from neuroendocrine lineage-specific transcriptional programs driven by ASCL1. DLL3 is the therapeutic target for tarlatamab (DLL3xCD3 BiTE antibody) and was previously targeted by rovalpituzumab tesirine (Rova-T), which was discontinued due to insufficient efficacy. DLL3 IHC testing is available using antibodies such as the SP347 clone. While DLL3 testing is not currently required for tarlatamab eligibility in SCLC due to high prevalence, it may become relevant for patient selection in non-SCLC neuroendocrine tumors. DLL3 expression is retained in the majority of SCLC tumors even after multiple lines of therapy.",
+    "biomarker_name": "DLL3",
+    "biomarker_type": "predictive",
+    "cancer_types": "SCLC, large cell neuroendocrine carcinoma, neuroendocrine tumors",
+    "predictive_value": "Therapeutic target for tarlatamab (DLL3xCD3 BiTE); high prevalence in SCLC",
+    "testing_method": "IHC (SP347 clone), RNA expression analysis",
+    "clinical_cutoff": "No established clinical cutoff for SCLC (near-universal expression); >=1% for research studies"
+  },
+  {
+    "id": "bio-029",
+    "text_summary": "TROP2 (Trophoblast cell-surface antigen 2, encoded by TACSTD2) is a transmembrane glycoprotein broadly expressed across epithelial malignancies, with high expression found in approximately 80-90% of TNBC, 60-80% of HR-positive breast cancers, 60-70% of urothelial carcinomas, and significant expression in NSCLC, gastric, and colorectal cancers. TROP2 promotes tumor growth through intracellular domain signaling, cyclin D1 upregulation, and ERK activation. TROP2 is the target for sacituzumab govitecan (anti-TROP2 ADC) and datopotamab deruxtecan (in development). Notably, sacituzumab govitecan is approved without a companion diagnostic for TROP2 expression, as clinical activity has been observed across the range of TROP2 expression levels, likely due to the high drug-to-antibody ratio and bystander killing effect. IHC scoring with H-score may help identify patients most likely to benefit, but prospective validation is needed. TROP2 expression levels may evolve under therapeutic pressure.",
+    "biomarker_name": "TROP2",
+    "biomarker_type": "predictive",
+    "cancer_types": "breast (TNBC, HR+), urothelial, NSCLC, gastric, colorectal",
+    "predictive_value": "Therapeutic target for sacituzumab govitecan; no companion diagnostic currently required",
+    "testing_method": "IHC (SP419 clone, research setting); not required for clinical use",
+    "clinical_cutoff": "No established clinical cutoff (broad expression; no companion diagnostic required)"
+  },
+  {
+    "id": "bio-030",
+    "text_summary": "EZH2 mutation status identifies gain-of-function mutations in the EZH2 histone methyltransferase that are found in approximately 7-12% of follicular lymphomas (FL), 22% of germinal center B-cell diffuse large B-cell lymphomas (GCB-DLBCL), and rarely in other cancers. Hotspot EZH2 mutations (Y646N/F/H/S/C, A687V, A692V) in the SET catalytic domain result in neomorphic activity, increasing H3K27me3 levels and silencing tumor suppressor genes. EZH2 mutation status is a predictive biomarker for tazemetostat, an EZH2 inhibitor approved for relapsed/refractory FL. The EZH2-mutant FL cohort showed ORR of 69% versus 34% for EZH2 wild-type, though tazemetostat is approved for both populations. EZH2 mutation testing is performed by NGS, with specific interrogation of the SET domain hotspots. NCCN guidelines recommend EZH2 testing in FL patients being considered for tazemetostat therapy. EZH2 overexpression without mutation is common in solid tumors and may also predict tazemetostat sensitivity in specific contexts.",
+    "biomarker_name": "EZH2 Mutation Status",
+    "biomarker_type": "predictive",
+    "cancer_types": "follicular lymphoma, DLBCL, epithelioid sarcoma",
+    "predictive_value": "Response to tazemetostat (EZH2 inhibitor); higher response rates in EZH2-mutant FL",
+    "testing_method": "NGS (targeted sequencing of EZH2 SET domain hotspots)",
+    "clinical_cutoff": "Presence of activating EZH2 SET domain mutation (Y646, A687V, A692V)"
   }
 ]

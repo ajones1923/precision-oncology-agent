@@ -148,5 +148,105 @@
     "key_recommendations": "ESCAT tier system: I (validated), II (investigational), III (off-label evidence), IV (preclinical). NGS recommended for all advanced cancers. Molecular tumor boards for complex profiles. Tier I alterations warrant standard treatment. Tier II-III warrant clinical trial consideration. Cross-tumor-type evidence considered for tissue-agnostic targets. ESCAT levels guide reimbursement decisions in EU.",
     "molecular_testing": "Comprehensive NGS (DNA + RNA), tumor type-specific panels minimum, whole-exome/genome sequencing for research settings",
     "last_updated": "2024-09"
+  },
+  {
+    "id": "guide-016",
+    "text_summary": "The NCCN Guidelines for Bladder/Urothelial Cancer (Version 3.2025) reflect the transformative shift in first-line treatment with enfortumab vedotin plus pembrolizumab becoming the preferred regimen for locally advanced or metastatic urothelial carcinoma based on EV-302/KEYNOTE-A39 (PFS 12.5 months, OS not reached). Gemcitabine plus cisplatin or carboplatin remains an alternative, followed by avelumab maintenance for those with stable or responding disease (JAVELIN Bladder 100). Erdafitinib is recommended for FGFR2/3-altered disease. Sacituzumab govitecan and single-agent pembrolizumab or nivolumab are options for later lines. Molecular testing should include FGFR2/3 alterations, PD-L1, MSI/MMR, TMB, and NTRK fusions. The guidelines emphasize the importance of FGFR testing at diagnosis given the availability of erdafitinib. Radical cystectomy with pelvic lymph node dissection remains the standard for muscle-invasive disease with neoadjuvant cisplatin-based chemotherapy recommended for eligible patients.",
+    "organization": "NCCN",
+    "cancer_type": "bladder/urothelial",
+    "version": "3.2025",
+    "key_recommendations": "Enfortumab vedotin + pembrolizumab preferred 1L for advanced urothelial. Gem/cis or gem/carbo alternative 1L, followed by avelumab maintenance. Erdafitinib for FGFR2/3-altered. Sacituzumab govitecan for pretreated. FGFR, PD-L1, MSI testing recommended. Neoadjuvant cisplatin-based chemo for MIBC.",
+    "molecular_testing": "FGFR2/3 alterations (mandatory), PD-L1 CPS, MSI/MMR, TMB, NTRK fusions, HER2, comprehensive genomic profiling",
+    "last_updated": "2025-03"
+  },
+  {
+    "id": "guide-017",
+    "text_summary": "The NCCN Guidelines for Gastric Cancer (Version 2.2025) incorporate zolbetuximab for CLDN18.2-positive, HER2-negative advanced gastric/GEJ adenocarcinoma based on the SPOTLIGHT and GLOW trials. HER2 testing by IHC/FISH is mandatory for all advanced gastric cancers, with trastuzumab plus chemotherapy remaining the standard for HER2-positive disease. PD-L1 CPS testing guides the addition of nivolumab to chemotherapy (CheckMate-649: CPS>=5 population). MSI-H/dMMR testing is recommended for all patients. Molecular profiling should include CLDN18.2 (IHC), HER2, PD-L1, MSI/MMR, and consideration of NTRK fusions and TMB. First-line for HER2-negative, CLDN18.2-negative disease is fluoropyrimidine/platinum plus nivolumab for CPS>=5. The guidelines emphasize that CLDN18.2 and HER2 testing should be performed concurrently at diagnosis to avoid treatment delays. Perioperative FLOT chemotherapy remains the standard for resectable gastric cancer.",
+    "organization": "NCCN",
+    "cancer_type": "gastric",
+    "version": "2.2025",
+    "key_recommendations": "HER2 testing mandatory for all advanced gastric. Trastuzumab + chemo for HER2-positive. Zolbetuximab + chemo for CLDN18.2-positive/HER2-negative. Nivolumab + chemo for CPS>=5. MSI testing universal. CLDN18.2 IHC at diagnosis. Perioperative FLOT for resectable disease.",
+    "molecular_testing": "HER2 IHC/FISH, CLDN18.2 IHC (VENTANA 43-14A), PD-L1 CPS, MSI/MMR, NTRK fusions, TMB, comprehensive profiling for advanced disease",
+    "last_updated": "2025-02"
+  },
+  {
+    "id": "guide-018",
+    "text_summary": "The NCCN Guidelines for Ovarian Cancer (Version 2.2025) reinforce BRCA1/2 and HRD testing for all epithelial ovarian cancers and add FRalpha testing for patients with platinum-resistant disease. PARP inhibitor maintenance remains the standard: olaparib for BRCA-mutant after first-line platinum response (SOLO-1), niraparib for HRD-positive (PRIMA), and olaparib plus bevacizumab for HRD-positive with residual disease. Mirvetuximab soravtansine is now a preferred option for FRalpha-positive, platinum-resistant ovarian cancer based on the MIRASOL trial (OS benefit: 16.5 vs 12.8 months). Pembrolizumab is recommended for MSI-H/dMMR ovarian cancers. Genetic counseling and germline testing are recommended for all patients regardless of family history. The guidelines emphasize comprehensive molecular profiling including BRCA1/2 (germline and somatic), HRD score, MSI/MMR, FRalpha (IHC), and NTRK fusions. Bevacizumab is incorporated into multiple lines of therapy.",
+    "organization": "NCCN",
+    "cancer_type": "ovarian",
+    "version": "2.2025",
+    "key_recommendations": "BRCA/HRD testing for all epithelial ovarian. PARP maintenance standard after 1L platinum response. FRalpha testing for platinum-resistant disease. Mirvetuximab soravtansine for FRalpha-positive platinum-resistant. Pembrolizumab for MSI-H. Germline testing for all patients. Bevacizumab in multiple settings.",
+    "molecular_testing": "BRCA1/2 (germline + somatic), HRD score (myChoice CDx), MSI/MMR, FRalpha IHC (VENTANA FOLR1 26B3), NTRK fusions, comprehensive molecular profiling",
+    "last_updated": "2025-02"
+  },
+  {
+    "id": "guide-019",
+    "text_summary": "The NCCN Guidelines for Small Cell Lung Cancer (Version 3.2025) incorporate tarlatamab as a new treatment option for previously treated extensive-stage SCLC based on the DeLLphi-301 trial. First-line treatment remains platinum-etoposide plus atezolizumab (IMpower133) or durvalumab (CASPIAN). Tarlatamab (DLL3-targeting BiTE antibody) is now listed for second-line or subsequent therapy, providing the first bispecific T-cell engager option in SCLC. Lurbinectedin remains an option for previously treated SCLC. Topotecan is an alternative second-line agent. The guidelines recommend CRS prophylaxis and monitoring during tarlatamab initiation, including step-up dosing and hospitalization for initial cycles. Brain MRI surveillance is important given the high rate of CNS metastases in SCLC. Prophylactic cranial irradiation (PCI) is an option for patients achieving response to first-line therapy. The guidelines note that DLL3 IHC testing is not required for tarlatamab eligibility.",
+    "organization": "NCCN",
+    "cancer_type": "SCLC",
+    "version": "3.2025",
+    "key_recommendations": "Platinum-etoposide + atezolizumab or durvalumab 1L. Tarlatamab for previously treated ES-SCLC. Lurbinectedin alternative 2L. Topotecan for 2L+. CRS monitoring with tarlatamab. PCI for responders. Brain MRI surveillance. DLL3 testing not required for tarlatamab.",
+    "molecular_testing": "Limited role for molecular testing in SCLC; DLL3 IHC (not required for tarlatamab); PD-L1 (not predictive in SCLC); consider comprehensive profiling for rare targetable alterations",
+    "last_updated": "2025-02"
+  },
+  {
+    "id": "guide-020",
+    "text_summary": "The NCCN Guidelines for Soft Tissue Sarcoma (Version 2.2025) encompass a broad group of mesenchymal malignancies with subtype-specific recommendations. Tazemetostat (EZH2 inhibitor) is recommended for metastatic or locally advanced epithelioid sarcoma with SMARCB1 (INI1) loss. Doxorubicin-based regimens remain the standard first-line for most advanced soft tissue sarcomas. Pazopanib is approved for non-adipocytic soft tissue sarcomas after chemotherapy. Trabectedin is approved for liposarcoma and leiomyosarcoma. Nirogacestat (gamma-secretase inhibitor) is approved for progressive desmoid tumors. The guidelines recommend INI1 IHC for suspected epithelioid sarcoma, MDM2/CDK4 FISH for well-differentiated/dedifferentiated liposarcoma, and SS18 (SYT) rearrangement testing for synovial sarcoma. Molecular profiling is increasingly important as subtype-specific targets are identified. Surgical resection remains the primary treatment for localized disease with wide margins and consideration of radiation therapy.",
+    "organization": "NCCN",
+    "cancer_type": "soft tissue sarcoma",
+    "version": "2.2025",
+    "key_recommendations": "Tazemetostat for INI1-negative epithelioid sarcoma. Doxorubicin-based 1L for most advanced STS. Pazopanib for non-adipocytic STS. Trabectedin for liposarcoma/leiomyosarcoma. Nirogacestat for desmoid tumors. INI1 IHC for epithelioid sarcoma. MDM2/CDK4 FISH for liposarcoma. Subtype-specific molecular testing.",
+    "molecular_testing": "INI1 IHC (SMARCB1, epithelioid sarcoma), MDM2/CDK4 FISH (liposarcoma), SS18 rearrangement (synovial sarcoma), EZH2 mutation testing, comprehensive genomic profiling for rare subtypes",
+    "last_updated": "2025-01"
+  },
+  {
+    "id": "guide-021",
+    "text_summary": "The ESMO Clinical Practice Guidelines for Cholangiocarcinoma (2024) recommend comprehensive molecular profiling for all patients with advanced biliary tract cancers to identify actionable alterations. FGFR2 fusions/rearrangements (10-16% of intrahepatic cholangiocarcinoma) are targetable with pemigatinib, futibatinib, or infigratinib. IDH1 mutations (10-15% of iCCA) are targetable with ivosidenib (ClarIDHy trial). BRAF V600E mutations (3-5%) warrant dabrafenib plus trametinib. MSI-H/dMMR tumors qualify for pembrolizumab. HER2 amplification (5-15% of extrahepatic/gallbladder) may be addressed with trastuzumab-based therapy. First-line standard is gemcitabine plus cisplatin plus durvalumab (TOPAZ-1 trial: OS 12.8 vs 11.5 months). ESMO recommends NGS-based profiling (preferably including RNA sequencing for fusions) at diagnosis. The guidelines use the ESCAT framework to classify molecular targets, with FGFR2 fusions and IDH1 mutations as ESCAT tier I in cholangiocarcinoma.",
+    "organization": "ESMO",
+    "cancer_type": "cholangiocarcinoma",
+    "version": "2024",
+    "key_recommendations": "Comprehensive molecular profiling for all advanced biliary cancers. Gemcitabine + cisplatin + durvalumab 1L. FGFR2 fusion: pemigatinib/futibatinib. IDH1 mutant: ivosidenib. BRAF V600E: dabrafenib + trametinib. MSI-H: pembrolizumab. HER2-amplified: trastuzumab-based. ESCAT I: FGFR2 fusions, IDH1 mutations.",
+    "molecular_testing": "NGS (DNA + RNA for fusions), FGFR2 fusions, IDH1/IDH2, BRAF V600E, MSI/MMR, HER2, NTRK fusions, TMB, BRCA1/2",
+    "last_updated": "2024-06"
+  },
+  {
+    "id": "guide-022",
+    "text_summary": "The ESMO Clinical Practice Guidelines for Endometrial Cancer (2024) incorporate the molecular classification system (TCGA-based ProMisE/TransPORTEC) into risk stratification and treatment decisions. Four molecular subtypes are recognized: POLE ultramutated (favorable prognosis, may omit adjuvant therapy), MSI-H/dMMR (immunotherapy responsive), p53-abnormal (poor prognosis, aggressive treatment), and no specific molecular profile (NSMP, intermediate). Dostarlimab plus carboplatin/paclitaxel is the new first-line standard for advanced/recurrent dMMR endometrial cancer based on the RUBY trial (PFS HR 0.28 in dMMR population). Lenvatinib plus pembrolizumab remains the standard for previously treated pMMR advanced endometrial cancer (KEYNOTE-775). MSI/MMR testing is mandatory at diagnosis. The guidelines recommend p53 IHC, POLE mutation analysis, and MSI/MMR testing for all endometrial cancers to enable molecular classification. HER2 testing is recommended for serous histology. Hormone receptor status guides endocrine therapy options.",
+    "organization": "ESMO",
+    "cancer_type": "endometrial",
+    "version": "2024",
+    "key_recommendations": "Molecular classification (POLE, MSI-H, p53-abn, NSMP) for all endometrial cancers. Dostarlimab + chemo for advanced dMMR. Lenvatinib + pembrolizumab for pretreated pMMR. MSI/MMR testing mandatory. POLE analysis for risk stratification. p53 IHC for prognostication. HER2 testing for serous histology.",
+    "molecular_testing": "MSI/MMR (universal), POLE exonuclease domain, p53 IHC, HER2 (serous), ER/PR, comprehensive genomic profiling for advanced disease",
+    "last_updated": "2024-09"
+  },
+  {
+    "id": "guide-023",
+    "text_summary": "The ASCO Guideline on Management of MSI-H/dMMR Gastrointestinal and Other Solid Tumors (2024 update) provides comprehensive recommendations for the identification and treatment of MSI-H/dMMR cancers. Universal MSI/MMR testing is recommended for all colorectal, endometrial, gastric, and small intestinal cancers at diagnosis. Testing methods include IHC for MMR proteins (MLH1, MSH2, MSH6, PMS2), PCR-based MSI testing, and NGS-based MSI assessment. For metastatic MSI-H/dMMR CRC, pembrolizumab is the preferred first-line therapy (KEYNOTE-177). For advanced MSI-H/dMMR endometrial cancer, dostarlimab plus chemotherapy is recommended (RUBY). Nivolumab plus ipilimumab is an option for MSI-H/dMMR CRC. In non-CRC, non-endometrial MSI-H tumors, pembrolizumab (tissue-agnostic approval) is the standard. Lynch syndrome screening (MLH1 methylation and BRAF V600E testing to exclude sporadic MSI-H CRC) should follow MSI-H identification. Genetic counseling is mandatory for confirmed Lynch syndrome.",
+    "organization": "ASCO",
+    "cancer_type": "pan-cancer (MSI-H/dMMR)",
+    "version": "2024",
+    "key_recommendations": "Universal MSI/MMR testing for CRC, endometrial, gastric, small intestinal. Pembrolizumab 1L for MSI-H mCRC. Dostarlimab + chemo for advanced MSI-H endometrial. Nivolumab + ipilimumab for MSI-H CRC. Tissue-agnostic pembrolizumab for other MSI-H tumors. Lynch syndrome screening after MSI-H identification. Genetic counseling mandatory.",
+    "molecular_testing": "IHC (MLH1, MSH2, MSH6, PMS2), PCR-based MSI, NGS-based MSI, MLH1 methylation, BRAF V600E (for Lynch screening), germline MMR gene testing",
+    "last_updated": "2024-08"
+  },
+  {
+    "id": "guide-024",
+    "text_summary": "The NCCN Genetic/Familial High-Risk Assessment: Breast, Ovarian, and Pancreatic Guidelines (Version 1.2025) provide comprehensive recommendations for germline genetic testing, risk management, and cancer prevention in individuals with hereditary cancer predisposition syndromes. BRCA1/2 testing criteria have been expanded to include all breast cancer patients diagnosed at age 65 or younger, all ovarian cancer patients regardless of family history, all pancreatic cancer patients, and metastatic prostate cancer patients. Multi-gene panel testing (including BRCA1/2, PALB2, ATM, CHEK2, RAD51C, RAD51D, BARD1, CDH1, TP53, PTEN, STK11) is preferred over sequential single-gene testing. Risk-reducing surgery recommendations include bilateral mastectomy for BRCA1/2 (50-85% lifetime breast cancer risk), risk-reducing salpingo-oophorectomy by age 35-40 for BRCA1 and 40-45 for BRCA2, and prophylactic gastrectomy for CDH1 carriers. Enhanced screening protocols are gene-specific.",
+    "organization": "NCCN",
+    "cancer_type": "hereditary cancer syndromes",
+    "version": "1.2025",
+    "key_recommendations": "Expanded BRCA testing criteria. Multi-gene panel testing preferred. Risk-reducing mastectomy for BRCA1/2 carriers. RRSO by age 35-40 for BRCA1, 40-45 for BRCA2. Prophylactic gastrectomy for CDH1. PALB2 carriers: enhanced screening + consider risk-reducing surgery. ATM/CHEK2: enhanced screening. Cascade testing for at-risk relatives.",
+    "molecular_testing": "Multi-gene germline panels (BRCA1/2, PALB2, ATM, CHEK2, RAD51C, RAD51D, BARD1, CDH1, TP53, PTEN, STK11, MLH1, MSH2, MSH6, PMS2, EPCAM)",
+    "last_updated": "2025-01"
+  },
+  {
+    "id": "guide-025",
+    "text_summary": "The FDA Tissue-Agnostic Approvals Summary (2025) consolidates the growing landscape of biomarker-driven, tumor-type-independent drug approvals. Current tissue-agnostic approvals include: pembrolizumab for MSI-H/dMMR solid tumors (2017, KEYNOTE-158/KEYNOTE-177), pembrolizumab for TMB-H (>=10 mut/Mb) solid tumors (2020, KEYNOTE-158), larotrectinib for NTRK fusion-positive solid tumors (2018, NAVIGATE/SCOUT), entrectinib for NTRK fusion-positive solid tumors (2019, STARTRK), dostarlimab for dMMR recurrent/advanced solid tumors (2022, GARNET), and dabrafenib plus trametinib for BRAF V600E-mutant solid tumors (2022). These approvals represent a paradigm shift from organ-of-origin to molecular-driven oncology. Common biomarker testing platforms include FoundationOne CDx (MSI, TMB, NTRK, BRAF), MSK-IMPACT, and Guardant360 CDx. The framework requires validated companion diagnostics and emphasizes that molecular profiling should be standard for all patients with advanced solid tumors lacking established treatment options.",
+    "organization": "FDA",
+    "cancer_type": "pan-cancer (tissue-agnostic)",
+    "version": "2025",
+    "key_recommendations": "Pembrolizumab for MSI-H/dMMR and TMB-H solid tumors. Larotrectinib and entrectinib for NTRK fusion-positive. Dostarlimab for dMMR. Dabrafenib + trametinib for BRAF V600E. Comprehensive molecular profiling recommended for all advanced cancers. Validated companion diagnostics required. Molecular-first approach for refractory tumors.",
+    "molecular_testing": "FoundationOne CDx (MSI, TMB, NTRK, BRAF), MSK-IMPACT, Guardant360 CDx, tissue-based NGS, liquid biopsy, IHC for MMR proteins",
+    "last_updated": "2025-01"
   }
 ]

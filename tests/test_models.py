@@ -1,5 +1,5 @@
 """
-Tests for Precision Oncology Agent Pydantic models.
+Tests for Oncology Intelligence Agent Pydantic models.
 ====================================================
 Validates all enums, domain models, embedding text generation,
 and agent I/O types defined in src/models.py.
@@ -126,6 +126,7 @@ class TestTherapyCategory:
         expected = {
             "TARGETED", "IMMUNOTHERAPY", "CHEMOTHERAPY", "HORMONAL",
             "COMBINATION", "RADIOTHERAPY", "CELL_THERAPY",
+            "ADC", "BISPECIFIC",
         }
         assert expected == names
 
@@ -195,6 +196,7 @@ class TestBiomarkerType:
         expected = {
             "PREDICTIVE", "PROGNOSTIC", "DIAGNOSTIC",
             "MONITORING", "RESISTANCE", "PHARMACODYNAMIC",
+            "SCREENING", "THERAPEUTIC_SELECTION",
         }
         assert expected == names
 
@@ -213,6 +215,7 @@ class TestPathwayName:
         expected = {
             "MAPK", "PI3K_AKT_MTOR", "DDR", "CELL_CYCLE", "APOPTOSIS",
             "WNT", "NOTCH", "HEDGEHOG", "JAK_STAT", "ANGIOGENESIS",
+            "HIPPO", "NF_KB", "TGF_BETA",
         }
         assert expected == names
 
@@ -228,7 +231,7 @@ class TestGuidelineOrg:
 
     def test_expected_members(self):
         names = {m.name for m in GuidelineOrg}
-        assert names == {"NCCN", "ESMO", "ASCO", "WHO", "CAP_AMP"}
+        assert names == {"NCCN", "ESMO", "ASCO", "WHO", "CAP_AMP", "FDA", "EMA", "AACR"}
 
 
 class TestSourceType:

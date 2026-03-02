@@ -106,5 +106,77 @@
     "therapeutic_targets": "VEGF (bevacizumab), VEGFR (sunitinib, pazopanib, cabozantinib, lenvatinib), HIF-2alpha (belzutifan)",
     "cross_talk": "MAPK/ERK, PI3K/AKT/mTOR, Hippo/YAP, Notch (tip/stalk cell specification)",
     "clinical_relevance": "Bevacizumab approved in CRC, NSCLC, ovarian, renal, HCC. VHL loss in clear cell RCC drives VEGF. HIF-2alpha inhibitor belzutifan approved for VHL disease. Anti-VEGF + immunotherapy combinations are standard in renal and HCC."
+  },
+  {
+    "id": "path-013",
+    "text_summary": "The Hippo/YAP-TAZ pathway is a growth-suppressive signaling cascade that controls organ size, tissue homeostasis, and stem cell biology through regulation of the transcriptional co-activators YAP1 and TAZ (WWTR1). The core kinase cascade involves MST1/2 (STK3/4) phosphorylating LATS1/2 kinases, which phosphorylate YAP/TAZ to promote their cytoplasmic sequestration by 14-3-3 proteins and proteasomal degradation. When Hippo signaling is inactivated, unphosphorylated YAP/TAZ translocate to the nucleus and interact with TEAD1-4 transcription factors to drive expression of proliferative and anti-apoptotic genes including CTGF, CYR61, and BIRC5. NF2 (Merlin) loss is a key mechanism of YAP/TAZ activation in mesothelioma, schwannoma, and meningioma. YAP/TAZ activation through non-canonical mechanisms (mechanical signaling, GPCR signaling, metabolic cues) is implicated in liver, gastric, colorectal, and lung cancers. TEAD inhibitors and YAP-TEAD interaction disruptors are in early clinical development. Cross-talk with WNT, Notch, and EGFR pathways amplifies oncogenic YAP/TAZ signaling.",
+    "pathway_name": "Hippo/YAP-TAZ",
+    "key_genes": "NF2, LATS1, LATS2, STK3, STK4, YAP1, WWTR1, TEAD1, TEAD2, TEAD3, TEAD4, MOB1A, SAV1, VGLL4",
+    "therapeutic_targets": "TEAD (TEAD inhibitors, investigational), YAP-TEAD PPI disruptors (investigational), SHP2 (upstream)",
+    "cross_talk": "WNT/beta-catenin, Notch, EGFR signaling, mechanical signaling (integrin/FAK), GPCR signaling",
+    "clinical_relevance": "NF2 loss in mesothelioma, schwannoma, meningioma. YAP amplification in NSCLC and liver cancer. TEAD inhibitors in early clinical trials. Extensive cross-talk makes Hippo a hub for multiple oncogenic pathways."
+  },
+  {
+    "id": "path-014",
+    "text_summary": "The NF-kB (Nuclear Factor kappa-light-chain-enhancer of activated B cells) signaling pathway is a master regulator of inflammation, innate immunity, and cell survival that is constitutively activated in many cancers. The canonical pathway involves IKK complex (IKK-alpha, IKK-beta, NEMO/IKK-gamma) phosphorylation of IkB-alpha, leading to its proteasomal degradation and nuclear translocation of p65/p50 NF-kB dimers. The non-canonical pathway involves NIK (MAP3K14) and IKK-alpha-mediated processing of p100 to p52, activating p52/RelB dimers. NF-kB drives expression of anti-apoptotic genes (BCL-2, BCL-XL, XIAP), pro-inflammatory cytokines (IL-6, TNF-alpha), and immune-modulatory factors. Constitutive NF-kB activation occurs in DLBCL (ABC subtype via CARD11/BCL10/MALT1 signaling), multiple myeloma, Hodgkin lymphoma, and many solid tumors. Therapeutic targets include BTK inhibitors (ibrutinib in B-cell malignancies, which reduces NF-kB signaling), proteasome inhibitors (bortezomib, which prevents IkB degradation), and direct IKK-beta inhibitors under development.",
+    "pathway_name": "NF-kB Signaling",
+    "key_genes": "NFKB1, RELA, NFKB2, RELB, REL, NFKBIA, IKBKB, IKBKG, CHUK, MAP3K14, CARD11, BCL10, MALT1, MYD88, TNFAIP3",
+    "therapeutic_targets": "Proteasome (bortezomib), BTK (ibrutinib), IKK-beta (investigational), MALT1 (investigational)",
+    "cross_talk": "JAK/STAT, PI3K/AKT/mTOR, MAPK/ERK, Toll-like receptor signaling, TNF receptor signaling",
+    "clinical_relevance": "Constitutive NF-kB in ABC-DLBCL, multiple myeloma, Hodgkin lymphoma. MYD88 L265P in Waldenstrom macroglobulinemia. Bortezomib mechanism partly through NF-kB inhibition. Ibrutinib reduces NF-kB in CLL/MCL."
+  },
+  {
+    "id": "path-015",
+    "text_summary": "The TGF-beta (Transforming Growth Factor-beta) signaling pathway plays a dual role in cancer, acting as a tumor suppressor in early-stage disease and as a pro-metastatic factor in advanced cancers. Canonical signaling involves TGF-beta ligands (TGFB1, TGFB2, TGFB3) binding type II receptors (TGFBR2), which recruit and phosphorylate type I receptors (TGFBR1/ALK5). Activated TGFBR1 phosphorylates SMAD2/3, which complex with SMAD4 and translocate to the nucleus to regulate gene expression. In early cancers, TGF-beta induces growth arrest and apoptosis (tumor-suppressive). SMAD4 loss (present in 55% of pancreatic cancers) disables the tumor-suppressive arm. In advanced cancers, TGF-beta promotes epithelial-mesenchymal transition (EMT), immune evasion (suppressing CD8+ T cells, promoting Tregs), angiogenesis, and metastasis. Therapeutic approaches include TGF-beta ligand traps, receptor kinase inhibitors, and anti-TGF-beta antibodies. The immunosuppressive role of TGF-beta makes it an attractive combination target with checkpoint inhibitors.",
+    "pathway_name": "TGF-beta Signaling",
+    "key_genes": "TGFB1, TGFB2, TGFB3, TGFBR1, TGFBR2, SMAD2, SMAD3, SMAD4, SMAD7, ACVR1, BMP2, BMP4",
+    "therapeutic_targets": "TGFBR1 (galunisertib), TGF-beta ligand (fresolimumab), bifunctional anti-PD-L1/TGF-beta trap (bintrafusp alfa)",
+    "cross_talk": "MAPK/ERK, PI3K/AKT, WNT/beta-catenin, Hippo/YAP, EMT regulation",
+    "clinical_relevance": "SMAD4 loss in 55% of pancreatic cancers. TGF-beta drives EMT and immune evasion. Anti-TGF-beta + checkpoint inhibitor combinations in clinical trials. TGF-beta signature predicts immunotherapy resistance in some contexts."
+  },
+  {
+    "id": "path-016",
+    "text_summary": "Epigenetic regulation through the EZH2/SWI-SNF axis represents a critical balance between gene silencing and gene activation in cancer. EZH2, the catalytic subunit of Polycomb Repressive Complex 2 (PRC2), trimethylates histone H3 at lysine 27 (H3K27me3), silencing tumor suppressor genes. The SWI/SNF chromatin remodeling complex (including SMARCB1/INI1, SMARCA4/BRG1, ARID1A, PBRM1) opposes PRC2 by promoting open chromatin and gene activation. Mutations in SWI/SNF subunits occur in approximately 20% of all cancers, creating a dependency on EZH2 activity (synthetic lethality). SMARCB1 loss (epithelioid sarcoma, rhabdoid tumors) and ARID1A loss (ovarian clear cell, endometrial, gastric cancers) result in unopposed EZH2-mediated repression. Gain-of-function EZH2 mutations (Y646N/F/H in follicular lymphoma) increase H3K27me3. Tazemetostat (EZH2 inhibitor) is FDA-approved for EZH2-mutant follicular lymphoma and SMARCB1-negative epithelioid sarcoma. This axis exemplifies therapeutic exploitation of epigenetic vulnerabilities.",
+    "pathway_name": "Epigenetic Regulation (EZH2/SWI-SNF)",
+    "key_genes": "EZH2, EED, SUZ12, SMARCB1, SMARCA4, ARID1A, ARID1B, PBRM1, ARID2, BAP1, DNMT3A, TET2, IDH1, IDH2",
+    "therapeutic_targets": "EZH2 (tazemetostat), IDH1 (ivosidenib), IDH2 (enasidenib), DNMT (azacitidine, decitabine), HDAC (vorinostat, romidepsin)",
+    "cross_talk": "PI3K/AKT (through PTEN silencing), WNT/beta-catenin, Hippo/YAP, DNA damage response",
+    "clinical_relevance": "SWI/SNF mutations in ~20% of all cancers. EZH2 mutations in FL, DLBCL. SMARCB1 loss in epithelioid sarcoma, rhabdoid tumors. ARID1A loss in ovarian clear cell, endometrial. Tazemetostat approved for EZH2-mutant FL and SMARCB1-loss sarcoma."
+  },
+  {
+    "id": "path-017",
+    "text_summary": "The tumor immune microenvironment (TIME) encompasses the complex ecosystem of immune cells, stromal cells, vasculature, and extracellular matrix that interact with tumor cells to either promote or suppress anti-tumor immunity. Key immune populations include cytotoxic CD8+ T cells, helper CD4+ T cells, regulatory T cells (Tregs), natural killer (NK) cells, dendritic cells (DCs), tumor-associated macrophages (TAMs), and myeloid-derived suppressor cells (MDSCs). Immune checkpoint molecules (PD-1, PD-L1, CTLA-4, LAG-3, TIM-3, TIGIT) regulate the balance between immune activation and suppression. Hot tumors (high T-cell infiltration, PD-L1-positive) tend to respond to checkpoint inhibitors, while cold tumors (low infiltration, immune-excluded) are resistant. TIME classification informs immunotherapy strategy: inflamed tumors benefit from anti-PD-1/PD-L1, immune-excluded tumors may benefit from anti-angiogenics plus immunotherapy, and immune-desert tumors require priming strategies (oncolytic viruses, STING agonists, vaccines). The TIME is shaped by tumor genetics, with MAPK activation, WNT/beta-catenin, and STK11 loss driving immune exclusion.",
+    "pathway_name": "Tumor Immune Microenvironment (TIME)",
+    "key_genes": "CD274, PDCD1, CTLA4, LAG3, HAVCR2, TIGIT, CD8A, CD4, FOXP3, IFNG, CXCL9, CXCL10, CD68, ARG1, IDO1",
+    "therapeutic_targets": "PD-1 (pembrolizumab, nivolumab), PD-L1 (atezolizumab), CTLA-4 (ipilimumab), LAG-3 (relatlimab), DLL3 (tarlatamab)",
+    "cross_talk": "MAPK/ERK (immune exclusion), WNT/beta-catenin (cold TME), TGF-beta (immune suppression), VEGF (immune modulation), cGAS-STING (innate immunity)",
+    "clinical_relevance": "TIME classification guides immunotherapy selection. PD-L1, TMB, MSI as immune biomarkers. STK11/KEAP1 loss drives cold TME in NSCLC. Combination IO strategies for cold tumors. Bispecific T-cell engagers bypass TME barriers."
+  },
+  {
+    "id": "path-018",
+    "text_summary": "Metabolic reprogramming, exemplified by the Warburg effect, is a hallmark of cancer wherein tumor cells preferentially utilize aerobic glycolysis (glycolysis followed by lactate production even in the presence of oxygen) over oxidative phosphorylation. This metabolic shift is driven by oncogenic signaling (MYC, HIF-1alpha, PI3K/AKT/mTOR, KRAS) and provides biosynthetic precursors for rapid proliferation. Key metabolic alterations include upregulated glucose transporters (GLUT1/SLC2A1), hexokinase 2 (HK2), lactate dehydrogenase A (LDHA), and glutaminase (GLS1). IDH1/2 mutations produce the oncometabolite D-2-hydroxyglutarate, blocking differentiation. The tumor metabolic microenvironment (acidosis, hypoxia, nutrient competition) suppresses anti-tumor immunity by impairing T-cell function. Therapeutic targets include IDH1/2 (ivosidenib, enasidenib), glutaminase (telaglenastat), and metabolic dependencies in specific contexts. PET imaging (FDG uptake) exploits the Warburg effect for cancer diagnosis and staging. Metformin and dietary interventions are under investigation as metabolic modulators in cancer.",
+    "pathway_name": "Metabolic Reprogramming (Warburg Effect)",
+    "key_genes": "SLC2A1, HK2, PKM, LDHA, MYC, HIF1A, IDH1, IDH2, GLS, PHGDH, SLC1A5, ACLY, FASN",
+    "therapeutic_targets": "IDH1 (ivosidenib), IDH2 (enasidenib), glutaminase (telaglenastat, investigational), FASN (TVB-2640, investigational)",
+    "cross_talk": "PI3K/AKT/mTOR (metabolic regulation), AMPK/STK11, HIF (hypoxia response), MYC, MAPK/ERK",
+    "clinical_relevance": "Warburg effect exploited by FDG-PET imaging. IDH inhibitors in AML and cholangiocarcinoma. Metabolic immunosuppression limits immunotherapy efficacy. Glutaminase inhibitors in clinical trials. Dietary interventions (ketogenic diet) under investigation."
+  },
+  {
+    "id": "path-019",
+    "text_summary": "The ferroptosis pathway is a recently characterized form of regulated cell death driven by iron-dependent lipid peroxidation, distinct from apoptosis, necroptosis, and autophagy. Ferroptosis occurs when the balance between lipid peroxidation (driven by iron, polyunsaturated fatty acids, and lipoxygenases) overwhelms the cellular antioxidant defense (GPX4, the cystine/glutamate antiporter xCT/SLC7A11, and the CoQ10-FSP1 system). GPX4 (glutathione peroxidase 4) is the central ferroptosis suppressor, converting lipid hydroperoxides to non-toxic lipid alcohols. Ferroptosis sensitivity is influenced by tumor genotype: therapy-resistant mesenchymal cancer cells, drug-tolerant persister cells, and cells undergoing EMT show increased ferroptosis vulnerability. Cancer cells with high levels of polyunsaturated fatty acid incorporation in membrane phospholipids are particularly susceptible. Ferroptosis inducers (RSL3, erastin, FINs) are under preclinical development. Immunogenic cell death through ferroptosis may enhance anti-tumor immunity. The pathway intersects with iron metabolism, cysteine metabolism, and lipid metabolism.",
+    "pathway_name": "Ferroptosis",
+    "key_genes": "GPX4, SLC7A11, ACSL4, LPCAT3, ALOX15, TFRC, FTH1, FTL, NFE2L2, HMOX1, FSP1, DHODH",
+    "therapeutic_targets": "GPX4 (RSL3, investigational), xCT/SLC7A11 (erastin, sulfasalazine), NRF2 (brusatol, investigational), iron metabolism",
+    "cross_talk": "NRF2/KEAP1 (antioxidant defense), p53 (SLC7A11 repression), AMPK, lipid metabolism, iron metabolism",
+    "clinical_relevance": "Drug-tolerant persister cells and therapy-resistant mesenchymal cancers are ferroptosis-vulnerable. GPX4 inhibitors in preclinical development. Ferroptosis may enhance immunotherapy through immunogenic cell death. NRF2/KEAP1 mutations in NSCLC modulate ferroptosis sensitivity."
+  },
+  {
+    "id": "path-020",
+    "text_summary": "The cGAS-STING (Cyclic GMP-AMP Synthase - Stimulator of Interferon Genes) pathway is a critical innate immune sensing mechanism that detects cytosolic double-stranded DNA and activates type I interferon responses. cGAS binds cytosolic dsDNA (from tumor cells, damaged DNA, micronuclei, or pathogens) and catalyzes synthesis of the second messenger 2'3'-cGAMP, which binds and activates STING (TMEM173) on the endoplasmic reticulum. Activated STING recruits TBK1, which phosphorylates IRF3, driving transcription of type I interferons (IFN-alpha, IFN-beta) and pro-inflammatory cytokines. This pathway bridges innate and adaptive immunity by promoting dendritic cell maturation and cross-priming of CD8+ T cells against tumor antigens. Tumors often suppress cGAS-STING through STING silencing, cGAS degradation, or expression of the 2'3'-cGAMP hydrolase ENPP1. STING agonists (diABZI, MIW815/ADU-S100, E7766) and ENPP1 inhibitors are in clinical development as intratumoral and systemic immunotherapy agents, particularly for immunologically cold tumors resistant to checkpoint inhibitors.",
+    "pathway_name": "cGAS-STING Innate Immunity",
+    "key_genes": "CGAS, TMEM173, TBK1, IRF3, IFNB1, ENPP1, TREX1, PRKDC, ATM",
+    "therapeutic_targets": "STING agonists (diABZI, MIW815, E7766, investigational), ENPP1 inhibitors (investigational)",
+    "cross_talk": "Type I interferon signaling, NF-kB, DNA damage response, autophagy, tumor immune microenvironment",
+    "clinical_relevance": "cGAS-STING activation bridges innate and adaptive immunity. STING agonists in clinical trials for cold tumors. Radiation therapy activates cGAS-STING through micronuclei formation. Chromosomal instability activates cGAS-STING. STING silencing is a tumor immune evasion mechanism."
   }
 ]

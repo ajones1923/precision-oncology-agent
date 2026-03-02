@@ -148,5 +148,105 @@
     "alternative_therapies": "futibatinib (covalent, may overcome some resistance), next-gen FGFR inhibitors (investigational), combination strategies",
     "frequency": "20-40% of patients progressing on FGFR inhibitors",
     "detection_method": "ctDNA NGS (preferred for polyclonal detection), tissue NGS"
+  },
+  {
+    "id": "res-016",
+    "text_summary": "HER2 downregulation is an emerging resistance mechanism to trastuzumab deruxtecan (T-DXd) in HER2-positive breast cancer, observed in approximately 10-20% of patients who progress on T-DXd therapy. Loss or reduction of HER2 surface expression reduces ADC binding and internalization, diminishing both the targeted delivery of the DXd payload and the bystander killing effect. HER2 downregulation may occur through transcriptional silencing, epigenetic modifications (HER2 promoter methylation), or clonal selection of HER2-low/negative subpopulations under therapeutic pressure. At progression on T-DXd, repeat HER2 IHC/FISH is essential to assess whether HER2 expression has been maintained. For tumors retaining HER2 expression, tucatinib-based combinations remain effective. For HER2-loss tumors, chemotherapy, immunotherapy, or alternative ADCs targeting non-HER2 antigens (sacituzumab govitecan targeting TROP2) may be considered. Research into mechanisms maintaining HER2 expression and novel HER2-independent payloads is ongoing.",
+    "primary_therapy": "trastuzumab deruxtecan (T-DXd)",
+    "mechanism": "HER2 downregulation (reduced surface expression diminishes ADC binding and internalization)",
+    "bypass_pathway": "",
+    "alternative_therapies": "tucatinib-based combinations (if HER2 retained), sacituzumab govitecan (TROP2-targeting ADC), chemotherapy",
+    "frequency": "10-20% of patients progressing on T-DXd",
+    "detection_method": "repeat HER2 IHC/FISH at progression, tissue biopsy"
+  },
+  {
+    "id": "res-017",
+    "text_summary": "SLX4 and DNA repair pathway upregulation represents a resistance mechanism to trastuzumab deruxtecan (T-DXd) and other topoisomerase I inhibitor-based ADCs. SLX4 is a scaffold protein that coordinates multiple structure-specific nucleases (MUS81, SLX1, XPF) involved in replication fork repair and interstrand crosslink resolution. Upregulation of SLX4 and associated DNA repair pathways enables cancer cells to efficiently repair the DNA damage induced by the DXd topoisomerase I inhibitor payload, reducing T-DXd cytotoxicity. Preclinical studies have demonstrated that SLX4 overexpression confers resistance to both free DXd and intact T-DXd. Co-alterations in other DNA repair genes (BRCA1, ERCC1) may further modulate T-DXd sensitivity. Combination strategies pairing T-DXd with DNA repair inhibitors (PARP inhibitors, ATR inhibitors) are under investigation to overcome this resistance mechanism. Serial molecular profiling by tissue NGS or transcriptomic analysis can identify upregulation of DNA repair pathways at progression.",
+    "primary_therapy": "trastuzumab deruxtecan (T-DXd)",
+    "mechanism": "SLX4/DNA repair pathway upregulation (enhanced repair of topoisomerase I-mediated DNA damage)",
+    "bypass_pathway": "Enhanced DNA damage repair",
+    "alternative_therapies": "T-DXd + PARP inhibitor (investigational), T-DXd + ATR inhibitor (investigational), alternative ADC with non-topoisomerase payload",
+    "frequency": "Under investigation; identified in preclinical and early clinical resistance profiling",
+    "detection_method": "tissue NGS, RNA expression analysis (SLX4, DNA repair gene panel)"
+  },
+  {
+    "id": "res-018",
+    "text_summary": "TROP2 loss or downregulation is an emerging resistance mechanism to sacituzumab govitecan in TNBC and urothelial carcinoma, analogous to target antigen loss seen with other ADCs. Reduction in TROP2 surface expression decreases ADC binding, internalization, and targeted payload delivery. TROP2 loss can occur through transcriptional silencing, gene deletion, or epigenetic mechanisms. While sacituzumab govitecan was approved without a TROP2 companion diagnostic (due to broad expression), retrospective analyses suggest that patients with very low or absent TROP2 expression derive less benefit. The high drug-to-antibody ratio (7.6:1) and cleavable linker provide some bystander activity even with heterogeneous TROP2 expression, but complete TROP2 loss eliminates the targeted delivery advantage. At progression, alternative ADCs targeting different antigens (T-DXd for HER2-expressing, enfortumab vedotin for Nectin-4 in UC) or non-ADC therapies should be considered. TROP2 IHC retesting at progression can guide subsequent therapy selection.",
+    "primary_therapy": "sacituzumab govitecan",
+    "mechanism": "TROP2 downregulation or loss (reduced ADC binding and internalization)",
+    "bypass_pathway": "",
+    "alternative_therapies": "trastuzumab deruxtecan (if HER2-expressing), enfortumab vedotin (urothelial), chemotherapy, immunotherapy",
+    "frequency": "Under investigation; observed in clinical resistance profiling studies",
+    "detection_method": "TROP2 IHC at progression, tissue biopsy"
+  },
+  {
+    "id": "res-019",
+    "text_summary": "Nectin-4 loss is an emerging resistance mechanism to enfortumab vedotin in urothelial carcinoma. Downregulation or loss of Nectin-4 surface expression reduces ADC binding and MMAE payload delivery. Nectin-4 loss can occur through genomic deletion, transcriptional reprogramming, or clonal selection of Nectin-4-low populations under therapeutic pressure. While Nectin-4 is expressed in the majority of urothelial carcinomas (typically 60-70% at high levels), heterogeneous expression within tumors and loss at progression are increasingly recognized. Additional resistance mechanisms to enfortumab vedotin include upregulation of drug efflux pumps (MDR1/ABCB1), impaired lysosomal processing, and beta-tubulin mutations that reduce MMAE binding. At progression, alternative ADCs targeting different antigens (sacituzumab govitecan targeting TROP2) or non-ADC approaches (immunotherapy, erdafitinib for FGFR-altered) should be considered. Repeat Nectin-4 IHC at progression helps guide treatment selection.",
+    "primary_therapy": "enfortumab vedotin",
+    "mechanism": "Nectin-4 downregulation or loss (reduced ADC target expression), MDR1 upregulation",
+    "bypass_pathway": "",
+    "alternative_therapies": "sacituzumab govitecan (TROP2-targeting ADC), erdafitinib (if FGFR-altered), immunotherapy, chemotherapy",
+    "frequency": "Under investigation; identified in post-progression biopsy studies",
+    "detection_method": "Nectin-4 IHC at progression, tissue NGS, MDR1 expression analysis"
+  },
+  {
+    "id": "res-020",
+    "text_summary": "Regulatory T-cell (Treg) rebound and compensatory immune suppression are resistance mechanisms to anti-CTLA-4 therapy (ipilimumab) that limit durable responses in approximately 40-60% of treated patients. While ipilimumab depletes intratumoral Tregs via ADCC and blocks CTLA-4-mediated T-cell suppression, compensatory mechanisms emerge including expansion of peripheral Tregs, upregulation of alternative immune checkpoints (LAG-3, TIM-3, TIGIT, VISTA), increased IDO1 activity, and accumulation of myeloid-derived suppressor cells (MDSCs). Treg rebound in the tumor microenvironment reconstitutes the immunosuppressive milieu. The combination of ipilimumab with anti-PD-1 (nivolumab) partially overcomes this by providing complementary immune activation at different stages of the T-cell response. Emerging strategies include next-generation Treg-depleting antibodies, anti-LAG-3 (relatlimab), anti-TIGIT, IDO inhibitors, and intratumoral therapies to reinflame cold tumors. Serial immune profiling can track Treg dynamics and checkpoint expression changes during therapy.",
+    "primary_therapy": "ipilimumab (anti-CTLA-4)",
+    "mechanism": "Treg rebound, compensatory checkpoint upregulation (LAG-3, TIM-3, TIGIT), MDSC accumulation, IDO1 upregulation",
+    "bypass_pathway": "Alternative immune suppression pathways (LAG-3, TIM-3, IDO1, MDSCs)",
+    "alternative_therapies": "ipilimumab + nivolumab combination, relatlimab (anti-LAG-3), anti-TIGIT (investigational), intratumoral agents",
+    "frequency": "40-60% of patients with acquired resistance to anti-CTLA-4",
+    "detection_method": "immune profiling (flow cytometry, multiplex IHC), Treg quantification, checkpoint expression panel"
+  },
+  {
+    "id": "res-021",
+    "text_summary": "Insulin feedback-mediated PI3K inhibitor resistance is a systemic metabolic resistance mechanism that limits the efficacy of PI3K-alpha inhibitors (alpelisib) in PIK3CA-mutant breast cancer. PI3K-alpha inhibition disrupts insulin signaling in normal tissues, causing hyperglycemia that triggers compensatory insulin release from pancreatic beta cells. Elevated circulating insulin activates insulin receptors and IGF-1 receptors on tumor cells, which signal through PI3K-beta and PI3K-delta isoforms (not inhibited by alpelisib) to reactivate AKT and mTOR. This insulin-PI3K feedback loop reduces the on-target efficacy of PI3K-alpha inhibition. Approximately 60% of patients on alpelisib develop hyperglycemia, and those with poorly controlled glucose may derive less anti-tumor benefit. Strategies to mitigate this include dietary intervention (ketogenic diet), metformin, SGLT2 inhibitors, and concurrent AKT inhibition with capivasertib. Baseline HbA1c screening and proactive glucose management are critical for optimizing alpelisib efficacy.",
+    "primary_therapy": "alpelisib (PI3K-alpha inhibitor)",
+    "mechanism": "Insulin feedback: PI3K-alpha inhibition causes hyperglycemia, triggering insulin release that reactivates AKT through insulin receptor/IGF-1R signaling via PI3K-beta/delta isoforms",
+    "bypass_pathway": "PI3K-beta/delta, insulin receptor/IGF-1R signaling",
+    "alternative_therapies": "capivasertib (pan-AKT inhibitor), metformin, SGLT2 inhibitors, dietary intervention, mTOR inhibitors (everolimus)",
+    "frequency": "Hyperglycemia in ~60% of alpelisib-treated patients; insulin feedback contributes to resistance in a significant subset",
+    "detection_method": "serum glucose and insulin monitoring, HbA1c, insulin/C-peptide levels"
+  },
+  {
+    "id": "res-022",
+    "text_summary": "FGFR2 V565I is a gatekeeper mutation that confers acquired resistance to FGFR inhibitors (pemigatinib, infigratinib, erdafitinib) in FGFR2 fusion-positive cholangiocarcinoma and FGFR-altered urothelial carcinoma. The V565I gatekeeper substitution introduces a bulkier isoleucine residue in the ATP-binding pocket, sterically hindering the binding of reversible type I FGFR inhibitors. V565I is analogous to gatekeeper mutations in other kinases (e.g., EGFR T790M, ALK L1196M, BCR-ABL T315I) and represents a conserved mechanism of kinase inhibitor resistance. Futibatinib, a covalent (irreversible) FGFR inhibitor, may retain partial activity against V565I because it forms a permanent bond with a cysteine residue in the FGFR kinase domain, potentially overcoming the steric barrier. Detection is by tissue NGS or ctDNA analysis. V565I may co-occur with other FGFR2 resistance mutations (N549H, E565A, K659M), and polyclonal resistance profiles complicate therapeutic management.",
+    "primary_therapy": "pemigatinib, infigratinib, erdafitinib",
+    "mechanism": "FGFR2 V565I gatekeeper mutation (steric hindrance in ATP-binding pocket reducing reversible inhibitor binding)",
+    "bypass_pathway": "",
+    "alternative_therapies": "futibatinib (covalent FGFR inhibitor, partial activity against gatekeeper), next-gen FGFR inhibitors (investigational)",
+    "frequency": "10-15% of patients progressing on reversible FGFR inhibitors",
+    "detection_method": "ctDNA NGS, tissue NGS"
+  },
+  {
+    "id": "res-023",
+    "text_summary": "Polyclonal secondary FGFR mutations represent a complex resistance pattern to FGFR inhibitors in FGFR2 fusion-positive cholangiocarcinoma, where multiple distinct resistance mutations arise simultaneously in different metastatic lesions or even within the same tumor. Common secondary mutations include the gatekeeper V564F/I, molecular brake N549H/K, and activation loop mutations E565A, K659M, L617V, and K714R. Each mutation may confer differential sensitivity to available FGFR inhibitors: pemigatinib may retain activity against some mutations but not V564F, while futibatinib (covalent) may overcome certain gatekeeper mutations but not molecular brake mutations. This polyclonal heterogeneity makes single-agent FGFR inhibitor switching insufficient in many cases. ctDNA monitoring can detect the emergence and evolution of multiple resistance mutations simultaneously, guiding therapy selection. Combination strategies and next-generation FGFR inhibitors designed with broader resistance-mutation coverage are under development.",
+    "primary_therapy": "pemigatinib, futibatinib, infigratinib",
+    "mechanism": "Polyclonal FGFR2 secondary mutations (V564F, N549H/K, E565A, K659M) with interlesional and intralesional heterogeneity",
+    "bypass_pathway": "PI3K/AKT bypass (in some cases)",
+    "alternative_therapies": "sequential or combination FGFR inhibitors, next-gen broad-spectrum FGFR inhibitors (investigational), chemotherapy",
+    "frequency": "30-50% of patients progressing on FGFR inhibitors show polyclonal resistance",
+    "detection_method": "ctDNA NGS (liquid biopsy preferred for capturing polyclonal mutations), tissue NGS"
+  },
+  {
+    "id": "res-024",
+    "text_summary": "mTOR pathway bypass is an emerging resistance mechanism to capivasertib (AKT inhibitor) in PIK3CA/AKT1/PTEN-altered HR-positive breast cancer. Despite effective AKT kinase inhibition, tumors can maintain mTORC1 activity through alternative pathways that converge on mTOR independently of AKT. Mechanisms include RHEB amplification (direct mTORC1 activation), TSC1/TSC2 loss-of-function mutations (removing the GTPase-activating protein brake on RHEB), and ERK-mediated direct phosphorylation of TSC2 that inactivates the TSC complex. MAPK pathway co-activation through RAS mutations or RTK amplification can provide an AKT-independent route to mTOR activation. This resistance mechanism highlights the extensive cross-talk between PI3K/AKT and MAPK pathways. Combination strategies pairing AKT inhibitors with mTOR inhibitors (everolimus) or MEK inhibitors are being explored to address bypass resistance. Detection requires comprehensive genomic profiling at progression to identify co-alterations in mTOR pathway regulators.",
+    "primary_therapy": "capivasertib (AKT inhibitor)",
+    "mechanism": "mTOR pathway bypass (RHEB amplification, TSC1/2 loss, ERK-mediated TSC2 inactivation providing AKT-independent mTORC1 activation)",
+    "bypass_pathway": "mTORC1 (RHEB, ERK-TSC2 axis)",
+    "alternative_therapies": "everolimus (mTOR inhibitor), combination AKT + mTOR inhibition, combination AKT + MEK inhibition (investigational)",
+    "frequency": "Under investigation; identified in preclinical models and early resistance profiling",
+    "detection_method": "tissue NGS (RHEB, TSC1, TSC2, KRAS/NRAS analysis), phospho-S6K/4EBP1 IHC"
+  },
+  {
+    "id": "res-025",
+    "text_summary": "Cyclin E1 (CCNE1) amplification is a mechanism of both primary and acquired resistance to CDK4/6 inhibitors (palbociclib, ribociclib, abemaciclib) in HR-positive/HER2-negative breast cancer, found in approximately 15-25% of CDK4/6 inhibitor-resistant tumors. CCNE1 amplification drives G1-to-S phase transition through CDK2 activation, bypassing the CDK4/6-dependent RB phosphorylation step that CDK4/6 inhibitors target. CDK2-cyclin E complexes phosphorylate RB independently of CDK4/6, rendering CDK4/6 inhibition insufficient to maintain G1 arrest. CCNE1-amplified tumors are therefore intrinsically resistant to CDK4/6 blockade. Emerging therapeutic strategies include CDK2 inhibitors (PF-07104091, INX-315, BLU-222 in clinical trials), which directly target the cyclin E1-CDK2 complex. Additionally, CCNE1 amplification may predict sensitivity to chemotherapy due to increased replication stress. Detection by NGS copy number analysis or FISH identifies this resistance biomarker. Prospective CDK2 inhibitor trials are prioritizing CCNE1-amplified breast cancer patients.",
+    "primary_therapy": "palbociclib, ribociclib, abemaciclib (CDK4/6 inhibitors)",
+    "mechanism": "CCNE1 amplification driving CDK2-dependent G1/S transition, bypassing CDK4/6 requirement for RB phosphorylation",
+    "bypass_pathway": "CDK2-Cyclin E1 (RB-independent cell cycle progression)",
+    "alternative_therapies": "CDK2 inhibitors (PF-07104091, INX-315, investigational), chemotherapy, PI3K/AKT pathway inhibitors",
+    "frequency": "15-25% of CDK4/6 inhibitor-resistant HR+/HER2- breast cancers",
+    "detection_method": "NGS (copy number analysis for CCNE1), FISH, tissue biopsy at progression"
   }
 ]

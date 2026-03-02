@@ -1,0 +1,222 @@
+[
+  {
+    "id": "case-001",
+    "patient_id": "ONCO-PT-001",
+    "cancer_type": "nsclc",
+    "stage": "IV",
+    "variants": ["EGFR L858R", "TP53 R248W"],
+    "biomarkers": {"PD-L1 TPS": "5%", "TMB": "4 mut/Mb"},
+    "prior_therapies": [],
+    "text_summary": "A 62-year-old never-smoking woman of East Asian descent presents with stage IV lung adenocarcinoma with bilateral pulmonary nodules and a single asymptomatic brain metastasis (15 mm, right parietal). CT-guided biopsy of the primary right lower lobe mass confirmed adenocarcinoma. Comprehensive genomic profiling via FoundationOne CDx identified an EGFR L858R activating mutation in exon 21 and a concurrent TP53 R248W mutation. PD-L1 TPS was 5% by 22C3 pharmDx assay. TMB was low at 4 mut/Mb. No ALK, ROS1, RET, or MET alterations detected. ECOG performance status 1. Per NCCN guidelines, first-line osimertinib is the preferred therapy given superior CNS penetration and demonstrated PFS and OS benefit in the FLAURA trial. No prior systemic therapy administered. Baseline brain MRI and CT chest/abdomen/pelvis obtained for response monitoring.",
+    "created_at": "2025-01-15T10:00:00Z"
+  },
+  {
+    "id": "case-002",
+    "patient_id": "ONCO-PT-002",
+    "cancer_type": "nsclc",
+    "stage": "IV",
+    "variants": ["EGFR exon 19 deletion", "EGFR T790M", "EGFR C797S"],
+    "biomarkers": {"PD-L1 TPS": "10%", "TMB": "6 mut/Mb"},
+    "prior_therapies": ["erlotinib", "osimertinib"],
+    "text_summary": "A 58-year-old man diagnosed 3 years ago with EGFR exon 19 deletion-positive stage IV lung adenocarcinoma. Initially treated with erlotinib with PR lasting 14 months before progression. Repeat biopsy identified acquired T790M resistance mutation. Switched to osimertinib with PR lasting 18 months. Now progressive disease with new hepatic metastases. Repeat liquid biopsy (Guardant360) detected persistent exon 19 deletion, T790M, and acquired C797S mutation in cis configuration with T790M. Co-occurring TP53 splice site mutation also detected. ECOG PS 1. The cis configuration of T790M+C797S confers resistance to all available EGFR TKIs as monotherapy. Potential strategies include platinum-based chemotherapy, amivantamab plus lazertinib combination, or clinical trial enrollment targeting the C797S resistance mechanism. Tumor board discussion recommended combination chemotherapy with consideration for ongoing clinical trials.",
+    "created_at": "2025-02-01T14:30:00Z"
+  },
+  {
+    "id": "case-003",
+    "patient_id": "ONCO-PT-003",
+    "cancer_type": "melanoma",
+    "stage": "IIIC",
+    "variants": ["BRAF V600E"],
+    "biomarkers": {"LDH": "normal", "S100B": "0.08 ug/L"},
+    "prior_therapies": [],
+    "text_summary": "A 45-year-old man with a primary cutaneous melanoma of the left calf (Breslow 4.2 mm, ulcerated, mitotic rate 8/mm2) underwent wide local excision and sentinel lymph node biopsy revealing macrometastases in 3 of 4 inguinal lymph nodes. Completion lymph node dissection identified additional involvement in 2 of 12 additional nodes. Staging PET-CT showed no distant metastases, classifying as stage IIIC (pT4bN3aM0). Molecular testing confirmed BRAF V600E mutation. LDH and S100B within normal limits. ECOG PS 0. Per NCCN guidelines, adjuvant therapy is strongly recommended given the high risk of recurrence (estimated 5-year recurrence rate >70%). Options include adjuvant nivolumab (CheckMate-238), pembrolizumab (KEYNOTE-054), or dabrafenib plus trametinib (COMBI-AD). Patient counseled regarding the comparable efficacy and differing toxicity profiles of immunotherapy versus targeted therapy in the adjuvant setting.",
+    "created_at": "2025-02-10T09:15:00Z"
+  },
+  {
+    "id": "case-004",
+    "patient_id": "ONCO-PT-004",
+    "cancer_type": "nsclc",
+    "stage": "IV",
+    "variants": ["KRAS G12C", "STK11 Q37*", "KEAP1 R320Q"],
+    "biomarkers": {"PD-L1 TPS": "1%", "TMB": "8 mut/Mb"},
+    "prior_therapies": ["carboplatin + pemetrexed + pembrolizumab", "docetaxel + ramucirumab"],
+    "text_summary": "A 67-year-old male former smoker (40 pack-years) with KRAS G12C-mutant stage IV lung adenocarcinoma with adrenal and osseous metastases. Co-mutations in STK11 (Q37*, loss of function) and KEAP1 (R320Q) identified by comprehensive genomic profiling. PD-L1 TPS was 1%. Initially treated with carboplatin, pemetrexed, and pembrolizumab for 4 cycles followed by pemetrexed-pembrolizumab maintenance. Best response was stable disease lasting 7 months before progression. Second-line docetaxel plus ramucirumab for 3 cycles with progressive disease after 2 months. ECOG PS 1. STK11/KEAP1 co-mutations are associated with poor response to immunotherapy and may modulate response to KRAS G12C inhibitors. Sotorasib or adagrasib are recommended as third-line therapy per NCCN guidelines. Clinical trial with novel KRAS G12C degrader or combination approaches may be considered.",
+    "created_at": "2025-02-20T11:00:00Z"
+  },
+  {
+    "id": "case-005",
+    "patient_id": "ONCO-PT-005",
+    "cancer_type": "nsclc",
+    "stage": "IV",
+    "variants": ["EML4-ALK fusion (variant 3)", "ALK G1202R"],
+    "biomarkers": {"PD-L1 TPS": "0%", "TMB": "2 mut/Mb"},
+    "prior_therapies": ["crizotinib", "alectinib"],
+    "text_summary": "A 38-year-old never-smoking woman diagnosed 4 years ago with EML4-ALK fusion-positive (variant 3, exon 6) stage IV lung adenocarcinoma with bone metastases and leptomeningeal disease. Initial treatment with crizotinib achieved PR for 11 months before CNS progression. Switched to alectinib with excellent CNS and systemic response lasting 24 months. Now presents with progressive leptomeningeal enhancement and new thoracic lymphadenopathy. CSF cytology positive for adenocarcinoma. Repeat liquid biopsy detected EML4-ALK fusion with acquired ALK G1202R solvent-front resistance mutation. ECOG PS 2. ALK variant 3 is associated with shorter PFS on second-generation ALK TKIs. The G1202R mutation confers resistance to crizotinib, alectinib, ceritinib, and brigatinib, but lorlatinib retains activity. Lorlatinib recommended as next-line therapy with documented CNS penetration. Intrathecal chemotherapy may be considered if lorlatinib provides insufficient CNS control.",
+    "created_at": "2025-03-01T08:45:00Z"
+  },
+  {
+    "id": "case-006",
+    "patient_id": "ONCO-PT-006",
+    "cancer_type": "breast",
+    "stage": "IV",
+    "variants": ["ERBB2 amplification"],
+    "biomarkers": {"HER2 IHC": "3+", "ER": "negative", "PR": "negative", "Ki-67": "65%"},
+    "prior_therapies": ["docetaxel + trastuzumab + pertuzumab", "T-DM1"],
+    "text_summary": "A 52-year-old woman with HER2-positive (IHC 3+, FISH amplified ratio 8.2), ER/PR-negative metastatic breast cancer with hepatic, pulmonary, and osseous metastases. Initially treated with docetaxel, trastuzumab, and pertuzumab (THP) with PR lasting 16 months. Second-line T-DM1 achieved stable disease for 8 months before hepatic progression. CT shows increasing hepatic tumor burden with mild transaminase elevation (ALT 68 U/L, AST 55 U/L). ECOG PS 1. Brain MRI negative for CNS metastases. Trastuzumab deruxtecan (T-DXd) is the recommended third-line therapy based on DESTINY-Breast03 data showing dramatic PFS improvement versus T-DM1. Baseline pulmonary function assessment and counseling regarding ILD risk (12-15%) is essential. Serial CT monitoring with ILD-specific protocols should be incorporated. Alternative options include tucatinib plus trastuzumab plus capecitabine (HER2CLIMB), particularly if CNS disease develops.",
+    "created_at": "2025-03-05T16:20:00Z"
+  },
+  {
+    "id": "case-007",
+    "patient_id": "ONCO-PT-007",
+    "cancer_type": "ovarian",
+    "stage": "IIIC",
+    "variants": ["BRCA1 c.5266dupC (5382insC)", "TP53 R175H"],
+    "biomarkers": {"HRD score": "72", "CA-125": "285 U/mL"},
+    "prior_therapies": ["carboplatin + paclitaxel + bevacizumab", "olaparib maintenance"],
+    "text_summary": "A 56-year-old woman with germline BRCA1 mutation (c.5266dupC, pathogenic) and high-grade serous ovarian cancer, stage IIIC. Initially treated with primary debulking surgery achieving R0 resection followed by 6 cycles of carboplatin plus paclitaxel plus bevacizumab. Achieved complete radiographic response. Olaparib maintenance therapy initiated per SOLO-1 protocol. Maintained response for 28 months before rising CA-125 (285 U/mL from nadir of 8) and CT showing new peritoneal carcinomatosis. Platinum-free interval is 34 months from last platinum dose (platinum-sensitive recurrence). HRD score was 72 (positive). ECOG PS 1. Recommended approach is platinum re-challenge with carboplatin plus pegylated liposomal doxorubicin, followed by PARP inhibitor re-challenge or alternative maintenance. Given prior PARP inhibitor exposure, tumor board should consider rucaparib or niraparib, or evaluate for clinical trials combining PARP inhibitors with immune checkpoint inhibitors.",
+    "created_at": "2025-03-10T13:00:00Z"
+  },
+  {
+    "id": "case-008",
+    "patient_id": "ONCO-PT-008",
+    "cancer_type": "colorectal",
+    "stage": "IV",
+    "variants": ["MLH1 promoter hypermethylation", "BRAF V600E", "PIK3CA E545K"],
+    "biomarkers": {"MSI status": "MSI-H", "TMB": "42 mut/Mb", "PD-L1 CPS": "75", "CEA": "125 ng/mL"},
+    "prior_therapies": [],
+    "text_summary": "A 71-year-old woman presents with treatment-naive stage IV colon adenocarcinoma with hepatic and peritoneal metastases. IHC shows loss of MLH1 and PMS2 expression. MSI testing confirms MSI-H status. Molecular profiling reveals MLH1 promoter hypermethylation (sporadic, not Lynch syndrome), BRAF V600E mutation, and PIK3CA E545K. TMB is 42 mut/Mb. PD-L1 CPS 75. CEA 125 ng/mL. ECOG PS 1. Germline testing negative for Lynch syndrome mutations. Per KEYNOTE-177 and CheckMate-8HW data, first-line immunotherapy is the standard of care for MSI-H metastatic CRC. Options include pembrolizumab monotherapy or nivolumab plus ipilimumab (CheckMate-8HW regimen with low-dose ipilimumab). The MSI-H/high TMB phenotype predicts robust immunotherapy response regardless of the adverse prognostic impact of BRAF V600E in this context.",
+    "created_at": "2025-03-15T10:30:00Z"
+  },
+  {
+    "id": "case-009",
+    "patient_id": "ONCO-PT-009",
+    "cancer_type": "breast",
+    "stage": "IV",
+    "variants": ["PIK3CA H1047R", "ESR1 Y537S"],
+    "biomarkers": {"ER": "90%", "PR": "5%", "HER2 IHC": "1+", "Ki-67": "35%", "ctDNA fraction": "8.2%"},
+    "prior_therapies": ["letrozole + palbociclib", "fulvestrant + abemaciclib"],
+    "text_summary": "A 63-year-old postmenopausal woman with HR-positive, HER2-negative (IHC 1+) metastatic breast cancer involving bone and liver. Initially treated with letrozole plus palbociclib with PR for 22 months. Second-line fulvestrant plus abemaciclib achieved stable disease for 10 months before hepatic progression. Guardant360 ctDNA analysis reveals PIK3CA H1047R activating mutation and acquired ESR1 Y537S mutation (ctDNA fraction 8.2%). HER2 IHC is 1+ (HER2-low). ECOG PS 1. Multiple evidence-based options exist: alpelisib plus fulvestrant (SOLAR-1, for PIK3CA mutation), capivasertib plus fulvestrant (CAPItello-291, for AKT pathway alteration), elacestrant (EMERALD, for ESR1 mutation), or trastuzumab deruxtecan (DESTINY-Breast04, for HER2-low). Given dual actionable mutations and HER2-low status, tumor board should prioritize based on comorbidities, prior toxicities, and patient preference.",
+    "created_at": "2025-03-20T14:45:00Z"
+  },
+  {
+    "id": "case-010",
+    "patient_id": "ONCO-PT-010",
+    "cancer_type": "breast",
+    "stage": "IV",
+    "variants": ["TP53 Y220C"],
+    "biomarkers": {"ER": "negative", "PR": "negative", "HER2 IHC": "0", "TROP-2 H-score": "280", "PD-L1 CPS": "12", "TMB": "6 mut/Mb"},
+    "prior_therapies": ["dose-dense AC", "paclitaxel", "capecitabine", "gemcitabine"],
+    "text_summary": "A 48-year-old woman with metastatic triple-negative breast cancer (ER/PR negative, HER2 IHC 0) with lung, liver, and lymph node metastases. Treatment history includes neoadjuvant dose-dense doxorubicin-cyclophosphamide followed by paclitaxel with residual disease (non-pCR), adjuvant capecitabine per CREATE-X, and first-line metastatic gemcitabine with progression after 3 months. TROP-2 expression is high (H-score 280 by IHC). PD-L1 CPS 12. No germline BRCA1/2 mutations identified. ECOG PS 1. Sacituzumab govitecan is the recommended next therapy based on ASCENT trial data showing OS benefit in pretreated mTNBC. The high TROP-2 expression is encouraging, although ASCENT showed benefit across expression levels. Alternative options include pembrolizumab plus chemotherapy if not previously used (KEYNOTE-355 for PD-L1 CPS >= 10), or olaparib if somatic HRD is identified.",
+    "created_at": "2025-04-01T09:00:00Z"
+  },
+  {
+    "id": "case-011",
+    "patient_id": "ONCO-PT-011",
+    "cancer_type": "ovarian",
+    "stage": "IV",
+    "variants": ["TP53 G245S"],
+    "biomarkers": {"FRalpha PS2+": "90%", "CA-125": "520 U/mL", "HRD score": "28"},
+    "prior_therapies": ["carboplatin + paclitaxel", "bevacizumab maintenance", "pegylated liposomal doxorubicin", "topotecan"],
+    "text_summary": "A 64-year-old woman with high-grade serous ovarian cancer, initially stage IIIC, now with progressive peritoneal and hepatic disease classified as platinum-resistant (progression 4 months after last platinum). Treatment history includes frontline carboplatin plus paclitaxel with bevacizumab maintenance (response 14 months), second-line pegylated liposomal doxorubicin (stable disease 5 months), and third-line topotecan (progressive disease after 2 cycles). No BRCA mutation; HRD score negative (28). Folate receptor alpha (FRalpha) expression is high at 90% by PS2+ scoring. CA-125 rising at 520 U/mL. ECOG PS 1. Mirvetuximab soravtansine is recommended based on MIRASOL data demonstrating PFS and OS benefit in FRalpha-high, platinum-resistant ovarian cancer. The high FRalpha expression (>= 75% PS2+) meets the companion diagnostic threshold. Baseline ophthalmologic examination required given corneal toxicity risk.",
+    "created_at": "2025-04-05T11:30:00Z"
+  },
+  {
+    "id": "case-012",
+    "patient_id": "ONCO-PT-012",
+    "cancer_type": "gastric",
+    "stage": "IV",
+    "variants": ["TP53 R282W"],
+    "biomarkers": {"CLDN18.2 IHC": "85% moderate-to-strong", "HER2 IHC": "0", "PD-L1 CPS": "8", "MSI status": "MSS"},
+    "prior_therapies": [],
+    "text_summary": "A 59-year-old man presents with treatment-naive metastatic gastric adenocarcinoma (intestinal type by Lauren classification) with peritoneal carcinomatosis and retroperitoneal lymphadenopathy. Endoscopic biopsy of the gastric body mass confirms adenocarcinoma. HER2 IHC 0, PD-L1 CPS 8 (below threshold for first-line nivolumab), MSS. Claudin 18.2 IHC shows strong membranous staining in 85% of tumor cells, meeting the threshold for zolbetuximab eligibility (>= 75%). ECOG PS 1. Weight loss of 8 kg over 3 months with mild dysphagia. Nutritional support initiated. Based on SPOTLIGHT trial data, zolbetuximab plus mFOLFOX6 is recommended as first-line therapy for CLDN18.2-positive, HER2-negative advanced gastric cancer, demonstrating both PFS and OS benefit. Counseling regarding GI toxicity (nausea, vomiting) with zolbetuximab is essential. Antiemetic prophylaxis with NK1 receptor antagonist recommended.",
+    "created_at": "2025-04-10T08:15:00Z"
+  },
+  {
+    "id": "case-013",
+    "patient_id": "ONCO-PT-013",
+    "cancer_type": "nsclc",
+    "stage": "IV",
+    "variants": ["KIF5B-RET fusion"],
+    "biomarkers": {"PD-L1 TPS": "25%", "TMB": "3 mut/Mb"},
+    "prior_therapies": [],
+    "text_summary": "A 55-year-old never-smoking man presents with stage IV lung adenocarcinoma with bilateral pulmonary nodules, mediastinal lymphadenopathy, and pleural effusion. CT-guided biopsy confirms adenocarcinoma. Comprehensive genomic profiling (FoundationOne CDx) identifies a KIF5B-RET fusion. No concurrent EGFR, ALK, ROS1, KRAS, BRAF, MET, or NTRK alterations. PD-L1 TPS 25%, TMB 3 mut/Mb. ECOG PS 1. RET fusions occur in approximately 1-2% of NSCLC and define an oncogene-addicted tumor subtype. Based on LIBRETTO-001 and ARROW trial data, first-line selpercatinib or pralsetinib are recommended with ORR of 85% and 70% respectively in treatment-naive patients. Selpercatinib may be preferred given longer follow-up data and intracranial activity. Immunotherapy is generally less effective in oncogene-driven NSCLC with low TMB. MRI brain obtained for staging shows no CNS metastases.",
+    "created_at": "2025-04-15T15:00:00Z"
+  },
+  {
+    "id": "case-014",
+    "patient_id": "ONCO-PT-014",
+    "cancer_type": "thyroid",
+    "stage": "IIIB",
+    "variants": ["ETV6-NTRK3 fusion"],
+    "biomarkers": {"thyroglobulin": "450 ng/mL", "Ki-67": "15%"},
+    "prior_therapies": ["total thyroidectomy", "radioactive iodine x2"],
+    "text_summary": "A 34-year-old woman with locally advanced papillary thyroid carcinoma harboring an ETV6-NTRK3 gene fusion. Initially treated with total thyroidectomy and central neck dissection. Two rounds of radioactive iodine (RAI) therapy administered; disease is now RAI-refractory with progressive cervical and superior mediastinal lymphadenopathy encasing the left recurrent laryngeal nerve causing vocal cord paresis. No distant metastases on PET-CT. Thyroglobulin 450 ng/mL on levothyroxine suppression. Comprehensive genomic profiling identified ETV6-NTRK3 fusion. NTRK fusions are rare in thyroid cancer (approximately 2-3% of papillary thyroid carcinomas). Per NCCN guidelines, larotrectinib or entrectinib are recommended as tumor-agnostic TRK inhibitor therapy based on pooled analysis data demonstrating ORR of 75-79% across NTRK fusion-positive solid tumors. Surgical resection is not feasible given nerve encasement. TRK inhibitor therapy with intent to achieve tumor shrinkage and potentially enable subsequent surgical consolidation is recommended.",
+    "created_at": "2025-04-20T10:00:00Z"
+  },
+  {
+    "id": "case-015",
+    "patient_id": "ONCO-PT-015",
+    "cancer_type": "nsclc",
+    "stage": "IV",
+    "variants": ["MET exon 14 skipping (c.2888-5_2888-1delTATAG)", "MDM2 amplification"],
+    "biomarkers": {"PD-L1 TPS": "60%", "TMB": "5 mut/Mb"},
+    "prior_therapies": [],
+    "text_summary": "A 76-year-old former smoker with stage IV lung adenocarcinoma with pleural and adrenal metastases. NGS reveals MET exon 14 skipping mutation (splice site deletion c.2888-5_2888-1delTATAG) and concurrent MDM2 amplification (8 copies). PD-L1 TPS 60%, TMB 5 mut/Mb. ECOG PS 1. MET exon 14 skipping mutations are enriched in elderly patients and sarcomatoid histology. Capmatinib or tepotinib are FDA-approved options per GEOMETRY mono-1 and VISION data with ORR of 68% and 46% respectively in treatment-naive patients. Despite high PD-L1 expression, checkpoint inhibitor monotherapy is not recommended as first-line given the driver mutation. MDM2 amplification has been associated with hyperprogression on immunotherapy in some reports. Therefore, MET-directed therapy with capmatinib or tepotinib is strongly preferred. Monitoring for peripheral edema, a class effect of MET inhibitors, is advised.",
+    "created_at": "2025-04-25T13:30:00Z"
+  },
+  {
+    "id": "case-016",
+    "patient_id": "ONCO-PT-016",
+    "cancer_type": "cholangiocarcinoma",
+    "stage": "IV",
+    "variants": ["IDH1 R132C", "ARID1A Q1334*"],
+    "biomarkers": {"CA 19-9": "840 U/mL", "2-HG serum": "elevated"},
+    "prior_therapies": ["gemcitabine + cisplatin", "FOLFOX"],
+    "text_summary": "A 61-year-old man with intrahepatic cholangiocarcinoma, stage IV with hepatic and peritoneal metastases. First-line gemcitabine plus cisplatin achieved stable disease for 8 months before progression. Second-line FOLFOX for 4 cycles with disease progression after 3 months. NGS identified IDH1 R132C hotspot mutation and ARID1A truncating mutation (Q1334*). CA 19-9 rising at 840 U/mL. Serum 2-hydroxyglutarate (2-HG) elevated, consistent with IDH1 gain-of-function mutation. ECOG PS 1. Ivosidenib, a targeted IDH1 inhibitor, is recommended based on ClarIDHy trial data showing PFS benefit versus placebo in IDH1-mutant cholangiocarcinoma (median PFS 2.7 vs 1.4 months, HR 0.37). While the absolute PFS improvement appears modest, the stable disease rate was 53% and OS was significantly improved when adjusted for crossover. ARID1A loss may indicate potential sensitivity to EZH2 inhibitors or immune checkpoint inhibitors in clinical trial settings.",
+    "created_at": "2025-05-01T09:45:00Z"
+  },
+  {
+    "id": "case-017",
+    "patient_id": "ONCO-PT-017",
+    "cancer_type": "dlbcl",
+    "stage": "IV",
+    "variants": ["EZH2 Y646N", "BCL2 translocation", "MYC rearrangement negative"],
+    "biomarkers": {"Ki-67": "80%", "cell of origin": "GCB", "IPI score": "3"},
+    "prior_therapies": ["R-CHOP x6", "R-ICE x2", "autologous SCT"],
+    "text_summary": "A 54-year-old man with relapsed germinal center B-cell (GCB) subtype diffuse large B-cell lymphoma (DLBCL) harboring an EZH2 Y646N gain-of-function mutation and BCL2 translocation. No MYC rearrangement (not double-hit). Initially treated with R-CHOP x6 achieving CR for 18 months. Relapsed with progressive lymphadenopathy and bone marrow involvement. Salvage R-ICE x2 achieved PR, proceeded to autologous stem cell transplant. Relapsed 8 months post-transplant with bulky abdominal lymphadenopathy. IPI score 3 at relapse. Ki-67 80%. NGS confirmed EZH2 Y646N hotspot mutation. Tazemetostat, an EZH2 inhibitor, is FDA-approved for relapsed/refractory follicular lymphoma with EZH2 mutation but has shown activity in EZH2-mutant DLBCL. CAR-T therapy (axicabtagene ciloleucel, lisocabtagene maraleucel, or tisagenlecleucel) is the standard approach for transplant-eligible relapsed DLBCL. Bispecific antibodies (glofitamab, epcoritamab) are alternatives.",
+    "created_at": "2025-05-05T14:00:00Z"
+  },
+  {
+    "id": "case-018",
+    "patient_id": "ONCO-PT-018",
+    "cancer_type": "bladder",
+    "stage": "IV",
+    "variants": ["FGFR3 S249C", "CDKN2A homozygous deletion"],
+    "biomarkers": {"PD-L1 CPS": "15", "Nectin-4": "high", "TMB": "14 mut/Mb"},
+    "prior_therapies": [],
+    "text_summary": "A 72-year-old man with metastatic urothelial carcinoma of the bladder with retroperitoneal lymphadenopathy and lung metastases. Cisplatin-ineligible due to GFR of 42 mL/min and NYHA class II heart failure. TURBT confirmed high-grade urothelial carcinoma with variant squamous differentiation. NGS reveals FGFR3 S249C activating mutation and CDKN2A homozygous deletion. PD-L1 CPS 15, TMB 14 mut/Mb, Nectin-4 expression high by IHC. ECOG PS 1. Based on EV-302/KEYNOTE-A39 data, enfortumab vedotin plus pembrolizumab is now the preferred first-line therapy regardless of cisplatin eligibility, demonstrating dramatic PFS and OS improvements over platinum-based chemotherapy. The FGFR3 mutation also provides a future therapy option with erdafitinib if needed (THOR trial). Monitoring for EV-related skin reactions, peripheral neuropathy, and hyperglycemia is important. Ophthalmologic screening for ocular toxicity also recommended.",
+    "created_at": "2025-05-10T11:15:00Z"
+  },
+  {
+    "id": "case-019",
+    "patient_id": "ONCO-PT-019",
+    "cancer_type": "sclc",
+    "stage": "IV",
+    "variants": ["TP53 C176F", "RB1 deletion"],
+    "biomarkers": {"DLL3 H-score": "220", "NSE": "85 ng/mL", "chromogranin A": "elevated", "TTF-1": "positive"},
+    "prior_therapies": ["carboplatin + etoposide + atezolizumab"],
+    "text_summary": "A 60-year-old woman with extensive-stage small-cell lung cancer with hepatic, adrenal, and brain metastases. Initial treatment with carboplatin plus etoposide plus atezolizumab (IMpower133 regimen) achieved PR for 6 months with cranial irradiation for brain metastases. Now progressive disease with new hepatic lesions and rising NSE (85 ng/mL). TP53 C176F and RB1 deletion confirmed (universal in SCLC). DLL3 expression testing by IHC shows H-score of 220 (high expression). ECOG PS 2. Lurbinectedin is a standard second-line option with ORR of 35% in the relapsed setting. However, DLL3-high expression makes this patient a candidate for tarlatamab based on DeLLphi-301 data showing 40% ORR and durable responses. Tarlatamab requires monitoring for CRS (especially cycle 1) and ICANS. Step-up dosing is employed. Alternative options include topotecan or clinical trials with DLL3-targeted ADCs.",
+    "created_at": "2025-05-15T16:30:00Z"
+  },
+  {
+    "id": "case-020",
+    "patient_id": "ONCO-PT-020",
+    "cancer_type": "gastric",
+    "stage": "IB",
+    "variants": ["CDH1 c.1565+1G>A (germline, pathogenic)"],
+    "biomarkers": {"E-cadherin IHC": "aberrant/loss", "H. pylori": "negative"},
+    "prior_therapies": [],
+    "text_summary": "A 28-year-old woman referred for genetic counseling after her mother and maternal aunt were diagnosed with diffuse gastric cancer at ages 42 and 39 respectively. Germline genetic testing identified a pathogenic CDH1 splice site variant (c.1565+1G>A), confirming hereditary diffuse gastric cancer (HDGC) syndrome. Endoscopic surveillance with Cambridge protocol random biopsies (30 biopsies) identified two foci of signet ring cell carcinoma confined to the mucosa (pT1a) in the gastric body. CT chest/abdomen/pelvis negative for metastatic disease. E-cadherin IHC shows aberrant loss of membranous staining in tumor foci. H. pylori negative. ECOG PS 0. Per International Gastric Cancer Linkage Consortium guidelines, prophylactic total gastrectomy is the standard recommendation for CDH1 mutation carriers given the cumulative lifetime risk of 70-80% for diffuse gastric cancer. Patient counseled regarding lifelong nutritional implications. Lobular breast cancer surveillance also recommended given 40-60% lifetime breast cancer risk in female CDH1 carriers.",
+    "created_at": "2025-05-20T10:00:00Z"
+  }
+]
