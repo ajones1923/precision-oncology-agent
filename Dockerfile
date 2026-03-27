@@ -1,5 +1,5 @@
 # =============================================================================
-# Precision Oncology Agent — Dockerfile
+# Oncology Intelligence Agent — Dockerfile
 # HCLS AI Factory / ai_agent_adds / precision_oncology_agent
 #
 # Multi-purpose image: runs Streamlit UI (8526), FastAPI server (8527),
@@ -21,7 +21,7 @@ RUN pip install --no-cache-dir --upgrade pip && pip install --no-cache-dir -r re
 # Stage 2: Runtime
 FROM python:3.10-slim
 LABEL maintainer="Adam Jones"
-LABEL description="Precision Oncology Agent — HCLS AI Factory"
+LABEL description="Oncology Intelligence Agent — HCLS AI Factory"
 LABEL version="1.0.0"
 WORKDIR /app
 RUN apt-get update && apt-get install -y --no-install-recommends curl libgomp1 libxml2 libxslt1.1 && rm -rf /var/lib/apt/lists/*

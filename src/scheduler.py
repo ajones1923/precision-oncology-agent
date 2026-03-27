@@ -1,5 +1,5 @@
 """
-Automated ingest scheduler for the Precision Oncology Intelligence Agent.
+Automated ingest scheduler for the Oncology Intelligence Agent.
 
 Wraps APScheduler's BackgroundScheduler to periodically refresh data from
 PubMed, ClinicalTrials.gov, and CIViC into the agent's Milvus collections.

@@ -37,7 +37,7 @@ def full_mtb_packet():
         "patient_id": "PT-001",
         "cancer_type": "nsclc",
         "sample_id": "S-001",
-        "title": "Precision Oncology Report — PT-001",
+        "title": "Oncology Intelligence Report — PT-001",
         "summary": "Stage IV NSCLC with EGFR L858R. High PD-L1 expression.",
         "variants": [
             {
@@ -138,7 +138,7 @@ class TestExportMarkdown:
 
     def test_contains_title(self, full_mtb_packet):
         result = export_markdown(full_mtb_packet)
-        assert "Precision Oncology Report" in result
+        assert "Oncology Intelligence Report" in result
 
     def test_contains_patient_id(self, full_mtb_packet):
         result = export_markdown(full_mtb_packet)

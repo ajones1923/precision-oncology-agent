@@ -1,5 +1,5 @@
 """
-Precision Oncology Agent - Therapy Ranker
+Oncology Intelligence Agent - Therapy Ranker
 Evidence-based therapy ranking with citations and resistance awareness.
 
 Ranks targeted therapies by evidence level, cross-references prior therapy

@@ -1,7 +1,7 @@
 """
-Precision Oncology Agent - FastAPI Application
-===============================================
-Phase 4: API + UI layer for the Precision Oncology Intelligence Agent.
+Oncology Intelligence Agent - FastAPI Application
+===================================================
+Phase 4: API + UI layer for the Oncology Intelligence Agent.
 Provides RAG-powered clinical decision support for molecular tumor boards.
 
 Author: Adam Jones
@@ -10,6 +10,7 @@ Date: February 2026
 
 import time
 import logging
+from collections import defaultdict
 from contextlib import asynccontextmanager
 from typing import Any, Dict, List, Optional
 
@@ -35,6 +36,23 @@ import src.knowledge as knowledge_module
 
 logger = logging.getLogger(__name__)
 
+
+class EmbedderWrapper:
+    """Adapter giving SentenceTransformer both .encode() and .embed() APIs."""
+
+    def __init__(self, model: SentenceTransformer):
+        self._model = model
+
+    def encode(self, texts):
+        return self._model.encode(texts)
+
+    def embed(self, text):
+        """Return a single embedding vector (list of floats)."""
+        if isinstance(text, str):
+            return self._model.encode([text])[0].tolist()
+        return self._model.encode(text).tolist()
+
+
 # ---------------------------------------------------------------------------
 # Global application state
 # ---------------------------------------------------------------------------
@@ -53,8 +71,8 @@ def get_state() -> Dict[str, Any]:
 # ---------------------------------------------------------------------------
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    """Startup / shutdown lifecycle for the Precision Oncology Agent."""
-    logger.info("Precision Oncology Agent starting up ...")
+    """Startup / shutdown lifecycle for the Oncology Intelligence Agent."""
+    logger.info("Oncology Intelligence Agent starting up ...")
 
     # -- Settings ----------------------------------------------------------
     settings = _settings_instance
@@ -69,14 +87,59 @@ async def lifespan(app: FastAPI):
     _state["collection_manager"] = collection_manager
 
     # -- Embedder ----------------------------------------------------------
-    embedder = SentenceTransformer(settings.EMBEDDING_MODEL)
+    embedder = EmbedderWrapper(SentenceTransformer(settings.EMBEDDING_MODEL))
     _state["embedder"] = embedder
+
+    # -- LLM Client --------------------------------------------------------
+    llm_client = None
+    try:
+        import anthropic
+
+        class _OncoLLMClient:
+            def __init__(self):
+                self._client = anthropic.Anthropic()
+                self._model = getattr(settings, 'LLM_MODEL', 'claude-sonnet-4-20250514')
+
+            def chat(self, messages):
+                system = ""
+                user_msgs = []
+                for m in messages:
+                    if m["role"] == "system":
+                        system = m["content"]
+                    else:
+                        user_msgs.append(m)
+                resp = self._client.messages.create(
+                    model=self._model, max_tokens=4096,
+                    system=system, messages=user_msgs,
+                )
+                return resp.content[0].text
+
+            def chat_stream(self, messages):
+                system = ""
+                user_msgs = []
+                for m in messages:
+                    if m["role"] == "system":
+                        system = m["content"]
+                    else:
+                        user_msgs.append(m)
+                with self._client.messages.stream(
+                    model=self._model, max_tokens=4096,
+                    system=system, messages=user_msgs,
+                ) as stream:
+                    for text in stream.text_stream:
+                        yield text
+
+        llm_client = _OncoLLMClient()
+        logger.info("Anthropic LLM client initialized for Oncology RAG")
+    except Exception as exc:
+        logger.warning("LLM client unavailable: %s", exc)
 
     # -- RAG Engine --------------------------------------------------------
     rag_engine = OncoRAGEngine(
         collection_manager=collection_manager,
         embedder=embedder,
         settings=settings,
+        llm_client=llm_client,
     )
     _state["rag_engine"] = rag_engine
 
@@ -127,7 +190,7 @@ async def lifespan(app: FastAPI):
     yield  # --- application runs here ---
 
     # -- Shutdown ----------------------------------------------------------
-    logger.info("Precision Oncology Agent shutting down ...")
+    logger.info("Oncology Intelligence Agent shutting down ...")
     try:
         collection_manager.disconnect()
     except Exception as exc:
@@ -140,12 +203,14 @@ async def lifespan(app: FastAPI):
 # FastAPI app
 # ---------------------------------------------------------------------------
 app = FastAPI(
-    title="Precision Oncology Intelligence Agent",
+    title="Oncology Intelligence MTB API",
     description=(
         "RAG-powered clinical decision support for molecular tumor boards. "
         "Part of the HCLS AI Factory pipeline."
     ),
     version=VERSION,
+    docs_url="/docs",
+    openapi_url="/openapi.json",
     lifespan=lifespan,
 )
 
@@ -160,6 +225,42 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# -- Auth middleware (optional, based on API_KEY setting) -------------------
+_AUTH_SKIP_PATHS = {"/health", "/healthz", "/metrics", "/docs", "/openapi.json"}
+
+
+@app.middleware("http")
+async def check_api_key(request: Request, call_next):
+    if request.url.path in _AUTH_SKIP_PATHS:
+        return await call_next(request)
+    api_key = getattr(_settings_instance, 'API_KEY', '') or ''
+    if not api_key:
+        return await call_next(request)
+    provided = request.headers.get("X-API-Key", "")
+    if provided != api_key:
+        return JSONResponse(status_code=401, content={"detail": "Invalid or missing API key"})
+    return await call_next(request)
+
+
+# -- Rate limiting middleware ----------------------------------------------
+_rate_limit_store: dict = defaultdict(list)
+_RATE_LIMIT_MAX = 100
+_RATE_LIMIT_WINDOW = 60
+
+
+@app.middleware("http")
+async def rate_limit(request: Request, call_next):
+    if request.url.path in {"/health", "/healthz", "/metrics", "/docs", "/openapi.json"}:
+        return await call_next(request)
+    client_ip = request.client.host if request.client else "unknown"
+    now = time.time()
+    _rate_limit_store[client_ip] = [t for t in _rate_limit_store.get(client_ip, []) if now - t < _RATE_LIMIT_WINDOW]
+    if len(_rate_limit_store[client_ip]) >= _RATE_LIMIT_MAX:
+        return JSONResponse(status_code=429, content={"detail": "Rate limit exceeded"})
+    _rate_limit_store[client_ip].append(now)
+    return await call_next(request)
+
 
 # -- Request size limit ----------------------------------------------------
 _MAX_BODY = _settings_instance.MAX_REQUEST_SIZE_MB * 1024 * 1024
@@ -182,6 +283,15 @@ app.include_router(cases.router)
 app.include_router(trials.router)
 app.include_router(reports.router)
 app.include_router(events.router)
+
+
+# ---------------------------------------------------------------------------
+# Root endpoint
+# ---------------------------------------------------------------------------
+
+@app.get("/", include_in_schema=False)
+def root():
+    return {"service": "Oncology Intelligence MTB", "docs": "/docs", "health": "/health"}
 
 
 # ---------------------------------------------------------------------------
@@ -277,7 +387,7 @@ async def query(req: QueryRequest):
         }
     except Exception as exc:
         logger.error("Query failed: %s", exc)
-        raise HTTPException(status_code=500, detail=f"Query processing failed: {exc}")
+        raise HTTPException(status_code=500, detail="Internal processing error")
 
 
 @app.post("/search")
@@ -295,7 +405,7 @@ async def search(req: SearchRequest):
                 "count": len(hits), "processing_time_ms": elapsed_ms}
     except Exception as exc:
         logger.error("Search failed: %s", exc)
-        raise HTTPException(status_code=500, detail=f"Search failed: {exc}")
+        raise HTTPException(status_code=500, detail="Internal processing error")
 
 
 @app.post("/find-related")
@@ -317,7 +427,7 @@ async def find_related(req: FindRelatedRequest):
         related = []
     except Exception as exc:
         logger.error("Find-related failed: %s", exc)
-        raise HTTPException(status_code=500, detail=f"Entity linking failed: {exc}")
+        raise HTTPException(status_code=500, detail="Internal processing error")
     elapsed_ms = round((time.time() - t0) * 1000, 1)
     return {"entity": req.entity, "related": related, "processing_time_ms": elapsed_ms}
 

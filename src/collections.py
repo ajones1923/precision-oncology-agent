@@ -1,5 +1,5 @@
 """
-Milvus Collection Manager for the Precision Oncology Agent.
+Milvus Collection Manager for the Oncology Intelligence Agent.
 
 Defines schemas for 10 owned collections + 1 read-only genomic_evidence
 collection (shared with the genomics pipeline). Each collection uses
@@ -136,9 +136,9 @@ ONCO_BIOMARKERS_FIELDS = [
     FieldSchema(name="name", dtype=DataType.VARCHAR, max_length=100),
     FieldSchema(name="biomarker_type", dtype=DataType.VARCHAR, max_length=30),
     FieldSchema(name="cancer_types", dtype=DataType.VARCHAR, max_length=200),
-    FieldSchema(name="predictive_value", dtype=DataType.VARCHAR, max_length=200),
-    FieldSchema(name="testing_method", dtype=DataType.VARCHAR, max_length=100),
-    FieldSchema(name="clinical_cutoff", dtype=DataType.VARCHAR, max_length=100),
+    FieldSchema(name="predictive_value", dtype=DataType.VARCHAR, max_length=500),
+    FieldSchema(name="testing_method", dtype=DataType.VARCHAR, max_length=500),
+    FieldSchema(name="clinical_cutoff", dtype=DataType.VARCHAR, max_length=500),
     FieldSchema(name="text_summary", dtype=DataType.VARCHAR, max_length=3000),
     FieldSchema(name="evidence_level", dtype=DataType.VARCHAR, max_length=20),
 ]
@@ -192,7 +192,7 @@ ONCO_GUIDELINES_FIELDS = [
     FieldSchema(name="embedding", dtype=DataType.FLOAT_VECTOR, dim=EMBEDDING_DIM),
     FieldSchema(name="org", dtype=DataType.VARCHAR, max_length=20),
     FieldSchema(name="cancer_type", dtype=DataType.VARCHAR, max_length=50),
-    FieldSchema(name="version", dtype=DataType.VARCHAR, max_length=20),
+    FieldSchema(name="version", dtype=DataType.VARCHAR, max_length=50),
     FieldSchema(name="year", dtype=DataType.INT64),
     FieldSchema(name="key_recommendations", dtype=DataType.VARCHAR, max_length=3000),
     FieldSchema(name="text_summary", dtype=DataType.VARCHAR, max_length=3000),
@@ -327,7 +327,7 @@ COLLECTION_MODELS: Dict[str, Optional[Type]] = {
 
 
 class OncoCollectionManager:
-    """Manages Milvus collections for the Precision Oncology Agent.
+    """Manages Milvus collections for the Oncology Intelligence Agent.
 
     Provides helpers for connecting, creating / dropping collections,
     inserting data, and running vector similarity searches across one
@@ -374,6 +374,22 @@ class OncoCollectionManager:
         connections.disconnect(alias=self.alias)
         self._collections.clear()
         logger.info("Disconnected from Milvus.")
+
+    def is_connected(self) -> bool:
+        """Return True if there is an active Milvus connection."""
+        try:
+            return utility.has_collection("__ping__") is not None
+        except Exception:
+            return False
+
+    def list_collections(self) -> List[str]:
+        """Return names of all collections in the current Milvus instance."""
+        return utility.list_collections()
+
+    def get_collection_count(self, name: str) -> int:
+        """Return entity count for a collection."""
+        col = self.get_collection(name)
+        return col.num_entities
 
     # ------------------------------------------------------------------
     # Collection management
@@ -462,7 +478,6 @@ class OncoCollectionManager:
             Dict with entity count and field names.
         """
         col = self.get_collection(name)
-        col.flush()
         return {
             "name": name,
             "num_entities": col.num_entities,
@@ -505,32 +520,74 @@ class OncoCollectionManager:
         logger.info("Inserted %d entities into '%s'.", inserted, name)
         return inserted
 
+    def insert(
+        self,
+        collection_name: str = "",
+        records: Optional[List[Dict[str, Any]]] = None,
+        *,
+        data: Any = None,
+        name: str = "",
+    ) -> int:
+        """Flexible insert: accepts a single dict or list of dicts.
+
+        Supports both calling conventions:
+            insert(collection_name, [records])   — from ingest pipelines
+            insert(collection_name=..., data={}) — from case manager
+        """
+        col_name = collection_name or name
+        payload = records if records is not None else data
+        if isinstance(payload, dict):
+            payload = [payload]
+        return self.insert_batch(name=col_name, data=payload)
+
     # ------------------------------------------------------------------
     # Search operations
     # ------------------------------------------------------------------
 
     def search(
         self,
-        name: str,
-        query_vector: List[float],
+        name: str = "",
+        query_vector: Optional[List[float]] = None,
         top_k: int = 10,
         output_fields: Optional[List[str]] = None,
         expr: Optional[str] = None,
+        *,
+        collection: str = "",
+        vector: Optional[List[float]] = None,
+        filters: Optional[Dict[str, Any]] = None,
     ) -> List[Dict[str, Any]]:
         """Run a vector similarity search against a single collection.
 
-        Args:
-            name:           Collection to search.
-            query_vector:   Query embedding (dim=384).
-            top_k:          Number of results to return.
-            output_fields:  Fields to include in results. Defaults to all
-                            non-vector fields.
-            expr:           Optional boolean filter expression.
-
-        Returns:
-            List of result dicts, each containing matched fields plus
-            ``_distance`` and ``_collection``.
+        Supports two calling conventions:
+            search(name, query_vector, ...)           — direct API
+            search(collection=, vector=, filters=...) — from RAG engine
         """
+        # Normalise parameter aliases
+        name = name or collection
+        query_vector = query_vector if query_vector is not None else vector
+        if query_vector is None:
+            raise ValueError("query_vector (or vector=) is required")
+
+        # Convert numpy array to list if needed
+        if hasattr(query_vector, "tolist"):
+            query_vector = query_vector.tolist()
+
+        # Build expr from filters dict if provided
+        if filters and not expr:
+            parts = []
+            for k, v in filters.items():
+                if "__gte" in k:
+                    field = k.replace("__gte", "")
+                    parts.append(f"{field} >= {int(v)}")
+                elif "__lte" in k:
+                    field = k.replace("__lte", "")
+                    parts.append(f"{field} <= {int(v)}")
+                else:
+                    safe_v = str(v).replace('"', '\\"')
+                    parts.append(f'{k} == "{safe_v}"')
+            if parts:
+                expr = " and ".join(parts)
+
         col = self.get_collection(name)
         col.load()
 

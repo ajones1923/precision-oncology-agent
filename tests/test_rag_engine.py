@@ -129,7 +129,7 @@ class TestSystemPrompt:
         assert len(ONCO_SYSTEM_PROMPT) > 100
 
     def test_contains_precision_oncology(self):
-        assert "Precision Oncology" in ONCO_SYSTEM_PROMPT
+        assert "Oncology Intelligence Agent" in ONCO_SYSTEM_PROMPT
 
     def test_contains_molecular_profiling(self):
         assert "Molecular profiling" in ONCO_SYSTEM_PROMPT

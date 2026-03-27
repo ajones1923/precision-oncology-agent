@@ -3,7 +3,7 @@ Outcome capture ingest pipeline.
 
 Loads curated treatment outcome seed data from a local JSON file and
 normalises it into the ``onco_outcomes`` collection schema for the
-Precision Oncology Agent's RAG knowledge base.
+Oncology Intelligence Agent's RAG knowledge base.
 
 Outcome data enables the agent to learn from historical treatment
 responses, progression patterns, and survival metrics to improve

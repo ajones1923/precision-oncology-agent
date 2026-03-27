@@ -3,7 +3,7 @@ Resistance mechanism ingest pipeline.
 
 Loads curated drug resistance mechanism seed data from a local JSON file
 and normalises it into the ``onco_resistance`` collection schema for the
-Precision Oncology Agent's RAG knowledge base.
+Oncology Intelligence Agent's RAG knowledge base.
 
 Author: Adam Jones
 Date: February 2026

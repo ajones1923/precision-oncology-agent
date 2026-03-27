@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Test the full Precision Oncology RAG pipeline.
+"""Test the full Oncology Intelligence RAG pipeline.
 
 Connects to Milvus, loads the embedding model, creates the RAG engine,
 and runs 3 sample queries to validate the end-to-end pipeline:
@@ -127,7 +127,7 @@ def run_query(manager, embedder, query_info, query_num):
 
 def main():
     print("=" * 60)
-    print("Precision Oncology -- RAG Pipeline Test")
+    print("Oncology Intelligence -- RAG Pipeline Test")
     print("=" * 60)
 
     print("\n[1/4] Connecting to Milvus...")

@@ -55,7 +55,7 @@ def main():
     args = parser.parse_args()
 
     print("=" * 60)
-    print("Precision Oncology -- PubMed Bulk Ingest")
+    print("Oncology Intelligence -- PubMed Bulk Ingest")
     print("=" * 60)
 
     print("\n[1/4] Connecting to Milvus...")

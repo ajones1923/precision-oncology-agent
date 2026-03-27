@@ -298,5 +298,205 @@
     "predictive_value": "Response to tazemetostat (EZH2 inhibitor); higher response rates in EZH2-mutant FL",
     "testing_method": "NGS (targeted sequencing of EZH2 SET domain hotspots)",
     "clinical_cutoff": "Presence of activating EZH2 SET domain mutation (Y646, A687V, A692V)"
+  },
+  {
+    "id": "bio-npm1-031",
+    "text_summary": "NPM1 (Nucleophosmin 1) mutation status is the most common genetic alteration in acute myeloid leukemia, occurring in approximately 30% of adult AML cases and approximately 50-60% of cytogenetically normal AML. NPM1 mutations involve 4-base pair insertions in exon 12 (most commonly Type A: TCTG duplication), resulting in aberrant cytoplasmic localization of the nucleophosmin protein, which can be detected by IHC as cytoplasmic positivity. NPM1-mutant AML without FLT3-ITD (or with low FLT3-ITD allelic ratio) is classified as favorable risk per the 2022 ELN risk stratification. NPM1-mutant AML responds well to intensive chemotherapy with high complete remission rates of 80-90%, and these patients may not benefit from allogeneic stem cell transplantation in first remission. NPM1 mutation is a stable molecular marker during disease course and is the preferred MRD monitoring target by RT-qPCR, with NPM1 MRD positivity after consolidation strongly predicting relapse. Loss of NPM1 mutation at relapse occurs in approximately 10% of cases and may signal clonal evolution.",
+    "biomarker_name": "NPM1 Mutation Status",
+    "biomarker_type": "prognostic",
+    "cancer_types": "AML",
+    "predictive_value": "Favorable prognosis in AML without FLT3-ITD; preferred MRD monitoring target; guides transplant decisions",
+    "testing_method": "NGS, fragment analysis (capillary electrophoresis), RT-qPCR (MRD), IHC (cytoplasmic NPM1)",
+    "clinical_cutoff": "Presence of NPM1 exon 12 insertion mutation; MRD: <0.1% NPM1 mutant transcripts by RT-qPCR"
+  },
+  {
+    "id": "bio-flt3-itd-032",
+    "text_summary": "FLT3-ITD (FMS-like tyrosine kinase 3 internal tandem duplication) allelic ratio is a critical prognostic and predictive biomarker in acute myeloid leukemia, present in approximately 25-30% of AML cases. The FLT3-ITD allelic ratio (mutant-to-wild-type signal ratio) stratifies patients into low (<0.5) and high (>=0.5) allelic ratio groups, with high allelic ratio conferring adverse prognosis independent of co-occurring mutations. The 2022 ELN risk classification incorporates FLT3-ITD status with NPM1 co-mutation: NPM1-mutant with FLT3-ITD (any allelic ratio) is now classified as favorable, while NPM1-wild-type with FLT3-ITD is classified as intermediate risk. Midostaurin added to standard 7+3 induction chemotherapy significantly improves overall survival in FLT3-mutant AML (RATIFY trial: OS 74.7 vs 25.6 months). Gilteritinib is FDA-approved for relapsed/refractory FLT3-mutant AML. Quizartinib, a selective FLT3 inhibitor, is approved for FLT3-ITD-positive newly diagnosed AML. FLT3-ITD testing by fragment analysis or NGS should be performed at diagnosis and relapse.",
+    "biomarker_name": "FLT3-ITD Allelic Ratio",
+    "biomarker_type": "predictive",
+    "cancer_types": "AML",
+    "predictive_value": "Predicts response to FLT3 inhibitors (midostaurin, gilteritinib, quizartinib); adverse prognosis at high allelic ratio",
+    "testing_method": "Fragment analysis (capillary electrophoresis), NGS, allele-specific PCR",
+    "clinical_cutoff": "Allelic ratio <0.5 (low) vs >=0.5 (high); any FLT3-ITD qualifies for FLT3 inhibitor therapy"
+  },
+  {
+    "id": "bio-bcr-abl-033",
+    "text_summary": "BCR-ABL1 transcript level quantified by real-time quantitative PCR on the International Scale (IS) is the cornerstone biomarker for monitoring treatment response in chronic myeloid leukemia (CML). The BCR-ABL1 fusion oncogene, resulting from t(9;22) Philadelphia chromosome translocation, produces a constitutively active tyrosine kinase that drives CML pathogenesis. Quantitative RT-PCR monitoring on the IS enables standardized response milestones: early molecular response (EMR, BCR-ABL1 <=10% IS at 3 months), major molecular response (MMR, BCR-ABL1 <=0.1% IS), deep molecular response MR4 (<=0.01% IS), and MR4.5 (<=0.0032% IS). Failure to achieve EMR at 3 months predicts inferior long-term outcomes and warrants treatment change. Sustained deep molecular response (MR4 or deeper) for at least 2 years is a prerequisite for treatment-free remission (TFR) attempts. BCR-ABL1 kinase domain mutation analysis by Sanger sequencing or NGS identifies resistance mutations guiding TKI selection, with T315I being the most clinically significant gatekeeper mutation requiring ponatinib or asciminib.",
+    "biomarker_name": "BCR-ABL1 Transcript Level",
+    "biomarker_type": "monitoring",
+    "cancer_types": "CML, Ph-positive ALL",
+    "predictive_value": "Treatment response monitoring; milestone-based assessment at 3, 6, 12 months; TFR eligibility",
+    "testing_method": "Quantitative RT-PCR (International Scale), ABL1 kinase domain mutation analysis (Sanger/NGS)",
+    "clinical_cutoff": "EMR: <=10% IS at 3 months; MMR: <=0.1% IS; MR4: <=0.01% IS; MR4.5: <=0.0032% IS"
+  },
+  {
+    "id": "bio-jak2-v617f-034",
+    "text_summary": "JAK2 V617F allele burden is a diagnostic, prognostic, and monitoring biomarker in myeloproliferative neoplasms (MPNs). The JAK2 V617F somatic point mutation (substitution of valine to phenylalanine at position 617 in the pseudokinase domain) is found in approximately 95% of polycythemia vera (PV), 55-65% of essential thrombocythemia (ET), and 55-65% of primary myelofibrosis (PMF). The variant allele frequency (VAF) of JAK2 V617F correlates with disease phenotype: higher allele burden (>50%) is associated with PV phenotype, splenomegaly, thrombotic risk, and risk of transformation to myelofibrosis. In ET, lower JAK2 V617F allele burden is typical. Serial monitoring of JAK2 V617F VAF can assess molecular response to JAK inhibitors (ruxolitinib, fedratinib) and interferon-alpha therapy. A sustained reduction in JAK2 V617F allele burden during treatment correlates with improved outcomes. Testing is performed by allele-specific quantitative PCR or digital droplet PCR with sensitivity to detect VAF as low as 0.1%. JAK2 V617F-negative MPN patients should be tested for CALR and MPL mutations.",
+    "biomarker_name": "JAK2 V617F Allele Burden",
+    "biomarker_type": "diagnostic",
+    "cancer_types": "polycythemia vera, essential thrombocythemia, primary myelofibrosis",
+    "predictive_value": "Diagnosis of MPN; allele burden correlates with disease phenotype and thrombotic risk; molecular response monitoring",
+    "testing_method": "Allele-specific qPCR, digital droplet PCR (ddPCR), NGS",
+    "clinical_cutoff": "Any detectable level diagnostic for MPN; VAF >50% associated with PV phenotype and higher thrombotic risk"
+  },
+  {
+    "id": "bio-hpv-p16-035",
+    "text_summary": "HPV (human papillomavirus) and p16 immunohistochemistry status are essential biomarkers in oropharyngeal squamous cell carcinoma (OPSCC) and cervical cancer. In OPSCC, HPV-positive (primarily HPV-16) tumors represent approximately 70-80% of cases in developed countries and have dramatically better prognosis than HPV-negative tumors, with 3-year overall survival of 82% vs 57%. p16 IHC is used as a surrogate marker for transcriptionally active HPV infection, with diffuse strong nuclear and cytoplasmic staining in >=70% of tumor cells defining positivity. The AJCC 8th edition staging system created separate staging classifications for HPV-positive and HPV-negative oropharyngeal cancer, downstaging HPV-positive tumors to reflect their superior outcomes. In cervical cancer, high-risk HPV testing (types 16, 18, 31, 33, 45, 52, 58) is used for screening, triage, and surveillance after treatment. HPV-positive OPSCC is being investigated in de-escalation trials to reduce treatment morbidity while maintaining excellent outcomes. HPV testing methods include p16 IHC, HPV DNA ISH, HPV PCR, and RNA-based assays.",
+    "biomarker_name": "HPV/p16 Status",
+    "biomarker_type": "prognostic",
+    "cancer_types": "oropharyngeal SCC, cervical, anal, vaginal, vulvar, penile",
+    "predictive_value": "Favorable prognosis in HPV-positive oropharyngeal cancer; staging determinant; screening biomarker in cervical cancer",
+    "testing_method": "p16 IHC (E6H4 clone), HPV DNA ISH, HPV PCR (cobas HPV test), RNA-based assays",
+    "clinical_cutoff": "p16 IHC: diffuse strong staining in >=70% of tumor cells; HPV DNA: detection of high-risk HPV types"
+  },
+  {
+    "id": "bio-ar-v7-036",
+    "text_summary": "AR-V7 (androgen receptor splice variant 7) is a constitutively active truncated form of the androgen receptor that lacks the ligand-binding domain, rendering it resistant to androgen receptor signaling inhibitors (ARSIs) such as enzalutamide and abiraterone. AR-V7 is detected in circulating tumor cells (CTCs) of approximately 18-30% of metastatic castration-resistant prostate cancer (mCRPC) patients, with prevalence increasing after prior ARSI exposure. The PROPHECY trial demonstrated that AR-V7-positive CTCs predict poor response to enzalutamide and abiraterone (PSA response rate <10% in AR-V7-positive vs ~40-60% in AR-V7-negative patients) but preserved sensitivity to taxane chemotherapy (docetaxel, cabazitaxel). AR-V7 detection can guide treatment selection between ARSI and taxane in the mCRPC setting. Testing is performed on CTCs using the Johns Hopkins AR-V7 nuclear protein assay or RT-PCR. AR-V7 status is dynamic and can emerge during treatment, warranting serial assessment. AR-V7 positivity also correlates with shorter overall survival independent of treatment choice.",
+    "biomarker_name": "AR-V7 Splice Variant",
+    "biomarker_type": "resistance",
+    "cancer_types": "prostate (mCRPC)",
+    "predictive_value": "Predicts resistance to enzalutamide/abiraterone; preserved sensitivity to taxane chemotherapy",
+    "testing_method": "CTC-based nuclear protein assay (Johns Hopkins), RT-PCR on CTCs, immunofluorescence",
+    "clinical_cutoff": "Any detectable AR-V7 nuclear protein in CTCs defines positivity"
+  },
+  {
+    "id": "bio-psma-037",
+    "text_summary": "PSMA (prostate-specific membrane antigen, also known as FOLH1/glutamate carboxypeptidase II) is a type II transmembrane glycoprotein highly expressed on prostate cancer cells, with expression increasing with disease progression, castration resistance, and metastatic spread. PSMA expression is assessed by PSMA PET/CT imaging (using 68Ga-PSMA-11 or 18F-DCFPyL radiotracers) rather than tissue-based testing. PSMA PET/CT has revolutionized prostate cancer staging with superior sensitivity and specificity compared to conventional imaging. PSMA-positive disease on PET/CT is a prerequisite for lutetium-177 PSMA-617 (Pluvicto) therapy, a radioligand therapy FDA-approved for mCRPC after ARSI and taxane treatment based on the VISION trial (OS 15.3 vs 11.3 months). Approximately 80-90% of mCRPC patients have PSMA-positive disease. PSMA-negative disease or heterogeneous expression with high FDG-avid/PSMA-low lesions is associated with neuroendocrine differentiation and poor prognosis. PSMA-targeted diagnostics and therapeutics (theranostics) represent a paradigm for precision nuclear medicine.",
+    "biomarker_name": "PSMA Expression",
+    "biomarker_type": "predictive",
+    "cancer_types": "prostate",
+    "predictive_value": "Eligibility for lutetium-177 PSMA-617 radioligand therapy; staging by PSMA PET/CT",
+    "testing_method": "PSMA PET/CT (68Ga-PSMA-11, 18F-DCFPyL), IHC (research setting)",
+    "clinical_cutoff": "PSMA-positive uptake on PET/CT (visual assessment, SUVmax); PSMA PET-positive in at least one metastatic site"
+  },
+  {
+    "id": "bio-pten-038",
+    "text_summary": "PTEN (phosphatase and tensin homolog) loss assessed by immunohistochemistry is a prognostic and emerging predictive biomarker across multiple cancer types. PTEN is a lipid phosphatase that negatively regulates the PI3K/AKT/mTOR pathway by dephosphorylating PIP3. PTEN loss (through genomic deletion, mutation, or epigenetic silencing) occurs in approximately 40-50% of endometrial cancers, 30-40% of prostate cancers, 25-30% of glioblastomas, 15-20% of breast cancers, and 10-15% of colorectal cancers. PTEN loss by IHC is defined as complete absence of PTEN protein staining in tumor cells with retained staining in internal control stromal and endothelial cells. In prostate cancer, PTEN loss is associated with higher Gleason grade, increased risk of metastasis, and shorter time to castration resistance. PTEN loss may predict sensitivity to AKT inhibitors (capivasertib) and PI3K pathway inhibitors. In the CAPItello-291 trial, capivasertib plus fulvestrant showed enhanced benefit in the PTEN-altered subgroup of HR-positive breast cancer. PTEN loss may also predict reduced benefit from anti-EGFR therapy in colorectal cancer.",
+    "biomarker_name": "PTEN Loss by IHC",
+    "biomarker_type": "prognostic",
+    "cancer_types": "prostate, endometrial, breast, glioblastoma, colorectal",
+    "predictive_value": "Adverse prognosis; potential predictor of response to AKT/PI3K pathway inhibitors",
+    "testing_method": "IHC (138G6 clone), FISH (genomic deletion), NGS (mutations)",
+    "clinical_cutoff": "Complete absence of PTEN protein in tumor cells with retained stromal staining by IHC"
+  },
+  {
+    "id": "bio-arid1a-039",
+    "text_summary": "ARID1A (AT-rich interactive domain 1A) loss by immunohistochemistry identifies tumors with inactivating mutations in the ARID1A subunit of the SWI/SNF chromatin remodeling complex. ARID1A is one of the most frequently mutated genes across all cancers, with loss occurring in approximately 46-57% of ovarian clear cell carcinomas, 30-40% of endometrial cancers, 8-27% of gastric cancers, 10-15% of cholangiocarcinomas, and 5-10% of colorectal cancers. ARID1A loss results in unopposed EZH2-mediated transcriptional repression, creating a therapeutic vulnerability to EZH2 inhibitors. ARID1A-deficient tumors also exhibit impaired DNA damage repair, potentially sensitizing them to PARP inhibitors and ATR inhibitors. In ovarian clear cell carcinoma, ARID1A loss is an early clonal event and is associated with resistance to platinum-based chemotherapy. ARID1A loss also alters the tumor immune microenvironment, increasing T-cell infiltration and PD-L1 expression in some contexts, which may predict immunotherapy benefit. IHC using the HPA005456 or D2A8U antibody clones detects loss of nuclear ARID1A expression.",
+    "biomarker_name": "ARID1A Loss by IHC",
+    "biomarker_type": "prognostic",
+    "cancer_types": "ovarian (clear cell), endometrial, gastric, cholangiocarcinoma",
+    "predictive_value": "Potential sensitivity to EZH2 inhibitors, PARP inhibitors, and immunotherapy; platinum resistance in ovarian clear cell",
+    "testing_method": "IHC (HPA005456, D2A8U clones), NGS (truncating mutations)",
+    "clinical_cutoff": "Complete loss of nuclear ARID1A expression in tumor cells with retained stromal staining"
+  },
+  {
+    "id": "bio-hrd-gis-040",
+    "text_summary": "The Homologous Recombination Deficiency Genomic Instability Score (HRD-GIS) is a composite genomic scar biomarker that quantifies cumulative DNA damage from defective homologous recombination repair by integrating three genome-wide measures: loss of heterozygosity (LOH), telomeric allelic imbalance (TAI), and large-scale state transitions (LST). Unlike direct HRR gene mutation testing, HRD-GIS captures the functional consequence of HRD regardless of the underlying mechanism, including BRCA1 promoter methylation, RAD51C/D mutations, PALB2 loss, and other non-BRCA HRR defects that account for approximately 20-30% of HRD-positive ovarian cancers. The Myriad myChoice CDx reports a combined GIS score with a validated clinical cutoff of >=42 for HRD positivity. The PAOLA-1 trial demonstrated that HRD-GIS-positive patients benefit from olaparib plus bevacizumab maintenance (PFS 37.2 months for HRD-positive vs 17.7 months for HRD-negative). Emerging alternative HRD assays include the FoundationOne CDx LOH score (>=16%), the SOPHiA DDM HRD assay, and functional RAD51 focus assays that assess real-time HR competence rather than historical genomic scars.",
+    "biomarker_name": "HRD Genomic Instability Score (HRD-GIS)",
+    "biomarker_type": "predictive",
+    "cancer_types": "ovarian, breast, prostate, pancreatic",
+    "predictive_value": "Identifies HRD-positive tumors for PARP inhibitor eligibility regardless of BRCA status",
+    "testing_method": "Myriad myChoice CDx (LOH+TAI+LST), FoundationOne CDx (LOH), SOPHiA DDM HRD, RAD51 functional assay",
+    "clinical_cutoff": "myChoice CDx GIS >=42; FoundationOne LOH >=16%; functional RAD51 negativity"
+  },
+  {
+    "id": "bio-mut-sig-041",
+    "text_summary": "Mutational signatures (also known as SBS or Single Base Substitution profiles) are characteristic patterns of somatic mutations imprinted in cancer genomes by specific mutagenic processes. Over 60 mutational signatures have been catalogued by the COSMIC database, each reflecting a distinct etiology. Clinically relevant signatures include SBS1 (age-related deamination), SBS2/13 (APOBEC cytidine deaminase activity, common in cervical, bladder, and breast cancers), SBS4 (tobacco smoking, associated with NSCLC), SBS6/15/20/26 (mismatch repair deficiency, correlating with MSI-H), SBS7 (UV radiation, melanoma), and SBS3 (homologous recombination deficiency, correlating with BRCA mutations). SBS3 (HRD signature) can identify tumors with functional HRD even in the absence of identifiable BRCA or HRR gene mutations, potentially expanding PARP inhibitor eligibility. APOBEC mutational signatures are associated with higher TMB and may predict immunotherapy response. Mutational signature analysis requires whole-genome or whole-exome sequencing and computational deconvolution algorithms such as SigProfiler or deconstructSigs. Clinical implementation remains largely research-based but is increasingly informing treatment decisions in molecular tumor boards.",
+    "biomarker_name": "Mutational Signatures (SBS Profiles)",
+    "biomarker_type": "predictive",
+    "cancer_types": "pan-cancer, breast, bladder, melanoma, NSCLC, cervical",
+    "predictive_value": "SBS3 identifies HRD for PARP inhibitor sensitivity; APOBEC signatures predict immunotherapy response; etiologic classification",
+    "testing_method": "Whole-genome sequencing (WGS), whole-exome sequencing (WES), computational deconvolution (SigProfiler)",
+    "clinical_cutoff": "Signature contribution threshold varies by algorithm; SBS3 >20% contribution suggests functional HRD"
+  },
+  {
+    "id": "bio-ctdna-kinetics-042",
+    "text_summary": "Circulating tumor DNA (ctDNA) kinetics refers to the dynamic quantitative monitoring of ctDNA levels over time as a real-time biomarker of treatment response, resistance, and disease burden. Unlike single-timepoint ctDNA genotyping, ctDNA kinetics tracks changes in variant allele frequency (VAF) or ctDNA concentration across serial samples during therapy. Rapid ctDNA clearance (often defined as undetectable ctDNA or >90% VAF reduction within 2-4 weeks of treatment initiation) strongly predicts favorable PFS and OS across multiple cancer types and treatment modalities including chemotherapy, targeted therapy, and immunotherapy. In the DYNAMIC trial for stage II colorectal cancer, ctDNA-guided adjuvant therapy decisions reduced chemotherapy use by 50% without compromising recurrence-free survival. In metastatic NSCLC, on-treatment ctDNA dynamics at 4-8 weeks predict radiographic response and survival better than baseline PD-L1 or TMB. Molecular response (ctDNA clearance) may emerge as a surrogate endpoint for clinical trials. Key technical considerations include assay sensitivity, sampling frequency, and distinction of tumor-derived cfDNA from clonal hematopoiesis (CHIP) variants.",
+    "biomarker_name": "ctDNA Dynamics (Kinetics)",
+    "biomarker_type": "monitoring",
+    "cancer_types": "pan-cancer, colorectal, NSCLC, breast, melanoma",
+    "predictive_value": "Early treatment response assessment; real-time resistance detection; ctDNA-guided adjuvant therapy decisions",
+    "testing_method": "Serial ctDNA quantification by tumor-informed NGS (Signatera, RaDaR) or tumor-naive panels (Guardant360)",
+    "clinical_cutoff": "ctDNA clearance: undetectable ctDNA by cycle 2-3; molecular response: >90% VAF reduction from baseline"
+  },
+  {
+    "id": "bio-mrd-ngs-043",
+    "text_summary": "Minimal residual disease (MRD) detection by next-generation sequencing (NGS) in hematologic malignancies provides ultra-sensitive quantification of residual disease using patient-specific clonal immunoglobulin or T-cell receptor gene rearrangements as molecular fingerprints. The FDA-cleared clonoSEQ assay (Adaptive Biotechnologies) achieves sensitivity of 10^-6 (one malignant cell per million), approximately 100-fold more sensitive than multiparameter flow cytometry. In multiple myeloma, NGS-MRD negativity at 10^-5 or 10^-6 after treatment predicts significantly prolonged PFS and OS and is being adopted as a clinical trial endpoint. In ALL, MRD negativity by NGS after induction identifies patients with excellent outcomes who may benefit from de-escalation. In CLL, undetectable MRD by NGS after fixed-duration venetoclax-based therapy guides duration of treatment and predicts durable remission. In DLBCL, ctDNA-based MRD using tumor-specific mutations by NGS (rather than clonotype tracking) is emerging as a powerful tool for post-treatment surveillance. NGS-MRD testing requires a baseline diagnostic sample for clonotype identification and is performed on peripheral blood or bone marrow.",
+    "biomarker_name": "MRD by NGS (Hematologic)",
+    "biomarker_type": "prognostic",
+    "cancer_types": "ALL, multiple myeloma, CLL, DLBCL, AML",
+    "predictive_value": "Ultra-sensitive relapse prediction; treatment de-escalation guidance; clinical trial endpoint",
+    "testing_method": "NGS (clonoSEQ by Adaptive Biotechnologies), targeting IgH/IgK/IgL or TCR rearrangements",
+    "clinical_cutoff": "Undetectable MRD at 10^-5 or 10^-6 sensitivity; clonoSEQ lower limit of detection ~10^-6"
+  },
+  {
+    "id": "bio-til-density-044",
+    "text_summary": "Tumor-infiltrating lymphocyte (TIL) density quantified on H&E-stained tissue sections is a prognostic and emerging predictive biomarker across solid tumor types. TIL density assessment follows the standardized methodology published by the International Immuno-Oncology Biomarker Working Group, scoring the percentage of stromal area occupied by mononuclear inflammatory cells within the invasive tumor border. In triple-negative breast cancer, each 10% increment in stromal TILs reduces recurrence risk by 13-17%, and TIL-rich (>=50%) TNBC has 5-year OS exceeding 90% with standard chemotherapy alone. In early-stage TNBC, high TILs may identify patients who can safely avoid immunotherapy escalation. In colorectal cancer, the Immunoscore (quantifying CD3+ and CD8+ T cells at tumor center and invasive margin) provides superior prognostic stratification compared to conventional TNM staging and is endorsed by international guidelines as a complement to staging. In melanoma, brisk TIL infiltration correlates with improved response to checkpoint inhibitors. Emerging digital pathology and AI-based TIL scoring tools are improving reproducibility and enabling spatial analysis of immune cell distribution patterns.",
+    "biomarker_name": "TIL Density (Solid Tumors)",
+    "biomarker_type": "prognostic",
+    "cancer_types": "breast (TNBC), colorectal, melanoma, NSCLC, ovarian, gastric",
+    "predictive_value": "Favorable prognosis; potential predictor of chemotherapy and immunotherapy benefit; Immunoscore in CRC",
+    "testing_method": "H&E histology (International TILs WG guidelines), Immunoscore (CD3/CD8 IHC), digital pathology/AI",
+    "clinical_cutoff": ">=50% stromal TILs (strong favorable prognosis in TNBC); Immunoscore: 0-4 scale based on CD3/CD8 density"
+  },
+  {
+    "id": "bio-nlr-045",
+    "text_summary": "Neutrophil-to-lymphocyte ratio (NLR) is a readily available, inexpensive pan-cancer prognostic biomarker calculated from routine complete blood count with differential. NLR reflects the balance between pro-tumor neutrophil-mediated inflammation and anti-tumor lymphocyte-mediated immune surveillance. Elevated NLR (typically >3-5, though optimal cutoffs vary by cancer type and setting) is consistently associated with worse overall survival, progression-free survival, and disease-free survival across virtually all solid tumor types including NSCLC, colorectal, breast, gastric, pancreatic, renal, hepatocellular, and head and neck cancers. In NSCLC treated with immune checkpoint inhibitors, baseline NLR >5 predicts inferior response and survival compared to NLR <=5. Dynamic NLR changes during treatment (decreasing NLR) correlate with treatment response and improved outcomes. NLR is being incorporated into prognostic nomograms and composite risk scores. Limitations include confounding by infection, steroid use, and other inflammatory conditions. Despite extensive validation, NLR has not been incorporated into formal treatment guidelines as a decision-making biomarker but serves as a useful risk stratification tool.",
+    "biomarker_name": "Neutrophil-to-Lymphocyte Ratio (NLR)",
+    "biomarker_type": "prognostic",
+    "cancer_types": "pan-cancer, NSCLC, colorectal, breast, gastric, renal, hepatocellular",
+    "predictive_value": "Adverse prognosis when elevated; may predict immunotherapy outcomes in NSCLC; treatment response monitoring",
+    "testing_method": "Complete blood count with differential (automated hematology analyzer)",
+    "clinical_cutoff": ">3-5 (elevated, unfavorable prognosis; optimal cutoff varies by cancer type and treatment context)"
+  },
+  {
+    "id": "bio-ldh-046",
+    "text_summary": "Lactate dehydrogenase (LDH) serum level is a well-established prognostic biomarker in melanoma, lymphoma, and germ cell tumors, reflecting tumor burden, tissue destruction, and metabolic activity. In metastatic melanoma, elevated LDH is an independent adverse prognostic factor incorporated into the AJCC 8th edition staging system, distinguishing M1a-c (normal LDH) from M1d (elevated LDH) subcategories. Patients with elevated LDH have significantly worse overall survival with both immunotherapy and targeted therapy. In the AJCC melanoma staging system, elevated LDH automatically classifies metastatic melanoma as M1c (stage IVM1c). In aggressive non-Hodgkin lymphoma, LDH is a component of the International Prognostic Index (IPI) and revised IPI (R-IPI) for DLBCL. In germ cell tumors, LDH is part of the International Germ Cell Consensus Classification (IGCCC) risk stratification along with AFP and beta-hCG. LDH reflects the Warburg effect (increased glycolysis) and hypoxia in tumors. Serial LDH monitoring during treatment provides treatment response assessment. Normal LDH values are typically 120-246 U/L but vary by laboratory reference ranges.",
+    "biomarker_name": "LDH (Lactate Dehydrogenase)",
+    "biomarker_type": "prognostic",
+    "cancer_types": "melanoma, lymphoma, germ cell tumors, renal, NSCLC",
+    "predictive_value": "Adverse prognosis when elevated; staging component in melanoma; IPI component in DLBCL; IGCCC component in germ cell tumors",
+    "testing_method": "Serum enzymatic assay (automated chemistry analyzer)",
+    "clinical_cutoff": ">upper limit of normal (ULN, typically >246 U/L; varies by laboratory)"
+  },
+  {
+    "id": "bio-b2m-047",
+    "text_summary": "Beta-2 microglobulin (B2M) is a light chain component of the major histocompatibility complex class I (MHC-I) molecule, shed into serum proportionally to tumor burden in lymphoproliferative disorders. Elevated serum B2M is one of the most powerful prognostic biomarkers in multiple myeloma, forming the basis of the International Staging System (ISS): ISS-I (B2M <3.5 mg/L, median OS ~62 months), ISS-II (B2M 3.5-5.5 mg/L, median OS ~44 months), ISS-III (B2M >=5.5 mg/L, median OS ~29 months). The Revised ISS (R-ISS) integrates B2M with LDH and high-risk cytogenetics (del(17p), t(4;14), t(14;16)) for improved prognostic stratification. In follicular lymphoma, B2M is a component of the FLIPI-2 prognostic index. In CLL, elevated B2M independently predicts shorter time to first treatment and overall survival. B2M also reflects renal function, as it is freely filtered by the glomerulus, necessitating correction in patients with renal impairment. Serial B2M monitoring during myeloma treatment correlates with response depth.",
+    "biomarker_name": "Beta-2 Microglobulin (B2M)",
+    "biomarker_type": "prognostic",
+    "cancer_types": "multiple myeloma, lymphoma (follicular, CLL, DLBCL), Waldenstrom macroglobulinemia",
+    "predictive_value": "ISS staging in multiple myeloma; FLIPI-2 component in follicular lymphoma; CLL prognosis",
+    "testing_method": "Serum immunoassay (nephelometry, turbidimetry, ECLIA)",
+    "clinical_cutoff": "ISS: <3.5 mg/L (I), 3.5-5.5 mg/L (II), >=5.5 mg/L (III); normal <2.5 mg/L"
+  },
+  {
+    "id": "bio-ca19-9-048",
+    "text_summary": "CA 19-9 (carbohydrate antigen 19-9, sialyl Lewis-a antigen) is the most widely used serum biomarker in pancreatic adenocarcinoma for diagnosis, prognosis, treatment response monitoring, and surveillance. CA 19-9 is elevated (>37 U/mL) in approximately 80% of pancreatic cancers, with levels correlating with tumor burden, resectability, and prognosis. Markedly elevated CA 19-9 (>1000 U/mL) suggests unresectable or metastatic disease. Preoperative CA 19-9 level is an independent prognostic factor: patients with CA 19-9 <200 U/mL after neoadjuvant therapy have better surgical outcomes. Normalization of CA 19-9 after surgery predicts favorable disease-free survival. Serial CA 19-9 monitoring during chemotherapy detects treatment response or progression, often preceding radiographic changes by weeks. Approximately 5-10% of the population are Lewis antigen-negative (Le(a-b-)) and cannot produce CA 19-9 regardless of disease status, representing a key limitation. CA 19-9 is also elevated in cholangiocarcinoma, gastric cancer, and benign biliary obstruction. NCCN recommends CA 19-9 testing at diagnosis, after neoadjuvant therapy, post-resection, and during surveillance every 3-6 months.",
+    "biomarker_name": "CA 19-9",
+    "biomarker_type": "monitoring",
+    "cancer_types": "pancreatic, cholangiocarcinoma, gastric",
+    "predictive_value": "Treatment response monitoring; prognosis; resectability assessment in pancreatic cancer",
+    "testing_method": "Serum immunoassay (ECLIA, CLIA)",
+    "clinical_cutoff": ">37 U/mL (elevated); >1000 U/mL suggests advanced/unresectable disease; Lewis antigen-negative patients cannot produce CA 19-9"
+  },
+  {
+    "id": "bio-he4-049",
+    "text_summary": "HE4 (Human Epididymis Protein 4, WFDC2) is a serum biomarker used in ovarian cancer, particularly as a complement to CA-125 for distinguishing malignant from benign pelvic masses and for monitoring treatment response in epithelial ovarian cancer. HE4 is a small secretory protein of the whey acidic protein (WAP) family with anti-protease activity. The Risk of Ovarian Malignancy Algorithm (ROMA) combines HE4, CA-125, and menopausal status into a composite score that stratifies patients into high and low risk for ovarian malignancy, with sensitivity of 89-94% and specificity of 75-80% for epithelial ovarian cancer. HE4 has higher specificity than CA-125 because it is less frequently elevated in benign gynecologic conditions such as endometriosis. Elevated HE4 at diagnosis is an independent adverse prognostic factor. Serial HE4 monitoring during chemotherapy correlates with treatment response, and rising HE4 during surveillance may detect recurrence. HE4 is elevated in some non-ovarian malignancies (endometrial, lung) and in renal impairment. Normal HE4 reference ranges are age-dependent and menopausal status-dependent, with premenopausal women having lower upper limits of normal (typically <70 pmol/L premenopausal, <140 pmol/L postmenopausal).",
+    "biomarker_name": "HE4 (Human Epididymis Protein 4)",
+    "biomarker_type": "diagnostic",
+    "cancer_types": "ovarian, endometrial",
+    "predictive_value": "Distinguishes malignant from benign pelvic masses; treatment response monitoring; ROMA score component",
+    "testing_method": "Serum immunoassay (ECLIA, CLIA); ROMA algorithm (HE4 + CA-125 + menopausal status)",
+    "clinical_cutoff": "<70 pmol/L premenopausal, <140 pmol/L postmenopausal (reference ranges vary); ROMA: high-risk cutoff >=11.4% premenopausal, >=29.9% postmenopausal"
+  },
+  {
+    "id": "bio-oncotype-rs-050",
+    "text_summary": "The Oncotype DX Recurrence Score (RS) is a 21-gene RT-qPCR assay performed on FFPE tumor tissue that generates a continuous score from 0 to 100, quantifying the 10-year risk of distant recurrence and predicting chemotherapy benefit in HR-positive/HER2-negative early-stage breast cancer. The assay measures expression of 16 cancer-related genes (including proliferation genes: Ki-67, STK15, survivin, cyclin B1, MYBL2; invasion genes: MMP11, CTSL2; HER2 group: GRB7, HER2; estrogen group: ER, PGR, BCL2, SCUBE2) and 5 reference genes. The landmark TAILORx trial (10,273 patients) established that RS 0-25 patients can safely forgo chemotherapy, sparing approximately 70% of eligible patients from unnecessary treatment. The RxPONDER trial extended these findings to 1-3 node-positive disease, showing postmenopausal women with RS <=25 derive no chemotherapy benefit. Premenopausal women with RS 16-25 and 1-3 nodes may still benefit from chemotherapy. The Oncotype DX assay is endorsed by NCCN (category 1), ASCO, and St. Gallen guidelines as a standard-of-care test for adjuvant treatment decision-making in early-stage HR+/HER2- breast cancer.",
+    "biomarker_name": "Oncotype DX Recurrence Score (Expanded)",
+    "biomarker_type": "predictive",
+    "cancer_types": "breast (HR-positive, HER2-negative, early-stage, node-negative and 1-3 node-positive)",
+    "predictive_value": "Predicts 10-year distant recurrence risk and chemotherapy benefit; guides adjuvant treatment decisions",
+    "testing_method": "21-gene RT-qPCR on FFPE tissue (Exact Sciences/Genomic Health)",
+    "clinical_cutoff": "RS 0-15: low risk; RS 16-25: intermediate (age/node-dependent); RS 26-100: high risk, chemotherapy benefit"
   }
 ]

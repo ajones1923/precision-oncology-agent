@@ -1,12 +1,14 @@
 #!/usr/bin/env python3
 """Seed the onco_pathways collection with curated signaling pathway data.
 
-Loads pathway_seed_data.json and uses PathwayIngestPipeline to parse
-and embed each record into the onco_pathways Milvus collection.
+Loads pathway_seed_data.json, generates BGE-small-en-v1.5 embeddings
+from each text_summary, and inserts records into the onco_pathways
+Milvus collection.
 
 Usage: python3 scripts/seed_pathways.py
 """
 
+import json
 import sys
 from pathlib import Path
 
@@ -16,7 +18,6 @@ sys.path.insert(0, str(PROJECT_ROOT))
 from sentence_transformers import SentenceTransformer
 
 from src.collections import OncoCollectionManager
-from src.ingest.pathway_parser import PathwayIngestPipeline
 
 
 class SimpleEmbedder:
@@ -29,6 +30,25 @@ class SimpleEmbedder:
         return self.model.encode(texts).tolist()
 
 
+def transform_pathway_records(seed_data, embedder):
+    """Transform seed JSON records into onco_pathways schema with embeddings."""
+    texts = [rec["text_summary"] for rec in seed_data]
+    embeddings = embedder.encode(texts)
+
+    records = []
+    for rec, emb in zip(seed_data, embeddings):
+        records.append({
+            "id": rec.get("id", ""),
+            "embedding": emb,
+            "name": rec.get("pathway_name", ""),
+            "key_genes": rec.get("key_genes", ""),
+            "therapeutic_targets": rec.get("therapeutic_targets", ""),
+            "cross_talk": rec.get("cross_talk", ""),
+            "text_summary": rec.get("text_summary", ""),
+        })
+    return records
+
+
 def main():
     seed_file = PROJECT_ROOT / "data" / "reference" / "pathway_seed_data.json"
     if not seed_file.exists():
@@ -36,8 +56,12 @@ def main():
         return 1
 
     print("=" * 60)
-    print("Precision Oncology -- Pathway Data Seeder")
+    print("Oncology Intelligence -- Pathway Data Seeder")
     print("=" * 60)
+
+    with open(seed_file, "r", encoding="utf-8") as f:
+        seed_data = json.load(f)
+    print(f"\n  Loaded {len(seed_data)} pathway records from seed file")
 
     print("\n[1/3] Connecting to Milvus...")
     manager = OncoCollectionManager()
@@ -53,13 +77,9 @@ def main():
     print("\n[2/3] Loading BGE-small-en-v1.5 embedder...")
     embedder = SimpleEmbedder()
 
-    print("\n[3/3] Ingesting pathway seed data...")
-    pipeline = PathwayIngestPipeline(
-        collection_manager=manager,
-        embedder=embedder,
-        seed_path=str(seed_file),
-    )
-    count = pipeline.run()
+    print("\n[3/3] Embedding and inserting pathway seed data...")
+    records = transform_pathway_records(seed_data, embedder)
+    count = manager.insert_batch("onco_pathways", records)
 
     try:
         stats = manager.get_collection_stats("onco_pathways")

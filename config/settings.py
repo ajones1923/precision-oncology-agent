@@ -1,7 +1,7 @@
 """
-Precision Oncology Agent - Configuration Settings
-===================================================
-Pydantic BaseSettings for the Precision Oncology RAG agent.
+Oncology Intelligence Agent - Configuration Settings
+======================================================
+Pydantic BaseSettings for the Oncology Intelligence RAG agent.
 All values can be overridden via environment variables with the ONCO_ prefix.
 """
 
@@ -12,7 +12,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class OncoSettings(BaseSettings):
-    """Central configuration for the Precision Oncology Agent."""
+    """Central configuration for the Oncology Intelligence Agent."""
 
     model_config = SettingsConfigDict(
         env_prefix="ONCO_",
@@ -85,6 +85,7 @@ class OncoSettings(BaseSettings):
     # ── API ──────────────────────────────────────────────────────────────
     API_HOST: str = "0.0.0.0"
     API_PORT: int = 8527
+    API_KEY: str = ""
 
     # ── Streamlit ────────────────────────────────────────────────────────
     STREAMLIT_PORT: int = 8526
@@ -107,6 +108,17 @@ class OncoSettings(BaseSettings):
     CROSS_MODAL_THRESHOLD: float = 0.40
     GENOMIC_TOP_K: int = 5
     IMAGING_TOP_K: int = 5
+
+    # ── Cross-Agent URLs ─────────────────────────────────────────────
+    CART_AGENT_URL: str = "http://localhost:8522"
+    BIOMARKER_AGENT_URL: str = "http://localhost:8529"
+    TRIAL_AGENT_URL: str = "http://localhost:8538"
+    CARDIOLOGY_AGENT_URL: str = "http://localhost:8126"
+    NEUROLOGY_AGENT_URL: str = "http://localhost:8528"
+    PGX_AGENT_URL: str = "http://localhost:8107"
+    IMAGING_AGENT_URL: str = "http://localhost:8524"
+    SINGLE_CELL_AGENT_URL: str = "http://localhost:8540"
+    CROSS_AGENT_TIMEOUT: int = 30
 
     # ── Trial Matching ────────────────────────────────────────────────────
     TRIAL_WEIGHT_BIOMARKER: float = 0.40

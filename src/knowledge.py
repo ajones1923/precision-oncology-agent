@@ -573,6 +573,273 @@ ACTIONABLE_TARGETS: Dict[str, Dict] = {
                        "Ipilimumab + nivolumab dual checkpoint blockade is standard in melanoma, RCC, "
                        "and MSI-H CRC.",
     },
+    # ── Pediatric Oncology Targets ──────────────────────────────────────
+    "ETV6_RUNX1": {
+        "gene": "ETV6-RUNX1",
+        "full_name": "ETV6-RUNX1 Fusion (t(12;21)) — Pediatric B-ALL",
+        "cancer_types": ["pediatric B-ALL"],
+        "key_variants": ["ETV6-RUNX1 fusion", "t(12;21)(p13;q22)"],
+        "targeted_therapies": ["vincristine", "daunorubicin", "methotrexate", "L-asparaginase",
+                                "6-mercaptopurine"],
+        "combination_therapies": ["COG AALL0434 regimen", "BFM-based chemotherapy"],
+        "resistance_mutations": ["CREBBP mutations", "NR3C1 (glucocorticoid resistance)",
+                                  "NT5C2 mutations (thiopurine resistance)"],
+        "pathway": "transcription_regulation",
+        "evidence_level": "A",
+        "description": "ETV6-RUNX1 is the most common fusion in pediatric B-ALL (~25%). "
+                       "Associated with favorable prognosis (>90% EFS). Standard treatment "
+                       "uses risk-adapted chemotherapy. CD19/CD22 are therapeutic targets "
+                       "for relapsed disease.",
+        "pediatric": True,
+        "pediatric_context": {
+            "age_group": "1-10 years (peak incidence)",
+            "frequency": "~25% of pediatric B-ALL",
+            "prognosis": "favorable (>90% 5-year EFS)",
+            "targets": ["CD19", "CD22", "CRLF2"],
+        },
+    },
+    "BCR_ABL1": {
+        "gene": "BCR-ABL1",
+        "full_name": "BCR-ABL1 Fusion (Philadelphia Chromosome) — Pediatric ALL",
+        "cancer_types": ["pediatric B-ALL", "CML", "Ph+ ALL"],
+        "key_variants": ["BCR-ABL1 p190 fusion", "BCR-ABL1 p210 fusion", "t(9;22)(q34;q11)"],
+        "targeted_therapies": ["imatinib", "dasatinib", "ponatinib"],
+        "combination_therapies": ["dasatinib + chemotherapy (COG AALL0434)",
+                                   "imatinib + hyper-CVAD"],
+        "resistance_mutations": ["T315I (gatekeeper)", "E255K", "Y253H", "compound mutations"],
+        "pathway": "ABL kinase/MAPK/STAT5",
+        "evidence_level": "A",
+        "description": "BCR-ABL1 (Ph+) occurs in ~3-5% of pediatric ALL but ~25% of adult ALL. "
+                       "Addition of TKIs (dasatinib/imatinib) to chemotherapy has improved "
+                       "outcomes dramatically. T315I is the most common resistance mutation.",
+        "pediatric": True,
+        "pediatric_context": {
+            "age_group": "all pediatric ages (increases with age)",
+            "frequency": "~3-5% of pediatric ALL",
+            "prognosis": "historically poor, improved with TKI + chemo (>70% EFS)",
+            "targets": ["CD19", "CD22"],
+        },
+    },
+    "NOTCH1": {
+        "gene": "NOTCH1",
+        "full_name": "Notch Receptor 1 — Pediatric T-ALL",
+        "cancer_types": ["pediatric T-ALL", "T-ALL", "CLL"],
+        "key_variants": ["activating mutations (HD domain)", "PEST domain truncations",
+                          "juxtamembrane expansion mutations"],
+        "targeted_therapies": [],
+        "combination_therapies": ["COG T-ALL chemotherapy regimens",
+                                   "gamma-secretase inhibitors (investigational)"],
+        "resistance_mutations": [],
+        "pathway": "Notch",
+        "evidence_level": "B",
+        "description": "NOTCH1 activating mutations occur in >60% of T-ALL cases. "
+                       "Paradoxically, NOTCH1 mutations are associated with favorable prognosis "
+                       "in pediatric T-ALL. CDKN2A deletions are frequent co-occurring events. "
+                       "Gamma-secretase inhibitors are under investigation.",
+        "pediatric": True,
+        "pediatric_context": {
+            "age_group": "childhood/adolescent",
+            "frequency": ">60% of T-ALL",
+            "prognosis": "favorable (NOTCH1-mutant)",
+            "co_alterations": ["CDKN2A deletions", "FBXW7 mutations"],
+        },
+    },
+    "MYCN": {
+        "gene": "MYCN",
+        "full_name": "MYCN Proto-Oncogene (N-Myc) — Neuroblastoma",
+        "cancer_types": ["neuroblastoma", "retinoblastoma", "medulloblastoma",
+                          "rhabdomyosarcoma", "Wilms tumor"],
+        "key_variants": ["amplification (>10 copies)", "gain"],
+        "targeted_therapies": ["dinutuximab (anti-GD2)", "crizotinib (ALK co-mutation)",
+                                "isotretinoin (differentiation)"],
+        "combination_therapies": ["dinutuximab + GM-CSF + IL-2 + isotretinoin",
+                                   "high-dose chemo + autologous SCT"],
+        "resistance_mutations": ["ALK mutations", "RAS-MAPK activation", "telomere maintenance"],
+        "pathway": "MYC transcription",
+        "evidence_level": "A",
+        "description": "MYCN amplification defines high-risk neuroblastoma (~20% of cases) and "
+                       "is the single most important prognostic factor. MYCN-amplified tumors "
+                       "require intensive multimodal therapy including high-dose chemotherapy, "
+                       "surgery, radiation, autologous SCT, and anti-GD2 immunotherapy.",
+        "pediatric": True,
+        "pediatric_context": {
+            "age_group": "median diagnosis 17 months",
+            "frequency": "~20% of neuroblastoma",
+            "prognosis": "poor (MYCN amp = high risk, <50% 5yr OS)",
+            "risk_stratification": "MYCN amplification = automatic high-risk classification",
+            "co_alterations": ["1p deletion", "11q deletion", "ALK mutations"],
+            "targets": ["GD2 (dinutuximab)", "ALK (crizotinib)"],
+        },
+    },
+    "PTCH1": {
+        "gene": "PTCH1",
+        "full_name": "Patched 1 — Medulloblastoma SHH Subtype",
+        "cancer_types": ["medulloblastoma (SHH)", "basal cell carcinoma", "Gorlin syndrome"],
+        "key_variants": ["loss-of-function mutations", "deletions", "splice site mutations"],
+        "targeted_therapies": ["vismodegib", "sonidegib"],
+        "combination_therapies": [],
+        "resistance_mutations": ["SMO mutations (D473H)", "GLI2 amplification", "PI3K activation"],
+        "pathway": "Hedgehog (SHH)",
+        "evidence_level": "B",
+        "description": "PTCH1 loss-of-function activates the SHH pathway constitutively. In "
+                       "pediatric medulloblastoma, the SHH subtype (~30%) is driven by PTCH1, "
+                       "SMO, or SUFU mutations. Vismodegib shows activity in adult SHH-MB but "
+                       "is contraindicated in skeletally immature children due to growth plate "
+                       "effects. Medulloblastoma subtypes: WNT (best prognosis), SHH, Group 3 "
+                       "(worst prognosis), Group 4.",
+        "pediatric": True,
+        "pediatric_context": {
+            "age_group": "bimodal: infants (<3yr) and adolescents",
+            "frequency": "~30% of medulloblastoma",
+            "subtypes": ["WNT", "SHH", "Group 3", "Group 4"],
+            "shh_genes": ["PTCH1", "SMO", "SUFU", "GLI1", "GLI2"],
+            "caution": "Vismodegib contraindicated in skeletally immature patients",
+        },
+    },
+    "PAX3_FOXO1": {
+        "gene": "PAX3-FOXO1",
+        "full_name": "PAX3-FOXO1 Fusion — Alveolar Rhabdomyosarcoma",
+        "cancer_types": ["alveolar rhabdomyosarcoma"],
+        "key_variants": ["PAX3-FOXO1 fusion", "t(2;13)(q35;q14)", "PAX7-FOXO1 (less common)"],
+        "targeted_therapies": [],
+        "combination_therapies": ["VAC (vincristine + actinomycin D + cyclophosphamide)",
+                                   "VI (vincristine + irinotecan)"],
+        "resistance_mutations": [],
+        "pathway": "transcription_regulation",
+        "evidence_level": "A",
+        "description": "PAX3-FOXO1 fusion defines alveolar rhabdomyosarcoma and confers poor "
+                       "prognosis compared to fusion-negative (embryonal) RMS. Embryonal RMS "
+                       "is driven by RAS pathway mutations. Treatment is multimodal: surgery, "
+                       "radiation, and combination chemotherapy (VAC backbone).",
+        "pediatric": True,
+        "pediatric_context": {
+            "age_group": "adolescents (alveolar); young children (embryonal)",
+            "frequency": "~20% of pediatric soft tissue sarcomas",
+            "embryonal_drivers": ["RAS pathway (NRAS, KRAS, HRAS)", "FGFR4", "PIK3CA"],
+            "prognosis": "fusion-positive: poor; fusion-negative: favorable",
+        },
+    },
+    "EWSR1_FLI1": {
+        "gene": "EWSR1-FLI1",
+        "full_name": "EWSR1-FLI1 Fusion — Ewing Sarcoma",
+        "cancer_types": ["Ewing sarcoma", "primitive neuroectodermal tumor"],
+        "key_variants": ["EWSR1-FLI1 fusion", "t(11;22)(q24;q12)", "EWSR1-ERG (variant)"],
+        "targeted_therapies": [],
+        "combination_therapies": ["VDC/IE (vincristine + doxorubicin + cyclophosphamide "
+                                   "alternating with ifosfamide + etoposide)"],
+        "resistance_mutations": ["STAG2 loss", "TP53 mutations", "CDKN2A deletion"],
+        "pathway": "transcription_regulation",
+        "evidence_level": "A",
+        "description": "EWSR1-FLI1 fusion is pathognomonic for Ewing sarcoma (~85% of cases). "
+                       "Diagnosis requires FISH or RT-PCR confirmation. Standard treatment is "
+                       "compressed VDC/IE chemotherapy with local control (surgery and/or "
+                       "radiation). 5-year OS ~70% for localized disease.",
+        "pediatric": True,
+        "pediatric_context": {
+            "age_group": "10-20 years (peak incidence)",
+            "frequency": "~200 cases/year in US",
+            "prognosis": "localized ~70% 5yr OS; metastatic ~30% 5yr OS",
+        },
+    },
+    "WT1": {
+        "gene": "WT1",
+        "full_name": "Wilms Tumor 1 — Nephroblastoma",
+        "cancer_types": ["Wilms tumor (nephroblastoma)", "AML"],
+        "key_variants": ["WT1 truncating mutations", "WT1 deletions", "11p13 deletion"],
+        "targeted_therapies": [],
+        "combination_therapies": ["vincristine + actinomycin D (favorable histology)",
+                                   "vincristine + actinomycin D + doxorubicin (higher stage)"],
+        "resistance_mutations": ["TP53 mutations (anaplastic histology)"],
+        "pathway": "transcription_regulation",
+        "evidence_level": "B",
+        "description": "WT1 mutations occur in ~10-20% of Wilms tumors. Other drivers include "
+                       "WTX (AMER1) and CTNNB1 (beta-catenin). Wilms tumor has >90% overall "
+                       "survival with combined surgery and chemotherapy. Anaplastic histology "
+                       "(TP53 mutations) confers worse prognosis.",
+        "pediatric": True,
+        "pediatric_context": {
+            "age_group": "median diagnosis 3-4 years",
+            "frequency": "~500 cases/year in US",
+            "co_alterations": ["WTX (AMER1)", "CTNNB1", "TP53 (anaplastic)"],
+            "syndromes": ["WAGR (WT1 deletion)", "Denys-Drash", "Beckwith-Wiedemann"],
+            "prognosis": "favorable histology >90% OS; anaplastic ~50% OS",
+        },
+    },
+    "CTNNB1_PED": {
+        "gene": "CTNNB1",
+        "full_name": "Beta-Catenin — Hepatoblastoma & Pediatric Tumors",
+        "cancer_types": ["hepatoblastoma", "Wilms tumor", "medulloblastoma (WNT subtype)",
+                          "desmoid tumors", "pilomatricoma"],
+        "key_variants": ["exon 3 activating mutations", "S45del", "T41A", "S33C"],
+        "targeted_therapies": [],
+        "combination_therapies": ["cisplatin-based therapy (hepatoblastoma: PLADO regimen)",
+                                   "cisplatin + doxorubicin (C5V)"],
+        "resistance_mutations": [],
+        "pathway": "WNT",
+        "evidence_level": "B",
+        "description": "CTNNB1 activating mutations drive hepatoblastoma (~80% of cases) and "
+                       "WNT-subtype medulloblastoma. Hepatoblastoma is treated with cisplatin-based "
+                       "chemotherapy and surgical resection. Liver transplant for unresectable disease. "
+                       "CTNNB1-mutant WNT medulloblastoma has the best prognosis of all MB subtypes.",
+        "pediatric": True,
+        "pediatric_context": {
+            "age_group": "hepatoblastoma: <3 years; WNT-MB: older children",
+            "frequency": "hepatoblastoma ~80%; WNT-MB ~10% of all MB",
+            "prognosis": "hepatoblastoma: >80% OS; WNT-MB: >95% OS",
+        },
+    },
+    "RB1": {
+        "gene": "RB1",
+        "full_name": "Retinoblastoma 1 — Retinoblastoma & Cell Cycle Regulation",
+        "cancer_types": ["retinoblastoma", "osteosarcoma", "SCLC", "bladder"],
+        "key_variants": ["biallelic loss", "truncating mutations", "deletions",
+                          "promoter methylation"],
+        "targeted_therapies": [],
+        "combination_therapies": ["intra-arterial melphalan (retinoblastoma)",
+                                   "intravitreal melphalan", "systemic chemoreduction (VEC)"],
+        "resistance_mutations": [],
+        "pathway": "cell_cycle",
+        "evidence_level": "B",
+        "description": "RB1 biallelic loss is the hallmark of retinoblastoma (Knudson two-hit "
+                       "hypothesis). Hereditary retinoblastoma (~40%) involves germline RB1 "
+                       "mutation + somatic second hit. Treatment includes focal therapy, "
+                       "chemoreduction, intra-arterial chemotherapy, and enucleation. "
+                       "Survivors have increased risk of secondary malignancies (osteosarcoma).",
+        "pediatric": True,
+        "pediatric_context": {
+            "age_group": "median diagnosis 18 months (bilateral), 24 months (unilateral)",
+            "frequency": "~300 cases/year in US",
+            "hereditary": "~40% germline RB1 mutation (bilateral, earlier onset)",
+            "secondary_cancer_risk": "osteosarcoma, soft tissue sarcoma, melanoma",
+            "prognosis": ">95% OS in developed countries",
+        },
+    },
+    "KMT2A": {
+        "gene": "KMT2A",
+        "full_name": "KMT2A (MLL) Rearrangements — Pediatric AML/ALL",
+        "cancer_types": ["pediatric AML", "infant ALL", "therapy-related AML"],
+        "key_variants": ["KMT2A-MLLT3 (t(9;11))", "KMT2A-AFF1 (t(4;11))", "KMT2A-MLLT1 (t(11;19))",
+                          "KMT2A-MLLT10 (t(10;11))", "NUP98 fusions (NUP98-NSD1, NUP98-KDM5A)"],
+        "targeted_therapies": ["menin inhibitors (revumenib, ziftomenib — investigational)"],
+        "combination_therapies": ["intensive AML chemotherapy (ADE: cytarabine + daunorubicin + etoposide)"],
+        "resistance_mutations": ["menin inhibitor resistance mutations"],
+        "pathway": "chromatin_remodeling/transcription",
+        "evidence_level": "B",
+        "description": "KMT2A (MLL) rearrangements occur in ~20% of pediatric AML and ~80% of "
+                       "infant ALL. KMT2A-AFF1 in infant ALL confers very poor prognosis. "
+                       "NUP98 fusions are another high-risk pediatric AML subtype. Menin "
+                       "inhibitors (revumenib) are emerging as targeted therapy for KMT2A-r "
+                       "and NUP98-r leukemias. FLT3-ITD co-occurs in ~15% of pediatric AML "
+                       "and is targetable with midostaurin/gilteritinib.",
+        "pediatric": True,
+        "pediatric_context": {
+            "age_group": "infants (ALL); all ages (AML)",
+            "frequency": "~20% of pediatric AML; ~80% of infant ALL",
+            "prognosis": "KMT2A-r infant ALL: <40% EFS; KMT2A-r AML: ~50% EFS",
+            "co_alterations": ["FLT3-ITD (~15% pediatric AML)", "NUP98 fusions"],
+            "emerging_therapy": "menin inhibitors (revumenib, ziftomenib)",
+        },
+    },
 }
 
 
@@ -1416,11 +1683,135 @@ ENTITY_ALIASES: Dict[str, str] = {
     "dll3": "DLL3", "trop-2": "TROP2", "trop2": "TROP2",
     "e-cadherin": "CDH1", "mek1": "MAP2K1",
     "ini1": "SMARCB1", "snf5": "SMARCB1",
+    # Pediatric cancer aliases
+    "all": "ETV6_RUNX1", "b-all": "ETV6_RUNX1", "b-cell all": "ETV6_RUNX1",
+    "t-all": "NOTCH1", "t-cell all": "NOTCH1",
+    "neuroblastoma": "MYCN", "nbl": "MYCN",
+    "medulloblastoma": "PTCH1", "mb": "PTCH1",
+    "rhabdomyosarcoma": "PAX3_FOXO1", "rms": "PAX3_FOXO1",
+    "ewing sarcoma": "EWSR1_FLI1", "ewing": "EWSR1_FLI1",
+    "wilms tumor": "WT1", "nephroblastoma": "WT1",
+    "hepatoblastoma": "CTNNB1_PED", "hbl": "CTNNB1_PED",
+    "retinoblastoma": "RB1", "rb": "RB1",
+    "infant all": "KMT2A", "mll": "KMT2A", "mll rearranged": "KMT2A",
+    "philadelphia": "BCR_ABL1", "ph+": "BCR_ABL1", "ph+ all": "BCR_ABL1",
 }
 
 
 # ═══════════════════════════════════════════════════════════════════════
-# 7. HELPER FUNCTIONS
+# 7. PEDIATRIC DOSING PRINCIPLES
+# ═══════════════════════════════════════════════════════════════════════
+
+PEDIATRIC_DOSING: Dict[str, Dict] = {
+    "general_principles": {
+        "name": "Pediatric Dosing — General Principles",
+        "description": "Pediatric oncology dosing is BSA-based (mg/m²), not fixed adult "
+                       "doses. Weight-based dosing (mg/kg) used for infants <10 kg. "
+                       "Pharmacokinetics differ from adults: higher drug clearance relative "
+                       "to body weight, different volume of distribution, immature hepatic "
+                       "metabolism in neonates/infants.",
+        "key_rules": [
+            "BSA-based dosing (mg/m²) for most chemotherapy agents",
+            "Weight-based (mg/kg) for infants <10 kg or BSA <0.6 m²",
+            "Never exceed adult maximum doses regardless of BSA",
+            "Dose reductions for organ dysfunction (hepatic, renal)",
+            "Age-specific pharmacokinetic considerations",
+        ],
+    },
+    "anthracycline_limits": {
+        "name": "Cumulative Anthracycline Limits",
+        "description": "Anthracyclines (doxorubicin, daunorubicin, epirubicin, idarubicin) "
+                       "cause cumulative cardiotoxicity. Pediatric patients are especially "
+                       "vulnerable due to developing myocardium and long life expectancy "
+                       "post-treatment.",
+        "key_rules": [
+            "Cumulative anthracycline limit: 450 mg/m² lifetime (doxorubicin equivalent)",
+            "Dexrazoxane cardioprotection recommended for cumulative dose >300 mg/m²",
+            "Serial echocardiography (shortening fraction) monitoring required",
+            "Late cardiotoxicity can manifest decades after treatment",
+            "Conversion: daunorubicin 1:1, epirubicin 0.67:1, idarubicin 5:1 (to doxorubicin equivalent)",
+        ],
+    },
+    "methotrexate_intrathecal": {
+        "name": "Methotrexate — Age-Adjusted Intrathecal Dosing",
+        "description": "Intrathecal (IT) methotrexate dosing in pediatric ALL is age-adjusted "
+                       "(not BSA-based) because CSF volume reaches adult levels by age 3 "
+                       "while body surface area continues to grow.",
+        "key_rules": [
+            "Age 1-2 years: 8 mg IT methotrexate",
+            "Age 2-3 years: 10 mg IT methotrexate",
+            "Age ≥3 years: 12 mg IT methotrexate",
+            "Maximum IT methotrexate dose: 15 mg (adolescents/adults)",
+            "Triple intrathecal therapy: methotrexate + cytarabine + hydrocortisone",
+            "Leucovorin rescue for high-dose systemic methotrexate (≥1 g/m²)",
+        ],
+    },
+    "vincristine_cap": {
+        "name": "Vincristine — Absolute Dose Cap",
+        "description": "Vincristine has an absolute dose cap of 2 mg regardless of BSA to "
+                       "prevent severe neurotoxicity. This is one of the most critical "
+                       "safety rules in pediatric oncology.",
+        "key_rules": [
+            "Absolute maximum: 2 mg total dose regardless of BSA",
+            "Standard dose: 1.5 mg/m² (capped at 2 mg)",
+            "Peripheral neuropathy is dose-limiting toxicity",
+            "Dose reduction for hepatic dysfunction (bilirubin >3 mg/dL → 50% reduction)",
+            "NEVER administer intrathecally (universally fatal)",
+        ],
+    },
+    "asparaginase": {
+        "name": "L-Asparaginase — Pediatric Considerations",
+        "description": "L-asparaginase is a cornerstone of ALL therapy. Pegylated formulation "
+                       "(pegaspargase) is standard. Hypersensitivity, pancreatitis, and "
+                       "thrombosis are key toxicities.",
+        "key_rules": [
+            "Pegaspargase: 2,500 IU/m² IM or IV (standard)",
+            "Monitor asparaginase activity levels (therapeutic >0.1 IU/mL)",
+            "Switch to Erwinia asparaginase (now recombinant: Rylaze) for hypersensitivity",
+            "Monitor for pancreatitis, thrombosis (antithrombin III), hepatotoxicity",
+            "Silent inactivation: check asparaginase activity if subtherapeutic response",
+        ],
+    },
+}
+
+
+def get_pediatric_dosing_context(agent: str) -> str:
+    """Return formatted pediatric dosing context for a given drug or principle.
+
+    Args:
+        agent: Drug name or dosing topic (e.g. 'vincristine', 'anthracycline',
+               'methotrexate', 'general').
+
+    Returns:
+        Formatted string with pediatric dosing guidelines.
+    """
+    agent_lower = agent.lower().strip()
+
+    # Direct key match
+    if agent_lower in PEDIATRIC_DOSING:
+        entry = PEDIATRIC_DOSING[agent_lower]
+    else:
+        # Fuzzy match
+        entry = None
+        for key, val in PEDIATRIC_DOSING.items():
+            if agent_lower in key or agent_lower in val["name"].lower():
+                entry = val
+                break
+    if not entry:
+        return ""
+
+    lines = [
+        f"Pediatric Dosing: {entry['name']}",
+        f"  {entry['description']}",
+        "  Key Rules:",
+    ]
+    for rule in entry["key_rules"]:
+        lines.append(f"    - {rule}")
+    return "\n".join(lines)
+
+
+# ═══════════════════════════════════════════════════════════════════════
+# 8. HELPER FUNCTIONS
 # ═══════════════════════════════════════════════════════════════════════
 
 

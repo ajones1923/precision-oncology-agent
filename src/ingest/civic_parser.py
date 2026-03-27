@@ -2,7 +2,7 @@
 CIViC (Clinical Interpretation of Variants in Cancer) ingest pipeline.
 
 Fetches variant and evidence data from the CIViC public API and normalises
-it into the ``onco_variants`` collection schema for the Precision Oncology
+it into the ``onco_variants`` collection schema for the Oncology Intelligence
 Agent's RAG knowledge base.
 
 CIViC evidence levels:

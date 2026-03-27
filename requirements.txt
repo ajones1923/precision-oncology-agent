@@ -1,5 +1,5 @@
 # =============================================================================
-# Precision Oncology Agent — Python Dependencies
+# Oncology Intelligence Agent — Python Dependencies
 # HCLS AI Factory / ai_agent_adds / precision_oncology_agent
 #
 # Author: Adam Jones

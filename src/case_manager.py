@@ -1,5 +1,5 @@
 """
-Precision Oncology Agent - Case Manager
+Oncology Intelligence Agent - Case Manager
 VCF parsing, case lifecycle, and Molecular Tumor Board (MTB) packet generation.
 
 This module is the core oncology-specific logic for managing patient cases,
@@ -334,20 +334,28 @@ class OncologyCaseManager:
             f"Prior therapies: {', '.join(snapshot.prior_therapies) if snapshot.prior_therapies else 'none'}."
         )
         embedding = self.embedder.embed(summary_text)
+
+        # Serialize complex types to strings for Milvus VARCHAR fields
+        variants_str = ", ".join(
+            f"{v.get('gene', '')} {v.get('variant', '')}" for v in snapshot.variants[:20]
+        )
+        biomarkers_str = ", ".join(
+            f"{k}: {v}" for k, v in snapshot.biomarkers.items()
+        ) if isinstance(snapshot.biomarkers, dict) else str(snapshot.biomarkers)
+        therapies_str = ", ".join(snapshot.prior_therapies) if snapshot.prior_therapies else ""
+
         self.collection_manager.insert(
             collection_name=self.COLLECTION_NAME,
             data={
-                "case_id": snapshot.case_id,
-                "patient_id": snapshot.patient_id,
-                "cancer_type": snapshot.cancer_type,
-                "stage": snapshot.stage,
-                "variants": snapshot.variants,
-                "biomarkers": snapshot.biomarkers,
-                "prior_therapies": snapshot.prior_therapies,
-                "created_at": snapshot.created_at,
-                "updated_at": snapshot.updated_at,
+                "id": str(snapshot.case_id)[:100],
+                "patient_id": str(snapshot.patient_id)[:100],
+                "cancer_type": str(snapshot.cancer_type)[:50],
+                "stage": str(snapshot.stage or "")[:20],
+                "variants": variants_str[:1000],
+                "biomarkers": biomarkers_str[:1000],
+                "prior_therapies": therapies_str[:500],
                 "embedding": embedding,
-                "text": summary_text,
+                "text_summary": summary_text[:3000],
             },
         )
 

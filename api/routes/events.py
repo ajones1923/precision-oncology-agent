@@ -1,5 +1,5 @@
 """
-Precision Oncology Agent - Audit Event Log Router
+Oncology Intelligence Agent - Audit Event Log Router
 ===================================================
 In-memory audit trail for case creation, MTB generation, report exports,
 and other trackable actions within the oncology agent.

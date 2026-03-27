@@ -1,4 +1,9 @@
-# Precision Oncology Agent
+# Oncology Intelligence Agent
+
+
+![Architecture Infographic](docs/images/infographic.jpg)
+
+*Source: [precision-oncology-agent](https://github.com/ajones1923/precision-oncology-agent)*
 
 **Closed-loop precision oncology CDSS — from VCF to MTB packet**
 
@@ -8,7 +13,7 @@ Part of the [HCLS AI Factory](https://github.com/your-org/hcls-ai-factory) platf
 
 ## Overview
 
-The Precision Oncology Agent is a RAG-powered clinical decision support system
+The Oncology Intelligence Agent is a RAG-powered clinical decision support system
 designed to accelerate molecular tumor board (MTB) workflows. Given a patient's
 somatic and germline variant calls (VCF), the agent identifies actionable
 variants, matches them against curated oncology knowledge bases, ranks

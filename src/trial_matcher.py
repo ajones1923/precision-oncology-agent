@@ -1,5 +1,5 @@
 """
-Precision Oncology Agent - Trial Matcher
+Oncology Intelligence Agent - Trial Matcher
 Deterministic + semantic clinical trial matching for oncology patients.
 
 Combines hard-filter deterministic matching (cancer type, recruiting status)

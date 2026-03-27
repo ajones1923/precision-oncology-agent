@@ -1,5 +1,5 @@
 """
-Shared pytest fixtures for the Precision Oncology Agent test suite.
+Shared pytest fixtures for the Oncology Intelligence Agent test suite.
 =================================================================
 Provides mock objects for Milvus, embeddings, LLM clients, and
 reusable sample data following the CAR-T Intelligence Agent pattern.

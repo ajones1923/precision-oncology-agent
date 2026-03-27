@@ -3,7 +3,7 @@ PubMed oncology literature ingest pipeline.
 
 Fetches precision oncology publications from PubMed via the E-utilities API
 and normalises them into the ``onco_literature`` collection schema for the
-Precision Oncology Agent's RAG knowledge base.
+Oncology Intelligence Agent's RAG knowledge base.
 
 Follows the same structural pattern as the CAR-T Agent's literature
 ingest for consistency across the HCLS AI Factory project.

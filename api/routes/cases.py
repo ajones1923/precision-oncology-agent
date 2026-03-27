@@ -1,5 +1,5 @@
 """
-Precision Oncology Agent - Case Management Router
+Oncology Intelligence Agent - Case Management Router
 ===================================================
 Create patient cases, retrieve case details, list variants, and generate
 Molecular Tumor Board (MTB) packets for clinical review.
@@ -101,25 +101,31 @@ async def create_case(req: CreateCaseRequest):
                 variants_raw.append(v)
 
     try:
-        case = await case_manager.create_case(
+        # Pass VCF text if provided, otherwise pass parsed variant list
+        vcf_or_variants = req.vcf_text if req.vcf_text else variants_raw
+        case = case_manager.create_case(
             patient_id=req.patient_id,
             cancer_type=req.cancer_type,
-            stage=req.stage,
-            variants=variants_raw,
-            vcf_text=req.vcf_text,
+            stage=req.stage or "",
+            vcf_content_or_variants=vcf_or_variants,
             biomarkers=req.biomarkers or {},
             prior_therapies=req.prior_therapies or [],
         )
     except Exception as exc:
         logger.error("Failed to create case: %s", exc, exc_info=True)
-        raise HTTPException(status_code=500, detail=str(exc))
+        raise HTTPException(status_code=500, detail="Internal processing error")
 
     elapsed_ms = round((time.time() - t0) * 1000, 1)
+
+    # CaseSnapshot is a Pydantic model — access attributes directly
+    case_id = getattr(case, "case_id", None) or str(uuid.uuid4())
+    variant_count = len(getattr(case, "variants", []))
+    created_at = getattr(case, "created_at", None) or datetime.now(timezone.utc).isoformat()
 
     _record_event(
         "case_created",
         {
-            "case_id": case.get("case_id", ""),
+            "case_id": case_id,
             "patient_id": req.patient_id,
             "cancer_type": req.cancer_type,
             "processing_time_ms": elapsed_ms,
@@ -127,16 +133,14 @@ async def create_case(req: CreateCaseRequest):
     )
 
     return CreateCaseResponse(
-        case_id=case.get("case_id", str(uuid.uuid4())),
+        case_id=case_id,
         patient_id=req.patient_id,
         cancer_type=req.cancer_type,
         stage=req.stage,
-        variant_count=case.get("variant_count", len(variants_raw)),
+        variant_count=variant_count,
         biomarkers=req.biomarkers or {},
         prior_therapies=req.prior_therapies or [],
-        created_at=case.get(
-            "created_at", datetime.now(timezone.utc).isoformat()
-        ),
+        created_at=created_at,
     )
 
 
@@ -156,7 +160,7 @@ async def get_case(case_id: str):
         raise HTTPException(status_code=404, detail=f"Case {case_id} not found")
     except Exception as exc:
         logger.error("Error retrieving case %s: %s", case_id, exc, exc_info=True)
-        raise HTTPException(status_code=500, detail=str(exc))
+        raise HTTPException(status_code=500, detail="Internal processing error")
 
     return case
 
@@ -190,7 +194,7 @@ async def generate_mtb_packet(case_id: str, req: Optional[MTBRequest] = None):
         logger.error(
             "Failed to generate MTB packet for %s: %s", case_id, exc, exc_info=True
         )
-        raise HTTPException(status_code=500, detail=str(exc))
+        raise HTTPException(status_code=500, detail="Internal processing error")
 
     elapsed_ms = round((time.time() - t0) * 1000, 1)
 
@@ -224,7 +228,7 @@ async def list_variants(case_id: str):
     except KeyError:
         raise HTTPException(status_code=404, detail=f"Case {case_id} not found")
     except Exception as exc:
-        raise HTTPException(status_code=500, detail=str(exc))
+        raise HTTPException(status_code=500, detail="Internal processing error")
 
     variants = case.get("variants", [])
     return {

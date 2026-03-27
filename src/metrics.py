@@ -1,5 +1,5 @@
 """
-Prometheus metrics for the Precision Oncology Intelligence Agent.
+Prometheus metrics for the Oncology Intelligence Agent.
 
 Exposes histograms, counters, and gauges for monitoring query performance,
 evidence retrieval, LLM usage, embedding latency, Milvus operations,

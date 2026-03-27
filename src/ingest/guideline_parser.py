@@ -3,7 +3,7 @@ NCCN / ESMO / ASCO guideline ingest pipeline.
 
 Loads curated clinical practice guideline seed data from a local JSON
 file and normalises it into the ``onco_guidelines`` collection schema
-for the Precision Oncology Agent's RAG knowledge base.
+for the Oncology Intelligence Agent's RAG knowledge base.
 
 Note: Full guideline content is typically copyrighted. This pipeline
 ingests curated summaries and references that have been manually

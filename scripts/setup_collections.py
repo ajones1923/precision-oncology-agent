@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create all Precision Oncology Milvus collections and optionally seed data.
+"""Create all Oncology Intelligence Milvus collections and optionally seed data.
 
 Usage:
     python scripts/setup_collections.py [--drop-existing] [--seed]
@@ -31,13 +31,15 @@ SEED_SCRIPTS = [
     "seed_trials.py",
     "seed_resistance.py",
     "seed_outcomes.py",
+    "seed_literature.py",
+    "seed_cases.py",
     "seed_knowledge.py",
 ]
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Setup Precision Oncology Milvus collections"
+        description="Setup Oncology Intelligence Milvus collections"
     )
     parser.add_argument(
         "--drop-existing",
@@ -54,7 +56,7 @@ def main():
     args = parser.parse_args()
 
     print("=" * 60)
-    print("Precision Oncology -- Collection Setup")
+    print("Oncology Intelligence -- Collection Setup")
     print("=" * 60)
 
     # ── Connect to Milvus ──────────────────────────────────────────────

@@ -218,5 +218,192 @@
     "prior_therapies": [],
     "text_summary": "A 28-year-old woman referred for genetic counseling after her mother and maternal aunt were diagnosed with diffuse gastric cancer at ages 42 and 39 respectively. Germline genetic testing identified a pathogenic CDH1 splice site variant (c.1565+1G>A), confirming hereditary diffuse gastric cancer (HDGC) syndrome. Endoscopic surveillance with Cambridge protocol random biopsies (30 biopsies) identified two foci of signet ring cell carcinoma confined to the mucosa (pT1a) in the gastric body. CT chest/abdomen/pelvis negative for metastatic disease. E-cadherin IHC shows aberrant loss of membranous staining in tumor foci. H. pylori negative. ECOG PS 0. Per International Gastric Cancer Linkage Consortium guidelines, prophylactic total gastrectomy is the standard recommendation for CDH1 mutation carriers given the cumulative lifetime risk of 70-80% for diffuse gastric cancer. Patient counseled regarding lifelong nutritional implications. Lobular breast cancer surveillance also recommended given 40-60% lifetime breast cancer risk in female CDH1 carriers.",
     "created_at": "2025-05-20T10:00:00Z"
+  },
+  {
+    "id": "case-021",
+    "patient_id": "ONCO-PT-021",
+    "cancer_type": "aml",
+    "stage": "newly diagnosed",
+    "variants": ["FLT3-ITD (allelic ratio 0.85)", "NPM1 mutation (type A)"],
+    "biomarkers": {"WBC": "92,000/uL", "blasts": "78%", "LDH": "1,450 U/L", "cytogenetics": "normal karyotype"},
+    "prior_therapies": [],
+    "text_summary": "A 48-year-old woman presents with newly diagnosed acute myeloid leukemia with WBC 92,000/uL and 78% circulating blasts. Bone marrow biopsy confirms AML (FAB M4). Molecular testing reveals FLT3-ITD with high allelic ratio (0.85) and concurrent NPM1 type A mutation (exon 12 insertion). Cytogenetics show normal karyotype (46,XX). Per ELN 2022 risk stratification, FLT3-ITD with high allelic ratio in the setting of NPM1 mutation places this patient in intermediate risk. LDH is markedly elevated at 1,450 U/L suggesting high tumor burden. ECOG PS 1. Per RATIFY data, standard induction with daunorubicin plus cytarabine (7+3) plus midostaurin is the recommended first-line therapy. Given the FLT3-ITD high allelic ratio, allogeneic stem cell transplant in first remission should be considered if a suitable donor is identified. Hydroxyurea initiated for cytoreduction pending induction start. Tumor lysis syndrome prophylaxis with allopurinol and aggressive hydration commenced.",
+    "created_at": "2025-06-01T10:00:00Z"
+  },
+  {
+    "id": "case-022",
+    "patient_id": "ONCO-PT-022",
+    "cancer_type": "cml",
+    "stage": "chronic phase",
+    "variants": ["BCR-ABL1 p210 (e14a2)", "BCR-ABL1 T315I"],
+    "biomarkers": {"WBC": "85,000/uL", "BCR-ABL1 IS": "42%", "Philadelphia chromosome": "positive"},
+    "prior_therapies": ["imatinib", "dasatinib"],
+    "text_summary": "A 52-year-old male with chronic-phase CML diagnosed 5 years ago. Initially treated with imatinib 400mg daily, achieved CCyR but failed to achieve MMR by 12 months (BCR-ABL1 IS 1.2%). Switched to dasatinib 100mg daily. Achieved transient MMR at month 6 on dasatinib but lost response at 18 months with BCR-ABL1 IS rising to 12%. Mutation analysis detected BCR-ABL1 T315I gatekeeper mutation, conferring resistance to imatinib, dasatinib, nilotinib, and bosutinib. Current BCR-ABL1 IS is 42%, WBC 85,000/uL with no acceleration features (blasts <5%, basophils <20%). ECOG PS 0. Ponatinib is the only approved TKI with activity against T315I and is the recommended treatment. Per OPTIC trial data, ponatinib 45mg daily with dose reduction to 15mg upon achieving BCR-ABL1 <=1% optimizes efficacy while minimizing cardiovascular risk. Cardiovascular risk assessment and management are essential. Asciminib (STAMP inhibitor) is an alternative with T315I activity.",
+    "created_at": "2025-06-05T10:00:00Z"
+  },
+  {
+    "id": "case-023",
+    "patient_id": "ONCO-PT-023",
+    "cancer_type": "prostate",
+    "stage": "IV (mCRPC)",
+    "variants": ["BRCA2 frameshift (c.5946delT)", "AR amplification"],
+    "biomarkers": {"PSA": "145 ng/mL", "BRCA2": "biallelic loss", "HRD": "positive", "AR copy number": "8"},
+    "prior_therapies": ["LHRH agonist", "enzalutamide", "docetaxel"],
+    "text_summary": "A 68-year-old male with metastatic castration-resistant prostate cancer with extensive bone metastases and rising PSA after progression on enzalutamide and docetaxel. Germline testing reveals BRCA2 pathogenic frameshift mutation (c.5946delT). Somatic tumor profiling confirms biallelic BRCA2 loss (germline mutation + somatic LOH) with concurrent AR amplification (copy number 8). PSA 145 ng/mL, alkaline phosphatase elevated at 320 U/L. ECOG PS 1. Per PROfound data, olaparib is the recommended therapy for BRCA2-mutant mCRPC after prior novel hormonal agent. The BRCA2 biallelic loss predicts strong PARP inhibitor sensitivity. AR amplification indicates prior AR-targeted therapy resistance but does not diminish PARP inhibitor benefit. Alternative options include 177Lu-PSMA-617 if PSMA PET positive, or rucaparib per TRITON2 data. Monitoring for anemia (most common grade 3+ toxicity with olaparib in prostate cancer) is important.",
+    "created_at": "2025-06-10T10:00:00Z"
+  },
+  {
+    "id": "case-024",
+    "patient_id": "ONCO-PT-024",
+    "cancer_type": "hcc",
+    "stage": "BCLC C",
+    "variants": ["CTNNB1 S45P", "TP53 R249S"],
+    "biomarkers": {"AFP": "8,500 ng/mL", "Child-Pugh": "A5", "etiology": "HBV"},
+    "prior_therapies": [],
+    "text_summary": "A 58-year-old male with chronic hepatitis B (on tenofovir) presenting with unresectable hepatocellular carcinoma (BCLC stage C) with portal vein tumor thrombus and bilobar intrahepatic disease. Biopsy confirms moderately differentiated HCC. Molecular profiling reveals CTNNB1 activating mutation (S45P) and TP53 R249S (aflatoxin signature mutation). AFP markedly elevated at 8,500 ng/mL. Child-Pugh A5, ALBI grade 1. ECOG PS 1. No esophageal varices on screening endoscopy. Per IMbrave150 data, first-line atezolizumab plus bevacizumab is the standard of care for Child-Pugh A HCC. However, CTNNB1-mutant HCC represents a Wnt-activated immune-excluded subtype that may be associated with reduced benefit from checkpoint inhibitors. An alternative approach with the STRIDE regimen (durvalumab plus single tremelimumab) per HIMALAYA may also be considered. Lenvatinib monotherapy is a third option if immunotherapy is not preferred. AFP response monitoring may guide early assessment of treatment benefit.",
+    "created_at": "2025-06-15T10:00:00Z"
+  },
+  {
+    "id": "case-025",
+    "patient_id": "ONCO-PT-025",
+    "cancer_type": "rcc",
+    "stage": "IV",
+    "variants": ["VHL c.340G>A (p.V114M)", "PBRM1 truncating"],
+    "biomarkers": {"IMDC risk": "intermediate", "PD-L1": "negative", "sarcomatoid": "absent"},
+    "prior_therapies": ["nephrectomy"],
+    "text_summary": "A 62-year-old male with IMDC intermediate-risk metastatic clear cell renal cell carcinoma with lung, bone, and adrenal metastases, status post cytoreductive nephrectomy 6 months ago. Pathology confirmed clear cell RCC, Fuhrman grade 3, with VHL inactivation (c.340G>A missense in VHL) and PBRM1 truncating mutation. PD-L1 negative by SP142. No sarcomatoid features. ECOG PS 1. Hemoglobin 10.8 g/dL, corrected calcium normal, time from diagnosis to treatment <1 year, Karnofsky PS 80% (2 IMDC risk factors: anemia, time). For IMDC intermediate-risk mRCC, multiple first-line options exist: nivolumab plus ipilimumab (CheckMate-214), pembrolizumab plus axitinib (KEYNOTE-426), or lenvatinib plus pembrolizumab (CLEAR). PBRM1 loss has been associated with favorable prognosis and potential benefit from immunotherapy. The absence of sarcomatoid features and PD-L1 negativity may favor I/O-TKI combinations that provide additional VEGF-directed activity.",
+    "created_at": "2025-06-20T10:00:00Z"
+  },
+  {
+    "id": "case-026",
+    "patient_id": "ONCO-PT-026",
+    "cancer_type": "gist",
+    "stage": "IV",
+    "variants": ["KIT exon 11 (V559D)", "KIT exon 17 (N822K)"],
+    "biomarkers": {"DOG1": "positive", "CD117": "positive"},
+    "prior_therapies": ["imatinib", "sunitinib", "regorafenib"],
+    "text_summary": "A 55-year-old male with metastatic gastrointestinal stromal tumor originating from the small bowel, with hepatic and peritoneal metastases. Initially treated with imatinib 400mg daily with PR lasting 36 months. At progression, biopsy confirmed secondary KIT exon 17 N822K mutation in addition to primary KIT exon 11 V559D. Switched to sunitinib with SD for 12 months, then regorafenib with SD for 6 months before progression. DOG1 and CD117 positive. ECOG PS 1. Per INVICTUS data, ripretinib is the standard fourth-line therapy for advanced GIST. Ripretinib's broad-spectrum switch-control mechanism inhibits both primary (exon 11) and secondary (exon 17) KIT resistance mutations. Alternative options include clinical trial enrollment with emerging agents. The patient should be informed that fourth-line response rates are modest (ORR 9%) but PFS benefit is meaningful (6.3 vs 1.0 months). Monitoring for alopecia and palmar-plantar erythrodysesthesia is advised.",
+    "created_at": "2025-06-25T10:00:00Z"
+  },
+  {
+    "id": "case-027",
+    "patient_id": "ONCO-PT-027",
+    "cancer_type": "gist",
+    "stage": "unresectable",
+    "variants": ["PDGFRA D842V"],
+    "biomarkers": {"DOG1": "positive", "CD117": "weak positive", "PDGFRA IHC": "positive"},
+    "prior_therapies": [],
+    "text_summary": "A 60-year-old female with unresectable gastric GIST (15cm, invading adjacent structures) harboring PDGFRA D842V mutation. Prior to molecular testing, imatinib was considered but PDGFRA D842V confers intrinsic resistance to imatinib, sunitinib, and regorafenib. DOG1 positive, CD117 weakly positive (common pattern in PDGFRA-mutant GIST). ECOG PS 1. Avapritinib is the FDA-approved targeted therapy for PDGFRA exon 18 mutant GIST, with ORR of 91% in the NAVIGATOR study, the highest response rate in GIST therapeutic history. ctDNA monitoring of PDGFRA D842V can serve as a molecular response marker. Key toxicities to monitor include cognitive effects (word-finding difficulty, memory changes), periorbital edema, and intracranial hemorrhage (rare but serious). Dose reductions to 200mg may be needed for cognitive effects. Surgical resection may become feasible after tumor shrinkage with avapritinib (neoadjuvant approach).",
+    "created_at": "2025-07-01T10:00:00Z"
+  },
+  {
+    "id": "case-028",
+    "patient_id": "ONCO-PT-028",
+    "cancer_type": "cervical",
+    "stage": "IVB",
+    "variants": ["PIK3CA E545K", "STK11 loss"],
+    "biomarkers": {"HPV": "HPV-18 positive", "PD-L1 CPS": "25", "TMB": "6 mut/Mb"},
+    "prior_therapies": [],
+    "text_summary": "A 44-year-old female with newly diagnosed metastatic cervical squamous cell carcinoma (stage IVB) with lung, liver, and para-aortic lymph node metastases. HPV-18 positive by ISH. Comprehensive genomic profiling reveals PIK3CA E545K activating mutation and STK11 loss of function. PD-L1 CPS 25. TMB 6 mut/Mb. ECOG PS 1. Per KEYNOTE-826, first-line pembrolizumab plus cisplatin/carboplatin plus paclitaxel with or without bevacizumab is the standard of care for persistent, recurrent, or metastatic cervical cancer. The PD-L1 CPS 25 predicts benefit from pembrolizumab. HPV-associated tumors tend to have higher immunogenicity. PIK3CA mutation may be targetable in later lines through clinical trials (alpelisib-based combinations). Bevacizumab addition is recommended given liver metastases and the established benefit in cervical cancer (GOG-240). Tisotumab vedotin is available for second-line per innovaTV 204.",
+    "created_at": "2025-07-05T10:00:00Z"
+  },
+  {
+    "id": "case-029",
+    "patient_id": "ONCO-PT-029",
+    "cancer_type": "hnscc",
+    "stage": "IVA (recurrent)",
+    "variants": ["TP53 R175H", "CDKN2A homozygous deletion", "NOTCH1 L1575P"],
+    "biomarkers": {"PD-L1 CPS": "55", "HPV": "negative (p16-)", "TMB": "12 mut/Mb"},
+    "prior_therapies": ["cisplatin + radiation (definitive)"],
+    "text_summary": "A 62-year-old male heavy smoker with recurrent metastatic oral cavity squamous cell carcinoma (HPV-negative, p16-negative), 14 months after definitive cisplatin-based chemoradiation. Now presenting with cervical lymphadenopathy and bilateral lung metastases. NGS reveals TP53 R175H (gain-of-function hotspot), CDKN2A homozygous deletion, and NOTCH1 L1575P inactivating mutation. PD-L1 CPS 55 by 22C3 assay. TMB 12 mut/Mb. ECOG PS 1. Per KEYNOTE-048, pembrolizumab monotherapy is the preferred first-line option for CPS>=20 recurrent/metastatic HNSCC, offering chemotherapy-free survival with durable responses. Alternatively, pembrolizumab plus cisplatin/carboplatin plus 5-FU can be considered if rapid response is needed. HPV-negative HNSCC has worse prognosis than HPV-positive, but the high PD-L1 CPS predicts immunotherapy benefit. NOTCH1 loss-of-function mutations are common in HPV-negative HNSCC and may contribute to altered differentiation.",
+    "created_at": "2025-07-10T10:00:00Z"
+  },
+  {
+    "id": "case-030",
+    "patient_id": "ONCO-PT-030",
+    "cancer_type": "endometrial",
+    "stage": "IIIC1",
+    "variants": ["POLE P286R (ultramutated)"],
+    "biomarkers": {"MSI status": "MSS", "TMB": "232 mut/Mb", "MMR IHC": "intact (pMMR)", "p53": "wild-type"},
+    "prior_therapies": [],
+    "text_summary": "A 53-year-old female with newly diagnosed stage IIIC1 endometrial endometrioid adenocarcinoma (grade 2) with pelvic lymph node involvement. Molecular profiling reveals POLE exon 9 P286R hotspot mutation (pathogenic, ultramutated phenotype). MMR IHC intact (pMMR), MSS by PCR, but TMB is extraordinarily high at 232 mut/Mb. p53 wild-type by IHC. Per the TCGA molecular classification of endometrial cancer, POLE-ultramutated is the most favorable prognostic subgroup with 5-year PFS exceeding 90% even in advanced stages. The extremely high TMB suggests potential benefit from immunotherapy despite pMMR status. Following surgical staging (total hysterectomy, BSO, lymph node dissection), the role of adjuvant therapy is debated given the excellent prognosis. Some clinicians favor observation alone; others recommend pembrolizumab plus chemotherapy per NRG-GY018 given the advanced stage. Tumor board discussion weighing the excellent POLE prognosis against stage IIIC risk is essential.",
+    "created_at": "2025-07-15T10:00:00Z"
+  },
+  {
+    "id": "case-031",
+    "patient_id": "ONCO-PT-031",
+    "cancer_type": "endometrial",
+    "stage": "IVB",
+    "variants": ["PTEN R130G", "PIK3CA H1047R", "ARID1A Q1334*"],
+    "biomarkers": {"MSI status": "MSI-H", "MMR IHC": "MLH1/PMS2 loss", "TMB": "45 mut/Mb", "PD-L1 CPS": "60"},
+    "prior_therapies": [],
+    "text_summary": "A 65-year-old female with newly diagnosed stage IVB endometrial endometrioid adenocarcinoma with peritoneal carcinomatosis and liver metastases. MMR IHC shows loss of MLH1 and PMS2 (dMMR). MSI-H confirmed by PCR. Germline testing reveals MLH1 promoter hypermethylation (sporadic, not Lynch syndrome). NGS identifies PTEN R130G loss-of-function mutation, PIK3CA H1047R, and ARID1A truncating mutation. TMB 45 mut/Mb. PD-L1 CPS 60. ECOG PS 1. Per RUBY and NRG-GY018, front-line dostarlimab or pembrolizumab plus carboplatin-paclitaxel is the standard of care for advanced endometrial cancer, with the most profound benefit in the dMMR subgroup (PFS HR 0.28-0.30). The extremely high TMB and dMMR status predict exceptional immunotherapy benefit. PI3K pathway mutations (PTEN, PIK3CA) are common co-alterations in dMMR endometrial cancer but do not diminish immunotherapy efficacy.",
+    "created_at": "2025-07-20T10:00:00Z"
+  },
+  {
+    "id": "case-032",
+    "patient_id": "ONCO-PT-032",
+    "cancer_type": "mesothelioma",
+    "stage": "unresectable",
+    "variants": ["BAP1 c.178C>T (p.R60*)", "CDKN2A homozygous deletion"],
+    "biomarkers": {"histology": "epithelioid", "BAP1 IHC": "loss", "calretinin": "positive", "TMB": "2 mut/Mb"},
+    "prior_therapies": [],
+    "text_summary": "A 67-year-old male with 30 years of occupational asbestos exposure presenting with unresectable malignant pleural mesothelioma (right-sided). Thoracoscopic biopsy confirms epithelioid histology with calretinin and WT-1 positivity, CK5/6 positive, CEA negative. BAP1 IHC shows complete nuclear loss. NGS reveals BAP1 nonsense mutation (R60*, truncating) and CDKN2A homozygous deletion (confirmed by FISH). NF2 wild-type. TMB low at 2 mut/Mb. ECOG PS 1, with progressive dyspnea and right-sided pleural effusion requiring repeated drainage. Per CheckMate-743, first-line nivolumab plus ipilimumab is the standard of care for unresectable mesothelioma. BAP1 loss is the most frequent genomic alteration in mesothelioma (approximately 60%) and may predict benefit from immunotherapy. CDKN2A loss is associated with worse prognosis. Indwelling pleural catheter placement recommended for recurrent effusion management. Clinical trials targeting BAP1-deficient tumors (EZH2 inhibitors) may be future options.",
+    "created_at": "2025-07-25T10:00:00Z"
+  },
+  {
+    "id": "case-033",
+    "patient_id": "ONCO-PT-033",
+    "cancer_type": "mpn",
+    "stage": "intermediate-2 risk",
+    "variants": ["JAK2 V617F"],
+    "biomarkers": {"JAK2 V617F VAF": "68%", "bone marrow fibrosis": "grade 2 (MF-2)", "spleen length": "22 cm", "Hgb": "8.8 g/dL", "platelet count": "180,000/uL", "DIPSS": "intermediate-2"},
+    "prior_therapies": ["hydroxyurea"],
+    "text_summary": "A 70-year-old male with primary myelofibrosis (PMF) diagnosed 3 years ago, JAK2 V617F-positive (VAF 68%), presenting with progressive splenomegaly (spleen 22cm by ultrasound), constitutional symptoms (night sweats, 10% weight loss, debilitating fatigue), and worsening anemia (Hgb 8.8 g/dL, transfusion-dependent with 2 units PRBC/month). Bone marrow biopsy shows grade 2 reticulin fibrosis (MF-2) with 3% blasts. Platelet count 180K. DIPSS score intermediate-2 risk. Prior treatment with hydroxyurea for cytoreduction provided modest spleen reduction but did not improve constitutional symptoms. ECOG PS 2. Per COMFORT-I/II data, ruxolitinib is the standard of care for intermediate-2 and high-risk MF. Starting dose of 20mg BID recommended based on baseline platelet count. Expected benefits include spleen volume reduction (35% target) and symptom improvement. Initial hemoglobin drop is expected and transfusion support may be needed in the first 8-12 weeks. Allogeneic SCT should be discussed given patient age and risk category.",
+    "created_at": "2025-08-01T10:00:00Z"
+  },
+  {
+    "id": "case-034",
+    "patient_id": "ONCO-PT-034",
+    "cancer_type": "cll",
+    "stage": "Rai stage IV",
+    "variants": ["TP53 deletion (del17p)", "NOTCH1 mutation"],
+    "biomarkers": {"del17p": "positive (45% of nuclei)", "IGHV": "unmutated", "TP53 mutation": "R248W", "beta-2-microglobulin": "6.2 mg/L", "ZAP-70": "positive"},
+    "prior_therapies": ["fludarabine + cyclophosphamide + rituximab"],
+    "text_summary": "A 68-year-old male with relapsed CLL, originally diagnosed 6 years ago, previously treated with FCR achieving CR lasting 4 years. Now presents with progressive lymphadenopathy, lymphocyte count 125,000/uL, Hgb 9.5 g/dL, and platelet count 85,000/uL (Rai stage IV). FISH reveals del(17p) in 45% of nuclei (not present at diagnosis). TP53 R248W mutation confirmed by sequencing. IGHV unmutated. NOTCH1 mutation detected. Beta-2-microglobulin 6.2 mg/L. ZAP-70 positive. ECOG PS 1. The del(17p)/TP53 mutation profile confers resistance to chemoimmunotherapy and identifies the highest-risk CLL subgroup. Per NCCN guidelines, BTK inhibitor-based therapy (ibrutinib, zanubrutinib, or acalabrutinib) or venetoclax plus rituximab (MURANO) are recommended. Zanubrutinib may be preferred over ibrutinib given improved cardiac safety (ALPINE). Fixed-duration venetoclax-rituximab is an option for patients preferring time-limited therapy. NOTCH1 mutation may predict reduced benefit from anti-CD20 antibodies.",
+    "created_at": "2025-08-05T10:00:00Z"
+  },
+  {
+    "id": "case-035",
+    "patient_id": "ONCO-PT-035",
+    "cancer_type": "follicular lymphoma",
+    "stage": "IIIA",
+    "variants": ["BCL2 rearrangement t(14;18)", "EZH2 Y646N"],
+    "biomarkers": {"Ki-67": "25%", "grade": "1-2", "FLIPI": "3 (high risk)", "LDH": "normal", "EZH2 mutation": "positive by cobas"},
+    "prior_therapies": ["R-CHOP x6", "rituximab maintenance x2 years", "bendamustine + rituximab"],
+    "text_summary": "A 58-year-old female with relapsed follicular lymphoma (grade 1-2) harboring BCL2 rearrangement t(14;18) and EZH2 Y646N gain-of-function mutation. Initially treated with R-CHOP x6 achieving CR for 3 years, followed by rituximab maintenance for 2 additional years. First relapse treated with bendamustine-rituximab (BR) with PR for 18 months. Second relapse with widespread lymphadenopathy (cervical, axillary, mesenteric, inguinal). FLIPI score 3 (high risk). LDH normal. Ki-67 25%. No transformation to DLBCL on biopsy. EZH2 Y646N confirmed by cobas EZH2 Mutation Test. ECOG PS 1. Per FDA approval, tazemetostat 800mg BID is recommended for relapsed/refractory EZH2-mutant FL after two or more prior systemic therapies. Expected ORR is 69% with favorable tolerability (primarily grade 1-2 nausea, fatigue). Alternatives include lenalidomide-rituximab (R2), PI3K inhibitors, or anti-CD19 CAR-T (tisagenlecleucel) for heavily pretreated patients. EZH2 mutation testing should guide therapy selection.",
+    "created_at": "2025-08-10T10:00:00Z"
+  },
+  {
+    "id": "case-036",
+    "patient_id": "ONCO-PT-036",
+    "cancer_type": "sarcoma (rhabdoid tumor)",
+    "stage": "IV",
+    "variants": ["SMARCB1 (INI1) biallelic loss"],
+    "biomarkers": {"INI1 IHC": "complete loss", "Ki-67": "70%", "TMB": "1 mut/Mb"},
+    "prior_therapies": [],
+    "text_summary": "A 22-year-old male presenting with a large retroperitoneal mass (18cm) with hepatic and pulmonary metastases. Biopsy reveals a malignant rhabdoid tumor (extrarenal). INI1 (SMARCB1) IHC shows complete nuclear loss. NGS confirms biallelic SMARCB1 inactivation (germline exon 5 deletion + somatic LOH). No other significant genomic alterations. TMB is very low at 1 mut/Mb. Ki-67 70%. ECOG PS 1. SMARCB1 loss defines this aggressive tumor entity and identifies it as an epigenetically driven cancer. Tazemetostat (EZH2 inhibitor) has FDA approval for INI1-negative epithelioid sarcoma based on the phase 2 registration study showing ORR of 15% with durable responses. While response rates are modest, the favorable safety profile and oral administration make it a reasonable option. Doxorubicin-based chemotherapy is the traditional first-line approach for aggressive sarcomas. Clinical trials exploring combination epigenetic therapies or immune checkpoint inhibitors are encouraged. Genetic counseling for rhabdoid tumor predisposition syndrome is recommended.",
+    "created_at": "2025-08-15T10:00:00Z"
+  },
+  {
+    "id": "case-037",
+    "patient_id": "ONCO-PT-037",
+    "cancer_type": "pancreatic",
+    "stage": "IV",
+    "variants": ["KRAS G12D", "CDKN2A homozygous deletion", "SMAD4 loss", "TP53 R175H"],
+    "biomarkers": {"CA 19-9": "12,500 U/mL", "MSI status": "MSS", "TMB": "3 mut/Mb", "BRCA1/2": "wild-type"},
+    "prior_therapies": [],
+    "text_summary": "A 64-year-old male presenting with metastatic pancreatic ductal adenocarcinoma with hepatic metastases and peritoneal carcinomatosis. EUS-FNA of pancreatic head mass confirms adenocarcinoma. NGS reveals the classic pancreatic cancer genomic profile: KRAS G12D driver mutation, CDKN2A homozygous deletion, SMAD4 loss, and TP53 R175H. MSS, low TMB (3 mut/Mb), BRCA1/2 wild-type. CA 19-9 markedly elevated at 12,500 U/mL. No actionable fusion events (NTRK, NRG1, RET). ECOG PS 1, good nutritional status. This molecular profile lacks currently targetable alterations. FOLFIRINOX (if fit) or gemcitabine plus nab-paclitaxel is the standard first-line approach. KRAS G12D-directed therapies are in clinical development (divarasib has emerging data for G12D). SMAD4 loss may predict resistance to TGF-beta pathway-based approaches. The absence of HRR deficiency limits PARP inhibitor utility. Serial ctDNA monitoring may identify emerging targetable alterations. Clinical trial enrollment is encouraged.",
+    "created_at": "2025-08-20T10:00:00Z"
   }
 ]

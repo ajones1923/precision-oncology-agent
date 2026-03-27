@@ -2,7 +2,7 @@
 """Seed Milvus collections with data from the knowledge graph module.
 
 Extracts structured knowledge from src/knowledge.py (ACTIONABLE_TARGETS,
-THERAPY_PROFILES, RESISTANCE_MECHANISMS, PATHWAYS, BIOMARKERS) and seeds
+THERAPY_MAP, RESISTANCE_MECHANISMS, PATHWAY_MAP, BIOMARKERS) and seeds
 the corresponding Milvus collections with embedded records.
 
 Usage: python3 scripts/seed_knowledge.py
@@ -19,10 +19,10 @@ from sentence_transformers import SentenceTransformer
 from src.collections import OncoCollectionManager
 from src.knowledge import (
     ACTIONABLE_TARGETS,
-    THERAPY_PROFILES,
-    RESISTANCE_MECHANISMS,
-    PATHWAYS,
-    BIOMARKERS,
+    THERAPY_MAP,
+    RESISTANCE_MAP,
+    PATHWAY_MAP,
+    BIOMARKER_PANELS,
 )
 
 
@@ -79,9 +79,9 @@ def seed_variants_from_knowledge(manager, embedder):
 
 
 def seed_therapies_from_knowledge(manager, embedder):
-    """Seed onco_therapies with THERAPY_PROFILES entries."""
+    """Seed onco_therapies with THERAPY_MAP entries."""
     records = []
-    for drug, info in THERAPY_PROFILES.items():
+    for drug, info in THERAPY_MAP.items():
         description = info.get("description", "")
         targets = ", ".join(info.get("targets", []))
         indications = ", ".join(info.get("indications", []))
@@ -116,9 +116,9 @@ def seed_therapies_from_knowledge(manager, embedder):
 
 
 def seed_pathways_from_knowledge(manager, embedder):
-    """Seed onco_pathways with PATHWAYS entries."""
+    """Seed onco_pathways with PATHWAY_MAP entries."""
     records = []
-    for pathway_name, info in PATHWAYS.items():
+    for pathway_name, info in PATHWAY_MAP.items():
         description = info.get("description", "")
         genes = ", ".join(info.get("key_genes", []))
         targets = ", ".join(info.get("therapeutic_targets", []))
@@ -151,7 +151,7 @@ def seed_pathways_from_knowledge(manager, embedder):
 
 def main():
     print("=" * 60)
-    print("Precision Oncology -- Knowledge Graph Seeder")
+    print("Oncology Intelligence -- Knowledge Graph Seeder")
     print("=" * 60)
 
     print("\n[1/3] Connecting to Milvus...")

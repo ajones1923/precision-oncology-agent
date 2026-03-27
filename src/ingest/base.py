@@ -1,5 +1,5 @@
 """
-Abstract base class for Precision Oncology Agent ingest pipelines.
+Abstract base class for Oncology Intelligence Agent ingest pipelines.
 
 Provides the standard fetch -> parse -> embed_and_store orchestration
 pattern used by all data-source adapters (CIViC, PubMed, ClinicalTrials.gov,

@@ -1,1 +1,1 @@
-# Precision Oncology Agent — Core Package
+# Oncology Intelligence Agent — Core Package

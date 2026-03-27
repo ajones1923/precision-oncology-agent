@@ -1,5 +1,5 @@
 """
-Precision Oncology Agent - Trial Matching Router
+Oncology Intelligence Agent - Trial Matching Router
 ==================================================
 Match clinical trials to patient profiles and rank therapies based on
 molecular evidence, biomarker status, and guideline concordance.
@@ -63,7 +63,7 @@ async def match_trials(req: TrialMatchRequest):
         )
     except Exception as exc:
         logger.error("Trial matching failed: %s", exc, exc_info=True)
-        raise HTTPException(status_code=500, detail=str(exc))
+        raise HTTPException(status_code=500, detail="Internal processing error")
 
     elapsed_ms = round((time.time() - t0) * 1000, 1)
 
@@ -93,7 +93,7 @@ async def match_trials_for_case(case_id: str, top_k: int = 10):
     except KeyError:
         raise HTTPException(status_code=404, detail=f"Case {case_id} not found")
     except Exception as exc:
-        raise HTTPException(status_code=500, detail=str(exc))
+        raise HTTPException(status_code=500, detail="Internal processing error")
 
     if case is None:
         raise HTTPException(status_code=404, detail=f"Case {case_id} not found")
@@ -111,7 +111,7 @@ async def match_trials_for_case(case_id: str, top_k: int = 10):
         logger.error(
             "Trial matching for case %s failed: %s", case_id, exc, exc_info=True
         )
-        raise HTTPException(status_code=500, detail=str(exc))
+        raise HTTPException(status_code=500, detail="Internal processing error")
 
     elapsed_ms = round((time.time() - t0) * 1000, 1)
 
@@ -144,7 +144,7 @@ async def rank_therapies(req: TherapyRankRequest):
         )
     except Exception as exc:
         logger.error("Therapy ranking failed: %s", exc, exc_info=True)
-        raise HTTPException(status_code=500, detail=str(exc))
+        raise HTTPException(status_code=500, detail="Internal processing error")
 
     elapsed_ms = round((time.time() - t0) * 1000, 1)
 

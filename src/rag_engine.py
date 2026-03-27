@@ -1,6 +1,6 @@
 """
-Multi-Collection RAG Engine for Precision Oncology
-====================================================
+Multi-Collection RAG Engine for Oncology Intelligence
+=======================================================
 
 Provides the ``OncoRAGEngine`` class that orchestrates retrieval-augmented
 generation across 11 oncology-specific Milvus collections, weighted scoring,
@@ -27,7 +27,7 @@ logger = logging.getLogger(__name__)
 # System prompt
 # ---------------------------------------------------------------------------
 ONCO_SYSTEM_PROMPT = """\
-You are a **Precision Oncology Intelligence Agent** — an expert AI assistant
+You are an **Oncology Intelligence Agent** — an expert AI assistant
 purpose-built for clinical and translational oncology decision support.
 
 Your core competencies include:
@@ -194,6 +194,7 @@ class OncoRAGEngine:
         year_min: Optional[int] = None,
         year_max: Optional[int] = None,
         conversation_context: Optional[str] = None,
+        **kwargs,
     ) -> CrossCollectionResult:
         """Retrieve evidence across all configured collections.
 
@@ -486,7 +487,7 @@ class OncoRAGEngine:
                     filters[f"{year_field}__lte"] = year_max
 
             try:
-                hits = self.collection_manager.search(
+                raw_hits = self.collection_manager.search(
                     collection=coll_name,
                     vector=query_vector,
                     top_k=top_k,
@@ -498,13 +499,22 @@ class OncoRAGEngine:
 
             weight = cfg["weight"]
             label = cfg["label"]
-            for hit in hits:
-                hit.score *= weight
-                hit.collection = coll_name
-                hit.label = label
+
+            # Convert raw dicts from collection manager to SearchHit objects
+            search_hits: List[SearchHit] = []
+            for raw in raw_hits:
+                hit = SearchHit(
+                    collection=coll_name,
+                    id=str(raw.get("id", "")),
+                    score=float(raw.get("_distance", 0.0)) * weight,
+                    text=raw.get("text_summary", raw.get("text_chunk", "")),
+                    metadata={k: v for k, v in raw.items() if k not in ("_distance", "_collection")},
+                    label=label,
+                )
                 hit.citation = self._format_citation(coll_name, hit.record_id)
                 hit.relevance = self._score_relevance(hit.score)
-            return hits
+                search_hits.append(hit)
+            return search_hits
 
         with ThreadPoolExecutor(max_workers=min(len(target_collections), 8)) as pool:
             futures = {

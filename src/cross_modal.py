@@ -1,5 +1,5 @@
 """
-Precision Oncology Agent - Cross-Modal Triggers
+Oncology Intelligence Agent - Cross-Modal Triggers
 Connect oncology variants to imaging intelligence and drug discovery pipelines.
 
 When actionable variants are identified, this module queries across modalities

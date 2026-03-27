@@ -3,7 +3,7 @@ Signaling pathway data ingest pipeline.
 
 Loads curated cancer signaling pathway seed data from a local JSON file
 and normalises it into the ``onco_pathways`` collection schema for the
-Precision Oncology Agent's RAG knowledge base.
+Oncology Intelligence Agent's RAG knowledge base.
 
 Author: Adam Jones
 Date: February 2026

@@ -37,7 +37,7 @@ def main():
         return 1
 
     print("=" * 60)
-    print("Precision Oncology -- Variant Data Seeder")
+    print("Oncology Intelligence -- Variant Data Seeder")
     print("=" * 60)
 
     # Load seed data

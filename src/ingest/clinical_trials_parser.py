@@ -3,7 +3,7 @@ ClinicalTrials.gov oncology trial ingest pipeline.
 
 Fetches precision oncology clinical trials from the ClinicalTrials.gov v2
 API and normalises them into the ``onco_trials`` collection schema for the
-Precision Oncology Agent's RAG knowledge base.
+Oncology Intelligence Agent's RAG knowledge base.
 
 Follows the same structural pattern as the CAR-T Agent's clinical trials
 ingest for consistency across the HCLS AI Factory project.

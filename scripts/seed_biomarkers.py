@@ -59,7 +59,7 @@ def main():
         return 1
 
     print("=" * 60)
-    print("Precision Oncology -- Biomarker Data Seeder")
+    print("Oncology Intelligence -- Biomarker Data Seeder")
     print("=" * 60)
 
     with open(seed_file, "r", encoding="utf-8") as f:

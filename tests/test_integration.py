@@ -1,5 +1,5 @@
 """
-Integration tests for the Precision Oncology Agent.
+Integration tests for the Oncology Intelligence Agent.
 ====================================================
 Exercises the full agent pipeline without external dependencies (no Milvus,
 no LLM API). Uses realistic oncology patient profiles with actual gene names
@@ -377,7 +377,7 @@ class TestAgentPipelineIntegration:
         assert "EGFR" in response.answer
         assert response.evidence.hit_count > 0
         assert response.report is not None
-        assert "# Precision Oncology Intelligence Report" in response.report
+        assert "# Oncology Intelligence Report" in response.report
 
     def test_braf_melanoma_full_pipeline(self):
         """Full pipeline for BRAF V600E melanoma."""

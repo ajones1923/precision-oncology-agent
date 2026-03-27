@@ -1,6 +1,6 @@
 """
-Precision Oncology Agent - MTB Workbench UI
-=============================================
+Oncology Intelligence Agent - MTB Workbench UI
+=================================================
 Streamlit application providing a Molecular Tumor Board workbench with
 five tabs: Case Workbench, Evidence Explorer, Trial Finder, Therapy Ranker,
 and Outcomes Dashboard.
@@ -22,10 +22,14 @@ import streamlit as st
 # Configuration
 # ---------------------------------------------------------------------------
 API_BASE = os.environ.get("ONCO_API_BASE_URL", "http://localhost:8527")
-PAGE_TITLE = "Precision Oncology MTB Workbench"
+PAGE_TITLE = "Oncology Intelligence MTB Workbench"
 PAGE_ICON = "🧬"
 
 CANCER_TYPES = [
+    "B-Cell Acute Lymphoblastic Leukemia (B-ALL)",
+    "T-Cell Acute Lymphoblastic Leukemia (T-ALL)",
+    "Acute Myeloid Leukemia (AML)",
+    "Chronic Myeloid Leukemia (CML)",
     "Non-Small Cell Lung Cancer (NSCLC)",
     "Small Cell Lung Cancer (SCLC)",
     "Breast Cancer",
@@ -33,8 +37,12 @@ CANCER_TYPES = [
     "Pancreatic Cancer",
     "Melanoma",
     "Glioblastoma",
-    "Acute Myeloid Leukemia (AML)",
-    "Chronic Myeloid Leukemia (CML)",
+    "Medulloblastoma",
+    "Neuroblastoma",
+    "Rhabdomyosarcoma",
+    "Wilms Tumor (Nephroblastoma)",
+    "Ewing Sarcoma",
+    "Retinoblastoma",
     "Ovarian Cancer",
     "Prostate Cancer",
     "Bladder Cancer",
@@ -135,7 +143,7 @@ def render_sidebar():
             'HCLS AI Factory</div>',
             unsafe_allow_html=True,
         )
-        st.markdown("## Precision Oncology Agent")
+        st.markdown("## Oncology Intelligence Agent")
         st.markdown("*Molecular Tumor Board Workbench*")
         st.divider()
 
@@ -167,6 +175,21 @@ def render_sidebar():
         st.markdown("- [Milvus Attu](http://localhost:8000)")
         st.markdown("- [Grafana](http://localhost:3000)")
         st.markdown("- [Portal](http://localhost:8510)")
+
+        st.divider()
+
+        st.markdown("### \U0001f3af Demo Mode")
+        if st.button("Load Demo Patient", key="load_demo"):
+            import sys as _sys
+            _lib_path = os.environ.get("HCLS_LIB_PATH", "/app/lib")
+            _sys.path.insert(0, _lib_path)
+            from hcls_common.demo_data import DEMO_PATIENT_ID, DEMO_PATIENT_AGE, DEMO_ONCOLOGY
+            st.session_state["demo_loaded"] = True
+            st.session_state["demo_cancer_type"] = DEMO_ONCOLOGY["cancer_type"]
+            st.session_state["demo_stage"] = DEMO_ONCOLOGY["stage"]
+            st.session_state["demo_variants"] = DEMO_ONCOLOGY["variants"]
+            st.toast("\u2705 Demo patient loaded! Use Case Workbench tab.", icon="\U0001f3af")
+            st.rerun()
 
         st.divider()
         st.caption("Author: Adam Jones | February 2026")
@@ -277,6 +300,25 @@ def render_case_workbench():
                 st.session_state["current_case_id"] = result.get("case_id")
                 st.json(result)
 
+                # Publish cross-agent event for case creation
+                try:
+                    import sys
+                    _lib_path = os.environ.get("HCLS_LIB_PATH", "/app/lib")
+                    sys.path.insert(0, _lib_path)
+                    from hcls_common.event_bus import publish_event, EventType, PipelineStage
+                    publish_event(
+                        EventType.ONCOLOGY_CASE_CREATED,
+                        source_stage=PipelineStage.ANNOTATION,
+                        payload={
+                            "case_id": result.get("case_id"),
+                            "cancer_type": cancer_type,
+                            "variant_count": len(variants_list),
+                        },
+                        patient_id=patient_id,
+                    )
+                except Exception:
+                    pass
+
     with col_b:
         case_id = st.session_state.get("current_case_id", "")
         if st.button("Generate MTB Packet", use_container_width=True, disabled=not case_id):
@@ -285,6 +327,27 @@ def render_case_workbench():
 
             if mtb:
                 st.success("MTB Packet generated successfully.")
+
+                # Publish cross-agent event for MTB generation
+                try:
+                    import sys
+                    _lib_path = os.environ.get("HCLS_LIB_PATH", "/app/lib")
+                    sys.path.insert(0, _lib_path)
+                    from hcls_common.event_bus import publish_event, EventType, PipelineStage
+                    publish_event(
+                        EventType.THERAPY_RANKED,
+                        source_stage=PipelineStage.ANNOTATION,
+                        payload={
+                            "case_id": case_id,
+                            "therapy_count": len(mtb.get("therapy_ranking", [])),
+                            "trial_matches": len(mtb.get("trial_matches", [])),
+                            "variant_count": len(mtb.get("variants", [])),
+                        },
+                        patient_id=st.session_state.get("current_case_id", ""),
+                    )
+                except Exception:
+                    pass
+
                 _render_mtb_packet(mtb)
 
 
@@ -388,7 +451,7 @@ def render_evidence_explorer():
                 score = src.get("score", 0)
                 text = src.get("text", "")
                 badge_color = {
-                    "onco_targets": "blue",
+                    "onco_variants": "blue",
                     "onco_therapies": "green",
                     "onco_resistance": "red",
                     "onco_pathways": "violet",
@@ -676,6 +739,13 @@ def main():
     st.markdown(
         "Clinical decision support for molecular tumor boards, powered by "
         "RAG-driven oncology intelligence."
+    )
+
+    st.warning(
+        "**Clinical Decision Support Tool** — This system provides evidence-based guidance "
+        "for research and clinical decision support only. All recommendations must be verified "
+        "by a qualified healthcare professional. Not FDA-cleared. Not a substitute for professional "
+        "clinical judgment."
     )
 
     tab1, tab2, tab3, tab4, tab5 = st.tabs([

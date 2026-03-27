@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""End-to-end validation for the Precision Oncology Agent.
+"""End-to-end validation for the Oncology Intelligence Agent.
 
 Performs comprehensive validation across all agent subsystems:
   1. Service health checks (Milvus, API)
@@ -276,13 +276,13 @@ def check_mtb_packet():
 
 def main():
     parser = argparse.ArgumentParser(
-        description="End-to-end validation for Precision Oncology Agent"
+        description="End-to-end validation for Oncology Intelligence Agent"
     )
     parser.add_argument("--verbose", action="store_true", help="Show detailed output")
     args = parser.parse_args()
 
     print("=" * 60)
-    print("Precision Oncology -- End-to-End Validation")
+    print("Oncology Intelligence -- End-to-End Validation")
     print("=" * 60)
 
     validations = [
