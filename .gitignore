@@ -6,3 +6,4 @@ data/cache/
 *.egg-info/
 .venv/
 .streamlit/
+venv/
