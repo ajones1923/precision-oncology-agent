@@ -32,7 +32,7 @@ Milvus 2.4, and Claude as the reasoning backbone. A Streamlit UI provides
 interactive case exploration, while a FastAPI server exposes programmatic
 endpoints for integration with EHR and LIMS systems.
 
-The system is designed to run on a single NVIDIA DGX Spark ($3,999) alongside
+The system is designed to run on a single NVIDIA DGX Spark ($4,699) alongside
 the rest of the HCLS AI Factory pipeline, maintaining the project's goal of
 end-to-end precision medicine — from Patient DNA to Drug Candidates in under
 5 hours.
