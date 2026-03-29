@@ -294,7 +294,7 @@ class OncoRAGEngine:
         result = self.retrieve(agent_query, **kwargs)
         return result.hits
 
-    def synthesize(self, question: str, evidence: list, plan=None) -> "AgentResponse":
+    def synthesize(self, question: str, evidence: list, plan=None) -> "AgentResponse":  # noqa: F821
         """Synthesize an answer from pre-retrieved evidence.
 
         Used by the OncoIntelligenceAgent after gathering evidence.
