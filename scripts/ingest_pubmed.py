@@ -72,7 +72,7 @@ def main():
     print("\n[2/4] Loading BGE-small-en-v1.5 embedder...")
     embedder = SimpleEmbedder()
 
-    print(f"\n[3/4] Preparing PubMed query...")
+    print("\n[3/4] Preparing PubMed query...")
     print(f"  Query: {args.query}")
     print(f"  Max results: {args.max_results}")
 

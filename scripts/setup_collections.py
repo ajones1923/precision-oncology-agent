@@ -95,7 +95,7 @@ def main():
 
     # ── Seed data (if requested) ───────────────────────────────────────
     if args.seed:
-        print(f"\n[4/4] Seeding collections with reference data...")
+        print("\n[4/4] Seeding collections with reference data...")
         manager.disconnect()  # Disconnect; seed scripts create their own connections
 
         scripts_dir = Path(__file__).resolve().parent

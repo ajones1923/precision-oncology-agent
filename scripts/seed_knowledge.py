@@ -20,9 +20,7 @@ from src.collections import OncoCollectionManager
 from src.knowledge import (
     ACTIONABLE_TARGETS,
     THERAPY_MAP,
-    RESISTANCE_MAP,
     PATHWAY_MAP,
-    BIOMARKER_PANELS,
 )
 
 

@@ -8,7 +8,6 @@ Author: Adam Jones
 Date: February 2026
 """
 
-import io
 import time
 import logging
 from typing import Optional
@@ -156,7 +155,7 @@ async def export_case_report(case_id: str, fmt: str):
         case = await case_manager.get_case(case_id)
     except KeyError:
         raise HTTPException(status_code=404, detail=f"Case {case_id} not found")
-    except Exception as exc:
+    except Exception:
         raise HTTPException(status_code=500, detail="Internal processing error")
 
     t0 = time.time()

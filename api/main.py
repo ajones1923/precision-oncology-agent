@@ -20,9 +20,8 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 from sentence_transformers import SentenceTransformer
 
-from config.settings import settings as _settings_instance, OncoSettings
+from config.settings import settings as _settings_instance
 from src.collections import OncoCollectionManager
-from src.knowledge import ACTIONABLE_TARGETS, THERAPY_MAP, RESISTANCE_MAP, BIOMARKER_PANELS
 from src.rag_engine import OncoRAGEngine
 from src.agent import OncoIntelligenceAgent
 from src.case_manager import OncologyCaseManager

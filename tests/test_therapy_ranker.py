@@ -18,7 +18,7 @@ if str(_AGENT_ROOT) not in sys.path:
     sys.path.insert(0, str(_AGENT_ROOT))
 
 from src.therapy_ranker import EVIDENCE_LEVEL_ORDER, TherapyRanker
-from src.knowledge import ACTIONABLE_TARGETS, THERAPY_MAP, RESISTANCE_MAP
+from src.knowledge import RESISTANCE_MAP
 
 
 # ═══════════════════════════════════════════════════════════════════════════
@@ -224,7 +224,7 @@ class TestResistanceChecking:
             triggers = RESISTANCE_MAP["osimertinib"]
             if triggers:
                 # Use a known trigger
-                trigger_name = triggers[0].get("mutation", "")
+                triggers[0].get("mutation", "")
                 # The _check_resistance method checks if prior therapies
                 # match resistance triggers, which is drug-based not mutation-based
                 # So we test with a valid scenario

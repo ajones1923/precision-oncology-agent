@@ -92,7 +92,7 @@ async def match_trials_for_case(case_id: str, top_k: int = 10):
         case = case_manager.get_case(case_id)
     except KeyError:
         raise HTTPException(status_code=404, detail=f"Case {case_id} not found")
-    except Exception as exc:
+    except Exception:
         raise HTTPException(status_code=500, detail="Internal processing error")
 
     if case is None:

@@ -9,7 +9,7 @@ All external dependencies (Milvus, embeddings, RAG engine) are mocked.
 
 import sys
 from pathlib import Path
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock
 
 import pytest
 

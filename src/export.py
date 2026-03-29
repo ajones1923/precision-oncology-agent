@@ -12,7 +12,7 @@ import json
 import logging
 import uuid
 from datetime import datetime, timezone
-from typing import Any, Dict, List, Optional, Union
+from typing import Any, Dict, List, Optional
 
 logger = logging.getLogger(__name__)
 
@@ -163,7 +163,7 @@ def export_markdown(
     lines.append(f"# {report_title}")
     lines.append("")
     lines.append(f"**Generated:** {_timestamp()}")
-    lines.append(f"**Pipeline:** HCLS AI Factory — Oncology Intelligence Agent")
+    lines.append("**Pipeline:** HCLS AI Factory — Oncology Intelligence Agent")
     if data.get("patient_id"):
         lines.append(f"**Patient ID:** {data['patient_id']}")
     if data.get("cancer_type"):

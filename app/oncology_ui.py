@@ -9,11 +9,8 @@ Author: Adam Jones
 Date: February 2026
 """
 
-import json
 import os
-import time
-from datetime import datetime
-from typing import Any, Dict, List, Optional
+from typing import Optional
 
 import requests
 import streamlit as st
@@ -183,7 +180,7 @@ def render_sidebar():
             import sys as _sys
             _lib_path = os.environ.get("HCLS_LIB_PATH", "/app/lib")
             _sys.path.insert(0, _lib_path)
-            from hcls_common.demo_data import DEMO_PATIENT_ID, DEMO_PATIENT_AGE, DEMO_ONCOLOGY
+            from hcls_common.demo_data import DEMO_ONCOLOGY
             st.session_state["demo_loaded"] = True
             st.session_state["demo_cancer_type"] = DEMO_ONCOLOGY["cancer_type"]
             st.session_state["demo_stage"] = DEMO_ONCOLOGY["stage"]
@@ -705,12 +702,6 @@ def render_outcomes_dashboard():
             details = evt.get("details", {})
             user = evt.get("user", "system")
 
-            icon_map = {
-                "case_created": "new",
-                "mtb_generated": "clipboard",
-                "report_generated": "page_facing_up",
-                "report_exported": "outbox_tray",
-            }
 
             st.markdown(
                 f"**{etype}** | {ts[:19]} | User: {user}"

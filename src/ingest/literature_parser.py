@@ -14,7 +14,7 @@ Date: February 2026
 
 import logging
 import re
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List
 
 from src.ingest.base import BaseIngestPipeline
 

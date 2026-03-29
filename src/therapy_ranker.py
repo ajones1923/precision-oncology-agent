@@ -344,7 +344,7 @@ class TherapyRanker:
                     "targets": ["HRD", "BRCA"],
                     "evidence_level": "B",
                     "guideline_recommendation": (
-                        f"BRCA/HRD-positive tumors show enhanced platinum sensitivity."
+                        "BRCA/HRD-positive tumors show enhanced platinum sensitivity."
                     ),
                     "source": "biomarker",
                     "source_biomarker": "HRD/BRCA",

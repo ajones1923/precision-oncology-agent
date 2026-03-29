@@ -15,7 +15,6 @@ Usage: python3 scripts/validate_e2e.py [--verbose]
 import json
 import sys
 import time
-import traceback
 from pathlib import Path
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -279,7 +278,7 @@ def main():
         description="End-to-end validation for Oncology Intelligence Agent"
     )
     parser.add_argument("--verbose", action="store_true", help="Show detailed output")
-    args = parser.parse_args()
+    parser.parse_args()
 
     print("=" * 60)
     print("Oncology Intelligence -- End-to-End Validation")
@@ -313,7 +312,7 @@ def main():
     print(f"  Total time: {total_time:.2f}s")
 
     if failed > 0:
-        print(f"\n  Failed checks:")
+        print("\n  Failed checks:")
         for r in results:
             if not r.passed:
                 print(f"    - {r.name}: {r.message}")

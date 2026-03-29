@@ -12,10 +12,9 @@ Date: February 2026
 from __future__ import annotations
 
 import logging
-import re
 import time
 from dataclasses import dataclass, field
-from typing import Dict, List, Optional, Set
+from typing import Dict, List, Set
 
 from .models import AgentQuery, AgentResponse, CrossCollectionResult
 

@@ -27,7 +27,7 @@ _AGENT_ROOT = Path(__file__).resolve().parents[1]
 if str(_AGENT_ROOT) not in sys.path:
     sys.path.insert(0, str(_AGENT_ROOT))
 
-from src.agent import OncoIntelligenceAgent, SearchPlan
+from src.agent import OncoIntelligenceAgent
 from src.export import export_fhir_r4, export_json, export_markdown
 from src.models import (
     AgentResponse,

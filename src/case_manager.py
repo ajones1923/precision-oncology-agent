@@ -17,7 +17,7 @@ import logging
 from datetime import datetime, timezone
 from typing import Any, Dict, List, Optional
 
-from src.models import AgentQuery, CaseSnapshot, MTBPacket
+from src.models import CaseSnapshot, MTBPacket
 from src.knowledge import ACTIONABLE_TARGETS, get_target_context, classify_variant_actionability
 
 logger = logging.getLogger(__name__)
