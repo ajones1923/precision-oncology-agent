@@ -2,7 +2,7 @@
 
 **Audience:** Experienced developers contributing to or extending the agent.
 **Prerequisite reading:** `LEARNING_GUIDE.md` (introductory guide).
-**Codebase snapshot:** February 2026 -- ~14,000 lines across `src/`, `api/`, `app/`, `tests/`, `scripts/`.
+**Codebase snapshot:** March 2026 -- ~14,000 lines across `src/`, `api/`, `app/`, `tests/`, `scripts/`.
 
 ---
 
@@ -2115,6 +2115,6 @@ ONCO_CONVERSATION_MEMORY_DEPTH=5
 
 ---
 
-*This guide reflects the codebase as of February 2026. For introductory
+*This guide reflects the codebase as of March 2026. For introductory
 material, see `LEARNING_GUIDE.md`. For deployment instructions, see
 `DEPLOYMENT.md`.*
